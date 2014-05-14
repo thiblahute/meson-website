@@ -7,19 +7,19 @@ Configuring the source
 
 Let us assume that we have a source tree that has a Meson build system. This means that at the topmost directory has a file called <tt>meson.build</tt>. We run the following commands to get the build started.
 
-<tt>cd /path/to/source/root
-mkdir build
-cd build
-meson ..</tt>
+    cd /path/to/source/root
+    mkdir build
+    cd build
+    meson ..
 
 First we create a directory to hold all files generated during the build. Then we go into it and invoke Meson, giving it the location of the source root. Meson then loads the build configuration file and writes the corresponding build backend in the build directory. By default Meson generates a *debug build*, which turns on basic warnings and debug information and disables compiler optimizations. 
 
 The build directory is mandatory. The reason for this is that it simplifies the build process immensely. Meson will not under any circumstances write files inside the source directory (if it does, it is a bug and should be fixed). This means that the user does not need to add a bunch of files to their revision control's ignore list. It also means that you can create arbitrarily many build directories for any given source tree. If we wanted to test building the source code with the Clang compiler instead of the system default, we could just type the following commands.
 
-<tt>cd /path/to/source/root
-mkdir buildclang
-cd buildclang
-CC=clang CXX=clang++ meson ..</tt>
+    cd /path/to/source/root
+    mkdir buildclang
+    cd buildclang
+    CC=clang CXX=clang++ meson ..
 
 This separation is even more powerful if your code has multiple configuration options (such as multiple data backends). You can create a separate subdirectory for each of them. You can also have build directories for optimized builds, code coverage, static analysis and so on. They are all neatly separated and use the same source tree. Changing between different configurations is just a question of changing to a separate directory.
 
@@ -36,7 +36,7 @@ Building the source
 
 If you are not using an IDE, Meson uses the [Ninja build system](http://martine.github.com/ninja/) to actually build the code. To start the build, simply type the following command.
 
-<tt>ninja</tt>
+    ninja
 
 The main usability difference between Ninja and Make is that Ninja will automatically detect the number of CPUs in your computer and parallelize itself accordingly. You can override the amount of parallel processes used with the command line argument <tt>-j &lt;num processes&gt;</tt>.
 
@@ -47,7 +47,7 @@ Running tests
 
 Meson provides native support for running tests. The command to do that is simple.
 
-<tt>ninja test</tt>
+    ninja test
 
 Meson does not force the use of any particular testing framework. You are free to use GTest, Boost Test, Check or even custom executables.
 
@@ -56,18 +56,18 @@ Installing
 
 Installing the built software is just as simple.
 
-<tt>ninja install</tt>
+    ninja install
 
 By default Meson installs to <tt>/usr/local</tt>. This can be changed by passing the command line argument <tt>--prefix /your/prefix</tt> to Meson during configure time. Meson also supports the <tt>DESTDIR</tt> variable used in e.g. building packages. It is used like this:
 
-<tt>DESTDIR=/path/to/staging ninja install</tt>
+    DESTDIR=/path/to/staging ninja install
 
 Command line help
 ==
 
 Meson comes with extensive command line help. It can be accessed with the following command.
 
-<tt>meson --help</tt>
+    meson --help
 
 ---
 
