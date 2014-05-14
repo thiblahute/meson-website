@@ -36,7 +36,7 @@ When these tests fail, the user probably wants to run the failing test in a debu
 
     mesonintrospect.py --tests
 
-This provides you with all the information to run the test: what command to execute, command line arguments and environment variable settings.
+This provides you with all the information needed to run the test: what command to execute, command line arguments and environment variable settings.
 
 ---
 
