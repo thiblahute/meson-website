@@ -1,0 +1,31 @@
+This is the user manual for Meson. It currently tracks the state of Git head, which will eventually become version 0.17. If you are using an older version, some of the information here might not work for you.
+
+* [Overview](Overview)
+* [Running Meson](Running Meson)
+* [Sample Meson files](Meson sample)
+* [Syntax](Syntax)
+* [Build targets](Build targets)
+* [Include directories](Include directories)
+* [Installing](Installing)
+* [Adding flags](Adding flags)
+* [Configuration](Configuration)
+* [Detecting compiler and system properties](Compiler properties)
+* [Dependencies](Dependencies)
+* [External commands](External commands)
+* [Precompiled headers](Precompiled headers)
+* [Unity builds](Unity builds)
+* [Generating sources](Generating sources)
+* [Feature autodetection](Feature autodetection)
+* [Unit tests](Unit tests)
+* [Cross compilation](Cross compilation)
+* [Localisation](Localisation)
+* [Build options](Build options)
+* [Subprojects](Subprojects)
+* [Pkg-config files](Pkg-config files)
+* [Java](Java)
+* [Vala](Vala)
+* [IDE integration](IDE integration)
+
+----
+
+[Wiki home](Home)
