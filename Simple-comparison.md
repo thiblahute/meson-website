@@ -28,7 +28,7 @@ The reason SCons got zero seconds on this test is because you cannot separate co
 
 Build times are a bit more even. SCons is the slowest, being almost ten seconds slower than the second slowest. Some of it is work from the configure step but it still has the worst performance. Premake is the fastest Make-based build system narrowly beating out Autotools. Both Ninja-based build systems are faster than all non-Ninja ones with Meson being slightly faster. In practice the difference is minimal. The advantages of Ninja can be seen by comparing CMake's times when using Make or Ninja. It is possible to shave off 3.5 seconds (over 20%) of the total build time just by changing the backend. The project's CMake configuration files don't need any changes.
 
-![https://sourceforge.net/p/meson/wiki/Simple%20comparison/attachment/emptytime.png](No-op time)
+![No-op time](https://sourceforge.net/p/meson/wiki/Simple%20comparison/attachment/emptytime.png)
 
 Empty build times reflect the performance of regular build times. SCons is again the slowest taking over three seconds compared to Meson, which takes only 0.03 seconds, a difference of two orders of magnitude. Even Autotools, the fastest Make-based system, is almost one order of magnitude slower. Ninja holds the top spots just like in the previous test.
 
