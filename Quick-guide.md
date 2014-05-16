@@ -43,7 +43,7 @@ Distro packagers usually want total control on the build flags used. Meson suppo
     cd /path/to/source/root
     mkdir build
     cd build
-    CFLAGS=... CXXFLAGS=... LDFLAGS=.. meson --prefix /usr --buildtype=plain
+    CFLAGS=... CXXFLAGS=... LDFLAGS=.. meson --prefix /usr --buildtype=plain ..
     ninja
     ninja test
     DESTDIR=/path/to/staging/root ninja install
