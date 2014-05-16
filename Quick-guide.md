@@ -51,3 +51,5 @@ Distro packagers usually want total control on the build flags used. Meson suppo
 The command line switch <tt>--buildtype=plain</tt> tells Meson not to add its own flags to the command line. This gives the packager total control on used flags.
 
 This is very similar to other build systems. The only difference is that the <tt>DESTDIR</tt> variable is passed as an environment variable rather than as an argument to <tt>ninja install</tt>.
+
+As distro builds happen always from scratch, we recommend you to enable [unity builds](Unity builds) whenever possible on your packages because they are faster and produce better code.
