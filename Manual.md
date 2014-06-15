@@ -25,6 +25,10 @@ This is the user manual for Meson. It currently tracks the state of Git head, wh
 * [Java](Java)
 * [Vala](Vala)
 * [IDE integration](IDE integration)
+* [Custom build targets](Custom build targets)
+* [Build system converters](Build system converters)
+* [Configuring a build directory](Configuring a build directory)
+* [Run targets](Run targets)
 
 ----
 
