@@ -7,7 +7,7 @@ First we build the executable.
 Then we define a *generator*, which defines how to transform input files into output files.
 
     gen = generator(mycomp,
-     outputs  : '@BASENAME@.c',
+     output  : '@BASENAME@.c',
      arguments : ['@INPUT@', '@OUTPUT@'])
 
 The first argument is the executable file to run. The next file specifies a name generation rule. It specifies how to build the output file name for a given input name. <tt>@BASENAME@</tt> is a placeholder for the input file name without preceding path or suffix (if any). So if the input file name were <tt>some/path/filename.idl</tt>, then the output name would be <tt>filename.c</tt>. You can also use <tt>@PLAINNAME@</tt>, which preserves the suffix which would result in a file called <tt>filename.idl.c</tt>. The last line specifies the command line arguments to pass to the executable. <tt>@INPUT@</tt> and <tt>@OUTPUT@</tt> are placeholders for the input and output files, respectively, and will be automatically filled in by Meson.
