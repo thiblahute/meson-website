@@ -53,10 +53,10 @@ The only reason why one would use Make instead of Ninja is working on a platform
 
 Just use Ninja, you'll be happier that way. I guarantee it.
 
-## Why is Meson just a Python module so I could code my build setup in Python? ##
+## Why is Meson not just a Python module so I could code my build setup in Python? ##
 
 A related question to this is *Why is Meson's configuration language not Turing-complete?*
 
 There are many good reasons for this, most of which are summarized on this web page: [Against The Use Of Programming Languages in Configuration Files](http://taint.org/2011/02/18/001527a.html).
 
-In addition to those reasons, not exposing Python or any other "real" programming language makes it possible to port Meson's implementation to a different language. This might become necessary if, for example, Python turns out to be a performance bottleneck. 
+In addition to those reasons, not exposing Python or any other "real" programming language makes it possible to port Meson's implementation to a different language. This might become necessary if, for example, Python turns out to be a performance bottleneck. This is an actual problem that has caused complications for GNU Autotools and Scons.
