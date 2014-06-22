@@ -1,7 +1,7 @@
 Very few applications are fully self-contained, but rather they use external libraries and frameworks to do their work. Meson makes it very easy to find and use external dependencies. Here is how one would use the Zlib compression library.
 
     zdep = dependency('zlib')
-    exe = executable('zlibprog', 'prog.c', deps : zdep)
+    exe = executable('zlibprog', 'prog.c', dependencies : zdep)
 
 First Meson is told to find the external library <tt>zlib</tt> and error out if it is not found. Then an executable is built using the specified dependency. Note how the user does not need to manually handle compiler or linker flags or deal with any other minutiae.
 
@@ -23,13 +23,13 @@ The dependency detector works with all libraries that provide a <tt>pkg-config</
 Boost is not a single dependency but rather a group of different libraries. To use Boost with Meson, simply list which Boost modules you would like to use.
 
     boost_dep = dependency('boost', modules : ['thread', 'utility'])
-    exe = executable('myprog', 'file.cc', deps : boost_dep)
+    exe = executable('myprog', 'file.cc', dependencies : boost_dep)
 
 You can call <tt>dependency</tt> multiple times with different modules and use those to link against your targets.
 
 ## GTest and GMock ##
 
-GTest and GMock come as sources that must be compiled as part of your project. With Meson you don't have to care about the details, just pass <tt>gtest</tt> or <tt>gmock</tt> to <tt>find_dep</tt> and it will do everything for you. If you want to use GMock, it is recommended to use GTest as well, as getting it to work standalone is tricky.
+GTest and GMock come as sources that must be compiled as part of your project. With Meson you don't have to care about the details, just pass <tt>gtest</tt> or <tt>gmock</tt> to <tt>dependency</tt> and it will do everything for you. If you want to use GMock, it is recommended to use GTest as well, as getting it to work standalone is tricky.
 
 ## Qt5 ##
 
@@ -43,7 +43,7 @@ Meson has native Qt5 support. Its usage is best demonstrated with an example.
      moc_sources : 'helperFile.cpp', # must have #include"moc_helperFile.cpp"
      ui_files    : 'mainWindow.ui',
      qresources  : 'resources.qrc',
-     deps        : qt5widgets)
+     dependencies: qt5widgets)
 
 Here we have an UI file created with Qt Designer and one source and header file each that require preprocessing with the <tt>moc</tt> tool. We also define a resource file to be compiled with <tt>rcc</tt>. We just have to tell Meson which files are which and it will take care of invoking all the necessary tools in the correct order. The <tt>modules</tt> keyword of <tt>find_dep</tt> works just like it does with Boost. It tells which subparts of Qt the program uses.
 
@@ -51,7 +51,8 @@ At times you may need to tell Meson not to automatically build source files gene
 
     q5exe = executable('q5', sources : 'prog.cpp',
     moc_headers : ['foo.h', 'bar.h'],
-    manual_moc_include : ['foo.h'] # prog.cpp has #include"moc_foo.cpp"
+    manual_moc_include : ['foo.h'] # prog.cpp has #include"moc_foo.cpp",
+    dependencies : qt5dep
     )
 
 There is no built-in support for Qt 4 at this time.
