@@ -7,7 +7,7 @@ This is the user manual for Meson. It currently tracks the state of Git head, wh
 * [Build targets](Build targets)
 * [Include directories](Include directories)
 * [Installing](Installing)
-* [Adding arguments](Adding flags)
+* [Adding arguments](Adding arguments)
 * [Configuration](Configuration)
 * [Detecting compiler and system properties](Compiler properties)
 * [Dependencies](Dependencies)
