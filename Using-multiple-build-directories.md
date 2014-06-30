@@ -37,4 +37,4 @@ Separate build directories allows easy integration for various different kinds o
     cd buildscan
     scan-build ninja
 
-These commands are the same for every single Meson project, so they could even be put in a script so running static analysis becomes a single command.
+These commands are the same for every single Meson project, so they could even be put in a script turning static analysis into a single command. 
