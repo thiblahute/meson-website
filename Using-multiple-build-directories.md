@@ -22,10 +22,10 @@ Another common setup is to build with debug and optimizations to, for example, r
 
 For systems where the default compiler is GCC, we would like to compile with Clang, too. So let's do that.
 
-   mkdir buildclang
-   CC=clang CXX=clang++ meson buildclang
+    mkdir buildclang
+    CC=clang CXX=clang++ meson buildclang
 
-To compile any of these build types, just cd into the corresponding build directory and run <tt>ninja</tt>. Note that once you have set up your build directory once, you can just run Ninja and Meson will ensure that the resulting build is fully up to date according to the source. Even if you have not touched one of the directories in weeks and have done major changes to your build configuration, Meson will detect this and bring the build directory up to date (or print an error if it can't do that). This allows you to do most of your work in the default directory and use the others every now and then without having to babysit your build directories.
+To compile any of these build types, just cd into the corresponding build directory and run <tt>ninja</tt> or instruct your IDE to do the same. Note that once you have set up your build directory once, you can just run Ninja and Meson will ensure that the resulting build is fully up to date according to the source. Even if you have not touched one of the directories in weeks and have done major changes to your build configuration, Meson will detect this and bring the build directory up to date (or print an error if it can't do that). This allows you to do most of your work in the default directory and use the others every now and then without having to babysit your build directories.
 
 ## Specialised uses ##
 
