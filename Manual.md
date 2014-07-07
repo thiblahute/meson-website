@@ -2,6 +2,7 @@ This is the user manual for Meson. It currently tracks the state of Git head, wh
 
 * [Overview](Overview)
 * [Running Meson](Running Meson)
+* [Using with Visual Studio](Using with Visual Studio)
 * [Sample Meson files](Meson sample)
 * [Syntax](Syntax)
 * [Build targets](Build targets)
