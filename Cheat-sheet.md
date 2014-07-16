@@ -31,7 +31,7 @@ After this you just compile your code and run the test suite. Address sanitizer 
 The clang compiler comes with a static analysis tool which is invoked by compiling the application via a wrapper command. We will generate this report in a custom build directory and clean it up afterwards so no build artifacts remain lingering anywhere. This is achieved by running the following commands in the root of the source directory.
 
     mkdir uniquedirname
-    mkdir uniquedirname
+    cd uniquedirname
     scan-build meson ..
     scan-build ninja
     cd ..
