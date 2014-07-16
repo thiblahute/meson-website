@@ -14,14 +14,27 @@ Then issue the following commands.
 
 The coverage report can be found in the meson-logs subdirectory.
 
-## Using Clang and the static analyzer ##
+## Using the static analyzer ##
 
-Clang comes with a selection of analysis tools such as the [address sanitizer](http://clang.llvm.org/docs/AddressSanitizer.html). They are enabled by adding a few compiler flags. In addition we set the compiler to clang, though the sanitizers work with recent GCC versions, too.
+Clang comes with a selection of analysis tools such as the [address sanitizer](http://clang.llvm.org/docs/AddressSanitizer.html). They are enabled by adding a few compiler flags (requires a relatively recent GCC or Clang).
 
 First we set up meson.
 
-    CC=clang CFLAGS='-fsanitize=address -fno-omit-frame-pointer' meson ..
+    CFLAGS='-fsanitize=address -fno-omit-frame-pointer' meson ..
 
 This example uses only plain C. For C++ you would set the variables <tt>CXX</tt> and <tt>CXXFLAGS</tt>, respectively.
 
 After this you just compile your code and run the test suite. Address sanitizer will abort executables which have errors so they show up as test failures.
+
+## Using Clang static analyzer ##
+
+The clang compiler comes with a static analysis tool which is invoked by compiling the application via a wrapper command. We will generate this report in a custom build directory and clean it up afterwards so no build artifacts remain lingering anywhere. This is achieved by running the following commands in the root of the source directory.
+
+    mkdir uniquedirname
+    mkdir uniquedirname
+    scan-build meson ..
+    scan-build ninja
+    cd ..
+    rm -rf uniquedirname
+
+The static analysis report will be found in the <tt>/tmp</tt> subdirectory, though you can forward it somewhere else if you prefer.
