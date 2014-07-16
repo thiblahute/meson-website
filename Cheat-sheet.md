@@ -24,7 +24,7 @@ First we set up meson.
 
 This example uses only plain C. For C++ you would set the variable <tt>CXXFLAGS</tt>.
 
-After this you just compile your code and run the test suite. Address sanitizer will abort executables which have errors so they show up as test failures.
+After this you just compile your code and run the test suite. Address sanitizer will abort executables which have bugs so they show up as test failures.
 
 ## Using Clang static analyzer ##
 
