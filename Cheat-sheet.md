@@ -22,7 +22,7 @@ First we set up meson.
 
     CFLAGS='-fsanitize=address -fno-omit-frame-pointer' meson ..
 
-This example uses only plain C. For C++ you would set the variables <tt>CXX</tt> and <tt>CXXFLAGS</tt>, respectively.
+This example uses only plain C. For C++ you would set the variable <tt>CXXFLAGS</tt>.
 
 After this you just compile your code and run the test suite. Address sanitizer will abort executables which have errors so they show up as test failures.
 
