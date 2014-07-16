@@ -14,7 +14,7 @@ Then issue the following commands.
 
 The coverage report can be found in the meson-logs subdirectory.
 
-## Using the static analyzer ##
+## Using address sanitizer ##
 
 Clang comes with a selection of analysis tools such as the [address sanitizer](http://clang.llvm.org/docs/AddressSanitizer.html). They are enabled by adding a few compiler flags (requires a relatively recent GCC or Clang).
 
