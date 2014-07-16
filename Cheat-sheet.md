@@ -12,4 +12,16 @@ Then issue the following commands.
     ninja test
     ninja coverage-html (or coverage-xml)
 
-The result can be found in the meson-logs subdirectory.
+The coverage report can be found in the meson-logs subdirectory.
+
+## Using Clang and the static analyzer ##
+
+Clang comes with a selection of analysis tools such as the [address sanitizer](http://clang.llvm.org/docs/AddressSanitizer.html). They are enabled by adding a few compiler flags. In addition we set the compiler to clang, though the sanitizers work with recent GCC versions, too.
+
+First we set up meson.
+
+    CC=clang CFLAGS='-fsanitize=address -fno-omit-frame-pointer' meson ..
+
+This example uses only plain C. For C++ you would set the variables <tt>CXX</tt> and <tt>CXXFLAGS</tt>, respectively.
+
+After this you just compile your code and run the test suite. Address sanitizer will abort executables which have errors so they show up as test failures.
