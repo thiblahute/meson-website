@@ -14,6 +14,14 @@ Then issue the following commands.
 
 The coverage report can be found in the meson-logs subdirectory.
 
+## Adding some optimization to debug builds ##
+
+By default the debug build does not use any optimizations. This is the desired approach most of the time. However some projects benefit from having some minor optimizations enabled. Gcc even has a specific compiler flag <tt>-Og</tt> for this. To enable its use, just issue the following command.
+
+    mesonconf -Dcargs=-Og
+
+This causes all subsequent builds to use this command line argument.
+
 ## Using address sanitizer ##
 
 Clang comes with a selection of analysis tools such as the [address sanitizer](http://clang.llvm.org/docs/AddressSanitizer.html). They are enabled by adding a few compiler flags (requires a relatively recent GCC or Clang).
