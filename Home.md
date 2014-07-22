@@ -11,5 +11,6 @@ Meson aims to provide an optimal syntax and implementation for a next-generation
 * [Lightning talk presentation from FOSDEM14](http://video.fosdem.org/2014/H2215_Ferrer/Sunday/Introducing_the_Meson_build_system.webm)
 * [Performance comparison](Performance comparison)
 * [Trial conversions](Trial conversions) for existing projects
+* [In the press](In the press)
 * [Contact information](Contact information)
 
