@@ -46,3 +46,19 @@ The clang compiler comes with a static analysis tool which is invoked by compili
     rm -rf uniquedirname
 
 The static analysis report will be found in the <tt>/tmp</tt> subdirectory, though you can forward it somewhere else if you prefer.
+
+## Using profile guided optimization ##
+
+Using profile guided optimization with GCC is a two phase operation. First we set up the project with profile measurements enabled and compile it.
+
+    CFLAGS='-pg -fprofile-generate' meson .. <Meson options, such as --buildtype=debugoptimized>
+    ninja
+
+Then we need to run the program with some representative input. This step depends on your project.
+
+Once that is done we change the compiler flags to use the generated information and rebuild.
+
+    mesonconf -Dcargs=-fprofile-use -Dclinkargs=-Dprofile-use
+    ninja
+
+After these steps the resulting binary is fully optimized.
