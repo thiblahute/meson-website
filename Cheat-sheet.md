@@ -58,7 +58,7 @@ Then we need to run the program with some representative input. This step depend
 
 Once that is done we change the compiler flags to use the generated information and rebuild.
 
-    mesonconf -Dcargs=-fprofile-use -Dclinkargs=-Dprofile-use
+    mesonconf -Dcargs=-fprofile-use -Dclinkargs=-fprofile-use
     ninja
 
 After these steps the resulting binary is fully optimized.
