@@ -7,7 +7,7 @@ Here is a list of projects that have had a build system port done.
 * [Python 3](https://mail.python.org/pipermail/python-dev/2013-June/126748.html)
 * [Glib](https://mail.gnome.org/archives/gtk-devel-list/2013-August/msg00001.html)
 * [QtCreator](http://lists.qt-project.org/pipermail/qt-creator/2014-May/003584.html), and a [followup](http://lists.qt-project.org/pipermail/qt-creator/2014-May/003598.html) on unity builds
-
+* [SDL 2](http://forums.libsdl.org/viewtopic.php?t=10093&sid=8cf1d6c83d4d73fe6cfbb7cbb16b3d28)
 ----
 
 [Wiki home](Home)
