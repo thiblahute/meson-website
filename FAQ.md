@@ -1,6 +1,6 @@
 # Meson Frequently Asked Questions #
 
-## How to use Meson on a host where it is not installed by system packages ##
+## How to use Meson on a host where it is not available in system packages? ##
 
 Meson has been designed to be easily runnable from an extracted source tarball or even a git checkout. First you need to download Meson. Then use this command to set up you build instead of plain <tt>meson</tt>.
 
