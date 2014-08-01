@@ -1,5 +1,13 @@
 # Meson Frequently Asked Questions #
 
+## How to use Meson on a host where it is not installed by system packages ##
+
+Meson has been designed to be easily runnable from an extracted source tarball or even a git checkout. First you need to download Meson. Then use this command to set up you build instead of plain <tt>meson</tt>.
+
+    /path/to/meson.py <options>
+
+After this you don't have to care about invoking Meson any more. It remembers where it was originally invoked from and calls itself appropriately. As a user the only thing you need to do is to cd into your build directory and invoke <tt>ninja</tt>. 
+
 ## Why can't I specify target files with a wildcard? ##
 
 Instead of specifying files explicitly, people seem to want to do this:
