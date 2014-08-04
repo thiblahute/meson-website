@@ -4,7 +4,7 @@ Most <tt>C</tt>/<tt>C++</tt> projects have headers in different directories than
 
 The <tt>incdir</tt> variable now holds a reference to the <tt>include</tt> subdir. Now we pass that as an argument to a build target:
 
-    executable('someprog', 'someprog.c', include_dirs : incdir)
+    executable('someprog', 'someprog.c', include_directories : incdir)
 
 Note that these two commands can be given in any subdirectories and it will still work. Meson will keep track of the locations and generate proper compiler flags to make it all work.
 
