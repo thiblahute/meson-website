@@ -11,7 +11,7 @@ This sets the flag that controls the C language standard used.
 
 Global arguments have certain limitations. They all have to be defined before any build targets are specified. This ensures that the global flags are the same for every single source file built in the entire project with one exception. Compilation tests that are run as part of your project configuration do not use these flags. The reason for that is that you may need to run a test compile with and without a given flag to determine your build setup. For this reason tests do not use these global arguments.
 
-You should set only the most essential flags with this setting, you should *not* set debug or optimization flags. Instead they should be specified with the build type feature.
+You should set only the most essential flags with this setting, you should *not* set debug or optimization flags. Instead they should be specified by selecting an appropriate build type.
 
 Per target arguments
 --
