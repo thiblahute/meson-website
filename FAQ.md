@@ -33,6 +33,8 @@ If the tradeoff between reliability and convenience is acceptable to you, then M
 
 Then you need to run this script in your Meson file, convert the output into a string array and use the result in a target.
 
+    newline = '''
+    '''
     c = run_command('grabber.sh')
     sources = c.stdout().strip().split(newline)
     e = executable('prog', sources)
