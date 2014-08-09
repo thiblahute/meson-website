@@ -22,6 +22,11 @@ Per target arguments are just as simple to define.
 
 Here we create a C++ executable with an extra preprocessor definition. 
 
+Specifying extra linker arguments is done in the same way:
+
+    executable('prog', 'prog.cc', link_args : '-Wl,--linker-option')
+
+
 ---
 
 [Back to index](Manual).
