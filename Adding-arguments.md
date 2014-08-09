@@ -20,7 +20,7 @@ Per target arguments are just as simple to define.
 
     executable('prog', 'prog.cc', cpp_args : '-DCPPTHING')
 
-Here we create a C++ executable with an extra preprocessor definition. 
+Here we create a C++ executable with an extra argument that is used during compilation but not for linking. 
 
 Specifying extra linker arguments is done in the same way:
 
