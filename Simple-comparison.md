@@ -42,5 +42,5 @@ Original scripts
 
 Those who want to run these experiments themselves can download the scripts here:
 
-* [Generator script](../gen_src.py)
-* [Measurement script](../measure.py)
+* [Generator script](https://raw.githubusercontent.com/wiki/jpakkane/meson/gen_src.py)
+* [Measurement script](https://raw.githubusercontent.com/wiki/jpakkane/meson/measure.py)
