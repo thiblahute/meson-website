@@ -36,3 +36,11 @@ Conclusions
 -----
 
 Build system performance matters. Even with this extremely simple example we can find differences between various popular build systems. As the project size increases, these differences grow even larger. (The author has witnessed no-op build times of 30 seconds for Make versus less than one second for Ninja when compiling the Clang compiler.) Keeping incremental build times low is one of the major keys of programmer productivity as it allows developers to iterate faster and stay in the creative zone.
+
+Original scripts
+-----
+
+Those who want to run these experiments themselves can download the scripts here:
+
+* [Generator script](../gen_src.py)
+* [Measurement script](../measure.py)
