@@ -29,6 +29,10 @@ Valgrind
 
 If you have [Valgrind](http://valgrind.org/) installed, Meson will provide a <tt>test-valgrind</tt> target, which runs all your unit tests under Valgrind. The full Valgrind log can be found in <tt>meson-logs/testlog-valgrind.txt</tt>
 
+You can pass custom arguments to Valgrind by specifying them in a keyword argument like this:
+
+    test('foo', executable, valgrind_args : ['-tool=helgrind', '-v'])
+
 Parallelism
 --
 
