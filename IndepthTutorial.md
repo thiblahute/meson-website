@@ -18,3 +18,27 @@ First we define the project's name and the programmin languages it uses (in this
 Since <tt>include</tt> directory contains the header files, we need a way to tell compilations to add that directory to the compiler command line. This is done with the <tt>include_directories</tt> command that takes a directory and returns an object representing this directory. It is stored in variable <tt>inc</tt> which makes it accessible later on.
 
 After this are two <tt>subdir</tt> commands. These instruct Meson to go to the specified subdirectory, open the <tt>meson.build</tt> file that's in there and execute it.
+
+The Meson definition of <tt>src</tt> subdir is simple.
+
+    foolib = shared_library('foo', 'source1.cpp', 'source2.cpp',
+                            include_directories : inc)
+
+Here we just tell Meson to build the library with the given sources. We also tell it to use the include directories we stored to variable <tt>inc</tt> earlier. The result is stored in variable <tt>foolib</tt> just like the include directory was stored in the previous file.
+
+Once Meson has processed the <tt>src</tt> subdir it returns one level up to the main Meson file and executes the next line that moves it into the <tt>test</tt> subdir. Its contents look like this.
+
+    testexe = executable('testexe', 'footest.cpp',
+                         include_directories : inc,
+                         link_with : foolib)
+    test('foolib test', testexe)
+
+First we build a test executable that has the same include directory as the main library and which also links against the freshly built shared library. Then we define a test with the name <tt>foolib test</tt>. It consists of running the binary we just built. If the executable returns with a zero return value, it is considered passed. Other return values mark the test as failed.
+
+With these three files we are done. To configure, build and run the test suite, we just need to execute the following commands (starting at source tree root directory).
+
+    mkdir build
+    cd build
+    meson ..
+    ninja
+    ninja test
