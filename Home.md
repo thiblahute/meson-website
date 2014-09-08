@@ -3,7 +3,7 @@ Meson aims to provide an optimal syntax and implementation for a next-generation
 ## Core information ##
 
 * [Quick guide](Quick guide)
-* [Tutorial](Tutorial)
+* [A simple tutorial](Tutorial)
 * [Cheat sheet](Cheat sheet)
 * [Manual](Manual)
 * [FAQ](FAQ)
