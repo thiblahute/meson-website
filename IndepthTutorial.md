@@ -37,7 +37,7 @@ Once Meson has processed the <tt>src</tt> subdir it returns one level up to the 
                          link_with : foolib)
     test('foolib test', testexe)
 
-First we build a test executable that has the same include directory as the main library and which also links against the freshly built shared library. Note that you don't need to specify <tt>glib_dep</tt> here just to be able to use the generated library. If the executable used GLib functionality itself, then we would of course need to add it as a keyword argument here.
+First we build a test executable that has the same include directory as the main library and which also links against the freshly built shared library. Note that you don't need to specify <tt>glib_dep</tt> here just to be able to use the built library <tt>foolib</tt>. If the executable used GLib functionality itself, then we would of course need to add it as a keyword argument here.
 
 Finally we define a test with the name <tt>foolib test</tt>. It consists of running the binary we just built. If the executable exits with a zero return value, the test is considered passed. Nonzero return values mark the test as failed.
 
