@@ -67,7 +67,7 @@ With these four files we are done. To configure, build and run the test suite, w
     ninja
     ninja test
 
-To install the project you only need one command.
+To then install the project you only need one command.
 
     ninja install
 
