@@ -11,6 +11,7 @@ To start things up, here is the top level <tt>meson.build</tt> file.
     glib_dep = dependency('glib-2.0')
 
     inc = include_directories('include')
+    
     subdir('include')
     subdir('src')
     subdir('test')
