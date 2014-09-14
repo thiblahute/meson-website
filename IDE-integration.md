@@ -2,7 +2,7 @@ Meson has exporters for Visual Studio and XCode, but writing a custom backend fo
 
 The basic tool for this is a script called <tt>mesonintrospect.py</tt>. Some distro packages might not expose this script in the regular path, and in this case you need to execute it from the install directory.
 
-The first thing to do when setting up a Meson project in an IDE is to select the source and build directories. For this example we assume that the source resides in an Eclipse-like directory called <tt>workspace/project</tt> and the build tree is nested inside it as <tt>workscpace/project/build</tt>. First we initialise Meson by running the following command in the source directory.
+The first thing to do when setting up a Meson project in an IDE is to select the source and build directories. For this example we assume that the source resides in an Eclipse-like directory called <tt>workspace/project</tt> and the build tree is nested inside it as <tt>workspace/project/build</tt>. First we initialise Meson by running the following command in the source directory.
 
     meson build
 
