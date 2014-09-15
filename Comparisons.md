@@ -36,7 +36,7 @@ Slow.
 
 ### Pros ###
 
-The fastest build system [see measurements](Performance comparison), user friendly, designed to be as invisible to the developer as possible, native support for modern tools (precompiled headers, coverage, Valgring etc).
+The fastest build system [see measurements](Performance comparison), user friendly, designed to be as invisible to the developer as possible, native support for modern tools (precompiled headers, coverage, Valgrind etc).
 
 ### Cons ###
 
