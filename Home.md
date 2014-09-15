@@ -1,3 +1,5 @@
+# The Meson Build System Documentation # 
+
 Meson aims to provide an optimal syntax and implementation for a next-generation build system.
 
 ## Core information ##
