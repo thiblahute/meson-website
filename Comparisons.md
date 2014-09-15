@@ -10,7 +10,7 @@ Excellent support for legacy Unix platforms, large selection of existing modules
 
 ### Cons ###
 
-Needlessly slow, complicated, hard to use correctly, unreliable, painful to debug, ununderstandable for most people.
+Needlessly slow, complicated, hard to use correctly, unreliable, painful to debug, ununderstandable for most people, poor support for non-Unix platforms (especially Windows).
 
 ## CMake ##
 
