@@ -9,6 +9,7 @@ Here is a list of projects that have had a build system port done.
 * [QtCreator](http://lists.qt-project.org/pipermail/qt-creator/2014-May/003584.html), and a [followup](http://lists.qt-project.org/pipermail/qt-creator/2014-May/003598.html) on unity builds
 * [SDL 2](http://forums.libsdl.org/viewtopic.php?t=10093&sid=8cf1d6c83d4d73fe6cfbb7cbb16b3d28)
 * [Mesa3D](http://lists.freedesktop.org/archives/mesa-dev/2014-July/064160.html)
+* [Mame](http://www.mameworld.info/ubbthreads/showthreaded.php?Cat=&Number=332119&page=0&view=expanded&sb=5&o=&fpart=1&vc=1)
 
 ----
 
