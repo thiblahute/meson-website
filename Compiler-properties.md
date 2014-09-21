@@ -14,6 +14,12 @@ Value | Compiler family
 gcc | The GNU Compiler Collection
 clang | The Clang compiler
 msvc | Microsoft Visual Studio
+intel | Intel compiler
+pathscale | The Pathscale Fortran compiler
+pgi | The Portland Fortran compiler
+sun | Sun Fortran compiler
+g95 | The G95 Fortran compiler
+open64 | The Open64 Fortran Compiler
 
 Does code compile?
 ==
