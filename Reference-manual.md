@@ -28,6 +28,10 @@ Executable supports the following keyword arguments.
 - <tt>extra_files</tt> are not used for the build itself but are shown as source files in IDEs that group files by targets (such as Visual Studio)
 - <tt>install_rpath</tt> a string to set the target's rpath to after install (but *not* before that)
 
+### jar ###
+
+Build a jar from the specified Java source files. Keyword arguments are the same as executable's, with the addition of <tt>main_class</tt> which specifies the main class to execute when running the jar with <tt>java -jar file.jar</tt>.
+
 ### message ###
 
 This function prints its argument to stdout.
