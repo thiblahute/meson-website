@@ -2,6 +2,14 @@ This page lists functions and methods available in Meson scripts. For more in-de
 
 ## Functions ##
 
+### dependency ###
+
+Finds an external dependency with the given name with pkg-config if possible and with fallback detection logic otherwise. Dependency supports one keyword argument, <tt>modules</tt>, which specifies submodules to use for dependencies such as Qt5 or Boost.
+
+### error ###
+
+Print the argument string and halts the build process.
+
 ### executable ###
 
 Creates a new executable. The first argument specifies its name and the remaining positional arguments define the source files to use.
