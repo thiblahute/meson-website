@@ -9,6 +9,8 @@ Create a custom top level build target. The only positional argument is the name
 - <tt>input</tt> list of source files
 - <tt>output</tt> list of output files
 - <tt>command</tt> command to run to create outputs from inputs (note: always specify commands in array form <tt>['commandname', '-arg1', '-arg2']</tt> rather than as a string <tt>'commandname -arg1 -arg2'</tt> as the latter will *not* work)
+- <tt>install</tt> when true, this target is installed during the install step
+- <tt>install_dir</tt> directory to install to
 
 ### dependency ###
 
@@ -24,7 +26,6 @@ Creates a new executable. The first argument specifies its name and the remainin
 
 Executable supports the following keyword arguments.
 
-- <tt>install</tt>, when set to true, this executable should be installed
 - <tt>link_with</tt>, one or more shared or static libraries (built by this project) that this target should be linked with
 - <tt>&lt;languagename&gt;_pch</tt> precompiled header fire to use for the given language
 - <tt>&lt;languagename&gt;_args</tt> compiler flags to use for the given language
@@ -34,7 +35,9 @@ Executable supports the following keyword arguments.
 - <tt>dependencies</tt> one or more objects created with <tt>dependency</tt> or <tt>find_library</tt>
 - <tt>gui_app</tt> when set to true flags this target as a GUI application on platforms where this makes a difference (e.g. Windows)
 - <tt>extra_files</tt> are not used for the build itself but are shown as source files in IDEs that group files by targets (such as Visual Studio)
+- <tt>install</tt>, when set to true, this executable should be installed
 - <tt>install_rpath</tt> a string to set the target's rpath to after install (but *not* before that)
+- <tt>install_dir</tt> override install directory for this file
 
 ### jar ###
 
