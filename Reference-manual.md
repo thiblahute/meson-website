@@ -35,3 +35,14 @@ This function prints its argument to stdout.
 ### project ###
 
 The first argument to this function must be a string defining the name of this project. It must be followed by one or more programming languages that the project uses. Supported values for languages are <tt>c</tt>, <tt>cpp</tt> (for <tt>C++</tt>), <tt>objc</tt>, <tt>objcpp</tt>, <tt>fortran</tt>, <tt>java</tt>, <tt>cs</tt> (for <tt>C#</tt>) and <tt>vala</tt>.
+
+### shared_library ###
+
+Builds a shared library with the given sources. Positional and keyword arguments are the same as for <tt>executable</tt> with the following extra keyword arguments.
+
+- <tt>version</tt> a string specifying the version of this shared library, such as *1.1.0*
+- <tt>soversion</tt> a string specifying the soversion of this shared library, such as 0 
+
+### static_library ###
+
+Builds a static library with the given sources. Positional and keyword arguments are the same as for <tt>executable</tt>
