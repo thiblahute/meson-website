@@ -2,6 +2,14 @@ This page lists functions and methods available in Meson scripts. For more in-de
 
 ## Functions ##
 
+### custom_target ###
+
+Create a custom top level build target. The only positional argument is the name of this target and the keyword arguments are the following.
+
+- <tt>input</tt> list of source files
+- <tt>output</tt> list of output files
+- <tt>command</tt> command to run to create outputs from inputs (note: always specify commands in array form <tt>['commandname', '-arg1', '-arg2']</tt> rather than as a string <tt>'commandname -arg1 -arg2'</tt> as the latter will *not* work)
+
 ### dependency ###
 
 Finds an external dependency with the given name with pkg-config if possible and with fallback detection logic otherwise. Dependency supports one keyword argument, <tt>modules</tt>, which specifies submodules to use for dependencies such as Qt5 or Boost.
