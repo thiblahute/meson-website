@@ -82,6 +82,10 @@ This function creates a generator object that can be used to run custom compilat
 - <tt>arguments</tt> list the command line arguments passed to the command
 - <tt>output</tt> a template string defining how an output file name is generated from a source file name
 
+### gettext ###
+
+Sets up gettext localisation so that translations are built and placed into their proper locations during install. Takes one positional argument which is the name of the gettext module. The list of languages that are to be generated are specified with the <tt>languages</tt> keyword argument.
+
 ### headers ###
 
 Installs the specified headers into system's header directory during the install step. This directory can be overridden by specifying it with the <tt>install_dir</tt> keyword argument.
@@ -105,6 +109,10 @@ This function prints its argument to stdout.
 ### project ###
 
 The first argument to this function must be a string defining the name of this project. It must be followed by one or more programming languages that the project uses. Supported values for languages are <tt>c</tt>, <tt>cpp</tt> (for <tt>C++</tt>), <tt>objc</tt>, <tt>objcpp</tt>, <tt>fortran</tt>, <tt>java</tt>, <tt>cs</tt> (for <tt>C#</tt>) and <tt>vala</tt>.
+
+### run_command ###
+
+Runs the command specified in positional arguments. Returns an opaque object containing the result of the invocation.
 
 ### run_target ###
 
