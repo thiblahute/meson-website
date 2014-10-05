@@ -72,3 +72,12 @@ Builds a shared library with the given sources. Positional and keyword arguments
 ### static_library ###
 
 Builds a static library with the given sources. Positional and keyword arguments are the same as for <tt>executable</tt>
+
+### test ###
+
+Defines an unit test. Takes two positional arguments, the first is the name of this test and the second is the executable to run. Keyword arguments are the following.
+
+- <tt>args</tt> arguments to pass to the executable
+- <tt>env</tt> environment variables to set, such as <tt>['NAME1=value1', 'NAME2=value2']</tt>
+- <tt>is_parallel</tt> when false, specifies that no other test must be running at the same time as this test
+- <tt>valgrind_args</tt> if the test is run under Valgrind, pass these arguments to Valgrind (and not to the executable itself)
