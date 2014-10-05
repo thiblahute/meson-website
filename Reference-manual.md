@@ -2,6 +2,15 @@ This page lists functions and methods available in Meson scripts. For more in-de
 
 ## Functions ##
 
+### configure_file ###
+
+Takes a configuration file template and values and produces a file as specified in [the configuration file documentation](Configuration). The keyword arguments are the following:
+
+-<tt>input</tt> the input file name
+-<tt>output</tt> the output file name
+-<tt>configuration</tt> the configuration data object as returned by <tt>configuration_data</tt>
+-<tt>command</tt> if specified Meson does not create the file itself but rather runs the specified command, which allows you to do fully custom file generation
+
 ### custom_target ###
 
 Create a custom top level build target. The only positional argument is the name of this target and the keyword arguments are the following.
