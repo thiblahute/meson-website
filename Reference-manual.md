@@ -199,3 +199,12 @@ This object represents a compiler for a given language and allows you to query i
 - <tt>has_function</tt> returns true if the given function can be called
 - <tt>has_member</tt> takes two arguments, type name and member name and returns true if the type has the specified member
 - <tt>alignment</tt> returns the alignment of the type specified in the positional argument
+
+### run result object ###
+
+This object encapsulates the result of trying to compile and run a sample piece of code.
+
+- <tt>compiled</tt> if true, the compilation succeeded, if false it did not and the other methods return unspecified data
+- <tt>returncode</tt> the return code of executing the compiled binary
+- <tt>stdout</tt> the standard out produced when the binary was run
+- <tt>stderr</tt> the standard error produced when the binary was run
