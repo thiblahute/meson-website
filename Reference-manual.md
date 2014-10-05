@@ -67,6 +67,10 @@ Tries to locate the command listed in the positional argument. It can either be 
 
 If the program is not found, Meson will abort. You can tell it not to by setting the keyword argument <tt>required</tt> to false.
 
+### find_library ###
+
+Tries to find the library specified in the positional argument. The result object can be used just like the return value of <tt>dependency</tt>. If the keyword argument <tt>required</tt> is false, Meson will proceed even if the library is not found.
+
 ### generator ###
 
 This function creates a generator object that can be used to run custom compilation commands. The only positional argument is the executable to use. It can either be a self-built executable or one returned by find_program. Keyword arguments are the following:
