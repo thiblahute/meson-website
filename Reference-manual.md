@@ -48,11 +48,15 @@ This function creates a generator object that can be used to run custom compilat
 
 ### headers ###
 
-Installs the headers specified headers into system's header directory during the install step. This directory can be overridden by specifying it with the <tt>install_dir</tt> keyword argument.
+Installs the specified headers into system's header directory during the install step. This directory can be overridden by specifying it with the <tt>install_dir</tt> keyword argument.
 
 ### jar ###
 
 Build a jar from the specified Java source files. Keyword arguments are the same as executable's, with the addition of <tt>main_class</tt> which specifies the main class to execute when running the jar with <tt>java -jar file.jar</tt>.
+
+### man ###
+
+Installs the man files specified into system's man directory during the install step. This directory can be overridden by specifying it with the <tt>install_dir</tt> keyword argument.
 
 ### message ###
 
@@ -76,6 +80,10 @@ Builds a shared library with the given sources. Positional and keyword arguments
 ### static_library ###
 
 Builds a static library with the given sources. Positional and keyword arguments are the same as for <tt>executable</tt>
+
+### subdir ###
+
+Recurses into the specified subdirectory and executes the <tt>meson.build</tt> file in it. Once that is done, it returns and execution continues on the line following this <tt>subdir</tt> command.
 
 ### test ###
 
