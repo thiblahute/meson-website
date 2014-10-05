@@ -58,6 +58,10 @@ Executable supports the following keyword arguments.
 - <tt>install_rpath</tt> a string to set the target's rpath to after install (but *not* before that)
 - <tt>install_dir</tt> override install directory for this file
 
+### find_program ###
+
+Tries to locate the command listed in the positional argument. It can either be a command or a script in the source directory. Meson will also autodetect scripts with a shebang line and run them with the executable specified in it both on Windows (because the command invocator will reject the command otherwise) and unixes (if the script file does not have the executable bit set).
+
 ### generator ###
 
 This function creates a generator object that can be used to run custom compilation commands. The only positional argument is the executable to use. It can either be a self-built executable or one returned by find_program. Keyword arguments are the following:
