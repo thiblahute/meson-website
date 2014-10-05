@@ -208,3 +208,7 @@ This object encapsulates the result of trying to compile and run a sample piece 
 - <tt>returncode</tt> the return code of executing the compiled binary
 - <tt>stdout</tt> the standard out produced when the binary was run
 - <tt>stderr</tt> the standard error produced when the binary was run
+
+### configuration data object ###
+
+This object encapsulates configuration values to be used for generating configuration files. It has two methods, <tt>set</tt> and <tt>set10</tt> which are fully documented on [the configuration wiki page](Configuration).
