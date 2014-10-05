@@ -163,3 +163,14 @@ Defines an unit test. Takes two positional arguments, the first is the name of t
 - <tt>env</tt> environment variables to set, such as <tt>['NAME1=value1', 'NAME2=value2']</tt>
 - <tt>is_parallel</tt> when false, specifies that no other test must be running at the same time as this test
 - <tt>valgrind_args</tt> if the test is run under Valgrind, pass these arguments to Valgrind (and not to the executable itself)
+
+## Object methods ##
+
+Meson has several different object types that have methods users can call. This section describes them.
+
+### meson ###
+
+The <tt>messon</tt> object allows you to introspect various properties of the system. This object is always mapped in the <tt>meson</tt> variable. It has the following methods.
+
+- <tt>get_compiler</tt> returns an object describing a compiler, takes one positional argument which is the language to use, and one keyword argument, <tt>native</tt> which when set to true makes Meson return the compiler for the build machine (the "native" compiler) and when false it returns the host compiler (the "cross" compiler)
+
