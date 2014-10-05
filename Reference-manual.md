@@ -46,6 +46,10 @@ This function creates a generator object that can be used to run custom compilat
 - <tt>arguments</tt> list the command line arguments passed to the command
 - <tt>output</tt> a template string defining how an output file name is generated from a source file name
 
+### headers ###
+
+Installs the headers specified headers into system's header directory during the install step. This directory can be overridden by specifying it with the <tt>install_dir</tt> keyword argument.
+
 ### jar ###
 
 Build a jar from the specified Java source files. Keyword arguments are the same as executable's, with the addition of <tt>main_class</tt> which specifies the main class to execute when running the jar with <tt>java -jar file.jar</tt>.
