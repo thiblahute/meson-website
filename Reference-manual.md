@@ -12,6 +12,10 @@ Create a custom top level build target. The only positional argument is the name
 - <tt>install</tt> when true, this target is installed during the install step
 - <tt>install_dir</tt> directory to install to
 
+### data ###
+
+Installs files listed in positional and <tt>sources</tt> keyword arguments into the directory specified by the <tt>install_dir</tt> argument during install phase.
+
 ### dependency ###
 
 Finds an external dependency with the given name with pkg-config if possible and with fallback detection logic otherwise. Dependency supports one keyword argument, <tt>modules</tt>, which specifies submodules to use for dependencies such as Qt5 or Boost.
