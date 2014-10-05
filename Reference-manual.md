@@ -188,4 +188,14 @@ The <tt>meson</tt> object allows you to introspect various properties of the sys
 
 ### compiler object ###
 
-This object represents a compiler for a given language and allows you to query its properties
+This object represents a compiler for a given language and allows you to query its properties. It has the following methods.
+
+- <tt>get_id</tt> returns a string identifying the compiler (e.g. *gcc*)
+- <tt>version</tt> returns the compiler's version number as a string
+- <tt>compiles</tt> returns true if the code fragment given in the positional argument compiles
+- <tt>sizeof</tt> returns the size of the given type (e.g. *int*), to add includes set them in the <tt>prefix</tt> keyword argument
+- <tt>has_header</tt> returns true if the specified header can be included
+- <tt>run</tt> attempts to compile and execute the given code fragment, returns a run result object
+- <tt>has_function</tt> returns true if the given function can be called
+- <tt>has_member</tt> takes two arguments, type name and member name and returns true if the type has the specified member
+- <tt>alignment</tt> returns the alignment of the type specified in the positional argument
