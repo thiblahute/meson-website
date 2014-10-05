@@ -39,6 +39,13 @@ Executable supports the following keyword arguments.
 - <tt>install_rpath</tt> a string to set the target's rpath to after install (but *not* before that)
 - <tt>install_dir</tt> override install directory for this file
 
+### generator ###
+
+This function creates a generator object that can be used to run custom compilation commands. The only positional argument is the executable to use. It can either be a self-built executable or one returned by find_program. Keyword arguments are the following:
+
+- <tt>arguments</tt> list the command line arguments passed to the command
+- <tt>output</tt> a template string defining how an output file name is generated from a source file name
+
 ### jar ###
 
 Build a jar from the specified Java source files. Keyword arguments are the same as executable's, with the addition of <tt>main_class</tt> which specifies the main class to execute when running the jar with <tt>java -jar file.jar</tt>.
