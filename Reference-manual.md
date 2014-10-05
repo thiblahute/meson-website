@@ -16,10 +16,10 @@ Creates an empty configuration object. You should add your configuration with it
 
 Takes a configuration file template and values and produces a file as specified in [the configuration file documentation](Configuration). The keyword arguments are the following:
 
--<tt>input</tt> the input file name
--<tt>output</tt> the output file name
--<tt>configuration</tt> the configuration data object as returned by <tt>configuration_data</tt>
--<tt>command</tt> if specified Meson does not create the file itself but rather runs the specified command, which allows you to do fully custom file generation
+- <tt>input</tt> the input file name
+- <tt>output</tt> the output file name
+- <tt>configuration</tt> the configuration data object as returned by <tt>configuration_data</tt>
+- <tt>command</tt> if specified Meson does not create the file itself but rather runs the specified command, which allows you to do fully custom file generation
 
 ### custom_target ###
 
@@ -136,6 +136,10 @@ Builds a static library with the given sources. Positional and keyword arguments
 ### subdir ###
 
 Recurses into the specified subdirectory and executes the <tt>meson.build</tt> file in it. Once that is done, it returns and execution continues on the line following this <tt>subdir</tt> command.
+
+### subproject ###
+
+Takes the project specified in the positional argument and brings that in the current build specification. Subprojects must always be placed inside the <tt>subprojects</tt> directory at the top source directory. So for example a subproject called <tt>foo</tt> must be located in <tt>${MESON_SOURCE_ROOT}/subprojects/foo</tt>.
 
 ### test ###
 
