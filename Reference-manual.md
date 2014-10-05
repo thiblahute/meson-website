@@ -82,6 +82,10 @@ This function creates a generator object that can be used to run custom compilat
 - <tt>arguments</tt> list the command line arguments passed to the command
 - <tt>output</tt> a template string defining how an output file name is generated from a source file name
 
+### get_option ###
+
+Obtains the value of the (project build option)[Build options] specified in the positional argument.
+
 ### gettext ###
 
 Sets up gettext localisation so that translations are built and placed into their proper locations during install. Takes one positional argument which is the name of the gettext module. The list of languages that are to be generated are specified with the <tt>languages</tt> keyword argument.
