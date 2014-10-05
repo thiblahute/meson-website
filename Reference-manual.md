@@ -33,7 +33,10 @@ Installs files listed in positional and <tt>sources</tt> keyword arguments into 
 
 ### dependency ###
 
-Finds an external dependency with the given name with pkg-config if possible and with fallback detection logic otherwise. Dependency supports one keyword argument, <tt>modules</tt>, which specifies submodules to use for dependencies such as Qt5 or Boost.
+Finds an external dependency with the given name with pkg-config if possible and with fallback detection logic otherwise. Dependency supports two keyword arguments.
+
+- <tt>modules</tt> specifies submodules to use for dependencies such as Qt5 or Boost.
+- <tt>required</tt>, when set to false, Meson will proceed with the build even if the dependency is not found
 
 ### error ###
 
@@ -61,6 +64,8 @@ Executable supports the following keyword arguments.
 ### find_program ###
 
 Tries to locate the command listed in the positional argument. It can either be a command or a script in the source directory. Meson will also autodetect scripts with a shebang line and run them with the executable specified in it both on Windows (because the command invocator will reject the command otherwise) and unixes (if the script file does not have the executable bit set).
+
+If the program is not found, Meson will abort. You can tell it not to by setting the keyword argument <tt>required</tt> to false.
 
 ### generator ###
 
