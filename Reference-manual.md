@@ -216,3 +216,13 @@ This object encapsulates configuration values to be used for generating configur
 ### external program object ###
 
 Contains an external (i.e. not built as part of this project) program. This object has only one method, <tt>found</tt>, which returns whether the executable was found.
+
+### external library object ###
+
+Contains an external (i.e. not built as part of this project) library. This object has only one method, <tt>found</tt>, which returns whether the library was found.
+
+### generator object ###
+
+This object contains a generator that is used to transform files from one type to another by an executable (e.g. idl files into source code and headers).
+
+- <tt>process</tt> takes a list of files, causes them to be processed and returns an object containing the result which can then, for example, be passed into a build target definition
