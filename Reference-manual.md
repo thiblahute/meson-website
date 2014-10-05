@@ -98,6 +98,10 @@ Installs the specified headers into system's header directory during the install
 
 Returns an opaque object which contains the directories given in positional arguments. The result can then be used as a keyword argument when building executables or libraries. Both the source directory and the corresponding build directory are added. Note that this function call itself does not add the directories into the search path, since there is no global search path. You can use the the returned object in any subdirectory you want, Meson will make the paths work automatically.
 
+### is_subproject ###
+
+Returns true if the current project is being built as a subproject of some other project and false otherwise.
+
 ### jar ###
 
 Build a jar from the specified Java source files. Keyword arguments are the same as executable's, with the addition of <tt>main_class</tt> which specifies the main class to execute when running the jar with <tt>java -jar file.jar</tt>.
@@ -109,6 +113,16 @@ Installs the man files specified into system's man directory during the install 
 ### message ###
 
 This function prints its argument to stdout.
+
+### pkgconfig_gen ###
+
+A helper function to generate simple pkg-config files. For more complex pkg-config generation you should look into <tt>configure_file</tt>. The generated file's properties are specified with the following keyword arguments.
+
+- <tt>libraries</tt>, a list of built libraries (usually results of shared_library) that the user needs to link against
+- <tt>version</tt>, a string describing the version of this library
+- <tt>name</tt>, the name of this library
+- <tt>filebase</tt>, the base name to use for the pkg-config file, as an example the value of <tt>libfoo</tt> would produce a pkg-config file called <tt>libfoo.pc</tt>
+- <tt>subdirs</tt> which subdirs of <tt>include</tt> should be added to the header search path, for example if you install headers into <tt>${PREFIX}/include/foobar-1</tt>, the correct value for this argument would be <tt>foobar-1</tt>
 
 ### project ###
 
