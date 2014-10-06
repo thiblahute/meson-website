@@ -10,7 +10,7 @@ Here is a list of projects that have had a build system port done.
 * [SDL 2](http://forums.libsdl.org/viewtopic.php?t=10093&sid=8cf1d6c83d4d73fe6cfbb7cbb16b3d28)
 * [Mesa3D](http://lists.freedesktop.org/archives/mesa-dev/2014-July/064160.html)
 * [Mame](http://www.mameworld.info/ubbthreads/showthreaded.php?Cat=&Number=332119&page=0&view=expanded&sb=5&o=&fpart=1&vc=1)
-* Firefox NSPR, [no mailing list link, but here's the code drop](https://dl.dropboxusercontent.com/u/37517477/mozilla-meson.tar.gz)
+* [Firefox NSPR](https://groups.google.com/forum/#!topic/mozilla.dev.builds/daS3DK2F1MQ)
 
 ----
 
