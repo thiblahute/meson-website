@@ -31,10 +31,6 @@ Create a custom top level build target. The only positional argument is the name
 - <tt>install</tt> when true, this target is installed during the install step
 - <tt>install_dir</tt> directory to install to
 
-### data ###
-
-Installs files listed in positional and <tt>sources</tt> keyword arguments into the directory specified by the <tt>install_dir</tt> argument during install phase.
-
 ### dependency ###
 
 Finds an external dependency with the given name with pkg-config if possible and with fallback detection logic otherwise. Dependency supports two keyword arguments.
@@ -90,13 +86,21 @@ Obtains the value of the (project build option)[Build options] specified in the 
 
 Sets up gettext localisation so that translations are built and placed into their proper locations during install. Takes one positional argument which is the name of the gettext module. The list of languages that are to be generated are specified with the <tt>languages</tt> keyword argument.
 
-### headers ###
-
-Installs the specified headers into system's header directory during the install step. This directory can be overridden by specifying it with the <tt>install_dir</tt> keyword argument.
-
 ### include_directories ###
 
 Returns an opaque object which contains the directories given in positional arguments. The result can then be used as a keyword argument when building executables or libraries. Both the source directory and the corresponding build directory are added. Note that this function call itself does not add the directories into the search path, since there is no global search path. You can use the the returned object in any subdirectory you want, Meson will make the paths work automatically.
+
+### install_data ###
+
+Installs files listed in positional and <tt>sources</tt> keyword arguments into the directory specified by the <tt>install_dir</tt> argument during install phase.
+
+### install_headers ###
+
+Installs the specified headers into system's header directory during the install step. This directory can be overridden by specifying it with the <tt>install_dir</tt> keyword argument.
+
+### install_man ###
+
+Installs the man files specified into system's man directory during the install step. This directory can be overridden by specifying it with the <tt>install_dir</tt> keyword argument.
 
 ### is_subproject ###
 
@@ -105,10 +109,6 @@ Returns true if the current project is being built as a subproject of some other
 ### jar ###
 
 Build a jar from the specified Java source files. Keyword arguments are the same as executable's, with the addition of <tt>main_class</tt> which specifies the main class to execute when running the jar with <tt>java -jar file.jar</tt>.
-
-### man ###
-
-Installs the man files specified into system's man directory during the install step. This directory can be overridden by specifying it with the <tt>install_dir</tt> keyword argument.
 
 ### message ###
 
