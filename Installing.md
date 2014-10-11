@@ -9,9 +9,9 @@ There is usually no need to specify install paths or the like. Meson will automa
 
 Other install commands are the following.
 
-    headers('header.h', subdir : 'projname') # -> include/projname/header.h
-    man('foo.1') # -> share/man/man1/foo.1.gz
-    data('progname', sources : 'datafile.cat') # -> share/progname/datafile.dat
+    install_headers('header.h', subdir : 'projname') # -> include/projname/header.h
+    install_man('foo.1') # -> share/man/man1/foo.1.gz
+    install_data('progname', sources : 'datafile.cat') # -> share/progname/datafile.dat
 
 ## Custom install behaviour ##
 
