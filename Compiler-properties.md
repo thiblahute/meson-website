@@ -20,6 +20,7 @@ pgi | The Portland Fortran compiler
 sun | Sun Fortran compiler
 g95 | The G95 Fortran compiler
 open64 | The Open64 Fortran Compiler
+nagfor | The NAG Fortran compiler
 
 Does code compile?
 ==
