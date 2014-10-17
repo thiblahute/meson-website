@@ -96,7 +96,7 @@ Installs files listed in positional and <tt>sources</tt> keyword arguments into 
 
 ### install_headers ###
 
-Installs the specified headers into system's header directory during the install step. This directory can be overridden by specifying it with the <tt>install_dir</tt> keyword argument.
+Installs the specified headers into system's header directory during the install step. This directory can be overridden by specifying it with the <tt>install_dir</tt> keyword argument. If you just want to specify a subdirectory on top of the default source dir, then use the <tt>subdir</tt> argument. As an example if this has the value <tt>myproj</tt> then the headers would be installed to <tt>/prefix/include/myproj</tt>.
 
 ### install_man ###
 
