@@ -16,7 +16,7 @@ Instead of specifying files explicitly, people seem to want to do this:
 
 Meson does not support this syntax and the reason for this is simple. This can not be made both reliable and fast. By reliable we mean that if the user adds a new source file to the subdirectory, Meson should detect that and make it part of the build automatically.
 
-One of the main requirements of Meson is that it must be fast. This means that a no-op build in a  tree of 10 000 source files must take no more than one second. This is only possible because Meson knows the exact list of files to check. If any target is specified as a wildcard glob, this is no longer possible. Meson would need to re-evaluate the glob every time and compare the list of files produced against the previous list. This means inspecting the entire source tree (because the glob pattern could be <tt>src/\*/\*/\*/\*.cpp</tt> or something like that). This is impossible to do efficiently.
+One of the main requirements of Meson is that it must be fast. This means that a no-op build in a  tree of 10 000 source files must take no more than a fraction of a second. This is only possible because Meson knows the exact list of files to check. If any target is specified as a wildcard glob, this is no longer possible. Meson would need to re-evaluate the glob every time and compare the list of files produced against the previous list. This means inspecting the entire source tree (because the glob pattern could be <tt>src/\*/\*/\*/\*.cpp</tt> or something like that). This is impossible to do efficiently.
 
 Because of this, all source files must be specified explicitly.
 
