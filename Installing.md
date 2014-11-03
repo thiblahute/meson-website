@@ -13,6 +13,10 @@ Other install commands are the following.
     install_man('foo.1') # -> share/man/man1/foo.1.gz
     install_data('progname', sources : 'datafile.cat') # -> share/progname/datafile.dat
 
+Sometimes you want to copy an entire subtree directly. For this use case there is the <tt>install_subdir</tt> command, which can be used like this.
+
+    install_subdir('mydir', install_dir : 'include') # mydir subtree -> include/mydir
+
 ## Custom install behaviour ##
 
 Sometimes you need to do more than just install basic targets. Meson makes this easy by allowing you to specify a custom script to execute at install time. As an example, here is a script that generates an empty file in a custom directory.
