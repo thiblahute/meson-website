@@ -102,6 +102,10 @@ Installs the specified headers into system's header directory during the install
 
 Installs the man files specified into system's man directory during the install step. This directory can be overridden by specifying it with the <tt>install_dir</tt> keyword argument.
 
+### install_subdir ###
+
+Installs the entire given subdirectory tree to the location specified by the keyword argument <tt>install_dir</tt>. Note that due to implementation issues this command deletes the entire target dir before copying the files, so you should never use <tt>install_subdir</tt> to install into two overlapping directories (such as <tt>foo</tt> and <tt>foo/bar</tt>) because if you do the behaviour is undefined.
+
 ### is_subproject ###
 
 Returns true if the current project is being built as a subproject of some other project and false otherwise.
