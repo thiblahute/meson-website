@@ -57,7 +57,7 @@ For every other use you would use <tt>subdir</tt>. As an example, if you wanted 
 
 ## Why is there not a Make backend? ##
 
-Because Make is slow. It should be noted that this is not an implementation issue, Make simply can not be made fast. For further info we recommend you read [this post](http://neugierig.org/software/chromium/notes/2011/02/ninja.html) by Evan Martin, the author of Ninja. Makefiles also have a syntax that is very unpleasant to write.
+Because Make is slow. It should be noted that this is not an implementation issue, Make simply can not be made fast. For further info we recommend you read [this post](http://neugierig.org/software/chromium/notes/2011/02/ninja.html) by Evan Martin, the author of Ninja. Makefiles also have a syntax that is very unpleasant to write which makes them a big maintenance burden.
 
 The only reason why one would use Make instead of Ninja is working on a platform that does not have a Ninja port. Even in this case it is an order of magnitude less work to port Ninja than it is to write a Make backend for Meson.
 
