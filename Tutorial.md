@@ -70,7 +70,7 @@ Then we edit the Meson file, instructing it to find and use the Gtk libraries.
 
     project('tutorial', 'c')
     gtkdep = dependency('gtk+-3.0')
-    executable('demo', 'main.c', deps : gtkdep)
+    executable('demo', 'main.c', dependencies : gtkdep)
 
 Now we are ready to build. The thing to notice is that we do *not* need to recreate our build directory, run any sort of magical commands or the like. Instead we just type the exact same command as if we were rebuilding our code without any build system changes.
 
