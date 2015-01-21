@@ -20,6 +20,7 @@ Meson aims to provide an optimal syntax and implementation for a next-generation
 * [Using multiple build directories](Using multiple build directories)
 * [Screencast of basic features](http://www.youtube.com/watch?v=rzLta78Jbi8)
 * [Lightning talk presentation from FOSDEM14](http://video.fosdem.org/2014/H2215_Ferrer/Sunday/Introducing_the_Meson_build_system.webm)
+* [Making build systems not suck](https://www.youtube.com/watch?v=KPi0AuVpxLI), a full length presentation from LCA 2015
 * [Performance comparison](Performance comparison)
 * [Trial conversions](Trial conversions) for existing projects
 * [In the press](In the press)
