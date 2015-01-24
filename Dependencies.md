@@ -5,6 +5,10 @@ Very few applications are fully self-contained, but rather they use external lib
 
 First Meson is told to find the external library <tt>zlib</tt> and error out if it is not found. Then an executable is built using the specified dependency. Note how the user does not need to manually handle compiler or linker flags or deal with any other minutiae.
 
+If you have multiple dependencies, pass them as an array:
+
+    executable('manydeps', 'file.c', dependencies : [dep1, dep2, dep3, dep4])
+
 If the dependency is optional, you can tell Meson not to error out if the dependency is not found and then do further configuration.
 
     opt_dep = dependency('somedep', required : false)
