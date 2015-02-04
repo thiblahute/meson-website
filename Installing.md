@@ -17,6 +17,10 @@ Sometimes you want to copy an entire subtree directly. For this use case there i
 
     install_subdir('mydir', install_dir : 'include') # mydir subtree -> include/mydir
 
+Most of the time you want to install files relative to the install prefix. Sometimes you need to go outside of the prefix (such as writing files to <tt>/etc</tt> instead of <tt>/usr/etc</tt>. This can be accomplished by giving an absolute install path.
+
+    install_data('foobar', sources : 'foo.dat', install_dir : '/etc') # -> /etc/foo.dat
+
 ## Custom install behaviour ##
 
 Sometimes you need to do more than just install basic targets. Meson makes this easy by allowing you to specify a custom script to execute at install time. As an example, here is a script that generates an empty file in a custom directory.
