@@ -30,6 +30,7 @@ Create a custom top level build target. The only positional argument is the name
 - <tt>command</tt> command to run to create outputs from inputs (note: always specify commands in array form <tt>['commandname', '-arg1', '-arg2']</tt> rather than as a string <tt>'commandname -arg1 -arg2'</tt> as the latter will *not* work)
 - <tt>install</tt> when true, this target is installed during the install step
 - <tt>install_dir</tt> directory to install to
+- <tt>build_always</tt> if <tt>true</tt> this target is always considered out of date and is rebuilt every time, useful for things such as build timestamps or revision control tags
 
 ### dependency ###
 
