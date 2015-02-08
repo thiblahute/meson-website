@@ -1,9 +1,9 @@
 Very few applications are fully self-contained, but rather they use external libraries and frameworks to do their work. Meson makes it very easy to find and use external dependencies. Here is how one would use the Zlib compression library.
 
-    zdep = dependency('zlib')
-    exe = executable('zlibprog', 'prog.c', dependencies : zdep, version : '>=1.2.8')
+    zdep = dependency('zlib', version : '>=1.2.8')
+    exe = executable('zlibprog', 'prog.c', dependencies : zdep)
 
-First Meson is told to find the external library <tt>zlib</tt> and error out if it is not found. Then an executable is built using the specified dependency. Note how the user does not need to manually handle compiler or linker flags or deal with any other minutiae. The <tt>version</tt> keyword is optional and specifies a version requirement for the dependency.
+First Meson is told to find the external library <tt>zlib</tt> and error out if it is not found. The <tt>version</tt> keyword is optional and specifies a version requirement for the dependency. Then an executable is built using the specified dependency. Note how the user does not need to manually handle compiler or linker flags or deal with any other minutiae.
 
 If you have multiple dependencies, pass them as an array:
 
