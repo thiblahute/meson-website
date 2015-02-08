@@ -170,6 +170,16 @@ Defines an unit test. Takes two positional arguments, the first is the name of t
 - <tt>is_parallel</tt> when false, specifies that no other test must be running at the same time as this test
 - <tt>valgrind_args</tt> if the test is run under Valgrind, pass these arguments to Valgrind (and not to the executable itself)
 
+### vcs_tag ###
+
+This command detects revision control commit information and places it in a specified file. This file is guaranteed to be up to date on every build. Keywords are similar to <tt>custom_command</tt> and all of them are mandatory.
+
+- <tt>input</tt> file to modify (e.g. <tt>version.c.in</tt>)
+- <tt>output</tt> file to write the results to (e.g. <tt>version.c</tt>)
+- <tt>fallback</tt> version number to use when no revision control information is present, such as when building from a release tarball
+
+Meson will read the contents of <tt>input</tt>, replace the string <tt>@VCS_TAG@</tt> with the detected revision number and write the result to <tt>output</tt>. This method returns an opaque object that you should put in your main program. If you desire more specific behaviour than what this command provides, you should use <tt>custom_command</tt>.
+
 ## Object methods ##
 
 Meson has several different object types that have methods users can call. This section describes them.
