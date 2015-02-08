@@ -38,6 +38,7 @@ Finds an external dependency with the given name with pkg-config if possible and
 
 - <tt>modules</tt> specifies submodules to use for dependencies such as Qt5 or Boost.
 - <tt>required</tt>, when set to false, Meson will proceed with the build even if the dependency is not found
+- <tt>version</tt>, specifies the required version, a string containing a comparison operator followed by the version string, examples include <tt>&gt;1.0.0</tt>, <tt>&lt;=2.3.5</tt> or <tt>3.1.4</tt> for exact matching
 
 ### error ###
 
@@ -50,7 +51,7 @@ Creates a new executable. The first argument specifies its name and the remainin
 Executable supports the following keyword arguments.
 
 - <tt>link_with</tt>, one or more shared or static libraries (built by this project) that this target should be linked with
-- <tt>&lt;languagename&gt;_pch</tt> precompiled header fire to use for the given language
+- <tt>&lt;languagename&gt;_pch</tt> precompiled header file to use for the given language
 - <tt>&lt;languagename&gt;_args</tt> compiler flags to use for the given language
 - <tt>link_args</tt> flags to use during linking
 - <tt>link_depends</tt> an extra file that the link step depends on such as a symbol visibility map
