@@ -11,7 +11,7 @@ Other install commands are the following.
 
     install_headers('header.h', subdir : 'projname') # -> include/projname/header.h
     install_man('foo.1') # -> share/man/man1/foo.1.gz
-    install_data('progname', sources : 'datafile.cat') # -> share/progname/datafile.dat
+    install_data('datafile.cat', install_dir : 'share/progname') # -> share/progname/datafile.dat
 
 Sometimes you want to copy an entire subtree directly. For this use case there is the <tt>install_subdir</tt> command, which can be used like this.
 
