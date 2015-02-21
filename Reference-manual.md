@@ -233,6 +233,10 @@ This object encapsulates the result of trying to compile and run a sample piece 
 
 This object encapsulates configuration values to be used for generating configuration files. It has two methods, <tt>set</tt> and <tt>set10</tt> which are fully documented on [the configuration wiki page](Configuration).
 
+### dependency object ###
+
+Contains an external dependency. This object has only one method, <tt>found</tt>, which returns whether the dependency was found.
+
 ### external program object ###
 
 Contains an external (i.e. not built as part of this project) program. This object has only one method, <tt>found</tt>, which returns whether the executable was found.
