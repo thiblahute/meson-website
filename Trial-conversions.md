@@ -11,7 +11,7 @@ Here is a list of projects that have had a build system port done.
 * [Mesa3D](http://lists.freedesktop.org/archives/mesa-dev/2014-July/064160.html)
 * [Mame](http://www.mameworld.info/ubbthreads/showthreaded.php?Cat=&Number=332119&page=0&view=expanded&sb=5&o=&fpart=1&vc=1)
 * [Firefox NSPR](https://groups.google.com/forum/#!topic/mozilla.dev.builds/daS3DK2F1MQ)
-
+* [Wayland](http://lists.freedesktop.org/archives/wayland-devel/2015-February/020124.html)
 ----
 
 [Wiki home](Home)
