@@ -38,6 +38,12 @@ Telling Meson to run this script at install time is a one-liner.
 
 The argument is the name of the script file relative to the current subdirectory.
 
+## DESTDIR support ##
+
+Sometimes you need to install to a different directory than the install prefix. This is most common when building rpm or deb packages. This is done with the <tt>DESTDIR</tt> environment variable and it is used just like with other build systems:
+
+    DESTDIR=/path/to/staging/area ninja install
+
 ---
 
 [Back to index](Manual).
