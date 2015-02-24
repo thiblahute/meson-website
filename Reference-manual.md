@@ -20,6 +20,7 @@ Takes a configuration file template and values and produces a file as specified 
 - <tt>output</tt> the output file name
 - <tt>configuration</tt> the configuration data object as returned by <tt>configuration_data</tt>
 - <tt>command</tt> if specified Meson does not create the file itself but rather runs the specified command, which allows you to do fully custom file generation
+- <tt>install_dir</tt> the subdirectory to install the generated file to (e.g. <tt>share/myproject</tt>), if empty the file is not installed
 
 ### custom_target ###
 
