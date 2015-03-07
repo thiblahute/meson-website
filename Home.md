@@ -1,8 +1,8 @@
-# The Meson Build System Documentation # 
+# The Meson Build System Documentation
 
 Meson aims to provide an optimal syntax and implementation for a next-generation build system.
 
-## Core information ##
+## Core information
 
 * [Quick guide](Quick guide)
 * [A simple tutorial](Tutorial)
@@ -13,7 +13,7 @@ Meson aims to provide an optimal syntax and implementation for a next-generation
 * [FAQ](FAQ)
 * [Mailing list](https://groups.google.com/forum/#!forum/mesonbuild)
 
-## Additional documentation ##
+## Additional documentation
 
 * [Original design rationale](Design rationale)
 * [Design rationale for the Wrap packaging system](https://groups.google.com/forum/#!topic/mesonbuild/DliVv-mjOTk)
