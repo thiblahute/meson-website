@@ -30,6 +30,7 @@ This is the user manual for Meson. It currently tracks the state of Git head, wh
 * [Build system converters](Build system converters)
 * [Configuring a build directory](Configuring a build directory)
 * [Run targets](Run targets)
+* [Creating OSX packages](Creating OSX packages)
 
 ----
 
