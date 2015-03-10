@@ -8,7 +8,7 @@ OSX app bundles are actually extremely simple. They are just a directory of file
 
 Let's assume that we are creating our app bundle into <tt>/tmp/myapp.app</tt>. Suppose we have one executable, so we need to install that into <tt>Contents/MacOS</tt>. If we define the executable like this:
 
-    executable('foo', 'foo1.c', ..., install : true)
+    executable('myapp', 'foo1.c', ..., install : true)
 
 then we just need to initialize our build tree with this command:
 
