@@ -1,5 +1,7 @@
 Meson does not have native support for building OSX packages but it does provide all the tools you need to create one yourself. The reason for this is that it is a very hard task to write a system that provides for all the different ways to do that but it is very easy to write simple scripts for each application.
 
+Sample code for this can be found in [the Meson manual test suite](https://github.com/jpakkane/meson/tree/master/manual%20tests/3%20osx%20bundle).
+
 ## Creating an app bundle
 
 OSX app bundles are actually extremely simple. They are just a directory of files in a certain format. All the details you need to know are on [this page](https://stackoverflow.com/questions/1596945/building-osx-app-bundle) and it is highly recommended that you read it first.
