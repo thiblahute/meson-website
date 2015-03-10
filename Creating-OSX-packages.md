@@ -23,6 +23,19 @@ Next we need to install an <tt>Info.plist</tt> file and an icon. For those we ne
 
 The simplest way to create an icon in the <tt>icns</tt> format is to create an icon in tiff format and then use the <tt>tiff2icns</tt> helper application that comes with XCode.
 
+Some applications assume that the working directory of the app process is the same where the binary executable is. If this is the case for you, then you need to create a wrapper script that looks like this:
+
+    #!/bin/bash
+
+    cd "${0%/*}"
+    ./myapp
+
+install it with this:
+
+    install_data('myapp.sh', install_dir : 'Contents/MacOS')
+
+and make sure that you specify <tt>myapp.sh</tt> as the executable to run in your <tt>Info.plist</tt>.
+
 If you are not using any external libraries, this is all you need to do. You now have a full app bundle in <tt>/tmp/myapp.app</tt> that you can use. Most applications use third party frameworks and libraries, though, so you need to add them to the bundle so it will work on other peoples' machines.
 
 As an example we are going to use the [SDL2](https://libsdl.org/) framework. In order to bundle it in our app, we first specify an installer script to run.
