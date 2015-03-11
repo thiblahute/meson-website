@@ -12,7 +12,10 @@ Let's assume that we are creating our app bundle into <tt>/tmp/myapp.app</tt>. S
 
 then we just need to initialize our build tree with this command:
 
-    meson --prefix=/tmp/myapp.app --bindir=Contents/MacOS builddir <other flags you might need>
+    meson --prefix=/tmp/myapp.app \
+          --bindir=Contents/MacOS \
+          builddir \
+          <other flags you might need>
 
 Now when we do <tt>ninja install</tt> the bundle is properly staged. If you have any resource files or data, you need to install them into <tt>Contents/Resources</tt> either by custom install commands or specifying more install paths to the Meson command.
 
