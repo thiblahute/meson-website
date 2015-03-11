@@ -24,7 +24,7 @@ Next we need to install an <tt>Info.plist</tt> file and an icon. For those we ne
     install_data('myapp.icns', install_dir : 'Contents/Resources')
     install_data('Info.plist', install_dir : 'Contents')
 
-The format of <tt>Info.plist</tt> can be found in the link or the sample project linked above. Be careful, the sample code on the linked page is malformed, it is missing a less than character (<) before <tt>!DOCTYPE</tt>. The simplest way to get an icon in the <tt>icns</tt> format is to save your image as a itff an then use the <tt>tiff2icns</tt> helper application that comes with XCode.
+The format of <tt>Info.plist</tt> can be found in the link or the sample project linked above. Be careful, the sample code on the linked page is malformed, it is missing a less than character (<) before <tt>!DOCTYPE</tt>. The simplest way to get an icon in the <tt>icns</tt> format is to save your image as a tiff an then use the <tt>tiff2icns</tt> helper application that comes with XCode.
 
 Some applications assume that the working directory of the app process is the same where the binary executable is. If this is the case for you, then you need to create a wrapper script that looks like this:
 
