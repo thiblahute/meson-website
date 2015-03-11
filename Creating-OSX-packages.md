@@ -14,14 +14,14 @@ then we just need to initialize our build tree with this command:
 
     meson --prefix=/tmp/myapp.app --bindir=Contents/MacOS builddir <other flags you might need>
 
-Now when we do <tt>ninja install</tt> the system is properly staged. If you have any resource files or data, you need to install them into <tt>Contents/Resources</tt> either by custom install commands or specifying more install paths to the Meson command.
+Now when we do <tt>ninja install</tt> the bundle is properly staged. If you have any resource files or data, you need to install them into <tt>Contents/Resources</tt> either by custom install commands or specifying more install paths to the Meson command.
 
 Next we need to install an <tt>Info.plist</tt> file and an icon. For those we need the following two Meson definitions.
 
     install_data('myapp.icns', install_dir : 'Contents/Resources')
     install_data('Info.plist', install_dir : 'Contents')
 
-The simplest way to create an icon in the <tt>icns</tt> format is to create an icon in tiff format and then use the <tt>tiff2icns</tt> helper application that comes with XCode.
+The format of <tt>Info.plist</tt> can be found in the link or the sample project linked above. Be careful, the sample code on the linked page is malformed, it is missing a less than character (<) before <tt>!DOCTYPE</tt>. The simplest way to get an icon in the <tt>icns</tt> format is to save your image as a itff an then use the <tt>tiff2icns</tt> helper application that comes with XCode.
 
 Some applications assume that the working directory of the app process is the same where the binary executable is. If this is the case for you, then you need to create a wrapper script that looks like this:
 
@@ -54,13 +54,13 @@ Then it needs to alter the library search path of our executable(s). This tells 
       @executable_path/../FrameWorks/SDL2.framework/Versions/A/SDL2 \
       ${MESON_INSTALL_PREFIX}/Contents/MacOS/myapp
 
-This is the part of OSX app bundling that you must always do yourself. OSX dependencies come in many shapes and forms and unfortunately there is no reliable automatic way to tell how each dependency library should be handled. Frameworks go to the <tt>Frameworks</tt> directory while plain <tt>.dylib</tt> files usually go to <tt>Contents/Resources/lib</tt> (but you can put them wherever you like). To get this done you have to check what your program links against with <tt>otool -L /path/to/binary</tt> and manually add the copy and fix steps to your install script. Do not copy system libraries inside your bundle, though.
+This is the part of OSX app bundling that you must always do manually. OSX dependencies come in many shapes and forms and unfortunately there is no reliable automatic way to determine how each dependency should be handled. Frameworks go to the <tt>Frameworks</tt> directory while plain <tt>.dylib</tt> files usually go to <tt>Contents/Resources/lib</tt> (but you can put them wherever you like). To get this done you have to check what your program links against with <tt>otool -L /path/to/binary</tt> and manually add the copy and fix steps to your install script. Do not copy system libraries inside your bundle, though.
 
 After this you have a fully working, self-contained OSX app bundle ready for distribution.
 
 ## Creating a .dmg installer
 
-A .dmg installer is similarly quite simple, at its core it is basically a slightly fancy compressed archive. A good description can be found on [this page](https://el-tramo.be/guides/fancy-dmg/). Please read it and create a template image file according to its instructions.
+A .dmg installer is similarly quite simple, at its core it is basically a fancy compressed archive. A good description can be found on [this page](https://el-tramo.be/guides/fancy-dmg/). Please read it and create a template image file according to its instructions.
 
 The actual process of creating the installer is very simple: you mount the template image, copy your app bundle in it, unmount it and convert the image into a compressed archive. The actual commands to do this are not particularly interesting, feel free to steal them from either the linked page above or from the sample script in Meson's test suite.
 
@@ -72,7 +72,7 @@ There are many ways to put the .dmg installer together and different people will
 
 <tt>build_osx_installer.sh</tt> sets up the build with the proper paths, compiles, installs and generates the .dmg package.
 
-The main reasoning here is that in order to build a complete OSX installer package from source, all you need to do is to cd into the source tree and run <tt>./build_osx_installer.sh</tt>.
+The main reasoning here is that in order to build a complete OSX installer package from source, all you need to do is to cd into the source tree and run <tt>./build_osx_installer.sh</tt>. To build packages on other platforms you would write scripts such as <tt>build_windows_installer.bat</tt> and so on.
 
 ---
 
