@@ -10,6 +10,7 @@ Meson aims to provide an optimal syntax and implementation for a next-generation
 * [Cheat sheet](Cheat sheet)
 * [Manual](Manual)
 * [Reference manual](Reference manual)
+* [Module reference](Module reference)
 * [FAQ](FAQ)
 * [Mailing list](https://groups.google.com/forum/#!forum/mesonbuild)
 
