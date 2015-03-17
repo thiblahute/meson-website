@@ -1,6 +1,12 @@
-# Meson Frequently Asked Questions #
+# Meson Frequently Asked Questions
 
-## How to use Meson on a host where it is not available in system packages? ##
+## Why is it called Meson?
+
+When the name was originally considered, there were two main limitations: there must not exist either a Debian package or a Sourceforge project of the same name. This ruled out tens of potential project names. At some point the name Gluon was considered. Gluons are elementary particles that hold protons and neutrons together, much like a build system's job is to take pieces of source code and a compiler and bind them to a complete whole.
+
+Unfortunately this name was taken, too. Then the rest of physical elementary particles were examined and Meson was found to be available. 
+
+## How to use Meson on a host where it is not available in system packages? 
 
 Meson has been designed to be easily runnable from an extracted source tarball or even a git checkout. First you need to download Meson. Then use this command to set up you build instead of plain <tt>meson</tt>.
 
@@ -8,7 +14,7 @@ Meson has been designed to be easily runnable from an extracted source tarball o
 
 After this you don't have to care about invoking Meson any more. It remembers where it was originally invoked from and calls itself appropriately. As a user the only thing you need to do is to cd into your build directory and invoke <tt>ninja</tt>. 
 
-## Why can't I specify target files with a wildcard? ##
+## Why can't I specify target files with a wildcard?
 
 Instead of specifying files explicitly, people seem to want to do this:
 
@@ -20,7 +26,7 @@ One of the main requirements of Meson is that it must be fast. This means that a
 
 Because of this, all source files must be specified explicitly.
 
-## But I really want to use wildcards! ##
+## But I really want to use wildcards!
 
 If the tradeoff between reliability and convenience is acceptable to you, then Meson gives you all the tools necessary to do wildcard globbing. You are allowed to run arbitrary commands during configuration. First you need to write a script that locates the files to compile. Here's a simple shell script that writes all <tt>.c</tt> files in the current directory, one per line.
 
@@ -43,7 +49,7 @@ The script can be any executable, so it can be written in shell, Python, Lua, Pe
 
 As mentioned above, the tradeoff is that just adding new files to the source directory does *not* add them to the build automatically. To add them you need to tell Meson to reinitialize itself. The simplest way is to touch the <tt>meson.build</tt> file in your source root. Then Meson will reconfigure itself next time the build command is run. Advanced users can even write a small background script that utilizes a filesystem event queue, such as [inotify](https://en.wikipedia.org/wiki/Inotify), to do this automatically.
 
-## Should I use <tt>subdir</tt> or <tt>subproject</tt>? ##
+## Should I use <tt>subdir</tt> or <tt>subproject</tt>?
 
 The answer is almost always <tt>subdir</tt>. Subproject exists for a very specific use case: embedding external dependencies into your build process. As an example, suppose we are writing a game and wish to use SDL. Let us further suppose that SDL comes with a Meson build definition. Let us suppose even further that we don't want to use prebuilt binaries but want to compile SDL for ourselves.
 
@@ -55,7 +61,7 @@ For every other use you would use <tt>subdir</tt>. As an example, if you wanted 
     subdir('src')   # library is built here
     subdir('tests') # test binaries would link against the library here
 
-## Why is there not a Make backend? ##
+## Why is there not a Make backend?
 
 Because Make is slow. It should be noted that this is not an implementation issue, Make simply can not be made fast. For further info we recommend you read [this post](http://neugierig.org/software/chromium/notes/2011/02/ninja.html) by Evan Martin, the author of Ninja. Makefiles also have a syntax that is very unpleasant to write which makes them a big maintenance burden.
 
