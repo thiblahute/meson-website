@@ -26,9 +26,9 @@ Then create a <tt>src</tt> subdirectory in your home directory. Copypaste the fo
 
 Then finally add the following lines to your <tt>.bashrc</tt>.
 
-   export LD_LIBRARY_PATH=${HOME}/devroot/lib
-   export PATH=${HOME}/devroot/bin:$PATH
-   export PKG_CONFIG_PATH=${HOME}/devroot/lib/pkgconfig
+    export LD_LIBRARY_PATH=${HOME}/devroot/lib
+    export PATH=${HOME}/devroot/bin:$PATH
+    export PKG_CONFIG_PATH=${HOME}/devroot/lib/pkgconfig
 
 Log out and back in and now your build environment is ready to use.
 
