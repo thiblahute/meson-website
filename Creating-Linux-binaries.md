@@ -18,7 +18,8 @@ Then create a <tt>src</tt> subdirectory in your home directory. Copypaste the fo
 
     mkdir objdir
     cd objdir
-    ../gcc-4.9.2/configure --disable-bootstrap --prefix=${HOME}/devroot --disable-multilib --enable-languages=c,c++
+    ../gcc-4.9.2/configure --disable-bootstrap --prefix=${HOME}/devroot \
+                           --disable-multilib --enable-languages=c,c++
     make -j 4
     make install-strip
     ln -s gcc ${HOME}/devroot/bin/cc
