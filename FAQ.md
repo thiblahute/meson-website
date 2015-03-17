@@ -2,7 +2,7 @@
 
 ## Why is it called Meson?
 
-When the name was originally considered, there were two main limitations: there must not exist either a Debian package or a Sourceforge project of the same name. This ruled out tens of potential project names. At some point the name Gluon was considered. Gluons are elementary particles that hold protons and neutrons together, much like a build system's job is to take pieces of source code and a compiler and bind them to a complete whole.
+When the name was originally chosen, there were two main limitations: there must not exist either a Debian package or a Sourceforge project of the given name. This ruled out tens of potential project names. At some point the name Gluon was considered. Gluons are elementary particles that hold protons and neutrons together, much like a build system's job is to take pieces of source code and a compiler and bind them to a complete whole.
 
 Unfortunately this name was taken, too. Then the rest of physical elementary particles were examined and Meson was found to be available. 
 
