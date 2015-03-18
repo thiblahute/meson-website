@@ -34,7 +34,7 @@ Log out and back in and now your build environment is ready to use.
 
 ## Adding dependencies
 
-For dependencies you want to embed and statically link everything you can (especially C++ dependencies). Meson's [Wrap package manager might be of use here](https://groups.google.com/forum/#!topic/mesonbuild/DliVv-mjOTk). This is equivalent to what you would do on Windows, OSX, Android etc. Sometimes static linking is not possible. In these cases you need to copy the .so files inside your package. Let's use SDL2 as an example. First we download and install it as usual giving it our custom install prefix (that is, <tt>./configure --prefix=${HOME}/devroot</tt>)
+For dependencies you want to embed and statically link everything you can (especially C++ dependencies). Meson's [Wrap package manager might be of use here](https://groups.google.com/forum/#!topic/mesonbuild/DliVv-mjOTk). This is equivalent to what you would do on Windows, OSX, Android etc. Sometimes static linking is not possible. In these cases you need to copy the .so files inside your package. Let's use SDL2 as an example. First we download and install it as usual giving it our custom install prefix (that is, <tt>./configure --prefix=${HOME}/devroot</tt>). This makes Meson's dependency detector pick it up automatically.
 
 ## Building and installing
 
@@ -42,7 +42,7 @@ Building happens in much the same way as normally. There are just two things to 
 
     LDFLAGS=-static-libstdc++ meson --prefix=/tmp/myapp <other args>
 
-The aim is to put the executable in <tt>/tmp/myapp/bin</tt> and shared libraries to <tt>/tmp/myapp/lib</tt>. The next thing you need is the embedder. It takes your dependencies (in this case only <tt>libSDL2-2.0.so.0</tt> and copies them in the lib directory. Depending on your use case you can either copy the files by hand or write a script that parses the output of <tt>ldd binary_file</tt>. Be sure not to copy system libraries (<tt>libc</tt>, <tt>libpthread</tt>, <tt>libm</tt> etc). For an example, see the [sample project](https://github.com/jpakkane/meson/tree/master/manual%20tests/3%20standalone%20binaries).
+The aim is to put the executable in <tt>/tmp/myapp/bin</tt> and shared libraries to <tt>/tmp/myapp/lib</tt>. The next thing you need is the embedder. It takes your dependencies (in this case only <tt>libSDL2-2.0.so.0</tt>) and copies them in the lib directory. Depending on your use case you can either copy the files by hand or write a script that parses the output of <tt>ldd binary_file</tt>. Be sure not to copy system libraries (<tt>libc</tt>, <tt>libpthread</tt>, <tt>libm</tt> etc). For an example, see the [sample project](https://github.com/jpakkane/meson/tree/master/manual%20tests/3%20standalone%20binaries).
 
 Make the script run during install with this:
 
