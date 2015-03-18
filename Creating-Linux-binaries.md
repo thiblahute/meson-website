@@ -34,7 +34,7 @@ Log out and back in and now your build environment is ready to use.
 
 ## Adding dependencies
 
-For dependencies you want to embed and statically link everything you can (especially C++ dependencies). Meson's [Wrap package manager might be of use here](https://groups.google.com/forum/#!topic/mesonbuild/DliVv-mjOTk). This is equivalent to what you would do on Windows, OSX, Android etc. Sometimes static linking is not possible. In these cases you need to copy the .so files inside your package. Let's use SDL2 as an example. First we download and install it as usual giving it our custom install prefix (that is, <tt>./configure --prefix=${HOME}/devroot</tt>). This makes Meson's dependency detector pick it up automatically.
+For dependencies you want to embed and statically link everything you can (especially C++ dependencies). Meson's [Wrap package manager might be of use here](Wrap dependency system manual). This is equivalent to what you would do on Windows, OSX, Android etc. Sometimes static linking is not possible. In these cases you need to copy the .so files inside your package. Let's use SDL2 as an example. First we download and install it as usual giving it our custom install prefix (that is, <tt>./configure --prefix=${HOME}/devroot</tt>). This makes Meson's dependency detector pick it up automatically.
 
 ## Building and installing
 
