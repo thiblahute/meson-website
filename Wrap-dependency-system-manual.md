@@ -40,7 +40,7 @@ This approach makes it extremely simple to embed dependencies that require build
 
 To use a subproject simply do this in your top level <tt>meson.build</tt>.
 
-    foobardep = subproject('foobar')
+    foobar_sp = subproject('foobar')
 
 Usually dependencies consist of some header files plus a library to link against. To do this you would store the include_directories and library in your subproject's <tt>meson.build</tt> like this:
 
@@ -50,7 +50,29 @@ Usually dependencies consist of some header files plus a library to link against
 Then in your main project you would use them like this:
 
     executable('toplevel_exe', 'prog.c',
-      include_directories : foobardep.get_variable('foobar_incs'),
-      link_with : foobardep.get_variable('foobar_lib'))
+      include_directories : foobar_sp.get_variable('foobar_incs'),
+      link_with : foobar_sp.get_variable('foobar_lib'))
 
+## Toggling between distro packages and embedded source
 
+When building distro packages it is very important that you do not embed any sources. Some distros have a rule forbidding embedded dependencies so your project must be buildable without them or otherwise the packager will hate you.
+
+Doing this with Meson and Wrap is simple. Here's how you would use distro packages and fall back to embedding if the dependency is not available.
+
+    foobar_dep = dependency('foobar', required : false)
+
+    if foobar_dep.found()
+      foobar_inc = []
+      foobar_lib = []
+    else
+      foobar_sp = subproject('foobar')
+      foobar_inc = foobar_sp.get_variable('foobar_inc')
+      foobar_lib = foobar_sp.get_variable('foobar_lib')
+    endif
+
+    executable('toplevel_exe', 'prog.c',
+      include_directories : foobar_inc,
+      link_with : foobar_lib,
+      dependencies : foobar_dep)
+
+Note that whether foobar is found or not, the keyword arguments to <tt>toplevel_exe</tt> are correct. Either <tt>foobar_inc</tt> and <tt>foobar_lib</tt> are defined and <tt>foobar_dep</tt> is empty or vice versa.
