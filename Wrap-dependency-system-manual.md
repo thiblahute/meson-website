@@ -6,4 +6,51 @@ This is both tedious and error prone because it is always done by hand. The Wrap
 
 ## How it works
 
-Meson has a concept of [subprojects](Subprojects).
+Meson has a concept of [subprojects](Subprojects). They are a way of nesting one Meson project inside another. Any project that builds with Meson can detect that it is built as a subproject and build itself in a way that makes it easy to use (usually this means as a static library).
+
+To use this kind of a project as a dependency you could just copy and extract it inside your project's <tt>subprojects</tt> directory. However there is a simpler way. You can specify a Wrap file that tells Meson how to download it for you. An example wrap file would look like this:
+
+    [mesonwrap]
+    directory = libfoobar-1.0
+
+    source_url = http://example.com/foobar-1.0.tar.gz
+    source_filename = foobar-1.0.tar.gz
+    source_hash = 5ebeea0dfb75d090ea0e7ff84799b2a7a1550db3fe61eb5f6f61c2e971e57663
+
+If you then use this subproject in your build, Meson will automatically download and extract it during build. This makes subproject embedding extremely easy.
+
+Unfortunately most software projects in the world do not build with Meson. Because of this Meson allows you to specify a patch url. This works in much the same way as Debian's distro patches. That is, they are downloaded and automatically applied to the subproject. These files contain a Meson build definition for the given subproject. A wrap file with an additional patch url would look like this.
+
+    [mesonwrap]
+    directory = libfoobar-1.0
+
+    source_url = http://upstream.example.com/foobar-1.0.tar.gz
+    source_filename = foobar-1.0.tar.gz
+    source_hash = 5ebeea0dfb75d090ea0e7ff84799b2a7a1550db3fe61eb5f6f61c2e971e57663
+
+    patch_url = https://myserver.example.com/libfoobar-meson.tar.gz
+    patch_filename = libfoobar-meson.tar.gz
+    patch_hash = 8c9d00702d5fe4a6bf25a36b821a332f6b2dfd117c66fe818b88b23d604635e9
+
+In this example the Wrap manager would download the patch and unzip it in libfoobar's directory.
+
+This approach makes it extremely simple to embed dependencies that require build system changes. You can write the Meson build definition for the dependency in total isolation. This is a lot better than doing it inside your own source tree, especially if it contains hundreds of thousands of lines of code. Once you have a working build definition, just zip up the Meson build files (and others you have changed) and put them somewhere where you can download them.
+
+## Using wrapped projects
+
+To use a subproject simply do this in your top level <tt>meson.build</tt>.
+
+    foobardep = subproject('foobar')
+
+Usually dependencies consist of some header files plus a library to link against. To do this you would store the include_directories and library in your subproject's <tt>meson.build</tt> like this:
+
+    foobar_incs = include_directories(...)
+    foobar_lib = static_library(...)
+
+Then in your main project you would use them like this:
+
+    executable('toplevel_exe', 'prog.c',
+      include_directories : foobardep.get_variable('foobar_incs'),
+      link_with : foobardep.get_variable('foobar_lib'))
+
+
