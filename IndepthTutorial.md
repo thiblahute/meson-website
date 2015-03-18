@@ -32,7 +32,7 @@ After this are three <tt>subdir</tt> commands. These instruct Meson to go to the
 
 The first subdirectory we go into is <tt>include</tt>. In it we have a a header file for the library that we want to install. This requires one line.
 
-    headers('foolib.h')
+    install_headers('foolib.h')
 
 This installs the given header file to the system's header directory. This is by default <tt>/[install prefix]/include</tt>, but it can be changed with a command line argument.
 
