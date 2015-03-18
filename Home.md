@@ -10,6 +10,7 @@ Meson aims to provide an optimal syntax and implementation for a next-generation
 * [Cheat sheet](Cheat sheet)
 * [Manual](Manual)
 * [Reference manual](Reference manual)
+* [Wrap dependency system manual](Wrap dependency system manual)
 * [Module reference](Module reference)
 * [FAQ](FAQ)
 * [Mailing list](https://groups.google.com/forum/#!forum/mesonbuild)
@@ -17,7 +18,7 @@ Meson aims to provide an optimal syntax and implementation for a next-generation
 ## Additional documentation
 
 * [Original design rationale](Design rationale)
-* [Design rationale for the Wrap packaging system](https://groups.google.com/forum/#!topic/mesonbuild/DliVv-mjOTk)
+* [Design rationale for the Wrap dependency system](https://groups.google.com/forum/#!topic/mesonbuild/DliVv-mjOTk)
 * [Comparison to other build system](Comparisons)
 * [Using multiple build directories](Using multiple build directories)
 * [Screencast of basic features](http://www.youtube.com/watch?v=rzLta78Jbi8)
