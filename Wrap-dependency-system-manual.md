@@ -76,3 +76,7 @@ Doing this with Meson and Wrap is simple. Here's how you would use distro packag
       dependencies : foobar_dep)
 
 Note that whether foobar is found or not, the keyword arguments to <tt>toplevel_exe</tt> are correct. Either <tt>foobar_inc</tt> and <tt>foobar_lib</tt> are defined and <tt>foobar_dep</tt> is empty or vice versa.
+
+----
+
+[Wiki home](Home)
