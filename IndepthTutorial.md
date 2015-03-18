@@ -43,7 +43,7 @@ The Meson definition of <tt>src</tt> subdir is simple.
                             dependencies : glib_dep,
                             install : true)
 
-Here we just tell Meson to build the library with the given sources. We also tell it to use the include directories we stored to variable <tt>inc</tt> earlier. Since this library uses GLib, we tell Meson to add all necessary compiler and linker flags with the <tt>dependencies</tt> keyword argument. Its value is <tt>glib_dep</tt> which we set at the top level <tt>meson.build</tt> file. The <tt>install</tt> argument tells Meson to install the result. As with the headers, the shared library is installed to the system's default location (usually <tt>/[install prefix]/lib</tt> but is again overridable.
+Here we just tell Meson to build the library with the given sources. We also tell it to use the include directories we stored to variable <tt>inc</tt> earlier. Since this library uses GLib, we tell Meson to add all necessary compiler and linker flags with the <tt>dependencies</tt> keyword argument. Its value is <tt>glib_dep</tt> which we set at the top level <tt>meson.build</tt> file. The <tt>install</tt> argument tells Meson to install the result. As with the headers, the shared library is installed to the system's default location (usually <tt>/[install prefix]/lib</tt>) but is again overridable.
 
 The resulting library is stored in variable <tt>foolib</tt> just like the include directory was stored in the previous file.
 
