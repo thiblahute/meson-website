@@ -46,7 +46,7 @@ Building happens in much the same way as normally. There are just two things to 
 
     LDFLAGS=-static-libstdc++ meson --prefix=/tmp/myapp <other args>
 
-The aim is to put the executable in <tt>/tmp/myapp/bin</tt> and shared libraries to <tt>/tmp/myapp/lib</tt>. The next thing you need is the embedder. It takes your dependencies (in this case only <tt>libSDL2-2.0.so.0</tt>) and copies them in the lib directory. Depending on your use case you can either copy the files by hand or write a script that parses the output of <tt>ldd binary_file</tt>. Be sure not to copy system libraries (<tt>libc</tt>, <tt>libpthread</tt>, <tt>libm</tt> etc). For an example, see the [sample project](https://github.com/jpakkane/meson/tree/master/manual%20tests/3%20standalone%20binaries).
+The aim is to put the executable in <tt>/tmp/myapp/bin</tt> and shared libraries to <tt>/tmp/myapp/lib</tt>. The next thing you need is the embedder. It takes your dependencies (in this case only <tt>libSDL2-2.0.so.0</tt>) and copies them in the lib directory. Depending on your use case you can either copy the files by hand or write a script that parses the output of <tt>ldd binary_file</tt>. Be sure not to copy system libraries (<tt>libc</tt>, <tt>libpthread</tt>, <tt>libm</tt> etc). For an example, see the [sample project](https://github.com/jpakkane/meson/tree/master/manual%20tests/4%20standalone%20binaries).
 
 Make the script run during install with this:
 
