@@ -10,7 +10,7 @@ Meson has a concept of [subprojects](Subprojects). They are a way of nesting one
 
 To use this kind of a project as a dependency you could just copy and extract it inside your project's <tt>subprojects</tt> directory. However there is a simpler way. You can specify a Wrap file that tells Meson how to download it for you. An example wrap file would look like this:
 
-    [mesonwrap]
+    [wrap-file]
     directory = libfoobar-1.0
 
     source_url = http://example.com/foobar-1.0.tar.gz
@@ -21,7 +21,7 @@ If you then use this subproject in your build, Meson will automatically download
 
 Unfortunately most software projects in the world do not build with Meson. Because of this Meson allows you to specify a patch url. This works in much the same way as Debian's distro patches. That is, they are downloaded and automatically applied to the subproject. These files contain a Meson build definition for the given subproject. A wrap file with an additional patch url would look like this.
 
-    [mesonwrap]
+    [wrap-file]
     directory = libfoobar-1.0
 
     source_url = http://upstream.example.com/foobar-1.0.tar.gz
@@ -35,6 +35,17 @@ Unfortunately most software projects in the world do not build with Meson. Becau
 In this example the Wrap manager would download the patch and unzip it in libfoobar's directory.
 
 This approach makes it extremely simple to embed dependencies that require build system changes. You can write the Meson build definition for the dependency in total isolation. This is a lot better than doing it inside your own source tree, especially if it contains hundreds of thousands of lines of code. Once you have a working build definition, just zip up the Meson build files (and others you have changed) and put them somewhere where you can download them.
+
+## Branching subprojects directly from git
+
+The above mentioned scheme assumes that your subproject is working off packaged files. Sometimes you want to check code out directly from Git. Meson supports this natively. All you need to do is to write a slightly different wrap file.
+
+    [wrap-git]
+    directory=samplesubproject
+    url=https://github.com/jpakkane/samplesubproject.git
+    revision=head
+
+The format is straightforward. The only thing to note is the revision element that can have one of two values. The first is <tt>head</tt> which will cause Meson to track the master head (doing a repull whenever the build definition is altered). The second type is a commit hash. In this case Meson will use the commit specified (with <tt>git checkout [hash id]</tt>.
 
 ## Using wrapped projects
 
