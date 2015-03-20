@@ -47,6 +47,8 @@ The above mentioned scheme assumes that your subproject is working off packaged 
 
 The format is straightforward. The only thing to note is the revision element that can have one of two values. The first is <tt>head</tt> which will cause Meson to track the master head (doing a repull whenever the build definition is altered). The second type is a commit hash. In this case Meson will use the commit specified (with <tt>git checkout [hash id]</tt>.
 
+Note that in this case you cannot specify an extra patch file to use. The git repo must contain all necessary Meson build definitions.
+
 ## Using wrapped projects
 
 To use a subproject simply do this in your top level <tt>meson.build</tt>.
