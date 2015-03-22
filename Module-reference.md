@@ -2,3 +2,5 @@ Meson has a selection of modules to make common requirements easy to use. Module
 
 * [Gnome](Gnome module)
 * [Qt5](Qt5 module)
+* [RPM](RPM module)
+
