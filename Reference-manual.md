@@ -173,6 +173,7 @@ Defines an unit test. Takes two positional arguments, the first is the name of t
 - <tt>args</tt> arguments to pass to the executable
 - <tt>env</tt> environment variables to set, such as <tt>['NAME1=value1', 'NAME2=value2']</tt>
 - <tt>is_parallel</tt> when false, specifies that no other test must be running at the same time as this test
+- <tt>should_fail</tt> when true the test is considered passed if the executable returns a non-zero return value (i.e. reports an error)
 - <tt>valgrind_args</tt> if the test is run under Valgrind, pass these arguments to Valgrind (and not to the executable itself)
 
 ### vcs_tag ###
