@@ -76,3 +76,7 @@ A related question to this is *Why is Meson's configuration language not Turing-
 There are many good reasons for this, most of which are summarized on this web page: [Against The Use Of Programming Languages in Configuration Files](http://taint.org/2011/02/18/001527a.html).
 
 In addition to those reasons, not exposing Python or any other "real" programming language makes it possible to port Meson's implementation to a different language. This might become necessary if, for example, Python turns out to be a performance bottleneck. This is an actual problem that has caused complications for GNU Autotools and Scons.
+
+## How do I do the equivalent of Libtools export-symbol and export-regex?
+
+By writing a [linker script](http://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_mono/ld.html). This has the added benefit that your symbol definitions are in a standalone file instead of being buried inside your build definitions. See for example [here](https://github.com/jpakkane/meson/tree/master/test%20cases/linuxlike/3%20linker%20script).
