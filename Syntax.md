@@ -85,6 +85,20 @@ If statements work just like in other languages. The only exception is that the 
       everything_ok()
     endif
 
+Foreach statements
+
+To do an operation on all elements of an array, use the <tt>foreach</tt> command. As an example, here's how you would define two executables with corresponding tests.
+
+    progs = [['prog1', ['prog1.c', 'foo.c']],
+             ['prog2', ['prog2.c', 'bar.c']]]
+
+    foreach p : progs
+      exe = executable(p.get(0), p.get(1))
+      test(p.get(0), exe)
+    endforeach
+
+Note that Meson variables are immutable. Trying to assign a new value to <tt>progs</tt> inside a foreach loop will not affect foreach's control flow.
+
 Logical operations
 --
 
