@@ -31,7 +31,11 @@ A boolean is either <tt>true</tt> or <tt>false</tt>.
 Strings
 --
 
-Strings in Meson are declared with single quotes. 
+Strings in Meson are declared with single quotes. To enter a literal single quote do it like this:
+
+    single quote = 'contains a \' character'
+
+Similarly <t>\n</tt> gets converted to a newline and <tt>\\</tt> to a single backslash.
 
 String formatting
 --
