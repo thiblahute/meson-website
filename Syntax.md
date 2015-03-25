@@ -35,7 +35,7 @@ Strings in Meson are declared with single quotes. To enter a literal single quot
 
     single quote = 'contains a \' character'
 
-Similarly <t>\n</tt> gets converted to a newline and <tt>\\</tt> to a single backslash.
+Similarly <tt>\n</tt> gets converted to a newline and <tt>\\\\</tt> to a single backslash.
 
 String formatting
 --
