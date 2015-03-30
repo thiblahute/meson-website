@@ -9,21 +9,21 @@ Measurements
 
 The first thing we measured was the time it took to run the configure step.
 
-![GLib config time](https://sourceforge.net/p/meson/wiki/ARM%20performance%20test/attachment/glib_conf.png)
+![GLib config time](https://raw.githubusercontent.com/wiki/jpakkane/meson/glib_conf.png)
 
 Meson takes roughly 20 seconds whereas Autotools takes 220. This is a difference of one order of magnitude. Autotools' time contains both autogen and configure. Again it should be remembered that Meson does not do all the configure steps that Autotools does. It does do about 90% of them and it takes just 10% of the time to do it. 
 
 Then we measured the build times. Two parallel compilation processes were used for both systems.
 
-![GLib build time](https://sourceforge.net/p/meson/wiki/ARM%20performance%20test/attachment/glib_build.png)
+![GLib build time](https://raw.githubusercontent.com/wiki/jpakkane/meson/glib_build.png)
 
 On desktop machines Ninja based build systems are 10-20% faster than Make based ones. On this platform the difference grows to 50%. The difference is probably caused by Make's inefficient disk access patterns. Ninja is better at keeping both cores running all the time which yields impressive performance improvements.
 
-![GLib no-op time](https://sourceforge.net/p/meson/wiki/ARM%20performance%20test/attachment/glib_empty.png)
+![GLib no-op time](https://raw.githubusercontent.com/wiki/jpakkane/meson/glib_empty.png)
 
 Next we measured the "empty build" case. That is, how long does it take for the build system to detect that no changes need to be made. This is one of the most important metrics of build systems because it places a hard limit on how fast you can iterate on your code. Autotools takes 14 seconds to determine that no work needs to be done. Meson (or, rather, Ninja) takes just one quarter of a second.
 
-![GLib link time](https://sourceforge.net/p/meson/wiki/ARM%20performance%20test/attachment/glib_link.png)
+![GLib link time](https://raw.githubusercontent.com/wiki/jpakkane/meson/glib_link.png)
 
 One step which takes quite a lot of time is linking. A common case is that you are working on a library and there are tens of small test executables that link to it. Even if the compilation step would be fast, relinking all of the test executables takes time. It is common for people to manually compile only one test application with a command such as <tt>make sometest</tt> rather than rebuild everything.
 
