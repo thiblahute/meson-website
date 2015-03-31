@@ -3,7 +3,7 @@ The RPM module can be used to create a sample rpm spec file for a Meson project.
     rpm = import('rpm')
     rpm.generate_spec_template()
 
-You can find the template in your build directory. Then remove the two lines above and manually edit the generated template to add missing information. After this it is ready for use.
+Run Meson once on your code and the template will be written in your build directory. Then remove the two lines above and manually edit the template to add missing information. After this it is ready for use.
 
 ---
 
