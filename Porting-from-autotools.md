@@ -89,6 +89,7 @@ endif
 ```
 
 ### Finding pkgconfig modules
+
 `configure.ac`:
 ```
 PKG_CHECK_MODULES(SOUP, libsoup-2.4 >= 2.24)
@@ -99,6 +100,7 @@ soup = dependency('libsoup-2.4', version : '>= 2.24')
 ```
 
 ### Arguments
+
 `configure.ac`:
 ```
 AC_ARG_ENABLE(dep11, AS_HELP_STRING([--enable-dep11],[enable DEP-11]),
@@ -111,7 +113,9 @@ if test x$enable_dep11 = xyes; then
   AC_DEFINE(AS_BUILD_DEP11,1,[Build DEP-11 code])
 fi
 ```
+
 `meson.build`:
+
 ```
 if get_option('enable-dep11')
   yaml = dependency('yaml-0.1')
@@ -120,27 +124,36 @@ else
   yaml = dependency('yaml-0.1', required : false)
 endif
 ```
+
 `meson_options.txt`:
+
 ```
 option('enable-dep11', type : 'boolean', value : true, description : 'enable DEP-11')
 ```
 
 ## Makefile.am
+
 Next step is `Makefile.am`. In meson you don't need to have other file, you still use `meson.build`.
 
 ### Sub directories
+
 `Makefile.am`:
+
 ```
 SUBDIRS =                                         \
         libappstream-glib
 ```
+
 `meson.build`:
+
 ```
 subdir('libappstream-glib')
 ```
 
 ### *CLEANFILES, EXTRA_DIST, etc.
+
 `Makefile.am`:
+
 ```
 DISTCLEANFILES =                                        \
         appstream-glib-*.tar.xz
@@ -164,9 +177,11 @@ EXTRA_DIST =                                            \
         autogen.sh                                      \
         config.h
 ```
-In meson you don't need have `*CLEANFILES`, because in meson you are building in temporary directory (usually called `build`), you manually removing it. You also not need to use `EXTRA_DIST`, because you will make tarballs via `git archive` or something like this.
+
+In Meson you don't need have `*CLEANFILES`, because in meson you are building in temporary directory (usually called `build`), you manually removing it. You also not need to use `EXTRA_DIST`, because you will make tarballs via `git archive` or something like this.
 
 ### glib-compile-resources
+
 `Makefile.am`:
 ```
 as-resources.c: appstream-glib.gresource.xml                    \
@@ -202,7 +217,9 @@ BUILT_SOURCES =                                                 \
         as-resources.c                                          \
         as-resources.h
 ```
+
 `meson.build`:
+
 ```
 asresources = gnome.compile_resources(
   'as-resources', 'appstream-glib.gresource.xml',
@@ -211,7 +228,9 @@ asresources = gnome.compile_resources(
 ```
 
 ### Headers
+
 `Makefile.am`:
+
 ```
 libappstream_glib_includedir = $(includedir)/libappstream-glib
 libappstream_glib_include_HEADERS =                             \
@@ -232,7 +251,9 @@ libappstream_glib_include_HEADERS =                             \
         as-utils.h                                              \
         as-version.h
 ```
+
 `meson.build`:
+
 ```
 headers = [
   'appstream-glib.h',
@@ -255,6 +276,7 @@ install_headers(headers, subdir : 'libappstream-glib')
 ```
 
 ### Libraries
+
 `Makefile.am`:
 ```
 lib_LTLIBRARIES =                                               \
@@ -308,7 +330,9 @@ libappstream_glib_la_LDFLAGS =                                  \
         -no-undefined                                           \
         -export-symbols-regex '^as_.*'
 ```
+
 `meson.build`:
+
 ```
 sources = [
   'as-app.c',
@@ -359,7 +383,9 @@ asglib = shared_library(
   link_depends : mapfile,
   install : true)
 ```
+
 `appstream-glib.map`:
+
 ```
 {
 global:
@@ -370,7 +396,9 @@ local:
 ```
 
 ### Custom targets
+
 `Makefile.am`:
+
 ```
 if HAVE_GPERF
 as-tag-private.h: as-tag.gperf
@@ -380,7 +408,9 @@ libappstream_glib_la_SOURCES += as-tag-private.h
 BUILT_SOURCES += as-tag-private.h
 endif
 ```
+
 `meson.build`:
+
 ```
 if gperf.found()
   astagpriv = custom_target('gperf as-tag',
@@ -392,14 +422,18 @@ endif
 ```
 
 ### Global CFLAGS
+
 `Makefile.am`:
+
 ```
 AM_CPPFLAGS =                                                   \
         -DAS_COMPILATION                                        \
         -DLOCALSTATEDIR=\""$(localstatedir)"\"                  \
         -DG_LOG_DOMAIN=\"As\"
 ```
+
 `meson.build`:
+
 ```
 add_global_arguments('-DG_LOG_DOMAIN="As"', language : 'c')
 add_global_arguments('-DAS_COMPILATION', language : 'c')
@@ -407,7 +441,9 @@ add_global_arguments('-DLOCALSTATEDIR="/var"', language : 'c')
 ```
 
 ### Tests
+
 `Makefile.am`:
+
 ```
 check_PROGRAMS =                                                \
         as-self-test
@@ -424,7 +460,9 @@ as_self_test_CFLAGS = -DTESTDATADIR=\""$(top_srcdir)/data/tests"\"
 
 TESTS = as-self-test
 ```
+
 `meson.build`:
+
 ```
 selftest = executable(
   'as-self-test', 'as-self-test.c',
@@ -436,7 +474,9 @@ test('as-self-test', selftest)
 ```
 
 ### GObject Introspection
+
 `Makefile.am`:
+
 ```
 introspection_sources =                                         \
         as-app.c                                                \
@@ -490,7 +530,9 @@ typelib_DATA = $(INTROSPECTION_GIRS:.gir=.typelib)
 
 CLEANFILES += $(gir_DATA) $(typelib_DATA)
 ```
+
 `meson.build`:
+
 ```
 introspection_sources = [
   'as-app.c',
