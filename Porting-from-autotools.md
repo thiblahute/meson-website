@@ -25,7 +25,9 @@ m4_define([as_version],
 as_major_version = '0'
 as_minor_version = '3'
 as_micro_version = '6'
-as_version = '@0@.@1@.@2@'.format(as_major_version, as_minor_version, as_micro_version)
+as_version = '@0@.@1@.@2@'.format(as_major_version, 
+                                  as_minor_version, 
+                                  as_micro_version)
 ```
 
 ### Initializing project and setting compilers
@@ -49,7 +51,7 @@ AC_SUBST(AS_MICRO_VERSION)
 AC_SUBST(AS_VERSION)
 ```
 
-You don't want to do the same in Meson, because it does not have two different types of files (Makefile, configure), so you don't need to pass variables.
+You don't need to do the same in Meson, because it does not have two different types of files (Makefile, configure).
 
 ### Auto headers
 
@@ -58,6 +60,7 @@ You don't want to do the same in Meson, because it does not have two different t
     AC_CONFIG_HEADERS([config.h])
 
 `meson.build`:
+
 ```
 conf = configuration_data()
 conf.set('VERSION', as_version)
@@ -65,14 +68,19 @@ configure_file(input : 'config.h.in',
                output : 'config.h',
                configuration : conf)
 ```
+
 `config.h.in`:
+
 ```
 #mesondefine VERSION
 ```
+
 Meson doesn't support autoheaders, you need to manually specify what do you want to see in header file, write `configuration_data()` object and use `configure_file()`.
 
 ### Finding programs
+
 `configure.ac`:
+
 ```
 AC_PATH_PROG(GPERF, [gperf], [no])
 if test x$GPERF != xno ; then
@@ -80,7 +88,9 @@ if test x$GPERF != xno ; then
 fi
 AM_CONDITIONAL(HAVE_GPERF, [test x$GPERF != xno])
 ```
+
 `meson.build`:
+
 ```
 gperf = find_program('gperf', required : false)
 if gperf.found()
@@ -91,10 +101,13 @@ endif
 ### Finding pkgconfig modules
 
 `configure.ac`:
+
 ```
 PKG_CHECK_MODULES(SOUP, libsoup-2.4 >= 2.24)
 ```
+
 `meson.build`:
+
 ```
 soup = dependency('libsoup-2.4', version : '>= 2.24')
 ```
@@ -102,6 +115,7 @@ soup = dependency('libsoup-2.4', version : '>= 2.24')
 ### Arguments
 
 `configure.ac`:
+
 ```
 AC_ARG_ENABLE(dep11, AS_HELP_STRING([--enable-dep11],[enable DEP-11]),
               enable_dep11=$enableval,enable_dep11=yes)
