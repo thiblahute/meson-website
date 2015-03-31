@@ -1,7 +1,10 @@
-I will take [appstream-glib](https://github.com/hughsie/appstream-glib/) as example project. Appstream-Glib contains some libraries, gobject-introspection, tests, man pages, i18n, bash-completion with optional flags to build/notbuild support for some things.
+This page uses [appstream-glib](https://github.com/hughsie/appstream-glib/) as an example project. Appstream-Glib contains some libraries, gobject-introspection, tests, man pages, i18n, bash-completion with optional flags to build/notbuild support for some things.
+
+Meson comes with a helper script <tt>autotools2meson</tt> that you can use to convert the basic structure of your project.
 
 ## Configure.ac
-First of all, I'll take `configure.ac` and will try to write the same in `meson.build`.
+
+First let's look at `configure.ac` and write the same in `meson.build`.
 
 ```
 AC_PREREQ(2.63)
@@ -35,7 +38,7 @@ AC_PROG_CC
 ```
 project('appstream-glib', 'c')
 ```
-Meson doesn't support version tags for project, because it's unnecessary garbage.
+Note that this must be the first line of your <tt>meson.build</tt> file.
 
 ### AC_SUBST
 `configure.ac`:
@@ -45,13 +48,15 @@ AC_SUBST(AS_MINOR_VERSION)
 AC_SUBST(AS_MICRO_VERSION)
 AC_SUBST(AS_VERSION)
 ```
-You don't want to do the same in meson, because there no 2 type of files (Makefile, configure). All variables which you will use in meson needs to be defined once.
+
+You don't want to do the same in Meson, because it does not have two different types of files (Makefile, configure), so you don't need to pass variables.
 
 ### Auto headers
+
 `configure.ac`:
-```
-AC_CONFIG_HEADERS([config.h])
-```
+
+    AC_CONFIG_HEADERS([config.h])
+
 `meson.build`:
 ```
 conf = configuration_data()
