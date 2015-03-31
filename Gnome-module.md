@@ -1,6 +1,6 @@
 This module provides helper tools for build operations needed when building Gnome/GLib programs.
 
-**Note**: the compilation commands here do not work properly when you change the source files. This is a bug in the respective compiler commands which do not expose the required dependency information. This has been reported upstream in [this bug](https://bugzilla.gnome.org/show_bug.cgi?id=745754). Until this is fixed you need to be careful when changing your source files.
+**Note**: the compilation commands here do not work properly when you change the source files. This is a bug in the respective compilers which do not expose the required dependency information. This has been reported upstream in [this bug](https://bugzilla.gnome.org/show_bug.cgi?id=745754). Until this is fixed you need to be careful when changing your source files.
 
 ## compile_resources
 
