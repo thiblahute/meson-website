@@ -23,6 +23,13 @@ Generates GObject introspection data. Takes one positional argument, the build t
 
 This function returns nothing.
 
+## compile_schemas
+
+When called, this method will compile the gschemas in the current directory.
+
+## gdbus_codegen
+
+Compiles the given XML schema into gdbus source code. Takes two positional arguments, the first one specifies the name of the source files and the second specifies the XML file name. There are two keyword arguments, <tt>interface_prefix</tt> and <tt>namespace</tt> which map to corresponding features of the compiler.
 
 ---
 
