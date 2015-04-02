@@ -32,6 +32,7 @@ Create a custom top level build target. The only positional argument is the name
 - <tt>install</tt> when true, this target is installed during the install step
 - <tt>install_dir</tt> directory to install to
 - <tt>build_always</tt> if <tt>true</tt> this target is always considered out of date and is rebuilt every time, useful for things such as build timestamps or revision control tags
+- <tt>depends</tt> specifies that this target depends on the specified target(s), even though it does not take any of them as a command line argument. This is meant for cases where you have a tool that e.g. does globbing internally. Usually you should just put the generated sources as inputs and Meson will set up all dependencies automatically.
 
 ### dependency ###
 
