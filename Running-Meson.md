@@ -30,7 +30,7 @@ The build directory is mandatory. The reason for this is that it simplifies the 
     cd buildclang
     CC=clang CXX=clang++ meson ..
 
-This separation is even more powerful if your code has multiple configuration options (such as multiple data backends). You can create a separate subdirectory for each of them. You can also have build directories for optimized builds, code coverage, static analysis and so on. They are all neatly separated and use the same source tree. Changing between different configurations is just a question of changing to a separate directory.
+This separation is even more powerful if your code has multiple configuration options (such as multiple data backends). You can create a separate subdirectory for each of them. You can also have build directories for optimized builds, code coverage, static analysis and so on. They are all neatly separated and use the same source tree. Changing between different configurations is just a question of changing to the corresponding directory.
 
 Unless otherwise mentioned, all following command line invocations are meant to be run in the build directory.
 
