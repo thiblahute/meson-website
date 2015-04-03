@@ -14,6 +14,13 @@ Let us assume that we have a source tree that has a Meson build system. This mea
 
 First we create a directory to hold all files generated during the build. Then we go into it and invoke Meson, giving it the location of the source root. Meson then loads the build configuration file and writes the corresponding build backend in the build directory. By default Meson generates a *debug build*, which turns on basic warnings and debug information and disables compiler optimizations. 
 
+You can specify a different type of build with the <tt>--buildtype</tt> command line argument. It can have one of the following values.
+
+- <tt>plain</tt> no extra build flags are used, useful for distro packagers and other cases where you need to specify all arguments by yourself
+- <tt>debug</tt> debug info is generated but the result is not optimized, this is the default
+- <tt>debugoptimized</tt> debug info is generated and the code is optimized (on most compilers this means <tt>-g -O2</tt>)
+- <tt>release</tt> full optimization, no debug info
+
 The build directory is mandatory. The reason for this is that it simplifies the build process immensely. Meson will not under any circumstances write files inside the source directory (if it does, it is a bug and should be fixed). This means that the user does not need to add a bunch of files to their revision control's ignore list. It also means that you can create arbitrarily many build directories for any given source tree. If we wanted to test building the source code with the Clang compiler instead of the system default, we could just type the following commands.
 
     cd /path/to/source/root
