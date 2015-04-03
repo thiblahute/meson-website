@@ -48,7 +48,7 @@ As an example we are going to use the [SDL2](https://libsdl.org/) framework. In 
 The install script does two things. First it copies the whole framework into our bundle.
 
     mkdir -p ${MESON_INSTALL_PREFIX}/Contents/Frameworks
-    cp -r /Library/Frameworks/SDL2.framework \
+    cp -R /Library/Frameworks/SDL2.framework \
           ${MESON_INSTALL_PREFIX}/Contents/Frameworks
 
 Then it needs to alter the library search path of our executable(s). This tells OSX that the libraries your app needs are inside your bundle. In the case of SDL2, the invocation goes like this:
