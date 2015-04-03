@@ -18,7 +18,7 @@ You can specify a different type of build with the <tt>--buildtype</tt> command 
 
 value | meaning
 ------|--------
-<tt>plain</tt> | no extra build flags are used, useful for distro packagers and other cases where you need to specify all arguments by yourself
+<tt>plain</tt> | no extra build flags are used, even for compiler warnings, useful for distro packagers and other cases where you need to specify all arguments by yourself
 <tt>debug</tt> | debug info is generated but the result is not optimized, this is the default
 <tt>debugoptimized</tt> | debug info is generated and the code is optimized (on most compilers this means <tt>-g -O2</tt>)
 <tt>release</tt> | full optimization, no debug info
