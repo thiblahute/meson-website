@@ -64,7 +64,7 @@ Executable supports the following keyword arguments.
 - <tt>install</tt>, when set to true, this executable should be installed
 - <tt>install_rpath</tt> a string to set the target's rpath to after install (but *not* before that)
 - <tt>install_dir</tt> override install directory for this file
-- <tt>objects</tt> list of prebuilt object files (usually for third party products you don't have source to) that should be linked in this target, *never* use this for object files that you build yourself.
+- <tt>objects</tt> list of prebuilt object files (usually for third party products you don't have source to) that should be linked in this target, **never** use this for object files that you build yourself.
 
 ### find_program ###
 
