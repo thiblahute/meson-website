@@ -42,7 +42,8 @@ MSVC is a bit trickier, because in addition to the header file, it also requires
 
 To enable pch, simply list both files in the target definition:
 
-    executable('myexe', sources : srclist, cpp_pch : ['pch/foo_pch.h', 'pch/foo_pch.cpp'])
+    executable('myexe', sources : srclist, 
+               cpp_pch : ['pch/foo_pch.h', 'pch/foo_pch.cpp'])
 
 This form will work with both gcc and msvc, because Meson knows that gcc does not need a <tt>.cpp</tt> file and thus just ignores it.
 
