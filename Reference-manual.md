@@ -97,7 +97,7 @@ This function creates a generator object that can be used to run custom compilat
 
 ### get_option ###
 
-Obtains the value of the (project build option)[Build options] specified in the positional argument.
+Obtains the value of the [project build option](Build options) specified in the positional argument.
 
 ### gettext ###
 
