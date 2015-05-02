@@ -76,6 +76,18 @@ If the program is not found, Meson will abort. You can tell it not to by setting
 
 Tries to find the library specified in the positional argument. The result object can be used just like the return value of <tt>dependency</tt>. If the keyword argument <tt>required</tt> is false, Meson will proceed even if the library is not found.
 
+### files ###
+
+This command takes the strings given to it in arguments and returns corresponding File objects that you can use as sources for build targets. The difference is that file objects remember the subdirectory they were defined in and can be used anywhere in the source tree. As an example suppose you have source file <tt>foo.cpp</tt> in subdirectory <tt>bar1</tt> and you would like to use it in a build target that is defined in <tt>bar2</tt>. To make this happen you first create the object in <tt>bar1</tt> like this:
+
+    foofile = files('foo.cpp')
+
+Then you can use it in <tt>bar2</tt> like this:
+
+    executable('myprog', 'myprog.cpp', foofile, ...)
+
+Meson will then do the right thing.
+
 ### generator ###
 
 This function creates a generator object that can be used to run custom compilation commands. The only positional argument is the executable to use. It can either be a self-built executable or one returned by find_program. Keyword arguments are the following:
