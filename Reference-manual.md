@@ -74,7 +74,7 @@ If the program is not found, Meson will abort. You can tell it not to by setting
 
 ### find_library ###
 
-Tries to find the library specified in the positional argument. The result object can be used just like the return value of <tt>dependency</tt>. If the keyword argument <tt>required</tt> is false, Meson will proceed even if the library is not found.
+Tries to find the library specified in the positional argument. The result object can be used just like the return value of <tt>dependency</tt>. If the keyword argument <tt>required</tt> is false, Meson will proceed even if the library is not found. By default the library is searched for in the system specific library directory (e.g. <tt>/usr/lib</tt>). This can be overridden with the <tt>dirs</tt> keyword argument, which can be either a string or a list of strings.
 
 ### files ###
 
