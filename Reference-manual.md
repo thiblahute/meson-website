@@ -149,6 +149,8 @@ A helper function to generate simple pkg-config files. For more complex pkg-conf
 
 The first argument to this function must be a string defining the name of this project. It must be followed by one or more programming languages that the project uses. Supported values for languages are <tt>c</tt>, <tt>cpp</tt> (for <tt>C++</tt>), <tt>objc</tt>, <tt>objcpp</tt>, <tt>fortran</tt>, <tt>java</tt>, <tt>cs</tt> (for <tt>C#</tt>) and <tt>vala</tt>.
 
+Project accepts one keyword argument, <tt>subproject_dir</tt>. This specifies the top level directory name that holds Meson subprojects. This is only meant as a compatibility option for existing code bases that house their embedded source code in a custom directory. All new projects should not set this but instead use the default value. It should be noted that this keyword argument is ignored inside subprojects. There can be only one subproject dir and it is set in the top level Meson file. 
+
 ### run_command ###
 
 Runs the command specified in positional arguments. Returns an opaque object containing the result of the invocation.
