@@ -233,6 +233,7 @@ This object represents a compiler for a given language and allows you to query i
 - <tt>compiles</tt> returns true if the code fragment given in the positional argument compiles
 - <tt>sizeof</tt> returns the size of the given type (e.g. *int*), to add includes set them in the <tt>prefix</tt> keyword argument
 - <tt>has_header</tt> returns true if the specified header can be included
+- <tt>has_type</tt> returns true if the specified token is a type
 - <tt>run</tt> attempts to compile and execute the given code fragment, returns a run result object
 - <tt>has_function</tt> returns true if the given function can be called
 - <tt>has_member</tt> takes two arguments, type name and member name and returns true if the type has the specified member
