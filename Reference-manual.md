@@ -224,6 +224,12 @@ The <tt>meson</tt> object allows you to introspect various properties of the sys
 
 - <tt>set_install_script</tt> causes the script given as an argument to be run during the install step, this script will have the environment variables <tt>MESON_SOURCE_ROOT</tt>, <tt>MESON_BUILD_ROOT</tt> and <tt>MESON_INSTALL_PREFIX</tt> set
 
+### build target object ###
+
+A build target is either an executable, shared or static library.
+
+- <tt>extract_objects</tt> returns an opaque object representing the generated object files of arguments, usually used to take single object files and linking them to unit tests or compiling some source files with custom flags
+
 ### compiler object ###
 
 This object represents a compiler for a given language and allows you to query its properties. It has the following methods.
