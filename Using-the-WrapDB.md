@@ -19,4 +19,8 @@ Add this file to your project with the name `subprojects/zlib.wrap`. Then you ca
 
     zproj = subproject('zlib')
 
-When Meson encounters this it will automatically download, unpack and patch the source files. 
+When Meson encounters this it will automatically download, unpack and patch the source files.
+
+## Contributing build definitions
+
+The contents of the Wrap database are tracked in git repos of the [Mesonbuild project](https://github.com/mesonbuild). The actual process is simple and described in [submission documentation](https://github.com/mesonbuild/wrapweb/wiki).
