@@ -11,6 +11,7 @@ Meson aims to provide an optimal syntax and implementation for a next-generation
 * [Manual](Manual)
 * [Reference manual](Reference manual)
 * [Wrap dependency system manual](Wrap dependency system manual)
+* [Using the Wrap database](Using the WrapDB)
 * [Module reference](Module reference)
 * [FAQ](FAQ)
 * [Mailing list](https://groups.google.com/forum/#!forum/mesonbuild)
