@@ -39,10 +39,8 @@ If the tradeoff between reliability and convenience is acceptable to you, then M
 
 Then you need to run this script in your Meson file, convert the output into a string array and use the result in a target.
 
-    newline = '''
-    '''
     c = run_command('grabber.sh')
-    sources = c.stdout().strip().split(newline)
+    sources = c.stdout().strip().split('\n')
     e = executable('prog', sources)
 
 The script can be any executable, so it can be written in shell, Python, Lua, Perl or whatever you wish.
@@ -79,4 +77,4 @@ In addition to those reasons, not exposing Python or any other "real" programmin
 
 ## How do I do the equivalent of Libtools export-symbol and export-regex?
 
-Either by using [gcc symbol visibility](https://gcc.gnu.org/wiki/Visibility) or by writing a [linker script](http://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_mono/ld.html). This has the added benefit that your symbol definitions are in a standalone file instead of being buried inside your build definitions. See for example [here](https://github.com/jpakkane/meson/tree/master/test%20cases/linuxlike/3%20linker%20script).
+Either by using [gcc symbol visibility](https://gcc.gnu.org/wiki/Visibility) or by writing a [linker script](http://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_mono/ld.html). This has the added benefit that your symbol definitions are in a standalone file instead of being buried inside your build definitions. An example can be found [here](https://github.com/jpakkane/meson/tree/master/test%20cases/linuxlike/3%20linker%20script).
