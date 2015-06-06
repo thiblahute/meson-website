@@ -1,14 +1,25 @@
 This page lists functions and methods available in Meson scripts. For more in-depth documentation on how to use them, refer to the [manual](Manual).
 
-## Functions ##
+## Functions
 
-### add_global_arguments ###
+### add_global_arguments
 
 Adds the positional arguments to the compiler command line for the language specified in <tt>language</tt> keyword argument. Note that there is no way to remove an argument set in this way. If you have an argument that is only used in a subset of targets, you have to specify it in per-target flags.
 
 The arguments are used in all compiler invocations with the exception of compile tests, because you might need to run a compile test with and without the argument in question. For this reason only the arguments explicitly specified are used during compile tests.
 
-### configuration_data ###
+### build_target
+
+Creates a build target whose type can be set dynamically with the `target_type` keyword argument. This declaration:
+
+    executable(<arguments and keyword arguments>)
+
+is equivalent to this:
+
+    build_target(<arguments and keyword arguments>, target_type : 'executable')
+
+
+### configuration_data
 
 Creates an empty configuration object. You should add your configuration with its method calls and finally use it in a call to <tt>configure_file</tt>.
 
