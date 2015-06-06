@@ -34,15 +34,16 @@ Create a custom top level build target. The only positional argument is the name
 - <tt>build_always</tt> if <tt>true</tt> this target is always considered out of date and is rebuilt every time, useful for things such as build timestamps or revision control tags
 - <tt>depends</tt> specifies that this target depends on the specified target(s), even though it does not take any of them as a command line argument. This is meant for cases where you have a tool that e.g. does globbing internally. Usually you should just put the generated sources as inputs and Meson will set up all dependencies automatically.
 
-### dependency ###
+### dependency
 
-Finds an external dependency with the given name with pkg-config if possible and with fallback detection logic otherwise. Dependency supports two keyword arguments.
+Finds an external dependency with the given name with pkg-config if possible and with fallback detection logic otherwise. Dependency supports the following keyword arguments.
 
 - <tt>modules</tt> specifies submodules to use for dependencies such as Qt5 or Boost.
 - <tt>required</tt>, when set to false, Meson will proceed with the build even if the dependency is not found
 - <tt>version</tt>, specifies the required version, a string containing a comparison operator followed by the version string, examples include <tt>&gt;1.0.0</tt>, <tt>&lt;=2.3.5</tt> or <tt>3.1.4</tt> for exact matching
+- <tt>native</tt> if set to `true`, causes Meson to find the dependency on the build machine system rather than the host system (i.e. where the cross compiled binary will run on), usually only needed if you build a tool to be used during compilation.
 
-### error ###
+### error
 
 Print the argument string and halts the build process.
 
