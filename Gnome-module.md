@@ -15,11 +15,12 @@ Returns an opaque object that you should pass into your build target.
 
 Generates GObject introspection data. Takes one positional argument, the build target you want to build gir data for. There are several keyword arguments.
 
-* <tt>sources</tt>: the list of sources to be scanned for gir data
-* <tt>nsversion</tt>: namespace version
-* <tt>namespace</tt>: the namespace for this gir object
-* <tt>install</tt>: if true, install the generated gir file
-* <tt>install_dir</tt>: which subdirectory to install the gir file into
+* `sources`: the list of sources to be scanned for gir data
+* `nsversion`: namespace version
+* `namespace`: the namespace for this gir object
+* `install`: if true, install the generated gir file
+* `install_dir`: which subdirectory to install the gir file into
+* `dependencies`: deps to use during introspection scanning
 
 This function returns nothing.
 
