@@ -1,6 +1,6 @@
 The Wrap database is a web service that provides Meson build definitions to projects that do not have it natively. Using it is simple. The service can be found [here](http://wrapdb.mesonbuild.com).
 
-The front page lists all projects that are on the service. Select the one you want and click it. The detail page lists available versions by branch and revision id. The branch names come from upstream releases and revision ids are version numbers internal to the database. Whenever the packaging is updated an new revision is released to the service a new revision with a bigger revision id is added. Usually you want to select the newest branch with the highest revision id.
+The front page lists all projects that are on the service. Select the one you want and click it. The detail page lists available versions by branch and revision id. The branch names come from upstream releases and revision ids are version numbers internal to the database. Whenever the packaging is updated a new revision is released to the service a new revision with a bigger revision id is added. Usually you want to select the newest branch with the highest revision id.
 
 You can get the actual wrap file by clicking on the download link on the page. As an example, the wrap file for [zlib-1.2.8, revision 4](http://wrapdb.mesonbuild.com/v1/projects/zlib/1.2.8/4/get_wrap) looks like this:
 
