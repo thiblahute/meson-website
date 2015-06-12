@@ -6,11 +6,11 @@ While Meson tries to support as many languages and tools as possible, there is n
      outfile = 'output.bin'
      
      mytarget = custom_target('targetname',
-      output : 'output.bin',
-      input : 'source_code.txt'
-      command : [comp, '@INPUT@', '@OUTPUT@'],
-      install : true,
-      install_dir : 'subdir'
+       output : 'output.bin',
+       input : 'source_code.txt'
+       command : [comp, '@INPUT@', '@OUTPUT@'],
+       install : true,
+       install_dir : 'subdir'
      )
 
 This would generate the binary <tt>output.bin</tt> and install it to <tt>${prefix}/subdir/output.bin</tt>. Variable substitution works just like it does for source generation. 
