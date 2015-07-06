@@ -40,7 +40,7 @@ Installing dependencies is just as straightforward. First just create the `subpr
     # wraptool install libjpeg
     Installed libjpeg branch 9a revision 2
 
-Now you can issue a `subproject('libjpeg')` in your top level project and just use it.
+Now you can issue a `subproject('libjpeg')` in your `meson.build` file to use it.
 
 To check if your projects are up to date you can issue the `status` command.
 
