@@ -49,7 +49,7 @@ To check if your projects are up to date you can issue the `status` command.
      libjpeg up to date. Branch 9a, revision 2.
      zlib not up to date. Have 1.2.8 2, but 1.2.8 4 is available.
 
-In this case `zlib` has an old release. Updating it is straightforward:
+In this case `zlib` has a newer release available. Updating it is straightforward:
 
     # wraptool.py update zlib
     Updated zlib to branch 1.2.8 revision 4
