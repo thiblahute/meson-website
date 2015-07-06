@@ -2,7 +2,7 @@
 
 Meson aims to provide an optimal syntax and implementation for a next-generation build system.
 
-## Core information
+## Meson information
 
 * [Quick guide](Quick guide)
 * [A simple tutorial](Tutorial)
@@ -10,11 +10,15 @@ Meson aims to provide an optimal syntax and implementation for a next-generation
 * [Cheat sheet](Cheat sheet)
 * [Manual](Manual)
 * [Reference manual](Reference manual)
-* [Wrap dependency system manual](Wrap dependency system manual)
-* [Using the Wrap database](Using the WrapDB)
 * [Module reference](Module reference)
 * [FAQ](FAQ)
 * [Mailing list](https://groups.google.com/forum/#!forum/mesonbuild)
+
+## Wrap documentation
+
+* [Wrap dependency system manual](Wrap dependency system manual)
+* [Using the Wrap database](Using the WrapDB)
+* [Using wraptool](Using wraptool)
 
 ## Additional documentation
 
