@@ -53,3 +53,5 @@ In this case `zlib` has a newer release available. Updating it is straightforwar
 
     # wraptool.py update zlib
     Updated zlib to branch 1.2.8 revision 4
+
+Wraptool can do other things besides these. Documentation for these can be found in the command line help, which can be accessed by `wraptool --help`.
