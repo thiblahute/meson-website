@@ -12,6 +12,10 @@ The pragmatic solution is to put the config header in a directory that has no ot
     internal_inc = include_directories('internal')
     shared_library('foo', 'foo.c', include_directories : internal_inc)
 
+Many projects keep their `config.h` in the top level directory that has no other source files in it. In that case you don't need to move it but can just do this instead:
+
+    internal_inc = include_directories('.') # At top level meson.build
+
 ## Make libraries buildable both as static and shared
 
 Some platforms (iOS) requires linking everything in your main app statically. Others recommend using shared libraries. They are also faster during development due to Meson's relinking optimization. However building both library types on all builds is slow and wasteful.
