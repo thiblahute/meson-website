@@ -20,6 +20,7 @@ Meson aims to provide an optimal syntax and implementation for a next-generation
 * [Using the Wrap database](Using the WrapDB)
 * [Using wraptool](Using wraptool)
 * [Adding new projects to wrapdb](Adding new projects to wrapdb)
+* [Wrap best practices and tips](Wrap best practices and tips)
 
 ## Additional documentation
 
