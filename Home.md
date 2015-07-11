@@ -19,6 +19,7 @@ Meson aims to provide an optimal syntax and implementation for a next-generation
 * [Wrap dependency system manual](Wrap dependency system manual)
 * [Using the Wrap database](Using the WrapDB)
 * [Using wraptool](Using wraptool)
+* [Adding new projects to wrapdb](Adding new projects to wrapdb)
 
 ## Additional documentation
 
