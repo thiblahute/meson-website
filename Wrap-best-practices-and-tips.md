@@ -11,3 +11,18 @@ The pragmatic solution is to put the config header in a directory that has no ot
     subdir('internal') # create config.h in this subdir
     internal_inc = include_directories('internal') #
     shared_library('foo', 'foo.c', include_directories : internal_inc)
+
+## Make libraries buildable both as static and shared
+
+Some platforms (iOS) requires linking everything in your main app statically. Others recommend using shared libraries. They are also faster during development due to Meson's relinking optimization. However building both library types on all builds is slow and wasteful.
+
+Your project should provide a toggle specifying which type of library it should build. As an example if you have a Meson option called `shared_lib` then you could do this:
+
+    if get_option('shared_lib')
+      libtype = 'shared_library'
+    else
+      libtype = 'static_library'
+    endif
+
+    mylib = build_target('foo', 'foo.c',
+      target_type : libtype)
