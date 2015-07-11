@@ -18,7 +18,7 @@ Many projects keep their `config.h` in the top level directory that has no other
 
 ## Make libraries buildable both as static and shared
 
-Some platforms (iOS) requires linking everything in your main app statically. Others recommend using shared libraries. They are also faster during development due to Meson's relinking optimization. However building both library types on all builds is slow and wasteful.
+Some platforms (e.g. iOS) requires linking everything in your main app statically. In other cases you might want shared libraries. They are also faster during development due to Meson's relinking optimization. However building both library types on all builds is slow and wasteful.
 
 Your project should provide a toggle specifying which type of library it should build. As an example if you have a Meson option called `shared_lib` then you could do this:
 
