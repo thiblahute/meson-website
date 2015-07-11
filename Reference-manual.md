@@ -45,6 +45,15 @@ Create a custom top level build target. The only positional argument is the name
 - <tt>build_always</tt> if <tt>true</tt> this target is always considered out of date and is rebuilt every time, useful for things such as build timestamps or revision control tags
 - <tt>depends</tt> specifies that this target depends on the specified target(s), even though it does not take any of them as a command line argument. This is meant for cases where you have a tool that e.g. does globbing internally. Usually you should just put the generated sources as inputs and Meson will set up all dependencies automatically.
 
+### declare_dependency
+
+This function creates a dependency object that behaves like the return value of `dependency` but is internal to the current build. The main use case for this is in subprojects. This allows a subproject to easily specify how it should be used. This makes it interchangeable with the same dependency that is provided externally by the system. This function has three keyword arguments.
+
+  - `include_directories`, the directories to add to header search path
+  - `link_with`, libraries to link against
+  - `sources`, sources to add to targets (or generated header files that should be built before sources including them are built)
+
+
 ### dependency
 
 Finds an external dependency with the given name with pkg-config if possible and with fallback detection logic otherwise. Dependency supports the following keyword arguments.
