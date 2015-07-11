@@ -9,7 +9,7 @@ The basic problem is that the users of the subproject must be able to include su
 The pragmatic solution is to put the config header in a directory that has no other header files and then hide that from everyone else. One way is to create a top level subdirectory called `internal` and use that to build your own sources, like this:
 
     subdir('internal') # create config.h in this subdir
-    internal_inc = include_directories('internal') #
+    internal_inc = include_directories('internal')
     shared_library('foo', 'foo.c', include_directories : internal_inc)
 
 ## Make libraries buildable both as static and shared
