@@ -30,3 +30,20 @@ Your project should provide a toggle specifying which type of library it should 
 
     mylib = build_target('foo', 'foo.c',
       target_type : libtype)
+
+## Declare generated headers explicitly
+
+Meson's Ninja backend works differently from Make and other systems. Rather than processing things directory per directory, it looks at the entire build definition at once and runs the individual compile jobs in what might look to the outside as a random order.
+
+The reason for this is that this is much more efficient so your builds finish faster. The downside is that you have to be careful with your dependencies. The most common problem here is headers that are generated at compile time with e.g. code generators. If these headers are needed when building code that uses these libraries, the compile job might be run before the code generation step. The fix is to make the dependency explicit like this:
+
+    myheader = custom_target(...)
+    mylibrary = shared_library(...)
+    mydep = declare_dependency(link_with : mylibrary,
+      include_directories : include_directories(...),
+      sources : myheader)
+
+And then you can use the dependency like this:
+
+    executable('dep_using_exe', 'main.c',
+      dependencies : mydep)
