@@ -74,21 +74,17 @@ Doing this with Meson and Wrap is simple. Here's how you would use distro packag
 
     foobar_dep = dependency('foobar', required : false)
 
-    if foobar_dep.found()
-      foobar_inc = []
-      foobar_lib = []
-    else
-      foobar_sp = subproject('foobar')
-      foobar_inc = foobar_sp.get_variable('foobar_inc')
-      foobar_lib = foobar_sp.get_variable('foobar_lib')
+    if not foobar_dep.found()
+      foobar_subproj = subproject('foobar')
+      # the subproject defines an internal dependency with
+      # the command declare_dependency().
+      foobar_dep = foobar_subproj.get_variable('foobar_dep')
     endif
 
     executable('toplevel_exe', 'prog.c',
-      include_directories : foobar_inc,
-      link_with : foobar_lib,
       dependencies : foobar_dep)
 
-Note that whether foobar is found or not, the keyword arguments to <tt>toplevel_exe</tt> are correct. Either <tt>foobar_inc</tt> and <tt>foobar_lib</tt> are defined and <tt>foobar_dep</tt> is empty or vice versa.
+When foobar is provided by the system, we use it. When that is not the case we use the embedded version. Note that `foobar_dep` can be either an external or an internal dependency. Meson will take care of the details for you.
 
 ----
 
