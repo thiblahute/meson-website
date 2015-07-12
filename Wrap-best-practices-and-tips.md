@@ -43,7 +43,9 @@ The reason for this is that this is much more efficient so your builds finish fa
       include_directories : include_directories(...),
       sources : myheader)
 
-And then you can use the dependency like this:
+And then you can use the dependency in the usual way:
 
     executable('dep_using_exe', 'main.c',
       dependencies : mydep)
+
+Meson will ensure that the header file has been built before compiling `main.c`.
