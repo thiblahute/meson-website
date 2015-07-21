@@ -6,7 +6,7 @@ This page lists functions and methods available in Meson scripts. For more in-de
 
 Adds the positional arguments to the compiler command line for the language specified in <tt>language</tt> keyword argument. Note that there is no way to remove an argument set in this way. If you have an argument that is only used in a subset of targets, you have to specify it in per-target flags.
 
-The arguments are used in all compiler invocations with the exception of compile tests, because you might need to run a compile test with and without the argument in question. For this reason only the arguments explicitly specified are used during compile tests.
+The arguments are used in all compiler invocations with the exception of compile tests, becausmes you might need to run a compile test with and without the argument in question. For this reason only the arguments explicitly specified are used during compile tests.
 
 ### build_target
 
@@ -242,6 +242,10 @@ The <tt>meson</tt> object allows you to introspect various properties of the sys
 - <tt>current_source_dir</tt> returns a string to the current source directory
 
 - <tt>current_build_dir</tt> returns a string to the current build directory
+
+- `source_root` returns a string with the absolute path to the source root directory
+
+- `build_root` returns a string with the absolute path to the build root directory
 
 - <tt>set_install_script</tt> causes the script given as an argument to be run during the install step, this script will have the environment variables <tt>MESON_SOURCE_ROOT</tt>, <tt>MESON_BUILD_ROOT</tt> and <tt>MESON_INSTALL_PREFIX</tt> set
 
