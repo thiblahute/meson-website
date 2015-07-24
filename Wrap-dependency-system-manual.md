@@ -45,7 +45,7 @@ The above mentioned scheme assumes that your subproject is working off packaged 
     url=https://github.com/jpakkane/samplesubproject.git
     revision=head
 
-The format is straightforward. The only thing to note is the revision element that can have one of two values. The first is <tt>head</tt> which will cause Meson to track the master head (doing a repull whenever the build definition is altered). The second type is a commit hash. In this case Meson will use the commit specified (with <tt>git checkout [hash id]</tt>.
+The format is straightforward. The only thing to note is the revision element that can have one of two values. The first is <tt>head</tt> which will cause Meson to track the master head (doing a repull whenever the build definition is altered). The second type is a commit hash. In this case Meson will use the commit specified (with `git checkout [hash id]`).
 
 Note that in this case you cannot specify an extra patch file to use. The git repo must contain all necessary Meson build definitions.
 
