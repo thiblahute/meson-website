@@ -219,6 +219,7 @@ Defines an unit test. Takes two positional arguments, the first is the name of t
 - <tt>is_parallel</tt> when false, specifies that no other test must be running at the same time as this test
 - <tt>should_fail</tt> when true the test is considered passed if the executable returns a non-zero return value (i.e. reports an error)
 - <tt>valgrind_args</tt> if the test is run under Valgrind, pass these arguments to Valgrind (and not to the executable itself)
+- `timeout` the amount of seconds the test is allowed to run, a test that exceeds its time limit is always considered failed, defaults to 30 seconds
 
 ### vcs_tag ###
 
