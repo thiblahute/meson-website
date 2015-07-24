@@ -55,16 +55,15 @@ To use a subproject simply do this in your top level <tt>meson.build</tt>.
 
     foobar_sp = subproject('foobar')
 
-Usually dependencies consist of some header files plus a library to link against. To do this you would store the include_directories and library in your subproject's <tt>meson.build</tt> like this:
+Usually dependencies consist of some header files plus a library to link against. To do this you would declare this internal dependency like this:
 
-    foobar_inc = include_directories(...)
-    foobar_lib = static_library(...)
+    foobar_dep = declare_dependency(link_with : mylib,
+      include_directories : myinc)
 
 Then in your main project you would use them like this:
 
     executable('toplevel_exe', 'prog.c',
-      include_directories : foobar_sp.get_variable('foobar_inc'),
-      link_with : foobar_sp.get_variable('foobar_lib'))
+      dependencies : foobar_sp.get_variable('foobar_dep'))
 
 ## Toggling between distro packages and embedded source
 
