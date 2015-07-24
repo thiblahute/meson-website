@@ -86,6 +86,10 @@ Doing this with Meson and Wrap is simple. Here's how you would use distro packag
 
 When foobar is provided by the system, we use it. When that is not the case we use the embedded version. Note that `foobar_dep` can be either an external or an internal dependency. Meson will take care of the details for you.
 
+## Getting wraps
+
+Usually you don't want to write your wraps by hand. There is an online repository called [WrapDB](Using the WrapDB) that provides many dependencies ready to use.
+
 ----
 
 [Wiki home](Home)
