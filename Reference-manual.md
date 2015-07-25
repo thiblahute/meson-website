@@ -8,6 +8,15 @@ Adds the positional arguments to the compiler command line for the language spec
 
 The arguments are used in all compiler invocations with the exception of compile tests, becausmes you might need to run a compile test with and without the argument in question. For this reason only the arguments explicitly specified are used during compile tests.
 
+### add_languages
+
+Add support for new programming languages. Equivalent to having them in the `project` declaration. This function is usually used to add languages that are only used on some platforms like this:
+
+    project('foobar', 'c')
+    if compiling_for_osx
+      add_languages('objc')
+    endif
+
 ### build_target
 
 Creates a build target whose type can be set dynamically with the `target_type` keyword argument. This declaration:
