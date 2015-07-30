@@ -11,35 +11,26 @@ Let's next look at the most common cross-compilation setup. Let's suppose you ar
 
 It gets a bit trickier when we think about how the cross compiler was generated. It was built and it runs on a specific platform but the output it generates is for a different platfom. In this case *build* and *host machines* are the same, but *target machine* is different.
 
-The most complicated case is when you cross-compile a cross compiler. As an example you can, on a Linux machine, generate a cross compiler that runs on Windows but produces binaries on MIPS Linux. In this case *build machine* is x86 Linux, *host machine* is x86 Windows and *target machine* is MIPS Linux. This setup is known as the [Canadian Cross](https://en.wikipedia.org/wiki/Cross_compiler#Canadian_Cross). As a side note, be careful when reading cross compilation articles on Wikipedia or the net in general. It is very common for them to mix host, build and target, which is puzzling.
+The most complicated case is when you cross-compile a cross compiler. As an example you can, on a Linux machine, generate a cross compiler that runs on Windows but produces binaries on MIPS Linux. In this case *build machine* is x86 Linux, *host machine* is x86 Windows and *target machine* is MIPS Linux. This setup is known as the [Canadian Cross](https://en.wikipedia.org/wiki/Cross_compiler#Canadian_Cross). As a side note, be careful when reading cross compilation articles on Wikipedia or the net in general. It is very common for them to get build, host and target mixed up, even in consecutive sentences, which is puzzling.
 
-If you did not understand all of this, don't worry. For most people it takes a while to wrap their head around these concepts. Don't panic, it will become clearer after a while.
+If you did not understand all of this, don't worry. For most people it takes a while to wrap their head around these concepts. Don't panic, it might take a while to click, but you will get the hang of it eventually.
 
 ## Defining the environment
 
-Meson requires you to write a cross build definition file. It defines various properties of the cross build environment. Here is an example file for cross compiling Windows applications on Linux.
+Meson requires you to write a cross build definition file. It defines various properties of the cross build environment. The cross file consists of different sections. The first one is the list of executables that we are going to use. A sample snippet might look like this:
 
-    name = 'windows'
+    [binaries]
     c = '/usr/bin/i586-mingw32msvc-gcc'
     cpp = '/usr/bin/i586-mingw32msvc-g++'
     ar = '/usr/i586-mingw32msvc/bin/ar'
     strip = '/usr/i586-mingw32msvc/bin/strip'
     exe_wrapper = 'wine' # A command used to run generated executables.
 
-The first argument is called *name* and it mandatory. It defines the target platform's OS type. In cross-building terminology the target platform is called the *host*, whereas the platform doing the compilation is, confusingly, called *build*. Typical values for name include *linux* or *darwin* for OSX. Then the file defines compilers, linkers and so on to use when compiling for this host. 
+The entries are pretty self explanatory but the last line is special. It defines a *wrapper command* that can be used to run executables for this host. In this case we can use Wine, which runs Windows applications on Linux. Other choices include running the application with qemu or a hardware simulator. If you have this kind of a wrapper, these lines are all you need to write. Meson will automatically use the given wrapper when it needs to run host binaries. This happens e.g. when running the project's test suite.
 
-The last line is special. It defines a *wrapper command* that can be used to run executables for this host. In this case we can use Wine, which runs Windows applications on Linux. Other choices include running the application with qemu or a hardware simulator. If you have this kind of a wrapper, these lines are all you need to write. Meson will automatically use the given wrapper when it needs to run host binaries. This happens e.g. when running the project's test suite.
+The next section lists properties of the cross compiler and thus of the target system. It looks like this:
 
-## Cross compiling without an exe wrapper
-
-There are cross compilation setups where the host's binaries can not be run. In this case we need to write a slightly larger cross info file. Here is one for Linux ARM.
-
-    name = 'linux'
-    c = '/usr/bin/arm-linux-gnueabihf-gcc'
-    cpp = '/usr/bin/arm-linux-gnueabihf-g++'
-    ar = '/usr/arm-linux-gnueabihf/bin/ar'
-    strip = '/usr/arm-linux-gnueabihf/bin/strip'
-
+    [properties]
     sizeof_int = 4
     sizeof_wchar_t = 4
     sizeof_void* = 4
@@ -50,7 +41,18 @@ There are cross compilation setups where the host's binaries can not be run. In 
 
     has_function_printf = true
 
-As you can see, we need to information for those tests that can not be run. If some required information is missing, Meson will stop and write an error message describing how to fix the issue.
+Note that if you have the exe wrapper, you don't need this section. Meson will detect all these by compiling and running some sample programs. If your build requires some piece of data that is not listed here, Meson will stop and write an error message describing how to fix the issue.
+
+The last bit is the definition of host and target machines. Every cross build definition must have one or both of them. If it had neither, the build would not be a cross build but a native build. You do not need to define the build machine, as all necessary information about it is extracted automatically. The definitions for host and target machines look the same. Here is a sample for host machine.
+
+    [host_machine]
+    name = 'windows'
+    cpu = 'x86'
+    endian = 'little'
+
+These values define the machines sufficiently for cross compilation purposes. The corresponding target definition would look the same but have `target_machine` in the header. These values are available in your Meson scripts. There are three predefined variables called, surprisingly, `build_machine`, `host_machine` and `target_machine`. Determining the operating system of your host machine is simply a matter of calling `host_machine.name()`.
+
+If you do not define your host machine, it is assumed to be the build machine. Similarly if you do not specify target machine, it is assumed to be the host machine.
 
 ## Starting a cross build
 
@@ -63,7 +65,6 @@ Once configuration is done, compilation is started by invoking Ninja in the usua
 
 ## Introspection and system checks
 
-
 The main *meson* object provides two functions to determine cross compilation status.
 
     meson.is_cross_build()  # returns true when cross compiling
@@ -73,7 +74,7 @@ Note that the latter gives undefined return value when doing a native build.
 
 You can run system checks on both the system compiler or the cross compiler. You just have to specify which one to use.
 
-    build_compiler   = meson.get_compiler('c', native : true)
+    build_compiler = meson.get_compiler('c', native : true)
     host_compiler = meson.get_compiler('c', native : false)
 
     build_int_size = build_compiler.sizeof('int')
@@ -81,12 +82,11 @@ You can run system checks on both the system compiler or the cross compiler. You
 
 ## Mixing host and build targets
 
-
 Sometimes you need to build a tool which is used to generate source files. These are then compiled for the actual target. For this you would want to build some targets with the system's native compiler. This requires only one extra keyword argument.
 
     native_exe = executable('mygen', 'mygen.c', native : true)
 
-You can then take <tt>native_exe</tt> and use it as part of a generator rule or anything else you might want.
+You can then take `native_exe` and use it as part of a generator rule or anything else you might want.
 
 ---
 
