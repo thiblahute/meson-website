@@ -256,6 +256,8 @@ The <tt>meson</tt> object allows you to introspect various properties of the sys
 
 - <tt>has_exe_wrapper</tt> returns true when doing a cross build if there is a wrapper command that can be used to execute cross built binaries (for example when cross compiling from Linux to Windows, one can use <tt>wine</tt> as the wrapper)
 
+- <tt>add_install_script</tt> causes the script given as an argument to be run during the install step, this script will have the environment variables <tt>MESON_SOURCE_ROOT</tt>, <tt>MESON_BUILD_ROOT</tt> and <tt>MESON_INSTALL_PREFIX</tt> set
+
 - <tt>current_source_dir</tt> returns a string to the current source directory
 
 - <tt>current_build_dir</tt> returns a string to the current build directory
@@ -263,8 +265,6 @@ The <tt>meson</tt> object allows you to introspect various properties of the sys
 - `source_root` returns a string with the absolute path to the source root directory
 
 - `build_root` returns a string with the absolute path to the build root directory
-
-- <tt>set_install_script</tt> causes the script given as an argument to be run during the install step, this script will have the environment variables <tt>MESON_SOURCE_ROOT</tt>, <tt>MESON_BUILD_ROOT</tt> and <tt>MESON_INSTALL_PREFIX</tt> set
 
 ### build target object ###
 
