@@ -46,11 +46,11 @@ Note that if you have the exe wrapper, you don't need this section. Meson will d
 The last bit is the definition of host and target machines. Every cross build definition must have one or both of them. If it had neither, the build would not be a cross build but a native build. You do not need to define the build machine, as all necessary information about it is extracted automatically. The definitions for host and target machines look the same. Here is a sample for host machine.
 
     [host_machine]
-    name = 'windows'
+    system = 'windows'
     cpu = 'x86'
     endian = 'little'
 
-These values define the machines sufficiently for cross compilation purposes. The corresponding target definition would look the same but have `target_machine` in the header. These values are available in your Meson scripts. There are three predefined variables called, surprisingly, `build_machine`, `host_machine` and `target_machine`. Determining the operating system of your host machine is simply a matter of calling `host_machine.name()`.
+These values define the machines sufficiently for cross compilation purposes. The corresponding target definition would look the same but have `target_machine` in the header. These values are available in your Meson scripts. There are three predefined variables called, surprisingly, `build_machine`, `host_machine` and `target_machine`. Determining the operating system of your host machine is simply a matter of calling `host_machine.system()`.
 
 If you do not define your host machine, it is assumed to be the build machine. Similarly if you do not specify target machine, it is assumed to be the host machine.
 
