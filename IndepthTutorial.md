@@ -47,7 +47,7 @@ Here we just tell Meson to build the library with the given sources. We also tel
 
 The resulting library is stored in variable <tt>foolib</tt> just like the include directory was stored in the previous file.
 
-Once Meson has processed the <tt>src</tt> subdir it returns one level up to the main Meson file and executes the next line that moves it into the <tt>test</tt> subdir. Its contents look like this.
+Once Meson has processed the <tt>src</tt> subdir it returns to the main Meson file and executes the next line that moves it into the <tt>test</tt> subdir. Its contents look like this.
 
     testexe = executable('testexe', 'footest.cpp',
                          include_directories : inc,
