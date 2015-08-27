@@ -22,7 +22,7 @@ To start things up, here is the top level <tt>meson.build</tt> file.
                   filebase : 'foobar',
                   description : 'A Library to barnicate your foos.')
 
-First we define the project's name and the programmin languages it uses (in this case only <tt>C++</tt>). Then we find GLib, which is an *external dependency*. The <tt>dependency</tt> function tells Meson to find the library (by default using <tt>pkg-config</tt>). If the library is not found, Meson will raise an error and stop processing the build definition.
+First we define the project's name and the programming languages it uses (in this case only <tt>C++</tt>). Then we find GLib, which is an *external dependency*. The <tt>dependency</tt> function tells Meson to find the library (by default using <tt>pkg-config</tt>). If the library is not found, Meson will raise an error and stop processing the build definition.
 
 Then we add a global compiler argument <tt>-std=c++11</tt>. This flag is used for *all* C++ source file compilations. It is not possible to unset it for some targets. The reason for this is that it is hard to keep track of what compiler flags are in use if global settings change per target.
 
