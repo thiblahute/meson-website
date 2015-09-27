@@ -2,7 +2,7 @@
 
 Meson aims to provide an optimal syntax and implementation for a next-generation build system.
 
-## Meson information
+## Meson documentation
 
 * [Quick guide](Quick guide)
 * [A simple tutorial](Tutorial)
