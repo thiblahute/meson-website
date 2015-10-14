@@ -125,11 +125,15 @@ This function creates a generator object that can be used to run custom compilat
 - <tt>arguments</tt> list the command line arguments passed to the command
 - <tt>output</tt> a template string defining how an output file name is generated from a source file name
 
-### get_option ###
+### get_option
 
 Obtains the value of the [project build option](Build options) specified in the positional argument.
 
-### gettext ###
+### get_variable
+
+This function can be used to dynamically obtain a variable. `res = get_variable(varname, fallback)` takes the value of `varname` (which must be a string) and stores the variable of that name into `res`. If the variable does not exist, the variable `fallback` is stored to `res`instead. If a fallback is not specified, then attempting to read a non-existing variable will cause a fatal error.
+
+### gettext
 
 Sets up gettext localisation so that translations are built and placed into their proper locations during install. Takes one positional argument which is the name of the gettext module. The list of languages that are to be generated are specified with the <tt>languages</tt> keyword argument.
 
@@ -160,11 +164,15 @@ Installs the man files specified into system's man directory during the install 
 
 Installs the entire given subdirectory tree to the location specified by the keyword argument <tt>install_dir</tt>. Note that due to implementation issues this command deletes the entire target dir before copying the files, so you should never use <tt>install_subdir</tt> to install into two overlapping directories (such as <tt>foo</tt> and <tt>foo/bar</tt>) because if you do the behaviour is undefined.
 
-### is_subproject ###
+### is_subproject
 
 Returns true if the current project is being built as a subproject of some other project and false otherwise.
 
-### jar ###
+### is_variable
+
+`is_variable(varname)` returns true if a variable of the given name exists and false otherwise.
+
+### jar
 
 Build a jar from the specified Java source files. Keyword arguments are the same as executable's, with the addition of <tt>main_class</tt> which specifies the main class to execute when running the jar with <tt>java -jar file.jar</tt>.
 
