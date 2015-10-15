@@ -227,11 +227,11 @@ Builds a static library with the given sources. Positional and keyword arguments
 
 Recurses into the specified subdirectory and executes the <tt>meson.build</tt> file in it. Once that is done, it returns and execution continues on the line following this <tt>subdir</tt> command.
 
-### subproject ###
+### subproject
 
-Takes the project specified in the positional argument and brings that in the current build specification. Subprojects must always be placed inside the <tt>subprojects</tt> directory at the top source directory. So for example a subproject called <tt>foo</tt> must be located in <tt>${MESON_SOURCE_ROOT}/subprojects/foo</tt>.
+Takes the project specified in the positional argument and brings that in the current build specification. Subprojects must always be placed inside the `subprojects` directory at the top source directory. So for example a subproject called `foo` must be located in `${MESON_SOURCE_ROOT}/subprojects/foo`. You can specify the `version` keyword argument that works just like the one in `dependency`. It specifies what version the subproject should be, as an example `>=1.0.1`.
 
-### test ###
+### test
 
 Defines an unit test. Takes two positional arguments, the first is the name of this test and the second is the executable to run. Keyword arguments are the following.
 
