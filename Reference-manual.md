@@ -196,7 +196,9 @@ The first argument to this function must be a string defining the name of this p
 
 You can specify a keyword argument `version`, which is a free form string describing the version of this project. You can access the value in your Meson build files with `meson.project_version()`.
 
-The second keyword argument is, <tt>subproject_dir</tt>. This specifies the top level directory name that holds Meson subprojects. This is only meant as a compatibility option for existing code bases that house their embedded source code in a custom directory. All new projects should not set this but instead use the default value. It should be noted that this keyword argument is ignored inside subprojects. There can be only one subproject dir and it is set in the top level Meson file. 
+Keyword argument 'subproject_dir` specifies the top level directory name that holds Meson subprojects. This is only meant as a compatibility option for existing code bases that house their embedded source code in a custom directory. All new projects should not set this but instead use the default value. It should be noted that this keyword argument is ignored inside subprojects. There can be only one subproject dir and it is set in the top level Meson file. 
+
+The argument `meson_version` takes a string describing which Meson version the project requires. Usually something like `>0.28.0`.
 
 ### run_command ###
 
