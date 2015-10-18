@@ -77,6 +77,8 @@ configure_file(input : 'config.h.in',
 
 Meson doesn't support autoheaders, you need to manually specify what do you want to see in header file, write `configuration_data()` object and use `configure_file()`.
 
+You can also substitute variables of type `@SOME_VAR@` with configure data. The details are on the [configuration page](Configuration).
+
 ### Finding programs
 
 `configure.ac`:
