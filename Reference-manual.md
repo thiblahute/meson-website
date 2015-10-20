@@ -200,6 +200,8 @@ Keyword argument 'subproject_dir` specifies the top level directory name that ho
 
 The argument `meson_version` takes a string describing which Meson version the project requires. Usually something like `>0.28.0`.
 
+You can specify default values for project options with the `default_options` keyword, which takes an array of strings. The strings are in the form `key=value` and have the same format as options to Meson cof. For example to set the default project type you would set this: `default_options : ['buildtype=debugoptimized']`. Note that these settings are only used when running Meson for the first time. They are also ignored in subprojects, only ones in the top level project are used.
+
 ### run_command ###
 
 Runs the command specified in positional arguments. Returns an opaque object containing the result of the invocation.
