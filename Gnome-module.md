@@ -1,6 +1,6 @@
 This module provides helper tools for build operations needed when building Gnome/GLib programs.
 
-**Note**: the compilation commands here do not work properly when you change the source files. This is a bug in the respective compilers which do not expose the required dependency information. This has been reported upstream in [this bug](https://bugzilla.gnome.org/show_bug.cgi?id=745754). Until this is fixed you need to be careful when changing your source files.
+**Note**: the compilation commands here might not work properly when you change the source files. This is a bug in the respective compilers which do not expose the required dependency information. This has been reported upstream in [this bug](https://bugzilla.gnome.org/show_bug.cgi?id=745754). Until this is fixed you need to be careful when changing your source files.
 
 ## compile_resources
 
@@ -34,6 +34,9 @@ Compiles the given XML schema into gdbus source code. Takes two positional argum
 
 Return value is an opaque object containing the source files. Add it to a top level target's source list.
 
+## gtkdoc
+
+Compiles and installs gtkdoc documentation. Takes two positional arguments. The first one is the name for this target and the second is the directory containing sources. Keyword arguments are `main_sgml`which specifies the main sgml (or xml) file, `install` which, if true, installs the generated docs and `scan_args` and `html_args` for extra arguments to pass to `gtkdoc-scan` and `gtkdoc-mkhtml`, respectively.
 ---
 
 Back to [module reference](Module reference).
