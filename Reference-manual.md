@@ -71,6 +71,7 @@ Finds an external dependency with the given name with pkg-config if possible and
 - <tt>required</tt>, when set to false, Meson will proceed with the build even if the dependency is not found
 - <tt>version</tt>, specifies the required version, a string containing a comparison operator followed by the version string, examples include <tt>&gt;1.0.0</tt>, <tt>&lt;=2.3.5</tt> or <tt>3.1.4</tt> for exact matching
 - <tt>native</tt> if set to `true`, causes Meson to find the dependency on the build machine system rather than the host system (i.e. where the cross compiled binary will run on), usually only needed if you build a tool to be used during compilation.
+- `fallback` specifies a subproject fallback to use in case the dependency is not found in the system. The value is an array `['subproj_name', 'subproj_dep']` where the first value is the name of the subproject and the second is the variable name in that subproject that contains the value of `declare_dependency`.
 
 ### error
 
