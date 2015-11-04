@@ -177,7 +177,11 @@ Returns true if the current project is being built as a subproject of some other
 
 Build a jar from the specified Java source files. Keyword arguments are the same as executable's, with the addition of <tt>main_class</tt> which specifies the main class to execute when running the jar with <tt>java -jar file.jar</tt>.
 
-### message ###
+### library
+
+Builds a library that is either static or shared depending on the value of `default_library` user option. You should use this instead of `shared_library` or `static_library` most of the time. This allows you to toggle your entire project (including subprojects) from shared to static with only one option.
+
+### message
 
 This function prints its argument to stdout.
 
