@@ -37,6 +37,7 @@ Return value is an opaque object containing the source files. Add it to a top le
 ## gtkdoc
 
 Compiles and installs gtkdoc documentation. Takes two positional arguments. The first one is the name for this target and the second is the directory containing sources. Keyword arguments are `main_sgml`which specifies the main sgml (or xml) file, `install` which, if true, installs the generated docs and `scan_args` and `html_args` for extra arguments to pass to `gtkdoc-scan` and `gtkdoc-mkhtml`, respectively.
+
 ---
 
 Back to [module reference](Module reference).
