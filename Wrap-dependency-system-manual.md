@@ -83,7 +83,13 @@ Doing this with Meson and Wrap is simple. Here's how you would use distro packag
     executable('toplevel_exe', 'prog.c',
       dependencies : foobar_dep)
 
-When foobar is provided by the system, we use it. When that is not the case we use the embedded version. Note that `foobar_dep` can be either an external or an internal dependency. Meson will take care of the details for you.
+Because this is such a common operation, Meson provides a shortcut for this use case.
+
+    foobar_dep = dependency('foobar', fallback : ['foobar', 'foobar_dep'])
+
+The `fallback` keyword argument takes two items, the name of the subproject and the name of the variable that holds the dependency. If you need to do something more complicated, such as extract several different variables, then you need to do it yourself with the manual method described above.
+
+With this setup when foobar is provided by the system, we use it. When that is not the case we use the embedded version. Note that `foobar_dep` can point to an external or an internal dependency but you don't have to worry about their differences. Meson will take care of the details for you.
 
 ## Getting wraps
 
