@@ -91,6 +91,10 @@ Sometimes you need to build a tool which is used to generate source files. These
 
 You can then take `native_exe` and use it as part of a generator rule or anything else you might want.
 
+## Changing cross file settings
+
+Cross file settings are only read when the build directory is set up the first time. Any changes to them after the fact will be ignored. This is the same as regular compiles where you can't change the compiler once a build tree has been set up. If you need to edit your cross file, then you need to wipe your build tree and recreate it from scratch.
+
 ---
 
 [Back to index](Manual).
