@@ -1,4 +1,4 @@
-This is the user manual for Meson. It currently tracks the state of Git head, which will eventually become version 0.27. If you are using an older version, some of the information here might not work for you.
+This is the user manual for Meson. It currently tracks the state of Git head, which will eventually become version 0.28. If you are using an older version, some of the information here might not work for you.
 
 * [Overview](Overview)
 * [Running Meson](Running Meson)
