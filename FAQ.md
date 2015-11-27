@@ -81,14 +81,6 @@ In addition to those reasons, not exposing Python or any other "real" programmin
 
 Either by using [gcc symbol visibility](https://gcc.gnu.org/wiki/Visibility) or by writing a [linker script](http://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_mono/ld.html). This has the added benefit that your symbol definitions are in a standalone file instead of being buried inside your build definitions. An example can be found [here](https://github.com/jpakkane/meson/tree/master/test%20cases/linuxlike/3%20linker%20script).
 
-## Meson defaults to having `-Wpedantic` on, how do I disable that?
-
-By setting your own warning level default in the project definition like this.
-
-    project('myproj', 'c', default_options : ['warnlevel=1'])
-
-However we highly recommend that you instead fix all the compiler warnings displayed so that your project compiles with zero warnings at level 2. Those warnings have a fairly good signal to noise ratio so fixing them will increase the quality of your code.
-
 ## My project works fine on Linux and MinGW but fails with MSVC due to a missing .lib file
 
 With gcc, all symbols on shared libraries are exported automatically unless you specify otherwise. With MSVC no symbols are exported by default. If your shared library exports no symbols, MSVC will silently not produce an import library file leading to failures. The solution is to add symbol visibility definitions [as specified in GCC wiki](https://gcc.gnu.org/wiki/Visibility).
