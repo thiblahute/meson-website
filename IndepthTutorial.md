@@ -6,8 +6,10 @@ The source tree contains three subdirectories <tt>src</tt>, <tt>include</tt> and
 
 To start things up, here is the top level <tt>meson.build</tt> file.
 
-    project('c++ foolib', 'cpp')
-    add_global_arguments('-std=c++11', language : 'cpp')
+    project('c++ foolib', 'cpp',
+      version : '1.0.0',
+      license : 'MIT')
+    add_global_arguments('-DSOME_TOKEN=value', language : 'cpp')
     glib_dep = dependency('glib-2.0')
 
     inc = include_directories('include')
@@ -22,9 +24,11 @@ To start things up, here is the top level <tt>meson.build</tt> file.
                   filebase : 'foobar',
                   description : 'A Library to barnicate your foos.')
 
-First we define the project's name and the programming languages it uses (in this case only <tt>C++</tt>). Then we find GLib, which is an *external dependency*. The <tt>dependency</tt> function tells Meson to find the library (by default using <tt>pkg-config</tt>). If the library is not found, Meson will raise an error and stop processing the build definition.
+The definition always starts with a call to the `project` function. In it you must specify the project's name and programming languages to use, in this case only `C++`. We also specify two additional arguments, the project's version and the license it is under. Our project is version `1.0.0` and is specified to be under the MIT license.
 
-Then we add a global compiler argument <tt>-std=c++11</tt>. This flag is used for *all* C++ source file compilations. It is not possible to unset it for some targets. The reason for this is that it is hard to keep track of what compiler flags are in use if global settings change per target.
+Then we find GLib, which is an *external dependency*. The <tt>dependency</tt> function tells Meson to find the library (by default using <tt>pkg-config</tt>). If the library is not found, Meson will raise an error and stop processing the build definition.
+
+Then we add a global compiler argument <tt>-DSOME_TOKEN=value</tt>. This flag is used for *all* C++ source file compilations. It is not possible to unset it for some targets. The reason for this is that it is hard to keep track of what compiler flags are in use if global settings change per target.
 
 Since <tt>include</tt> directory contains the header files, we need a way to tell compilations to add that directory to the compiler command line. This is done with the <tt>include_directories</tt> command that takes a directory and returns an object representing this directory. It is stored in variable <tt>inc</tt> which makes it accessible later on.
 
@@ -38,7 +42,9 @@ This installs the given header file to the system's header directory. This is by
 
 The Meson definition of <tt>src</tt> subdir is simple.
 
-    foolib = shared_library('foo', 'source1.cpp', 'source2.cpp',
+    foo_sources = ['source1.cpp', 'source2.cpp']
+    foolib = shared_library('foo',
+                            foo_sources,
                             include_directories : inc,
                             dependencies : glib_dep,
                             install : true)
