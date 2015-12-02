@@ -17,6 +17,10 @@ Add support for new programming languages. Equivalent to having them in the `pro
       add_languages('objc')
     endif
 
+### benchmark
+
+Creates a benchmark item that will be run when the benchmark target is run. The behaviour of this function is identical to `test`. 
+
 ### build_target
 
 Creates a build target whose type can be set dynamically with the `target_type` keyword argument. This declaration:
