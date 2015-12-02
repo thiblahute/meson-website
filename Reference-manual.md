@@ -341,4 +341,4 @@ Contains an external (i.e. not built as part of this project) library. This obje
 
 This object contains a generator that is used to transform files from one type to another by an executable (e.g. idl files into source code and headers).
 
-- <tt>process</tt> takes a list of files, causes them to be processed and returns an object containing the result which can then, for example, be passed into a build target definition
+- <tt>process</tt> takes a list of files, causes them to be processed and returns an object containing the result which can then, for example, be passed into a build target definition. The keyword argument `extra_args`, if specified, will be used to replace an entry `@EXTRA_ARGS@` in the argument list.
