@@ -19,7 +19,7 @@ Add support for new programming languages. Equivalent to having them in the `pro
 
 ### benchmark
 
-Creates a benchmark item that will be run when the benchmark target is run. The behaviour of this function is identical to `test`. 
+Creates a benchmark item that will be run when the benchmark target is run. The behaviour of this function is identical to `test` with the exception that there is no `is_parallel` keyword, because benchmarks are never run in parallel.
 
 ### build_target
 
