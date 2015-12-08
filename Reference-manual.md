@@ -246,12 +246,13 @@ Takes the project specified in the positional argument and brings that in the cu
 
 Defines an unit test. Takes two positional arguments, the first is the name of this test and the second is the executable to run. Keyword arguments are the following.
 
-- <tt>args</tt> arguments to pass to the executable
-- <tt>env</tt> environment variables to set, such as <tt>['NAME1=value1', 'NAME2=value2']</tt>
-- <tt>is_parallel</tt> when false, specifies that no other test must be running at the same time as this test
-- <tt>should_fail</tt> when true the test is considered passed if the executable returns a non-zero return value (i.e. reports an error)
-- <tt>valgrind_args</tt> if the test is run under Valgrind, pass these arguments to Valgrind (and not to the executable itself)
+- `args` arguments to pass to the executable
+- `env` environment variables to set, such as `['NAME1=value1', 'NAME2=value2']`
+- `is_parallel` when false, specifies that no other test must be running at the same time as this test
+- `should_fail` when true the test is considered passed if the executable returns a non-zero return value (i.e. reports an error)
+- `valgrind_args` if the test is run under Valgrind, pass these arguments to Valgrind (and not to the executable itself)
 - `timeout` the amount of seconds the test is allowed to run, a test that exceeds its time limit is always considered failed, defaults to 30 seconds
+- `workdir` absolute path that will be used as the working directory for the test
 
 ### vcs_tag ###
 
