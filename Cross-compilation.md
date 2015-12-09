@@ -7,7 +7,7 @@ let's first go over some nomenclature. The three most important definitions are 
 
 This might be easier to understand through examples. Let's start with the regular, not cross-compiling case. In these cases all of these three machines are the same. Simple so far.
 
-Let's next look at the most common cross-compilation setup. Let's suppose you are on a 64 bit OSX machine and you are cross compiling a binary that will run on a 32 bit ARM Linux board. In this case your *build machine* is 64 bit OSX and both your *host* and *target machines* are 32 bit ARM Linux. Very simple.
+Let's next look at the most common cross-compilation setup. Let's suppose you are on a 64 bit OSX machine and you are cross compiling a binary that will run on a 32 bit ARM Linux board. In this case your *build machine* is 64 bit OSX and both your *host* and *target machines* are 32 bit ARM Linux. This should be quite understandable as well.
 
 It gets a bit trickier when we think about how the cross compiler was generated. It was built and it runs on a specific platform but the output it generates is for a different platfom. In this case *build* and *host machines* are the same, but *target machine* is different.
 
