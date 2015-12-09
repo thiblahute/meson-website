@@ -3,7 +3,7 @@ let's first go over some nomenclature. The three most important definitions are 
 
 * *build machine* is the computer that is doing the actual compiling
 * *host machine* is the machine on which the compiled binary will run
-* *target machine* is the machine on which the compiled binary's output will run
+* *target machine* is the machine on which the compiled binary's output will run (this is only meaningful for programs such as compilers that, when run, produce object code for a different CPU than what the program is being run on)
 
 This might be easier to understand through examples. Let's start with the regular, not cross-compiling case. In these cases all of these three machines are the same. Simple so far.
 
