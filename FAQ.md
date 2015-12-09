@@ -84,3 +84,15 @@ Either by using [gcc symbol visibility](https://gcc.gnu.org/wiki/Visibility) or 
 ## My project works fine on Linux and MinGW but fails with MSVC due to a missing .lib file
 
 With gcc, all symbols on shared libraries are exported automatically unless you specify otherwise. With MSVC no symbols are exported by default. If your shared library exports no symbols, MSVC will silently not produce an import library file leading to failures. The solution is to add symbol visibility definitions [as specified in GCC wiki](https://gcc.gnu.org/wiki/Visibility).
+
+## I added some compiler flags and now the build fails with weird errors. What is happening?
+
+You probably did the equivalent to this:
+
+    executable('foobar', ...
+               c_args : '-some_arg -other_arg')
+
+Meson is *explicit*. In this particular case it will **not** automatically split your strings at whitespaces, instead it will take it as is and work extra hard to pass it to the compiler unchanged, including quoting it properly over shell invocations. This is mandatory to make e.g. files with spaces in them work flawlessly. To pass multiple command line arguments, you need to explicitly put them in an array like this:
+
+    executable('foobar', ...
+               c_args : ['-some_arg', '-other_arg'])
