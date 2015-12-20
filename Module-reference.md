@@ -4,4 +4,6 @@ Meson has a selection of modules to make common requirements easy to use. Module
 * [Qt4](Qt4 module)
 * [Qt5](Qt5 module)
 * [RPM](RPM module)
+* [Windows](Windows module)
+
 
