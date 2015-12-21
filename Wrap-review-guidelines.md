@@ -4,6 +4,8 @@ In order to get a package in the Wrap database it must be reviewed and accepted 
 
 Reviewer: copypaste this to MR discussion box and tick all boxes that apply.
 
+    - [ ] project() has version string
+    - [ ] project() has license string
     - [ ] if new project, master has tagged commit as only commit
     - [ ] if new branch, it is branched from master
     - [ ] contains a readme.txt
