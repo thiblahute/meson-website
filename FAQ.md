@@ -96,3 +96,15 @@ Meson is *explicit*. In this particular case it will **not** automatically split
 
     executable('foobar', ...
                c_args : ['-some_arg', '-other_arg'])
+
+## Why are changes to default project options ignored?
+
+You probably had a project that looked something like this:
+
+    project('foobar', 'cpp')
+
+This defaults to `c++11` on Gcc compilers. Suppose you want to use `c++14` instead, so you change the definition to this:
+
+    project('foobar', 'cpp', default_options : ['cpp_std=c++14'])
+
+But when you recompile, it still uses `c++11`. The reason for this is that default options are only looked at when you are setting up a build directory for the very first time. After that the setting is considered to have a value and thus the default value is ignored. To change an existing build dir to `c++14`, either reconfigure your build dir with `mesonconf` or delete the build dir and recreate it from scratch.
