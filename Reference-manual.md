@@ -189,16 +189,6 @@ Builds a library that is either static or shared depending on the value of `defa
 
 This function prints its argument to stdout.
 
-### pkgconfig_gen ###
-
-A helper function to generate simple pkg-config files. For more complex pkg-config generation you should look into <tt>configure_file</tt>. The generated file's properties are specified with the following keyword arguments.
-
-- <tt>libraries</tt>, a list of built libraries (usually results of shared_library) that the user needs to link against
-- <tt>version</tt>, a string describing the version of this library
-- <tt>name</tt>, the name of this library
-- <tt>filebase</tt>, the base name to use for the pkg-config file, as an example the value of <tt>libfoo</tt> would produce a pkg-config file called <tt>libfoo.pc</tt>
-- <tt>subdirs</tt> which subdirs of <tt>include</tt> should be added to the header search path, for example if you install headers into <tt>${PREFIX}/include/foobar-1</tt>, the correct value for this argument would be <tt>foobar-1</tt>
-
 ### project ###
 
 The first argument to this function must be a string defining the name of this project. It must be followed by one or more programming languages that the project uses. Supported values for languages are <tt>c</tt>, <tt>cpp</tt> (for <tt>C++</tt>), <tt>objc</tt>, <tt>objcpp</tt>, <tt>fortran</tt>, <tt>java</tt>, <tt>cs</tt> (for <tt>C#</tt>) and <tt>vala</tt>.
