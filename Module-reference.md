@@ -5,5 +5,7 @@ Meson has a selection of modules to make common requirements easy to use. Module
 * [Qt5](Qt5 module)
 * [RPM](RPM module)
 * [Windows](Windows module)
+* [Pkgconfig](Pkgconfig module)
+
 
 
