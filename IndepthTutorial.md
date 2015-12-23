@@ -18,11 +18,12 @@ To start things up, here is the top level <tt>meson.build</tt> file.
     subdir('src')
     subdir('test')
 
-    pkgconfig_gen(libraries : foolib,
-                  version : '1.0',
-                  name : 'libfoobar',
-                  filebase : 'foobar',
-                  description : 'A Library to barnicate your foos.')
+    pkg_mod = import('pkgconfig')
+    pkg_mod.generate(libraries : foolib,
+                     version : '1.0',
+                     name : 'libfoobar',
+                     filebase : 'foobar',
+                     description : 'A Library to barnicate your foos.')
 
 The definition always starts with a call to the `project` function. In it you must specify the project's name and programming languages to use, in this case only `C++`. We also specify two additional arguments, the project's version and the license it is under. Our project is version `1.0.0` and is specified to be under the MIT license.
 
@@ -77,4 +78,3 @@ With these four files we are done. To configure, build and run the test suite, w
 To then install the project you only need one command.
 
     ninja install
-
