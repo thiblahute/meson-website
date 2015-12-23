@@ -1,4 +1,4 @@
-This module is a simple generator for [pkg-config](http://pkg-config.freedesktop.org/)g files. It has one method.
+This module is a simple generator for [pkg-config](http://pkg-config.freedesktop.org/) files. It has one method.
 
 ### generate
 
