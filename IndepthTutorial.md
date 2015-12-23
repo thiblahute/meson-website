@@ -33,7 +33,7 @@ Then we add a global compiler argument <tt>-DSOME_TOKEN=value</tt>. This flag is
 
 Since <tt>include</tt> directory contains the header files, we need a way to tell compilations to add that directory to the compiler command line. This is done with the <tt>include_directories</tt> command that takes a directory and returns an object representing this directory. It is stored in variable <tt>inc</tt> which makes it accessible later on.
 
-After this are three <tt>subdir</tt> commands. These instruct Meson to go to the specified subdirectory, open the <tt>meson.build</tt> file that's in there and execute it. The last line is a stanza to generate a <tt>pkg-config</tt> file. We'll skip that for now and come back to it at the end of this document.
+After this are three `subdir` commands. These instruct Meson to go to the specified subdirectory, open the `meson.build` file that's in there and execute it. The last few lines are a stanza to generate a `pkg-config` file. We'll skip that for now and come back to it at the end of this document.
 
 The first subdirectory we go into is <tt>include</tt>. In it we have a a header file for the library that we want to install. This requires one line.
 
