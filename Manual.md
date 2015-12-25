@@ -12,6 +12,7 @@ This is the user manual for Meson. It currently tracks the state of Git head, wh
 * [Configuration](Configuration)
 * [Detecting compiler and system properties](Compiler properties)
 * [Dependencies](Dependencies)
+* [Threads](Threads)
 * [External commands](External commands)
 * [Precompiled headers](Precompiled headers)
 * [Unity builds](Unity builds)
