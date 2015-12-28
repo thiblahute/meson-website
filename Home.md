@@ -1,3 +1,7 @@
+## Service disruption 2015/12/28
+
+Wrapdb is currently down. We are working on getting it back to working condition ASAP.
+
 # The Meson Build System Documentation
 
 Meson aims to provide an optimal syntax and implementation for a next-generation build system.
