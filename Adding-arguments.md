@@ -3,11 +3,11 @@ Often you need to specify extra compiler arguments. Meson provides two different
 Global arguments
 --
 
-Global compiler arguments are set with the following command.
+Global compiler arguments are set with the following command. As an example you could do this.
 
-    add_global_arguments('-std=c99', language : 'c')
+    add_global_arguments('-DFOO=bar', language : 'c')
 
-This sets the flag that controls the C language standard used.
+This makes Meson add the define to all C compilations. Usually you would use this setting for flags for global settings. Note that for setting the C/C++ language standard (the `-std=c99` argument in Gcc), you would probably want to use a default option of the `project()` function.
 
 Global arguments have certain limitations. They all have to be defined before any build targets are specified. This ensures that the global flags are the same for every single source file built in the entire project with one exception. Compilation tests that are run as part of your project configuration do not use these flags. The reason for that is that you may need to run a test compile with and without a given flag to determine your build setup. For this reason tests do not use these global arguments.
 
