@@ -11,7 +11,7 @@ Note the two environment variables <tt>MESON_SOURCE_ROOT</tt> and <tt>MESON_BUIL
 
 Note how the script starts by cd'ing into the source dir. Meson does not guarantee that the script is run in any specific directory. Whether you need to do the same depends on what your custom target wants to do.
 
-To make this a run target we write it to a script file called <tt>scripts/inspect.sh<tt> and specify it in the top level Meson file like this.
+To make this a run target we write it to a script file called `scripts/inspect.sh` and specify it in the top level Meson file like this.
 
     run_target('inspector', 'scripts/inspect.sh')
 
