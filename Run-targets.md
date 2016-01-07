@@ -5,7 +5,7 @@ The recommended way of doing this is writing the command(s) you want to run to a
     #!/bin/sh
 
     cd "${MESON_SOURCE_ROOT}"
-    inscpector_command -o "${MESON_BUILD_ROOT}/inspection_result.txt"
+    inspector_command -o "${MESON_BUILD_ROOT}/inspection_result.txt"
 
 Note the two environment variables <tt>MESON_SOURCE_ROOT</tt> and <tt>MESON_BUILD_ROOT</tt>. These are absolute paths to your project's source and build directories and they are automatically set up by Meson. In addition to these Meson also sets up the variable <tt>MESON_SUBDIR</tt>, which points to the subdirectory where the run command was specified. Most commands don't need to set up this.
 
