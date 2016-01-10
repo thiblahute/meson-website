@@ -13,7 +13,7 @@ In Meson, precompiled header files are always per-target. That is, the given pre
 Toggling the usage of precompiled headers
 --
 
-If you with to compile your project without precompiled headers, you can configure it by running Meson with the <tt>--disable-pch</tt> flag. You can also toggle the use of pch in a configured build directory with the gui tool. You don't have to do any changes to the source code. Typically this is done to test whether your project compiles cleanly without pch (that is, checking that its #includes are in order) and working around compiler bugs.
+If you wish to compile your project without precompiled headers, you can configure it by running Meson with the <tt>--disable-pch</tt> flag. You can also toggle the use of pch in a configured build directory with the gui tool. You don't have to do any changes to the source code. Typically this is done to test whether your project compiles cleanly without pch (that is, checking that its #includes are in order) and working around compiler bugs.
 
 Using precompiled headers with GCC and derivatives
 --
