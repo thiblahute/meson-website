@@ -85,7 +85,7 @@ If statements work just like in other languages. The only exception is that the 
       everything_ok()
     endif
 
-Foreach statements
+## Foreach statements
 
 To do an operation on all elements of an array, use the <tt>foreach</tt> command. As an example, here's how you would define two executables with corresponding tests.
 
