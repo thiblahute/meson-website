@@ -8,11 +8,15 @@ Unfortunately this name was taken, too. Then the rest of physical elementary par
 
 ## How to use Meson on a host where it is not available in system packages? 
 
-Meson has been designed to be easily runnable from an extracted source tarball or even a git checkout. First you need to download Meson. Then use this command to set up you build instead of plain <tt>meson</tt>.
+Starting from version 0.29.0, Meson is available from the [Python Package Index](https://pypi.python.org/pypi/meson/), so installing it simply a matter of running this command:
 
-    /path/to/meson.py <options>
+    pip3 install <your options here> meson
 
-After this you don't have to care about invoking Meson any more. It remembers where it was originally invoked from and calls itself appropriately. As a user the only thing you need to do is to cd into your build directory and invoke <tt>ninja</tt>. 
+If you don't have access to PyPi, that is not a problem either. Meson has been designed to be easily runnable from an extracted source tarball or even a git checkout. First you need to download Meson. Then use this command to set up you build instead of plain `meson`.
+
+    /path/to/meson <options>
+
+After this you don't have to care about invoking Meson any more. It remembers where it was originally invoked from and calls itself appropriately. As a user the only thing you need to do is to `cd` into your build directory and invoke `ninja`. 
 
 ## Why can't I specify target files with a wildcard?
 
