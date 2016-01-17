@@ -1,6 +1,6 @@
 This page uses [appstream-glib](https://github.com/hughsie/appstream-glib/) as an example project. Appstream-Glib contains some libraries, gobject-introspection, tests, man pages, i18n, bash-completion with optional flags to build/notbuild support for some things.
 
-Meson comes with a helper script <tt>autotools2meson</tt> that you can use to convert the basic structure of your project.
+Meson comes with a helper script <tt>ac_converter</tt> that you can use to convert the basic autoconf checks for your project.
 
 ## Configure.ac
 
