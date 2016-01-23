@@ -42,7 +42,7 @@ Meson has native Qt5 support. Its usage is best demonstrated with an example.
     qt5_mod = import('qt5')
     qt5widgets = dependency('qt5', modules : 'Widgets')
     
-    processed = qt5.preprocess(
+    processed = qt5_mod.preprocess(
       moc_headers : 'mainWindow.h',
       moc_sources : 'helperFile.cpp', # must have #include"moc_helperFile.cpp"
       ui_files    : 'mainWindow.ui',
