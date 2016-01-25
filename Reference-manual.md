@@ -17,6 +17,8 @@ Add support for new programming languages. Equivalent to having them in the `pro
       add_languages('objc')
     endif
 
+Takes one keyword argument, `required`. It defaults to `true`, which means that if any of the languages specified is not found, Meson will halt. Returns true if all languages specified were found and false otherwise.
+
 ### benchmark
 
 Creates a benchmark item that will be run when the benchmark target is run. The behaviour of this function is identical to `test` with the exception that there is no `is_parallel` keyword, because benchmarks are never run in parallel.
