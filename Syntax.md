@@ -42,6 +42,18 @@ Strings in Meson are declared with single quotes. To enter a literal single quot
 
 Similarly <tt>\n</tt> gets converted to a newline and <tt>\\\\</tt> to a single backslash.
 
+Strings running over multiple lines
+--
+
+Strings running over multiple lines can be declared with three single quotes, like this:
+
+    multiline_string = '''#include <foo.h>
+                          int main (int argc, char ** argv) {
+                            return FOO_SUCCESS;
+                          }'''
+
+This can also be combined with the string formatting functionality described below.
+
 String formatting
 --
 
