@@ -37,6 +37,28 @@ Then we can run the test.
 
 The variable *result* will now contain either <tt>true</tt> or <tt>false</tt> depending on whether the compilation succeeded or not. The keyword argument <tt>name</tt> is optional. If it is specified, Meson will write the result of the check to its log.
 
+Does code compile and link?
+==
+
+Sometimes it is necessary to check whether a certain code fragment not only
+compiles, but also links successfully, e.g. to check if a symbol is actually
+present in a library. This can be done using the '''.links()''' method on a
+compiler object like this:
+
+    code = '''#include<stdio.h>
+    void func() { printf("Compile me.\n"); }
+    '''
+
+Then we can run the test.
+
+    result = compiler.links(code, args : '-lfoo', name : 'link check')
+
+The variable *result* will now contain either <tt>true</tt> or <tt>false</tt>
+depending on whether the compilation and linking succeeded or not. The keyword
+argument <tt>name</tt> is optional. If it is specified, Meson will write the
+result of the check to its log.
+
+
 Compile and run test application
 ==
 
