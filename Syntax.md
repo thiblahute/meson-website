@@ -21,6 +21,11 @@ Numbers
 
 Meson supports only integer numbers. They are declared simply by writing them out.
 
+Strings can be converted to a number like this:
+
+    string_var = '42'
+    num = var1.to_int()
+
 Booleans
 --
 
@@ -55,6 +60,10 @@ Arrays are delimited by brackets. An array can contain an arbitrary number of ob
 
     my_array = [1, 2, 'string', some_obj]
 
+You can add additional items to an array like this:
+
+    my_array += [ 'foo', 3, 4, another_obj ]
+
 Function calls
 --
 
@@ -73,7 +82,7 @@ Objects can have methods, which are called with the dot operator. The exact meth
 If statements
 --
 
-If statements work just like in other languages. The only exception is that the value used in the comparison must be a boolean. Strings or numbers will not do.
+If statements work just like in other languages.
 
     var1 = 1
     var2 = 2
@@ -83,6 +92,11 @@ If statements work just like in other languages. The only exception is that the 
       something_else_broke()
     else
       everything_ok()
+    endif
+
+    opt = get_option('someoption')
+    if opt == 'foo'
+      do_something()
     endif
 
 ## Foreach statements
