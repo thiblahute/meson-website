@@ -48,9 +48,9 @@ Strings running over multiple lines
 Strings running over multiple lines can be declared with three single quotes, like this:
 
     multiline_string = '''#include <foo.h>
-                          int main (int argc, char ** argv) {
-                            return FOO_SUCCESS;
-                          }'''
+    int main (int argc, char ** argv) {
+      return FOO_SUCCESS;
+    }'''
 
 This can also be combined with the string formatting functionality described below.
 
