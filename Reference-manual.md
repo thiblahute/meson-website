@@ -329,7 +329,10 @@ Contains an external dependency. This object has only one method, <tt>found</tt>
 
 ### external program object ###
 
-Contains an external (i.e. not built as part of this project) program. This object has only one method, <tt>found</tt>, which returns whether the executable was found.
+Contains an external (i.e. not built as part of this project) program. This object has the following methods:
+
+- `found` which returns whether the executable was found
+- `path` which returns a string pointing to the executable
 
 ### external library object ###
 
