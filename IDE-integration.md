@@ -22,7 +22,7 @@ In order to make code completion work, you need the compiler flags for each comp
 
     ninja -t commands foo
 
-Note that if the target has dependencies (such as generated sources), then the commands for those show up in this list as well, so you need to do some filtering. Alternatively you can grab every command invocation in one go with the command <tt>ninja -t commands all</tt> or use the [clang tools db](http://clang.llvm.org/docs/JSONCompilationDatabase.html) exporter with the Ninja tool <tt>compdb</tt>.
+Note that if the target has dependencies (such as generated sources), then the commands for those show up in this list as well, so you need to do some filtering. Alternatively you can grab every command invocation in the [clang tools db](http://clang.llvm.org/docs/JSONCompilationDatabase.html) format that is written to a file called `compile_commands.json` in the build directory.
 
 The next thing to display is the list of options that can be set. These include build type and so on. Here's how to extract them.
 
