@@ -277,6 +277,8 @@ The <tt>meson</tt> object allows you to introspect various properties of the sys
 
 - <tt>add_install_script</tt> causes the script given as an argument to be run during the install step, this script will have the environment variables <tt>MESON_SOURCE_ROOT</tt>, <tt>MESON_BUILD_ROOT</tt> and <tt>MESON_INSTALL_PREFIX</tt> set
 
+- `add_postconf_script` will run the executable given as an argument after all project files have been generated. This script will have the environment variables `MESON_SOURCE_ROOT` and `MESON_BUILD_ROOT` set. All additional arguments are passed as parameters.
+
 - <tt>current_source_dir</tt> returns a string to the current source directory
 
 - <tt>current_build_dir</tt> returns a string to the current build directory
