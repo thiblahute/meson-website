@@ -1,8 +1,14 @@
-Not all compilers and platforms are alike. Therefore Meson provides the tools to detect properties of the system during configure time. To get this information, you first need to extract the *compiler object* from the main *meson* variable.
+Not all compilers and platforms are alike. Therefore Meson provides the tools to detect properties of the system during configure time. To get most of this information, you first need to extract the *compiler object* from the main *meson* variable.
 
     compiler = meson.get_compiler('c')
 
 Here we extract the C compiler. We could also have given the argument <tt>cpp</tt> to get the C++ compiler, <tt>objc</tt> to get the objective C compiler and so on. The call is valid for all languages specified in the *project* declaration. Trying to obtain some other compiler will lead to an unrecoverable error.
+
+## System information
+
+This is a bit complex and more throughly explained on the page on [cross compilation](Cross compilation). But if you just want to know the operating system your code will run on, issue this command:
+
+    host_machine.system()
 
 Compiler id
 ==
