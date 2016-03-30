@@ -9,3 +9,6 @@ The generated file's properties are specified with the following keyword argumen
 - `name`, the name of this library
 - `filebase`, the base name to use for the pkg-config file, as an example the value of `libfoo` would produce a pkg-config file called `libfoo.pc`
 - `subdirs` which subdirs of `include` should be added to the header search path, for example if you install headers into `${PREFIX}/include/foobar-1`, the correct value for this argument would be `foobar-1`
+- `requires` list of strings to put in the `Requires` field
+- `requires_private` list of strings to put in the `Requires.private` field
+- 'libraries_private` list of strings to put in the `Libraries.private` field
