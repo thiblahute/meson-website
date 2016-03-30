@@ -65,6 +65,17 @@ Strings can be built using the string formatting functionality.
 
 As can be seen, the formatting works by replacing placeholders of type <tt>@number@</tt> with the corresponding argument.
 
+String methods
+--
+
+Strings also support a number of methods that return transformed copies.
+
+    target = 'x86_FreeBSD'
+    upper = target.to_upper() # t now has the value 'X86_FREEBSD'
+    lower = target.to_lower() # t now has the value 'x86_freebsd'
+    is_fbsd = target.to_lower().contains('freebsd')
+    # is_fbsd now has the boolean value 'true'
+
 Arrays
 --
 
