@@ -11,4 +11,4 @@ The generated file's properties are specified with the following keyword argumen
 - `subdirs` which subdirs of `include` should be added to the header search path, for example if you install headers into `${PREFIX}/include/foobar-1`, the correct value for this argument would be `foobar-1`
 - `requires` list of strings to put in the `Requires` field
 - `requires_private` list of strings to put in the `Requires.private` field
-- 'libraries_private` list of strings to put in the `Libraries.private` field
+- `libraries_private` list of strings to put in the `Libraries.private` field
