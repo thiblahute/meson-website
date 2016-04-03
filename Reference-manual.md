@@ -222,8 +222,9 @@ Assigns a value to the given variable name. Calling <tt>set_variable('foo', bar)
 
 Builds a shared library with the given sources. Positional and keyword arguments are the same as for <tt>executable</tt> with the following extra keyword arguments.
 
-- <tt>version</tt> a string specifying the version of this shared library, such as *1.1.0*
-- <tt>soversion</tt> a string specifying the soversion of this shared library, such as 0 
+- `version` a string specifying the version of this shared library, such as *1.1.0*
+- `soversion` a string specifying the soversion of this shared library, such as 0 
+- `vs_module_defs` a string pointing to a file that contains Visual Studio symbol export definitions
 
 ### static_library ###
 
