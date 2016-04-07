@@ -38,7 +38,7 @@ By default Meson will use the Ninja backend to build your project. If you wish t
 
     meson <source dir> <build dir> --backend=vs2010
 
-You can then open the generated solution with Visual Studio an compile it in the usual way. A list of backends can be obtained with <tt>meson --help</tt>.
+You can then open the generated solution with Visual Studio and compile it in the usual way. A list of backends can be obtained with <tt>meson --help</tt>.
 
 Building the source
 ==
