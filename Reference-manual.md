@@ -67,6 +67,7 @@ This function creates a dependency object that behaves like the return value of 
   - `include_directories`, the directories to add to header search path
   - `link_with`, libraries to link against
   - `sources`, sources to add to targets (or generated header files that should be built before sources including them are built)
+  - `dependencies`, other dependencies needed to use this dependency
 
 
 ### dependency
