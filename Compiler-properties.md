@@ -113,6 +113,8 @@ Often you need to determine the size of a particular element (such as <tt>int</t
 
 This will put the size of <tt>wchar_t</tt> as reported by sizeof into variable <tt>wcharsize</tt>. The keyword argument <tt>prefix</tt> is optional. If specified its contents is put at the top of the source file. This argument is typically used for setting <tt>#include</tt> directives in configuration files.
 
+In older versions (<= 0.30) meson would error out if the size could not be determined. Since version 0.31 it returns -1 if the size could not be determined.
+
 Does a function exist?
 ==
 
