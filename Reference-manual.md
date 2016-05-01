@@ -319,16 +319,16 @@ This object represents a compiler for a given language and allows you to query i
 
 The prefix keyword argument can be used to add #defines, #includes, etc that are required for the symbol to be declared (eg: #define _GNU_SOURCE is often required for some symbols to be exposed on Linux).
 
-The args keyword argument can be used to pass a list of compiler arguments that are required to find the header or symbol. For example, you might need to pass the include path -Isome/path/to/header if the header is not in the default include path. Note that if you have a single prefix with all your dependencies, you might find it easier to append to the environment variables C_INCLUDE_PATH with gcc/clang and INCLUDE with msvc to expand the default include path.
+The args keyword argument can be used to pass a list of compiler arguments that are required to find the header or symbol. For example, you might need to pass the include path -Isome/path/to/header if the header is not in the default include path. Note that if you have a single prefix with all your dependencies, you might find it easier to append to the environment variables `C_INCLUDE_PATH` with gcc/clang and `INCLUDE` with msvc to expand the default include path.
 
 ### run result object ###
 
 This object encapsulates the result of trying to compile and run a sample piece of code.
 
-- <tt>compiled</tt> if true, the compilation succeeded, if false it did not and the other methods return unspecified data
-- <tt>returncode</tt> the return code of executing the compiled binary
-- <tt>stdout</tt> the standard out produced when the binary was run
-- <tt>stderr</tt> the standard error produced when the binary was run
+- `compiled` if true, the compilation succeeded, if false it did not and the other methods return unspecified data
+- `returncode` the return code of executing the compiled binary
+- `stdout` the standard out produced when the binary was run
+- `stderr` the standard error produced when the binary was run
 
 ### configuration data object ###
 
