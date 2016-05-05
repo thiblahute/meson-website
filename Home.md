@@ -1,6 +1,6 @@
-## Service disruption 2015/12/28
+## Service disruption 2015/05
 
-The certificates on wrapdb were updated. Versions prior to 0.28.0 will print certificate errors. Please update your Meson install.
+WrapDB is unfortunately down. We have set up a [fallback wraptool] to get you going while we fix the issue.
 
 # The Meson Build System Documentation
 
