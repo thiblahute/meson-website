@@ -1,6 +1,6 @@
 ## Service disruption 2015/05
 
-WrapDB is unfortunately down. We have set up a [fallback wraptool] to get you going while we fix the issue.
+WrapDB is unfortunately down. We have set up a [fallback wraptool](fallback wraptool) to get you going while we fix the issue.
 
 # The Meson Build System Documentation
 
