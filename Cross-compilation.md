@@ -42,8 +42,9 @@ The next section lists properties of the cross compiler and thus of the target s
     has_function_printf = true
 
     c_args = ['-DCROSS=1', '-DSOMETHING=3']
+    c_link_args = ['-some_link_arg']
 
-In most cases you don't need the size and alignment settings, Meson will detect all these by compiling and running some sample programs. If your build requires some piece of data that is not listed here, Meson will stop and write an error message describing how to fix the issue. If you need extra compiler arguments to be used during cross compilation you can set them with `[langname]_args = [args]'. Just remember to specify the args as an array and not as a single string (i.e. not as `'-DCROSS=1 -DSOMETHING=3'`).
+In most cases you don't need the size and alignment settings, Meson will detect all these by compiling and running some sample programs. If your build requires some piece of data that is not listed here, Meson will stop and write an error message describing how to fix the issue. If you need extra compiler arguments to be used during cross compilation you can set them with `[langname]_args = [args]`. Just remember to specify the args as an array and not as a single string (i.e. not as `'-DCROSS=1 -DSOMETHING=3'`).
 
 The last bit is the definition of host and target machines. Every cross build definition must have one or both of them. If it had neither, the build would not be a cross build but a native build. You do not need to define the build machine, as all necessary information about it is extracted automatically. The definitions for host and target machines look the same. Here is a sample for host machine.
 
