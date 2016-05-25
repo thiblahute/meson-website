@@ -96,11 +96,12 @@ You can then take `native_exe` and use it as part of a generator rule or anythin
 
 ## Using a custom standard library
 
-Sometimes in cross compilation you need to build your own standard library instead of using the one provided by the compiler. Meson has built-in support for switching standard libraries transparently. The invocation to use in your cross file is the following in `[properties]` section:
+Sometimes in cross compilation you need to build your own standard library instead of using the one provided by the compiler. Meson has built-in support for switching standard libraries transparently. The invocation to use in your cross file is the following:
 
+    [properties]
     c_stdlib = ['mylibc', 'mylibc_dep'] # Subproject name, dependency name
 
-This specifies that C standard library is provided in the Meson subproject `mylibc` in internal dependency variabale `mylibc_dep`. It is used on every cross built C target in the entire source tree (including subprojects) and the standard library is disabled. The build definitions of these targets do not need any modification.
+This specifies that C standard library is provided in the Meson subproject `mylibc` in internal dependency variable `mylibc_dep`. It is used on every cross built C target in the entire source tree (including subprojects) and the standard library is disabled. The build definitions of these targets do not need any modification.
 
 ## Changing cross file settings
 
