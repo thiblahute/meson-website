@@ -6,6 +6,4 @@ Meson has a selection of modules to make common requirements easy to use. Module
 * [RPM](RPM module)
 * [Windows](Windows module)
 * [Pkgconfig](Pkgconfig module)
-
-
-
+* [i18n](i18n module)
