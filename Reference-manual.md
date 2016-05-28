@@ -4,9 +4,13 @@ This page lists functions and methods available in Meson scripts. For more in-de
 
 ### add_global_arguments
 
-Adds the positional arguments to the compiler command line for the language specified in <tt>language</tt> keyword argument. Note that there is no way to remove an argument set in this way. If you have an argument that is only used in a subset of targets, you have to specify it in per-target flags.
+Adds the positional arguments to the compiler command line for the language specified in `language` keyword argument. Note that there is no way to remove an argument set in this way. If you have an argument that is only used in a subset of targets, you have to specify it in per-target flags.
 
-The arguments are used in all compiler invocations with the exception of compile tests, becausmes you might need to run a compile test with and without the argument in question. For this reason only the arguments explicitly specified are used during compile tests.
+The arguments are used in all compiler invocations with the exception of compile tests, because you might need to run a compile test with and without the argument in question. For this reason only the arguments explicitly specified are used during compile tests.
+
+### add_global_link_arguments
+
+Like `add_global_arguments` but the arguments are passed to the linker.
 
 ### add_languages
 
