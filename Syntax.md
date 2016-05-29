@@ -128,6 +128,14 @@ Strings also support a number of other methods that return transformed copies.
     underscored = name.underscorify()
     # underscored now has the value 'Meson_Docs_txt_Reference_manual'
 
+**.version_compare()**
+
+    version = '1.2.3'
+    # Compare version numbers semantically
+    is_new = version.version_compare('>=2.0')
+    # is_new now has the boolean value false
+    # Supports the following operators: '>', '<', '>=', '<=', '!=', '==', '='
+
 Arrays
 --
 
