@@ -375,14 +375,14 @@ All strings have the following methods. Strings are immutable, all operations re
  - `endswith` returns true if string ends with the string specified as the argument
  - `contains` returns true if string contains the string specified as the argument
  - `to_int` returns the string converted to an integer (error if string is not a number)
- - `join` is the opposite of split, for example `'.'.join(['a', 'b', 'c']` yields `a.b.c`
+ - `join` is the opposite of split, for example `'.'.join(['a', 'b', 'c']` yields `'a.b.c'`
  - `version_compare` does semantic version comparison, if `x = '1.2.3'` then `x.version_compare('>1.0.0')` returns `true`
 
 ### boolean object
 
 A boolean object has two simple methods.
 
- - `to_string` returns either the string `'true'` if the boolean is true or `'false'`otherwise
+ - `to_string` returns the string `'true'` if the boolean is true or `'false'`otherwise
  - `to_int` as above, but returns either `1` or `0`
 
 ### array object
