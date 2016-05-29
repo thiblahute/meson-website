@@ -42,8 +42,7 @@ Strings in Meson are declared with single quotes. To enter a literal single quot
 
 Similarly <tt>\n</tt> gets converted to a newline and <tt>\\\\</tt> to a single backslash.
 
-Strings running over multiple lines
---
+#### Strings running over multiple lines
 
 Strings running over multiple lines can be declared with three single quotes, like this:
 
@@ -54,8 +53,7 @@ Strings running over multiple lines can be declared with three single quotes, li
 
 This can also be combined with the string formatting functionality described below.
 
-String formatting
---
+#### String formatting
 
 Strings can be built using the string formatting functionality.
 
@@ -65,16 +63,70 @@ Strings can be built using the string formatting functionality.
 
 As can be seen, the formatting works by replacing placeholders of type <tt>@number@</tt> with the corresponding argument.
 
-String methods
---
+#### String methods
 
-Strings also support a number of methods that return transformed copies.
+Strings also support a number of other methods that return transformed copies.
+
+**.strip()**
+
+    # Similar to the Python str.strip(). Removes leading/ending spaces and newlines
+    define = ' -Dsomedefine '
+    stripped_define = target.strip()
+    # 'stripped_define' now has the value '-Dsomedefine'
+
+**.to_upper()**, **.to_lower()**
 
     target = 'x86_FreeBSD'
     upper = target.to_upper() # t now has the value 'X86_FREEBSD'
     lower = target.to_lower() # t now has the value 'x86_freebsd'
+
+**.to_int()**
+
+    version = '1'
+    # Converts the string to an int and throws an error if it can't be
+    ver_int = version.to_int()
+
+**.contains()**, **.startswith()**, **.endswith()**
+
+    target = 'x86_FreeBSD'
     is_fbsd = target.to_lower().contains('freebsd')
     # is_fbsd now has the boolean value 'true'
+    is_x86 = target.startswith('x86') # boolean value 'true'
+    is_bsd = target.to_lower().endswith('bsd') # boolean value 'true'
+
+**.split()**, **.join()**
+
+    # Similar to the Python str.split()
+    components = 'a b   c d '.split()
+    # components now has the value ['a', 'b', 'c', 'd']
+    components = 'a b   c d '.split(' ')
+    # components now has the value ['a', 'b', '', '', 'c', 'd', '']
+
+    # Similar to the Python str.join()
+    custom_link_args = ' '.join(['-lfoo', '-lbar'])
+    # Output value is '-lfoo -lbar'
+    pathsep = '/'
+    path = pathsep.join(['/usr', 'local', 'bin'])
+    # path now has the value '/usr/local/bin'
+
+    # Example to set an API version for use in library(), install_header(), etc
+    project('project', 'c', version: '0.2.3')
+    version_array = meson.project_version().split('.')
+    # version_array now has the value ['0', '2', '3']
+    api_version = '.'.join([version_array[0], version_array[1]])
+    # api_version now has the value '0.2'
+
+    # We can do the same with .format() too:
+    api_version = '@0@.@1@'.format(version_array[0], version_array[1])
+    # api_version now (again) has the value '0.2'
+
+**.underscorify()**
+
+    name = 'Meson Docs.txt#Reference-manual'
+    # Replaces all characters other than `a-zA-Z0-9` with `_` (underscore)
+    # Useful for substituting into #defines, filenames, etc.
+    underscored = name.underscorify()
+    # underscored now has the value 'Meson_Docs_txt_Reference_manual'
 
 Arrays
 --
