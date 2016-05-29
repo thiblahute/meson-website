@@ -384,3 +384,11 @@ A boolean object has two simple methods.
 
  - `to_string` returns either the string `'true'` if the boolean is true or `'false'`otherwise
  - `to_int` as above, but returns either `1` or `0`
+
+### array object
+
+The following methods are defined for all arrays.
+
+ - `length`, the size of the array
+ - `contains`, returns `true` if the array contains the object given as argument, `false` otherwise
+ - `get`, returns the object at the given index, negative indices count from the back of the array, indexing out of bounds is a fatal error
