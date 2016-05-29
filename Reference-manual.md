@@ -366,7 +366,7 @@ This object contains a generator that is used to transform files from one type t
 All strings have the following methods. Strings are immutable, all operations return their results as a new string.
 
  - `strip` removes whitespace at the beginning and end of the string
- - `format` formats text, see the [Syntax manual](https://github.com/mesonbuild/meson/wiki/Syntax#string-formatting) for usage info
+ - `format` formats text, see the [[Syntax manual|Syntax#string-formatting]] for usage info
  - `to_upper` creates an upper case version of the string
  - `to_lower` creates a lower case version of the string
  - `underscorify` creates a string where every non-alphabetical non-number character is replaced with `_`
