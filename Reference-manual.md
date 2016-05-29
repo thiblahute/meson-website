@@ -72,6 +72,9 @@ This function creates a dependency object that behaves like the return value of 
   - `link_with`, libraries to link against
   - `sources`, sources to add to targets (or generated header files that should be built before sources including them are built)
   - `dependencies`, other dependencies needed to use this dependency
+  - `compile_args`, compile arguments to use
+  - `link_args`, link arguments to use
+  - `version`, the version of this depency, such as `1.2.3`
 
 
 ### dependency
@@ -336,7 +339,10 @@ This object encapsulates configuration values to be used for generating configur
 
 ### dependency object ###
 
-Contains an external dependency. This object has only one method, <tt>found</tt>, which returns whether the dependency was found.
+Contains an external dependency with the following methods.
+
+ - `found` which returns whether the dependency was found
+ - `version` is the version number as a string, for example `1.2.8` 
 
 ### external program object ###
 
