@@ -6,6 +6,12 @@ When the name was originally chosen, there were two main limitations: there must
 
 Unfortunately this name was taken, too. Then the rest of physical elementary particles were examined and Meson was found to be available. 
 
+## What is the correct way to use threads (such as pthreads)?
+
+    thread_dep = dependency('threads')
+
+This will set up everything on your behalf. People coming from Autotools or CMake want to do this by looking for `libpthread.so` manually. Don't do that, it has tricky corner cases especially when cross compiling. 
+
 ## How to use Meson on a host where it is not available in system packages? 
 
 Starting from version 0.29.0, Meson is available from the [Python Package Index](https://pypi.python.org/pypi/meson/), so installing it simply a matter of running this command:
