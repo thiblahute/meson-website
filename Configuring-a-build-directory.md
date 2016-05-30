@@ -39,7 +39,7 @@ You invoke <tt>mesonconf</tt> by giving it the location of your build dir. If om
 
 These are all the options available for the current project arranged into related groups. The first column in every field is the name of the option. To set an option you use the <tt>-D</tt> option. For example, changing the installation prefix from <tt>/usr/local</tt> to <tt>/tmp/testroot</tt> you would issue the following command.
 
-    mesonconf -Dinstallprefix=/tmp/testroot
+    mesonconf -Dprefix=/tmp/testroot
 
 Then you would run your build command (usually <tt>ninja</tt>), which would cause Meson to detect that the build setup has changed and do all the work required to bring your build tree up to date.
 
