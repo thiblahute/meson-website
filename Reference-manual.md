@@ -120,7 +120,7 @@ If the program is not found, Meson will abort. You can tell it not to by setting
 
 ### find_library ###
 
-Tries to find the library specified in the positional argument. The result object can be used just like the return value of <tt>dependency</tt>. If the keyword argument <tt>required</tt> is false, Meson will proceed even if the library is not found. By default the library is searched for in the system specific library directory (e.g. <tt>/usr/lib</tt>). This can be overridden with the <tt>dirs</tt> keyword argument, which can be either a string or a list of strings.
+This function is deprecated and has been moved to the compiler object as obtained from `meson.get_compiler()`. Please see the documentation for that below.
 
 ### files ###
 
@@ -310,19 +310,25 @@ This object represents a compiler for a given language and allows you to query i
 
 - `get_id` returns a string identifying the compiler (e.g. *gcc*)
 - `version` returns the compiler's version number as a string
-- `compiles` returns true if the code fragment given in the positional argument compiles
+- `find_library` tries to find the library specified in the positional argument. The result object can be used just like the return value of `dependency`. If the keyword argument `required` is false, Meson will proceed even if the library is not found. By default the library is searched for in the system library directory (e.g. /usr/lib). This can be overridden with the `dirs` keyword argument, which can be either a string or a list of strings.
 - `sizeof` returns the size of the given type (e.g. *int*) or -1 if the type is unknown, to add includes set them in the `prefix` keyword argument
+- `alignment` returns the alignment of the type specified in the positional argument
+- `compiles` returns true if the code fragment given in the positional argument compiles
+- `links` returns true if the code fragment given in the positional argument compiles and links
+- `run` attempts to compile and execute the given code fragment, returns a run result object
 - `has_header` returns true if the specified header can be included
 - `has_type` returns true if the specified token is a type
-- `run` attempts to compile and execute the given code fragment, returns a run result object
-- `has_function` returns true if the given function can be called
+- `has_function` returns true if the given function is provided by the standard library or a library passed in with the `args` keyword
 - `has_member` takes two arguments, type name and member name and returns true if the type has the specified member
-- `alignment` returns the alignment of the type specified in the positional argument
 - `has_header_symbol` allows one to detect whether a particular symbol (function, variable, #define, type definition, etc) is declared in the specified header.
 
-The prefix keyword argument can be used to add #defines, #includes, etc that are required for the symbol to be declared (eg: #define _GNU_SOURCE is often required for some symbols to be exposed on Linux).
+The `prefix` keyword argument can be used to add #defines, #includes, etc that are required for the symbol to be declared (eg: `#define _GNU_SOURCE` is often required for some symbols to be exposed on Linux). Supported by the methods `sizeof`, `has_type`, `has_function`, `has_member`,`has_header_symbol`.
 
-The args keyword argument can be used to pass a list of compiler arguments that are required to find the header or symbol. For example, you might need to pass the include path -Isome/path/to/header if the header is not in the default include path. Note that if you have a single prefix with all your dependencies, you might find it easier to append to the environment variables `C_INCLUDE_PATH` with gcc/clang and `INCLUDE` with msvc to expand the default include path.
+The `args` keyword argument can be used to pass a list of compiler arguments that are required to find the header or symbol. For example, you might need to pass the include path `-Isome/path/to/header` if a header is not in the default include path, or pass a library name `-lfoo` for `has_function` to check for a function. Supported by all methods except `get_id`, `version`, and `find_library`. 
+
+Note that if you have a single prefix with all your dependencies, you might find it easier to append to the environment variables `C_INCLUDE_PATH` with gcc/clang and `INCLUDE` with msvc to expand the default include path, and `LIBRARY_PATH` with gcc/clang and `LIB` with msvc to expand the default library search path.
+
+However, with GCC, these variables will be ignored when cross-compiling. In that case you need to use a specs file. See: http://www.mingw.org/wiki/SpecsFileHOWTO
 
 ### run result object ###
 
