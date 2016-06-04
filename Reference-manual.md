@@ -120,7 +120,7 @@ If the program is not found, Meson will abort. You can tell it not to by setting
 
 ### find_library ###
 
-This function is deprecated and has been moved to the compiler object as obtained from `meson.get_compiler()`. Please see the documentation for that below.
+This function is deprecated and has been moved to the compiler object as obtained from `meson.get_compiler()`. Please see the documentation for that [[below|#compiler-object]].
 
 ### files ###
 
@@ -328,7 +328,7 @@ The `args` keyword argument can be used to pass a list of compiler arguments tha
 
 Note that if you have a single prefix with all your dependencies, you might find it easier to append to the environment variables `C_INCLUDE_PATH` with gcc/clang and `INCLUDE` with msvc to expand the default include path, and `LIBRARY_PATH` with gcc/clang and `LIB` with msvc to expand the default library search path.
 
-However, with GCC, these variables will be ignored when cross-compiling. In that case you need to use a specs file. See: http://www.mingw.org/wiki/SpecsFileHOWTO
+However, with GCC, these variables will be ignored when cross-compiling. In that case you need to use a specs file. See: <http://www.mingw.org/wiki/SpecsFileHOWTO>
 
 ### run result object ###
 
