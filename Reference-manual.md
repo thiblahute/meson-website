@@ -101,7 +101,7 @@ Executable supports the following keyword arguments.
 - <tt>link_with</tt>, one or more shared or static libraries (built by this project) that this target should be linked with
 - <tt>&lt;languagename&gt;_pch</tt> precompiled header file to use for the given language
 - <tt>&lt;languagename&gt;_args</tt> compiler flags to use for the given language
-- <tt>link_args</tt> flags to use during linking
+- <tt>link_args</tt> flags to use during linking. You can use unix-style flags here for all platforms.
 - <tt>link_depends</tt> an extra file that the link step depends on such as a symbol visibility map
 - <tt>include_directories</tt> one or more objects created with the <tt>include_directories</tt> function
 - <tt>dependencies</tt> one or more objects created with <tt>dependency</tt> or <tt>find_library</tt>
@@ -109,7 +109,7 @@ Executable supports the following keyword arguments.
 - <tt>extra_files</tt> are not used for the build itself but are shown as source files in IDEs that group files by targets (such as Visual Studio)
 - <tt>install</tt>, when set to true, this executable should be installed
 - <tt>install_rpath</tt> a string to set the target's rpath to after install (but *not* before that)
-- <tt>install_dir</tt> override install directory for this file
+- <tt>install_dir</tt> override install directory for this file. The value is relative to the `prefix` specified. F.ex, if you want to install plugins into a subdir, you'd use something like this: `install_dir : get_option('libdir') + '/projectname-1.0'`.
 - <tt>objects</tt> list of prebuilt object files (usually for third party products you don't have source to) that should be linked in this target, **never** use this for object files that you build yourself.
 
 ### find_program ###
