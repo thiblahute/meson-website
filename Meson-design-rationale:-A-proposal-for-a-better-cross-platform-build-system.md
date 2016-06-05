@@ -10,7 +10,7 @@ Those are pretty much universally despised.
 
 The most positive statement on build systems you can usually get (and it might require some coaxing) is something along the lines of *well, it's a terrible system, but all other options are even worse*. It is easy to see why this is the case. For starters, commonly used free build systems have obtuse syntaxes. They use for the most part global variables that are set in random locations so you can never really be sure what a given line of code does. They do strange and unpredictable things at every turn.
 
-Let's illustrate this with a simple example. Suppose we want to run a program built with GNU Autotools under gdb. The instinctive thing to do is to just run <tt>gdb programname</tt>. The problem is that this may or may not work. In some cases the executable file is a binary whereas at other times it is a wrapper shell script that invokes the real binary which resides in a hidden subdirectory. Gdb invocation fails if the binary is a script but succeeds if it is not. The user has to remember the type of each one of his executables (which is an implementation detail of the build system) just to be able to debug them. Several other such pain points can be found in [this blog post](http://voices.canonical.com/jussi.pakkanen/2011/09/13/autotools/).
+Let's illustrate this with a simple example. Suppose we want to run a program built with GNU Autotools under gdb. The instinctive thing to do is to just run `gdb programname`. The problem is that this may or may not work. In some cases the executable file is a binary whereas at other times it is a wrapper shell script that invokes the real binary which resides in a hidden subdirectory. Gdb invocation fails if the binary is a script but succeeds if it is not. The user has to remember the type of each one of his executables (which is an implementation detail of the build system) just to be able to debug them. Several other such pain points can be found in [this blog post](http://voices.canonical.com/jussi.pakkanen/2011/09/13/autotools/).
 
 Given these idiosyncrasies it is no wonder that most people don't want to have anything to do with build systems. They'll just copypaste code that works (somewhat) in one place to another and hope for the best. They actively go out of their way not to understand the system because the mere thought of it is repulsive. Doing this also provides a kind of inverse job security. If you don't know tool X, there's less chance of finding yourself responsible for its use in your organisation. Instead you get to work on more enjoyable things.
 
@@ -35,7 +35,7 @@ Most builds are done by developers working on the code. Therefore the defaults m
 
 ###3. Must enforce established best practices###
 
-There really is no reason to compile source code without the equivalent of <tt>-Wall</tt>. So enable it by default. A different kind of best practice is the total separation of source and build directories. All build artifacts must be stored in the build directory. Writing stray files in the source directory is not permitted under any circumstances.
+There really is no reason to compile source code without the equivalent of `-Wall`. So enable it by default. A different kind of best practice is the total separation of source and build directories. All build artifacts must be stored in the build directory. Writing stray files in the source directory is not permitted under any circumstances.
 
 ###4. Must have native support for platforms that are in common use###
 
@@ -75,40 +75,40 @@ Enough design talk, let's get to the code. Before looking at the examples we wou
 
 Let's start simple. Here is the code to compile a single executable binary.
 
-<tt>project('compile one', 'c')
-executable('program', 'prog.c')</tt>
+    project('compile one', 'c')
+    executable('program', 'prog.c')<
 
 This is about as simple as one can get. First you declare the project name and the languages it uses. Then you specify the binary to build and its sources. The build system will do all the rest. It will add proper suffixes (e.g. '.exe' on Windows), set the default compiler flags and so on.
 
 Usually programs have more than one source file. Listing them all in the function call can become unwieldy. That is why the system supports keyword arguments. They look like this.
 
-<tt>project('compile several', 'c')
-sources = ['main.c', 'file1.c', 'file2.c', 'file3.c']
-executable('program', sources : sourcelist)</tt>
+    project('compile several', 'c')
+    sources = ['main.c', 'file1.c', 'file2.c', 'file3.c']
+    executable('program', sources : sourcelist)
 
 External depencencies are simple to use.
 
-<tt>project('external lib', 'c')
+`project('external lib', 'c')
 libdep = find_dep('extlibrary', required : true)
 sources = ['main.c', 'file1.c', 'file2.c', 'file3.c']
-executable('program', sources : sourcelist, dep : libdep)</tt>
+executable('program', sources : sourcelist, dep : libdep)`
 
 In other build systems you have to manually add the compile and link flags from external dependencies to targets. In this system you just declare that extlibrary is mandatory and that the generated program uses that. The build system does all the plumbing for you.
 
 Here's a slightly more complicated definition. It should still be understandable.
 
-<tt>project('build library', 'c')
+`project('build library', 'c')
 foolib = shared_library('foobar', sources : 'foobar.c',\ 
  install : true)
 exe = executable('testfoobar', 'tester.c', link : foolib)
-add_test('test library', exe)</tt>
+add_test('test library', exe)`
 
-First we build a shared library named foobar. It is marked installable, so running <tt>ninja install</tt> installs it to the library directory (the system knows which one so the user does not have to care). Then we build a test executable which is linked against the library. It will no tbe installed, but instead it is added to the list of unit tests, which can be run with the command <tt>ninja test</tt>.
+First we build a shared library named foobar. It is marked installable, so running `ninja install` installs it to the library directory (the system knows which one so the user does not have to care). Then we build a test executable which is linked against the library. It will no tbe installed, but instead it is added to the list of unit tests, which can be run with the command `ninja test`.
 
 Above we mentioned precompiled headers as a feature not supported by other build systems. Here's how you would use them.
 
-<tt>project('pch demo', 'cxx')
-executable('myapp', 'myapp.cpp', pch : 'pch/myapp.hh')</tt>
+    project('pch demo', 'cxx')
+    executable('myapp', 'myapp.cpp', pch : 'pch/myapp.hh')
 
 The main reason other build systems can not provide pch support this easily is because they don't enforce certain best practices. Due to the way include paths work, it is impossible to provide pch support that always works with both in-source and out-of-source builds. Mandating separate build and source directories makes this and many other problems a lot easier.
 

@@ -4,7 +4,7 @@ This page shows from the ground up how to create a Meson build definition for a 
 The humble beginning
 -----
 
-Let's start with the most basic of programs, the classic hello example. First we create a file <tt>main.c</tt> which holds the source. It looks like this.
+Let's start with the most basic of programs, the classic hello example. First we create a file `main.c` which holds the source. It looks like this.
 
     #include<stdio.h>
     
@@ -13,7 +13,7 @@ Let's start with the most basic of programs, the classic hello example. First we
       return 0;
     }
 
-Then we create a Meson build description and put it in a file called <tt>meson.build</tt> in the same directory. Its contents are the following.
+Then we create a Meson build description and put it in a file called `meson.build` in the same directory. Its contents are the following.
 
     project('tutorial', 'c')
     executable('demo', 'main.c')
@@ -76,7 +76,7 @@ Now we are ready to build. The thing to notice is that we do *not* need to recre
 
     ninja
 
-Once you have set up your build directory the first time, you don't ever need to run the <tt>meson</tt> command again. You always just run <tt>ninja</tt>. Meson will automatically detect when you have done changes to build definitions and will take care of everything so users don't have to care. In this case the following output is produced.
+Once you have set up your build directory the first time, you don't ever need to run the `meson` command again. You always just run `ninja`. Meson will automatically detect when you have done changes to build definitions and will take care of everything so users don't have to care. In this case the following output is produced.
 
     [1/1] Regenerating build files
     The Meson build system

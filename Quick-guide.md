@@ -1,7 +1,7 @@
 Using Meson
 ==
 
-Meson has been designed to be as easy to use as possible. This page outlines the basic use cases. For more advanced cases refer to Meson's command line help which is accessible with the command <tt>meson.py --help</tt>.
+Meson has been designed to be as easy to use as possible. This page outlines the basic use cases. For more advanced cases refer to Meson's command line help which is accessible with the command `meson.py --help`.
 
 Requirements
 --
@@ -31,9 +31,9 @@ The most common use case of Meson is compiling code on a code base you are worki
 
 The only thing to note is that you need to create a separate build directory. Meson will not allow you to build source code inside your source tree. All build artifacts are stored in the build directory. This allows you to have multiple build trees with different configurations at the same time. This way generated files are not added into revision control by accident. 
 
-To recompile after code changes, just type <tt>ninja</tt>. The build command is always the same. You can do arbitrary changes to source code and build system files and Meson will detect those and will do the right thing. If you want to build optimized binaries, just use the argument <tt>--buildtype=debugoptimized</tt> when running Meson. It is recommended that you keep one build directory for unoptimized builds and one for optimized ones. To compile any given configuration, just go into the corresponding build directory and run <tt>ninja</tt>.
+To recompile after code changes, just type `ninja`. The build command is always the same. You can do arbitrary changes to source code and build system files and Meson will detect those and will do the right thing. If you want to build optimized binaries, just use the argument `--buildtype=debugoptimized` when running Meson. It is recommended that you keep one build directory for unoptimized builds and one for optimized ones. To compile any given configuration, just go into the corresponding build directory and run `ninja`.
 
-Meson will automatically add compiler flags to enable debug information and compiler warnings (i.e. <tt>-g</tt> and <tt>-Wall</tt>). This means the user does not have to deal with them and can instead focus on coding.
+Meson will automatically add compiler flags to enable debug information and compiler warnings (i.e. `-g` and `-Wall`). This means the user does not have to deal with them and can instead focus on coding.
 
 Using Meson as a distro packager
 --
@@ -48,8 +48,8 @@ Distro packagers usually want total control on the build flags used. Meson suppo
     ninja test
     DESTDIR=/path/to/staging/root ninja install
 
-The command line switch <tt>--buildtype=plain</tt> tells Meson not to add its own flags to the command line. This gives the packager total control on used flags.
+The command line switch `--buildtype=plain` tells Meson not to add its own flags to the command line. This gives the packager total control on used flags.
 
-This is very similar to other build systems. The only difference is that the <tt>DESTDIR</tt> variable is passed as an environment variable rather than as an argument to <tt>ninja install</tt>.
+This is very similar to other build systems. The only difference is that the `DESTDIR` variable is passed as an environment variable rather than as an argument to `ninja install`.
 
 As distro builds happen always from scratch, we recommend you to enable [unity builds](Unity builds) whenever possible on your packages because they are faster and produce better code.

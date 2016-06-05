@@ -1,4 +1,4 @@
-Most non-trivial builds require user-settable options. As an example a program may have two different data backends that are selectable at build time. Meson provides for this by having a option definition file. Its name is <tt>meson_options.txt</tt> and it is placed at the root of your source tree.
+Most non-trivial builds require user-settable options. As an example a program may have two different data backends that are selectable at build time. Meson provides for this by having a option definition file. Its name is `meson_options.txt` and it is placed at the root of your source tree.
 
 Here is a simple option file.
 
@@ -6,9 +6,9 @@ Here is a simple option file.
     option('other_one', type : 'boolean', value : false)
     option('combo_opt', type : 'combo', choices : ['one', 'two', 'three'], value : 'three')
 
-This demonstrates the three basic option types and their usage. String option is just a free form string and a boolean option is, unsurprisingly, true or false. The combo option can have any value from the strings listed in argument <tt>choices</tt>. If <tt>value</tt> is not set, it defaults to empty string for strings, <tt>true</tt> for booleans or the first element in a combo. You can specify <tt>description</tt>, which is a free form piece of text describing the option. It defaults to option name.
+This demonstrates the three basic option types and their usage. String option is just a free form string and a boolean option is, unsurprisingly, true or false. The combo option can have any value from the strings listed in argument `choices`. If `value` is not set, it defaults to empty string for strings, `true` for booleans or the first element in a combo. You can specify `description`, which is a free form piece of text describing the option. It defaults to option name.
 
-These options are accessed in Meson code with the <tt>get_option</tt> function.
+These options are accessed in Meson code with the `get_option` function.
 
     optval = get_option('opt_name')
 

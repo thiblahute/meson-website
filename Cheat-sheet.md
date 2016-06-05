@@ -1,4 +1,4 @@
-This page lists the commands to invoke to achieve some common build tasks with Meson. Unless otherwise specified all the examples below assume that the build directory is created in a directory called <tt>build</tt> which is located in the source tree's root. It is also assumed that all commands are executed in that directory.
+This page lists the commands to invoke to achieve some common build tasks with Meson. Unless otherwise specified all the examples below assume that the build directory is created in a directory called `build` which is located in the source tree's root. It is also assumed that all commands are executed in that directory.
 
 ## Producing a coverage report ##
 
@@ -16,7 +16,7 @@ The coverage report can be found in the meson-logs subdirectory.
 
 ## Adding some optimization to debug builds ##
 
-By default the debug build does not use any optimizations. This is the desired approach most of the time. However some projects benefit from having some minor optimizations enabled. Gcc even has a specific compiler flag <tt>-Og</tt> for this. To enable its use, just issue the following command.
+By default the debug build does not use any optimizations. This is the desired approach most of the time. However some projects benefit from having some minor optimizations enabled. Gcc even has a specific compiler flag `-Og` for this. To enable its use, just issue the following command.
 
     mesonconf -Dcargs=-Og
 
@@ -30,7 +30,7 @@ First we set up meson.
 
     CFLAGS='-fsanitize=address -fno-omit-frame-pointer' meson ..
 
-This example uses only plain C. For C++ you would set the variable <tt>CXXFLAGS</tt>.
+This example uses only plain C. For C++ you would set the variable `CXXFLAGS`.
 
 After this you just compile your code and run the test suite. Address sanitizer will abort executables which have bugs so they show up as test failures.
 
@@ -45,7 +45,7 @@ The clang compiler comes with a static analysis tool which is invoked by compili
     cd ..
     rm -rf uniquedirname
 
-The static analysis report will be found in the <tt>/tmp</tt> subdirectory, though you can forward it somewhere else if you prefer.
+The static analysis report will be found in the `/tmp` subdirectory, though you can forward it somewhere else if you prefer.
 
 ## Using profile guided optimization ##
 

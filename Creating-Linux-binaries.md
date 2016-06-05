@@ -9,7 +9,7 @@ Once you have installed the system, you need to install build-dependencies for G
     apt-get build-dep g++
     apt-get install pkg-config libgmp-dev libmpfr-dev libmpc-dev
 
-Then create a <tt>src</tt> subdirectory in your home directory. Copypaste the following into <tt>install_gcc.sh</tt> and execute it.
+Then create a `src` subdirectory in your home directory. Copypaste the following into `install_gcc.sh` and execute it.
 
     #!/bin/sh
 
@@ -24,7 +24,7 @@ Then create a <tt>src</tt> subdirectory in your home directory. Copypaste the fo
     make install-strip
     ln -s gcc ${HOME}/devroot/bin/cc
 
-Then finally add the following lines to your <tt>.bashrc</tt>.
+Then finally add the following lines to your `.bashrc`.
 
     export LD_LIBRARY_PATH=${HOME}/devroot/lib
     export PATH=${HOME}/devroot/bin:$PATH
@@ -34,11 +34,11 @@ Log out and back in and now your build environment is ready to use.
 
 ## Adding other tools
 
-Old distros might have too old versions of some tools. For Meson this could include Python 3 and Ninja. If this is the case you need to download, build and install new versions into <tt>~/devroot</tt> in the usual way.
+Old distros might have too old versions of some tools. For Meson this could include Python 3 and Ninja. If this is the case you need to download, build and install new versions into `~/devroot` in the usual way.
 
 ## Adding dependencies
 
-You want to embed and statically link every dependency you can (especially C++ dependencies). Meson's [Wrap package manager might be of use here](Wrap dependency system manual). This is equivalent to what you would do on Windows, OSX, Android etc. Sometimes static linking is not possible. In these cases you need to copy the .so files inside your package. Let's use SDL2 as an example. First we download and install it as usual giving it our custom install prefix (that is, <tt>./configure --prefix=${HOME}/devroot</tt>). This makes Meson's dependency detector pick it up automatically.
+You want to embed and statically link every dependency you can (especially C++ dependencies). Meson's [Wrap package manager might be of use here](Wrap dependency system manual). This is equivalent to what you would do on Windows, OSX, Android etc. Sometimes static linking is not possible. In these cases you need to copy the .so files inside your package. Let's use SDL2 as an example. First we download and install it as usual giving it our custom install prefix (that is, `./configure --prefix=${HOME}/devroot`). This makes Meson's dependency detector pick it up automatically.
 
 ## Building and installing
 
@@ -46,7 +46,7 @@ Building happens in much the same way as normally. There are just two things to 
 
     LDFLAGS=-static-libstdc++ meson --prefix=/tmp/myapp <other args>
 
-The aim is to put the executable in <tt>/tmp/myapp/bin</tt> and shared libraries to <tt>/tmp/myapp/lib</tt>. The next thing you need is the embedder. It takes your dependencies (in this case only <tt>libSDL2-2.0.so.0</tt>) and copies them in the lib directory. Depending on your use case you can either copy the files by hand or write a script that parses the output of <tt>ldd binary_file</tt>. Be sure not to copy system libraries (<tt>libc</tt>, <tt>libpthread</tt>, <tt>libm</tt> etc). For an example, see the [sample project](https://github.com/jpakkane/meson/tree/master/manual%20tests/4%20standalone%20binaries).
+The aim is to put the executable in `/tmp/myapp/bin` and shared libraries to `/tmp/myapp/lib`. The next thing you need is the embedder. It takes your dependencies (in this case only `libSDL2-2.0.so.0`) and copies them in the lib directory. Depending on your use case you can either copy the files by hand or write a script that parses the output of `ldd binary_file`. Be sure not to copy system libraries (`libc`, `libpthread`, `libm` etc). For an example, see the [sample project](https://github.com/jpakkane/meson/tree/master/manual%20tests/4%20standalone%20binaries).
 
 Make the script run during install with this:
 
@@ -54,7 +54,7 @@ Make the script run during install with this:
 
 ## Final steps
 
-If you try to run the program now it will most likely fail to start or crashes. The reason for this is that the system does not know that the executable needs libraries from the <tt>lib</tt> directory. The solution for this is a simple wrapper script. Create a script called <tt>myapp.sh</tt> with the following content:
+If you try to run the program now it will most likely fail to start or crashes. The reason for this is that the system does not know that the executable needs libraries from the `lib` directory. The solution for this is a simple wrapper script. Create a script called `myapp.sh` with the following content:
 
     #!/bin/bash
 
@@ -66,8 +66,8 @@ Install it with this Meson snippet:
 
     install_data('myapp.sh', install_dir : '.')
 
-And now you are done. Zip up your <tt>/tmp/myapp</tt> directory and you have a working binary ready for deployment. To run the program, just unzip the file and run <tt>myapp.sh</tt>.
- 
+And now you are done. Zip up your `/tmp/myapp` directory and you have a working binary ready for deployment. To run the program, just unzip the file and run `myapp.sh`.
+
 ---
 
 [Back to index](Manual).

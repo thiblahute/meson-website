@@ -40,29 +40,29 @@ is equivalent to this:
 
 ### configuration_data
 
-Creates an empty configuration object. You should add your configuration with its method calls and finally use it in a call to <tt>configure_file</tt>.
+Creates an empty configuration object. You should add your configuration with its method calls and finally use it in a call to `configure_file`.
 
 ### configure_file ###
 
 Takes a configuration file template and values and produces a file as specified in [the configuration file documentation](Configuration). The keyword arguments are the following:
 
-- <tt>input</tt> the input file name
-- <tt>output</tt> the output file name
-- <tt>configuration</tt> the configuration data object as returned by <tt>configuration_data</tt>
-- <tt>command</tt> if specified Meson does not create the file itself but rather runs the specified command, which allows you to do fully custom file generation
-- <tt>install_dir</tt> the subdirectory to install the generated file to (e.g. <tt>share/myproject</tt>), if empty the file is not installed
+- `input` the input file name
+- `output` the output file name
+- `configuration` the configuration data object as returned by `configuration_data`
+- `command` if specified Meson does not create the file itself but rather runs the specified command, which allows you to do fully custom file generation
+- `install_dir` the subdirectory to install the generated file to (e.g. `share/myproject`), if empty the file is not installed
 
 ### custom_target ###
 
 Create a custom top level build target. The only positional argument is the name of this target and the keyword arguments are the following.
 
-- <tt>input</tt> list of source files
-- <tt>output</tt> list of output files
-- <tt>command</tt> command to run to create outputs from inputs (note: always specify commands in array form <tt>['commandname', '-arg1', '-arg2']</tt> rather than as a string <tt>'commandname -arg1 -arg2'</tt> as the latter will *not* work)
-- <tt>install</tt> when true, this target is installed during the install step
-- <tt>install_dir</tt> directory to install to
-- <tt>build_always</tt> if <tt>true</tt> this target is always considered out of date and is rebuilt every time, useful for things such as build timestamps or revision control tags
-- <tt>depends</tt> specifies that this target depends on the specified target(s), even though it does not take any of them as a command line argument. This is meant for cases where you have a tool that e.g. does globbing internally. Usually you should just put the generated sources as inputs and Meson will set up all dependencies automatically.
+- `input` list of source files
+- `output` list of output files
+- `command` command to run to create outputs from inputs (note: always specify commands in array form `['commandname', '-arg1', '-arg2']` rather than as a string `'commandname -arg1 -arg2'` as the latter will *not* work)
+- `install` when true, this target is installed during the install step
+- `install_dir` directory to install to
+- `build_always` if `true` this target is always considered out of date and is rebuilt every time, useful for things such as build timestamps or revision control tags
+- `depends` specifies that this target depends on the specified target(s), even though it does not take any of them as a command line argument. This is meant for cases where you have a tool that e.g. does globbing internally. Usually you should just put the generated sources as inputs and Meson will set up all dependencies automatically.
 
 ### declare_dependency
 
@@ -98,25 +98,25 @@ Creates a new executable. The first argument specifies its name and the remainin
 
 Executable supports the following keyword arguments.
 
-- <tt>link_with</tt>, one or more shared or static libraries (built by this project) that this target should be linked with
-- <tt>&lt;languagename&gt;_pch</tt> precompiled header file to use for the given language
-- <tt>&lt;languagename&gt;_args</tt> compiler flags to use for the given language
-- <tt>link_args</tt> flags to use during linking. You can use unix-style flags here for all platforms.
-- <tt>link_depends</tt> an extra file that the link step depends on such as a symbol visibility map
-- <tt>include_directories</tt> one or more objects created with the <tt>include_directories</tt> function
-- <tt>dependencies</tt> one or more objects created with <tt>dependency</tt> or <tt>find_library</tt>
-- <tt>gui_app</tt> when set to true flags this target as a GUI application on platforms where this makes a difference (e.g. Windows)
-- <tt>extra_files</tt> are not used for the build itself but are shown as source files in IDEs that group files by targets (such as Visual Studio)
-- <tt>install</tt>, when set to true, this executable should be installed
-- <tt>install_rpath</tt> a string to set the target's rpath to after install (but *not* before that)
-- <tt>install_dir</tt> override install directory for this file. The value is relative to the `prefix` specified. F.ex, if you want to install plugins into a subdir, you'd use something like this: `install_dir : get_option('libdir') + '/projectname-1.0'`.
-- <tt>objects</tt> list of prebuilt object files (usually for third party products you don't have source to) that should be linked in this target, **never** use this for object files that you build yourself.
+- `link_with`, one or more shared or static libraries (built by this project) that this target should be linked with
+- `&lt;languagename&gt;_pch` precompiled header file to use for the given language
+- `&lt;languagename&gt;_args` compiler flags to use for the given language
+- `link_args` flags to use during linking. You can use unix-style flags here for all platforms.
+- `link_depends` an extra file that the link step depends on such as a symbol visibility map
+- `include_directories` one or more objects created with the `include_directories` function
+- `dependencies` one or more objects created with `dependency` or `find_library`
+- `gui_app` when set to true flags this target as a GUI application on platforms where this makes a difference (e.g. Windows)
+- `extra_files` are not used for the build itself but are shown as source files in IDEs that group files by targets (such as Visual Studio)
+- `install`, when set to true, this executable should be installed
+- `install_rpath` a string to set the target's rpath to after install (but *not* before that)
+- `install_dir` override install directory for this file. The value is relative to the `prefix` specified. F.ex, if you want to install plugins into a subdir, you'd use something like this: `install_dir : get_option('libdir') + '/projectname-1.0'`.
+- `objects` list of prebuilt object files (usually for third party products you don't have source to) that should be linked in this target, **never** use this for object files that you build yourself.
 
 ### find_program ###
 
 Tries to locate the command listed in the positional argument. It can either be a command or a script in the source directory. Meson will also autodetect scripts with a shebang line and run them with the executable specified in it both on Windows (because the command invocator will reject the command otherwise) and unixes (if the script file does not have the executable bit set).
 
-If the program is not found, Meson will abort. You can tell it not to by setting the keyword argument <tt>required</tt> to false.
+If the program is not found, Meson will abort. You can tell it not to by setting the keyword argument `required` to false.
 
 ### find_library ###
 
@@ -124,11 +124,11 @@ This function is deprecated and has been moved to the compiler object as obtaine
 
 ### files ###
 
-This command takes the strings given to it in arguments and returns corresponding File objects that you can use as sources for build targets. The difference is that file objects remember the subdirectory they were defined in and can be used anywhere in the source tree. As an example suppose you have source file <tt>foo.cpp</tt> in subdirectory <tt>bar1</tt> and you would like to use it in a build target that is defined in <tt>bar2</tt>. To make this happen you first create the object in <tt>bar1</tt> like this:
+This command takes the strings given to it in arguments and returns corresponding File objects that you can use as sources for build targets. The difference is that file objects remember the subdirectory they were defined in and can be used anywhere in the source tree. As an example suppose you have source file `foo.cpp` in subdirectory `bar1` and you would like to use it in a build target that is defined in `bar2`. To make this happen you first create the object in `bar1` like this:
 
     foofile = files('foo.cpp')
 
-Then you can use it in <tt>bar2</tt> like this:
+Then you can use it in `bar2` like this:
 
     executable('myprog', 'myprog.cpp', foofile, ...)
 
@@ -138,8 +138,8 @@ Meson will then do the right thing.
 
 This function creates a generator object that can be used to run custom compilation commands. The only positional argument is the executable to use. It can either be a self-built executable or one returned by find_program. Keyword arguments are the following:
 
-- <tt>arguments</tt> list the command line arguments passed to the command
-- <tt>output</tt> a template string defining how an output file name is generated from a source file name
+- `arguments` list the command line arguments passed to the command
+- `output` a template string defining how an output file name is generated from a source file name
 
 ### get_option
 
@@ -162,19 +162,19 @@ Returns an opaque object which contains the directories given in positional argu
 
 ### install_data ###
 
-Installs files listed in positional and <tt>sources</tt> keyword arguments into the directory specified by the <tt>install_dir</tt> argument during install phase.
+Installs files listed in positional and `sources` keyword arguments into the directory specified by the `install_dir` argument during install phase.
 
 ### install_headers ###
 
-Installs the specified headers into system's header directory during the install step. This directory can be overridden by specifying it with the <tt>install_dir</tt> keyword argument. If you just want to specify a subdirectory on top of the default source dir, then use the <tt>subdir</tt> argument. As an example if this has the value <tt>myproj</tt> then the headers would be installed to <tt>/prefix/include/myproj</tt>.
+Installs the specified headers into system's header directory during the install step. This directory can be overridden by specifying it with the `install_dir` keyword argument. If you just want to specify a subdirectory on top of the default source dir, then use the `subdir` argument. As an example if this has the value `myproj` then the headers would be installed to `/prefix/include/myproj`.
 
 ### install_man ###
 
-Installs the man files specified into system's man directory during the install step. This directory can be overridden by specifying it with the <tt>install_dir</tt> keyword argument.
+Installs the man files specified into system's man directory during the install step. This directory can be overridden by specifying it with the `install_dir` keyword argument.
 
 ### install_subdir ###
 
-Installs the entire given subdirectory tree to the location specified by the keyword argument <tt>install_dir</tt>. Note that due to implementation issues this command deletes the entire target dir before copying the files, so you should never use <tt>install_subdir</tt> to install into two overlapping directories (such as <tt>foo</tt> and <tt>foo/bar</tt>) because if you do the behaviour is undefined.
+Installs the entire given subdirectory tree to the location specified by the keyword argument `install_dir`. Note that due to implementation issues this command deletes the entire target dir before copying the files, so you should never use `install_subdir` to install into two overlapping directories (such as `foo` and `foo/bar`) because if you do the behaviour is undefined.
 
 ### is_subproject
 
@@ -186,7 +186,7 @@ Returns true if the current project is being built as a subproject of some other
 
 ### jar
 
-Build a jar from the specified Java source files. Keyword arguments are the same as executable's, with the addition of <tt>main_class</tt> which specifies the main class to execute when running the jar with <tt>java -jar file.jar</tt>.
+Build a jar from the specified Java source files. Keyword arguments are the same as executable's, with the addition of `main_class` which specifies the main class to execute when running the jar with `java -jar file.jar`.
 
 ### library
 
@@ -216,15 +216,15 @@ Runs the command specified in positional arguments. Returns an opaque object con
 
 ### run_target ###
 
-This function creates a new top level target that runs the command specified by positional arguments. The script is run from an unspecified directory, and Meson will set three environment variables <tt>MESON_SOURCE_ROOT</tt>, <tt>MESON_BUILD_ROOT</tt> and <tt>MESON_SUBDIR</tt> that specify the source directory, build directory and subdirectory the target was defined in, respectively.
+This function creates a new top level target that runs the command specified by positional arguments. The script is run from an unspecified directory, and Meson will set three environment variables `MESON_SOURCE_ROOT`, `MESON_BUILD_ROOT` and `MESON_SUBDIR` that specify the source directory, build directory and subdirectory the target was defined in, respectively.
 
 ### set_variable ###
 
-Assigns a value to the given variable name. Calling <tt>set_variable('foo', bar)</tt> is equivalent to <tt>foo = bar</tt>.
+Assigns a value to the given variable name. Calling `set_variable('foo', bar)` is equivalent to `foo = bar`.
 
 ### shared_library ###
 
-Builds a shared library with the given sources. Positional and keyword arguments are the same as for <tt>executable</tt> with the following extra keyword arguments.
+Builds a shared library with the given sources. Positional and keyword arguments are the same as for `executable` with the following extra keyword arguments.
 
 - `version` a string specifying the version of this shared library, such as *1.1.0*
 - `soversion` a string specifying the soversion of this shared library, such as 0 
@@ -232,11 +232,11 @@ Builds a shared library with the given sources. Positional and keyword arguments
 
 ### static_library ###
 
-Builds a static library with the given sources. Positional and keyword arguments are the same as for <tt>executable</tt>
+Builds a static library with the given sources. Positional and keyword arguments are the same as for `executable`
 
 ### subdir ###
 
-Recurses into the specified subdirectory and executes the <tt>meson.build</tt> file in it. Once that is done, it returns and execution continues on the line following this <tt>subdir</tt> command.
+Recurses into the specified subdirectory and executes the `meson.build` file in it. Once that is done, it returns and execution continues on the line following this `subdir` command.
 
 ### subproject
 
@@ -256,13 +256,13 @@ Defines an unit test. Takes two positional arguments, the first is the name of t
 
 ### vcs_tag ###
 
-This command detects revision control commit information and places it in a specified file. This file is guaranteed to be up to date on every build. Keywords are similar to <tt>custom_command</tt> and all of them are mandatory.
+This command detects revision control commit information and places it in a specified file. This file is guaranteed to be up to date on every build. Keywords are similar to `custom_command` and all of them are mandatory.
 
-- <tt>input</tt> file to modify (e.g. <tt>version.c.in</tt>)
-- <tt>output</tt> file to write the results to (e.g. <tt>version.c</tt>)
-- <tt>fallback</tt> version number to use when no revision control information is present, such as when building from a release tarball
+- `input` file to modify (e.g. `version.c.in`)
+- `output` file to write the results to (e.g. `version.c`)
+- `fallback` version number to use when no revision control information is present, such as when building from a release tarball
 
-Meson will read the contents of <tt>input</tt>, replace the string <tt>@VCS_TAG@</tt> with the detected revision number and write the result to <tt>output</tt>. This method returns an opaque object that you should put in your main program. If you desire more specific behaviour than what this command provides, you should use <tt>custom_command</tt>.
+Meson will read the contents of `input`, replace the string `@VCS_TAG@` with the detected revision number and write the result to `output`. This method returns an opaque object that you should put in your main program. If you desire more specific behaviour than what this command provides, you should use `custom_command`.
 
 ## Object methods ##
 
@@ -270,23 +270,23 @@ Meson has several different object types that have methods users can call. This 
 
 ### meson object ###
 
-The <tt>meson</tt> object allows you to introspect various properties of the system. This object is always mapped in the <tt>meson</tt> variable. It has the following methods.
+The `meson` object allows you to introspect various properties of the system. This object is always mapped in the `meson` variable. It has the following methods.
 
-- <tt>get_compiler</tt> returns an object describing a compiler, takes one positional argument which is the language to use, and one keyword argument, <tt>native</tt> which when set to true makes Meson return the compiler for the build machine (the "native" compiler) and when false it returns the host compiler (the "cross" compiler)
+- `get_compiler` returns an object describing a compiler, takes one positional argument which is the language to use, and one keyword argument, `native` which when set to true makes Meson return the compiler for the build machine (the "native" compiler) and when false it returns the host compiler (the "cross" compiler)
 
-- <tt>is_cross_build</tt> returns true if the current build is a cross build and false otherwise
+- `is_cross_build` returns true if the current build is a cross build and false otherwise
 
-- <tt>is_unity</tt> returns true when doing a unity build
+- `is_unity` returns true when doing a unity build
 
-- <tt>has_exe_wrapper</tt> returns true when doing a cross build if there is a wrapper command that can be used to execute cross built binaries (for example when cross compiling from Linux to Windows, one can use <tt>wine</tt> as the wrapper)
+- `has_exe_wrapper` returns true when doing a cross build if there is a wrapper command that can be used to execute cross built binaries (for example when cross compiling from Linux to Windows, one can use `wine` as the wrapper)
 
-- <tt>add_install_script</tt> causes the script given as an argument to be run during the install step, this script will have the environment variables <tt>MESON_SOURCE_ROOT</tt>, <tt>MESON_BUILD_ROOT</tt> and <tt>MESON_INSTALL_PREFIX</tt> set
+- `add_install_script` causes the script given as an argument to be run during the install step, this script will have the environment variables `MESON_SOURCE_ROOT`, `MESON_BUILD_ROOT` and `MESON_INSTALL_PREFIX` set
 
 - `add_postconf_script` will run the executable given as an argument after all project files have been generated. This script will have the environment variables `MESON_SOURCE_ROOT` and `MESON_BUILD_ROOT` set. All additional arguments are passed as parameters.
 
-- <tt>current_source_dir</tt> returns a string to the current source directory
+- `current_source_dir` returns a string to the current source directory
 
-- <tt>current_build_dir</tt> returns a string to the current build directory
+- `current_build_dir` returns a string to the current build directory
 
 - `source_root` returns a string with the absolute path to the source root directory
 
@@ -298,7 +298,7 @@ The <tt>meson</tt> object allows you to introspect various properties of the sys
 
 A build target is either an executable, shared or static library.
 
-- <tt>extract_objects</tt> returns an opaque object representing the generated object files of arguments, usually used to take single object files and linking them to unit tests or compiling some source files with custom flags
+- `extract_objects` returns an opaque object representing the generated object files of arguments, usually used to take single object files and linking them to unit tests or compiling some source files with custom flags
 
 - `extract_all_objects` is same as above but returns all object files generated by this target
 
@@ -341,7 +341,7 @@ This object encapsulates the result of trying to compile and run a sample piece 
 
 ### configuration data object ###
 
-This object encapsulates configuration values to be used for generating configuration files. It has two methods, <tt>set</tt> and <tt>set10</tt> which are fully documented on [the configuration wiki page](Configuration).
+This object encapsulates configuration values to be used for generating configuration files. It has two methods, `set` and `set10` which are fully documented on [the configuration wiki page](Configuration).
 
 ### dependency object ###
 
@@ -359,13 +359,13 @@ Contains an external (i.e. not built as part of this project) program. This obje
 
 ### external library object ###
 
-Contains an external (i.e. not built as part of this project) library. This object has only one method, <tt>found</tt>, which returns whether the library was found.
+Contains an external (i.e. not built as part of this project) library. This object has only one method, `found`, which returns whether the library was found.
 
 ### generator object ###
 
 This object contains a generator that is used to transform files from one type to another by an executable (e.g. idl files into source code and headers).
 
-- <tt>process</tt> takes a list of files, causes them to be processed and returns an object containing the result which can then, for example, be passed into a build target definition. The keyword argument `extra_args`, if specified, will be used to replace an entry `@EXTRA_ARGS@` in the argument list.
+- `process` takes a list of files, causes them to be processed and returns an object containing the result which can then, for example, be passed into a build target definition. The keyword argument `extra_args`, if specified, will be used to replace an entry `@EXTRA_ARGS@` in the argument list.
 
 ### string object
 

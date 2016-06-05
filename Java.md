@@ -13,7 +13,7 @@ Meson has experimental support for compiling Java programs. The basic syntax con
 However note that Meson places limitations on how you lay out your code.
 
 * all Java files for a jar must be under the subdirectory the jar definition is in
-* all Java files must be in paths specified by their package, e.g. a class called <tt>com.example.Something</tt> must be in a Java file situated at <tt>com/example/Something.java</tt>.
+* all Java files must be in paths specified by their package, e.g. a class called `com.example.Something` must be in a Java file situated at `com/example/Something.java`.
 * Meson only deals with jar files, you cannot poke individual class files (unless you do so manually)
 
 ---

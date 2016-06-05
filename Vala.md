@@ -11,7 +11,7 @@ Meson has experimental support for compiling Vala programs. A skeleton Vala file
     executable('valaprog', 'prog.vala',
                deps : [glib, gobject])
 
-You must always specify <tt>glib</tt> and <tt>gobject</tt> as dependencies, because all Vala applications use them.
+You must always specify `glib` and `gobject` as dependencies, because all Vala applications use them.
 
 ---
 

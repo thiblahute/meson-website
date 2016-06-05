@@ -8,7 +8,7 @@ This is both tedious and error prone because it is always done by hand. The Wrap
 
 Meson has a concept of [subprojects](Subprojects). They are a way of nesting one Meson project inside another. Any project that builds with Meson can detect that it is built as a subproject and build itself in a way that makes it easy to use (usually this means as a static library).
 
-To use this kind of a project as a dependency you could just copy and extract it inside your project's <tt>subprojects</tt> directory. However there is a simpler way. You can specify a Wrap file that tells Meson how to download it for you. An example wrap file would look like this:
+To use this kind of a project as a dependency you could just copy and extract it inside your project's `subprojects` directory. However there is a simpler way. You can specify a Wrap file that tells Meson how to download it for you. An example wrap file would look like this:
 
     [wrap-file]
     directory = libfoobar-1.0
@@ -45,13 +45,13 @@ The above mentioned scheme assumes that your subproject is working off packaged 
     url=https://github.com/jpakkane/samplesubproject.git
     revision=head
 
-The format is straightforward. The only thing to note is the revision element that can have one of two values. The first is <tt>head</tt> which will cause Meson to track the master head (doing a repull whenever the build definition is altered). The second type is a commit hash. In this case Meson will use the commit specified (with `git checkout [hash id]`).
+The format is straightforward. The only thing to note is the revision element that can have one of two values. The first is `head` which will cause Meson to track the master head (doing a repull whenever the build definition is altered). The second type is a commit hash. In this case Meson will use the commit specified (with `git checkout [hash id]`).
 
 Note that in this case you cannot specify an extra patch file to use. The git repo must contain all necessary Meson build definitions.
 
 ## Using wrapped projects
 
-To use a subproject simply do this in your top level <tt>meson.build</tt>.
+To use a subproject simply do this in your top level `meson.build`.
 
     foobar_sp = subproject('foobar')
 

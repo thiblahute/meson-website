@@ -10,7 +10,7 @@ Meson tries to solve this problem by making it extremely easy to provide both at
       # set up rest of project as if foo was provided by this project
     endif
 
-All Meson features of the subproject, such as project options keep working and can be set in the master project. There are a few limitations, the most imporant being that global compiler arguments must be set in the main project before calling subproject. Subprojects must not set global arguments because there is no way to do that reliably over multiple subprojects. To check whether you are running as a subproject, use the <tt>is_subproject</tt> function.
+All Meson features of the subproject, such as project options keep working and can be set in the master project. There are a few limitations, the most imporant being that global compiler arguments must be set in the main project before calling subproject. Subprojects must not set global arguments because there is no way to do that reliably over multiple subprojects. To check whether you are running as a subproject, use the `is_subproject` function.
 
 As an example, suppose we have a simple project that provides a shared library.
 
@@ -18,7 +18,7 @@ As an example, suppose we have a simple project that provides a shared library.
     i = include_directories('include')
     l = shared_library('simple', 'simple.c', include_dirs : i, install : true)
 
-Then we could use that from a master project. First we generate a subdirectory called <tt>subprojects</tt> in the root of the master directory. Then we create a subdirectory called <tt>simple</tt> and put the subproject in that directory. Now the subproject can be used like this.
+Then we could use that from a master project. First we generate a subdirectory called `subprojects` in the root of the master directory. Then we create a subdirectory called `simple` and put the subproject in that directory. Now the subproject can be used like this.
 
     project('master', 'c')
     dep = dependency('simple', required : false)
@@ -37,7 +37,7 @@ With this setup the system dependency is used when it is available, otherwise we
 
 It should be noted that this only works for subprojects that are built with Meson. It can not be used with any other build system. The reason is the simple fact that there is no possible way to do this reliably with mixed build systems.
 
-Subprojects can use other subprojects, but all subprojects must reside in the top level <tt>subprojects</tt> directory. Recursive use of subprojects is not allowed, though, so you can't have subproject <tt>a</tt> that uses subproject <tt>b</tt> and have <tt>b</tt> also use <tt>a</tt>.
+Subprojects can use other subprojects, but all subprojects must reside in the top level `subprojects` directory. Recursive use of subprojects is not allowed, though, so you can't have subproject `a` that uses subproject `b` and have `b` also use `a`.
 
 ---
 

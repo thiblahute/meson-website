@@ -1,8 +1,8 @@
 One of the main design goals of Meson has been to build all projects out-of-source. This means that *all* files generated during the build are placed in a separate subdirectory. This goes against common Unix tradition where you build your projects in-source. Building out of source gives two major advantages.
 
-First of all this makes for very simple <tt>.gitignore</tt> files. In classical build systems you may need to have tens of lines of definitions, most of which contain wildcards. When doing out of source builds all of this busywork goes away. A common ignore file for a Meson project only contains a few lines that are the build directory and IDE project files.
+First of all this makes for very simple `.gitignore` files. In classical build systems you may need to have tens of lines of definitions, most of which contain wildcards. When doing out of source builds all of this busywork goes away. A common ignore file for a Meson project only contains a few lines that are the build directory and IDE project files.
 
-Secondly this makes it very easy to clean your projects: just delete the build subdirectory and you are done. There is no need to guess whether you need to run <tt>make clean</tt>, <tt>make distclean</tt>, <tt>make mrproper</tt> or something else. When you delete a build subdirectory there is no possible way to have any lingering state from your old builds.
+Secondly this makes it very easy to clean your projects: just delete the build subdirectory and you are done. There is no need to guess whether you need to run `make clean`, `make distclean`, `make mrproper` or something else. When you delete a build subdirectory there is no possible way to have any lingering state from your old builds.
 
 The true benefit comes from somewhere else, though.
 
@@ -30,9 +30,9 @@ You can add cross builds, too. As an example, let's set up a Linux -> Windows cr
     mkdir buildwine
     meson --cross-file=mingw-cross.txt buildwine
 
-The cross compilation file sets up Wine so that not only can you compile your application, you can also run the unit test suite just by issuing the command <tt>ninja test</tt>.
+The cross compilation file sets up Wine so that not only can you compile your application, you can also run the unit test suite just by issuing the command `ninja test`.
 
-To compile any of these build types, just cd into the corresponding build directory and run <tt>ninja</tt> or instruct your IDE to do the same. Note that once you have set up your build directory once, you can just run Ninja and Meson will ensure that the resulting build is fully up to date according to the source. Even if you have not touched one of the directories in weeks and have done major changes to your build configuration, Meson will detect this and bring the build directory up to date (or print an error if it can't do that). This allows you to do most of your work in the default directory and use the others every now and then without having to babysit your build directories.
+To compile any of these build types, just cd into the corresponding build directory and run `ninja` or instruct your IDE to do the same. Note that once you have set up your build directory once, you can just run Ninja and Meson will ensure that the resulting build is fully up to date according to the source. Even if you have not touched one of the directories in weeks and have done major changes to your build configuration, Meson will detect this and bring the build directory up to date (or print an error if it can't do that). This allows you to do most of your work in the default directory and use the others every now and then without having to babysit your build directories.
 
 ## Specialised uses ##
 

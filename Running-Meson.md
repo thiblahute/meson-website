@@ -1,11 +1,11 @@
-There are two different ways of invoking Meson. First, you can run it directly from the source tree with the command <tt>/path/to/source/meson.py</tt>. Meson may also be installed in which case the command is simply <tt>meson</tt>. In this manual we only use the latter format for simplicity.
+There are two different ways of invoking Meson. First, you can run it directly from the source tree with the command `/path/to/source/meson.py`. Meson may also be installed in which case the command is simply `meson`. In this manual we only use the latter format for simplicity.
 
 At the time of writing only a command line version of Meson is available. This means that Meson must be invoked using the terminal. If you wish to use the MSVC compiler, you need to run Meson under "Visual Studio command prompt".
 
 Configuring the source
 ==
 
-Let us assume that we have a source tree that has a Meson build system. This means that at the topmost directory has a file called <tt>meson.build</tt>. We run the following commands to get the build started.
+Let us assume that we have a source tree that has a Meson build system. This means that at the topmost directory has a file called `meson.build`. We run the following commands to get the build started.
 
     cd /path/to/source/root
     mkdir build
@@ -14,14 +14,14 @@ Let us assume that we have a source tree that has a Meson build system. This mea
 
 First we create a directory to hold all files generated during the build. Then we go into it and invoke Meson, giving it the location of the source root. Meson then loads the build configuration file and writes the corresponding build backend in the build directory. By default Meson generates a *debug build*, which turns on basic warnings and debug information and disables compiler optimizations. 
 
-You can specify a different type of build with the <tt>--buildtype</tt> command line argument. It can have one of the following values.
+You can specify a different type of build with the `--buildtype` command line argument. It can have one of the following values.
 
 value | meaning
 ------|--------
-<tt>plain</tt> | no extra build flags are used, even for compiler warnings, useful for distro packagers and other cases where you need to specify all arguments by yourself
-<tt>debug</tt> | debug info is generated but the result is not optimized, this is the default
-<tt>debugoptimized</tt> | debug info is generated and the code is optimized (on most compilers this means <tt>-g -O2</tt>)
-<tt>release</tt> | full optimization, no debug info
+`plain` | no extra build flags are used, even for compiler warnings, useful for distro packagers and other cases where you need to specify all arguments by yourself
+`debug` | debug info is generated but the result is not optimized, this is the default
+`debugoptimized` | debug info is generated and the code is optimized (on most compilers this means `-g -O2`)
+`release` | full optimization, no debug info
 
 The build directory is mandatory. The reason for this is that it simplifies the build process immensely. Meson will not under any circumstances write files inside the source directory (if it does, it is a bug and should be fixed). This means that the user does not need to add a bunch of files to their revision control's ignore list. It also means that you can create arbitrarily many build directories for any given source tree. If we wanted to test building the source code with the Clang compiler instead of the system default, we could just type the following commands.
 
@@ -38,7 +38,7 @@ By default Meson will use the Ninja backend to build your project. If you wish t
 
     meson <source dir> <build dir> --backend=vs2010
 
-You can then open the generated solution with Visual Studio and compile it in the usual way. A list of backends can be obtained with <tt>meson --help</tt>.
+You can then open the generated solution with Visual Studio and compile it in the usual way. A list of backends can be obtained with `meson --help`.
 
 Building the source
 ==
@@ -47,9 +47,9 @@ If you are not using an IDE, Meson uses the [Ninja build system](http://martine.
 
     ninja
 
-The main usability difference between Ninja and Make is that Ninja will automatically detect the number of CPUs in your computer and parallelize itself accordingly. You can override the amount of parallel processes used with the command line argument <tt>-j &lt;num processes&gt;</tt>.
+The main usability difference between Ninja and Make is that Ninja will automatically detect the number of CPUs in your computer and parallelize itself accordingly. You can override the amount of parallel processes used with the command line argument `-j &lt;num processes&gt;`.
 
-It should be noted that after the initial configure step <tt>ninja</tt> is the only command you ever need to type to compile. No matter how you alter your source tree (short of moving it to a completely new location), Meson will detect the changes and regenerate itself accordingly. This is especially handy if you have multiple build directories. Often one of them is used for development (the "debug" build) and others only every now and then (such as a "static analysis" build). Any configuration can be built just by <tt>cd</tt>'ing to the corresponding directory and running Ninja.
+It should be noted that after the initial configure step `ninja` is the only command you ever need to type to compile. No matter how you alter your source tree (short of moving it to a completely new location), Meson will detect the changes and regenerate itself accordingly. This is especially handy if you have multiple build directories. Often one of them is used for development (the "debug" build) and others only every now and then (such as a "static analysis" build). Any configuration can be built just by `cd`'ing to the corresponding directory and running Ninja.
 
 Running tests
 ==
@@ -67,7 +67,7 @@ Installing the built software is just as simple.
 
     ninja install
 
-By default Meson installs to <tt>/usr/local</tt>. This can be changed by passing the command line argument <tt>--prefix /your/prefix</tt> to Meson during configure time. Meson also supports the <tt>DESTDIR</tt> variable used in e.g. building packages. It is used like this:
+By default Meson installs to `/usr/local`. This can be changed by passing the command line argument `--prefix /your/prefix` to Meson during configure time. Meson also supports the `DESTDIR` variable used in e.g. building packages. It is used like this:
 
     DESTDIR=/path/to/staging ninja install
 

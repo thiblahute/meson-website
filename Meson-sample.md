@@ -3,7 +3,7 @@ A Meson file that builds an executable looks like this.
     project('simple', 'c')
     executable('myexe', 'source.c')
 
-All Meson build definitions begin with the <tt>project</tt> command. It specifies the name of the project and what programming languages it uses. Here the project is called *simple* and it uses only the C programming language. All strings are single-quoted.
+All Meson build definitions begin with the `project` command. It specifies the name of the project and what programming languages it uses. Here the project is called *simple* and it uses only the C programming language. All strings are single-quoted.
 
 On the next line we define a *build target*, in this case an executable called *myexe*. It consists of one source file. This is all the code that a user needs to write to compile an executable with Meson. 
 
@@ -27,14 +27,14 @@ Meson also supports the notion of *keyword arguments*. Indeed most arguments to 
 
 These two formats are equivalent and choosing one over the other is mostly a question of personal preference.
 
-The <tt>executable</tt> command actually returns an *executable object*, which represents the given build target. It can be passed on to other functions, like this.
+The `executable` command actually returns an *executable object*, which represents the given build target. It can be passed on to other functions, like this.
 
     project('simple', 'c')
     src = ['source1.c', 'source2.c', 'source3.c']
     exe = executable('myexe', src)
     test('simple test', exe)
 
-Here we create a unit test called *simple test*, and which uses the built executable. When the tests are run with the <tt>ninja test</tt> command, the built executable is run. If it returns zero, the test passes. A non-zero return value indicates an error, which Meson will then report to the user.
+Here we create a unit test called *simple test*, and which uses the built executable. When the tests are run with the `ninja test` command, the built executable is run. If it returns zero, the test passes. A non-zero return value indicates an error, which Meson will then report to the user.
 
 A note to Visual Studio users
 -----

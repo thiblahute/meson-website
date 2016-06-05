@@ -1,10 +1,10 @@
 # An in-depth tutorial of Meson #
 
-In this tutorial we set up a project with multiple targets, unit tests and dependencies between targets. Our main product is a shared library called *foo* that is written in <tt>C++11</tt>. We are going to ignore the contents of the source files, as they are not really important from a build definition point of view. The library makes use of the <tt>GLib</tt> library so we need to detect and link it properly. We also make the resulting library installable.
+In this tutorial we set up a project with multiple targets, unit tests and dependencies between targets. Our main product is a shared library called *foo* that is written in `C++11`. We are going to ignore the contents of the source files, as they are not really important from a build definition point of view. The library makes use of the `GLib` library so we need to detect and link it properly. We also make the resulting library installable.
 
-The source tree contains three subdirectories <tt>src</tt>, <tt>include</tt> and <tt>test</tt> that contain, respectively, the source code, headers and unit tests of our project.
+The source tree contains three subdirectories `src`, `include` and `test` that contain, respectively, the source code, headers and unit tests of our project.
 
-To start things up, here is the top level <tt>meson.build</tt> file.
+To start things up, here is the top level `meson.build` file.
 
     project('c++ foolib', 'cpp',
       version : '1.0.0',
@@ -27,21 +27,21 @@ To start things up, here is the top level <tt>meson.build</tt> file.
 
 The definition always starts with a call to the `project` function. In it you must specify the project's name and programming languages to use, in this case only `C++`. We also specify two additional arguments, the project's version and the license it is under. Our project is version `1.0.0` and is specified to be under the MIT license.
 
-Then we find GLib, which is an *external dependency*. The <tt>dependency</tt> function tells Meson to find the library (by default using <tt>pkg-config</tt>). If the library is not found, Meson will raise an error and stop processing the build definition.
+Then we find GLib, which is an *external dependency*. The `dependency` function tells Meson to find the library (by default using `pkg-config`). If the library is not found, Meson will raise an error and stop processing the build definition.
 
-Then we add a global compiler argument <tt>-DSOME_TOKEN=value</tt>. This flag is used for *all* C++ source file compilations. It is not possible to unset it for some targets. The reason for this is that it is hard to keep track of what compiler flags are in use if global settings change per target.
+Then we add a global compiler argument `-DSOME_TOKEN=value`. This flag is used for *all* C++ source file compilations. It is not possible to unset it for some targets. The reason for this is that it is hard to keep track of what compiler flags are in use if global settings change per target.
 
-Since <tt>include</tt> directory contains the header files, we need a way to tell compilations to add that directory to the compiler command line. This is done with the <tt>include_directories</tt> command that takes a directory and returns an object representing this directory. It is stored in variable <tt>inc</tt> which makes it accessible later on.
+Since `include` directory contains the header files, we need a way to tell compilations to add that directory to the compiler command line. This is done with the `include_directories` command that takes a directory and returns an object representing this directory. It is stored in variable `inc` which makes it accessible later on.
 
 After this are three `subdir` commands. These instruct Meson to go to the specified subdirectory, open the `meson.build` file that's in there and execute it. The last few lines are a stanza to generate a `pkg-config` file. We'll skip that for now and come back to it at the end of this document.
 
-The first subdirectory we go into is <tt>include</tt>. In it we have a a header file for the library that we want to install. This requires one line.
+The first subdirectory we go into is `include`. In it we have a a header file for the library that we want to install. This requires one line.
 
     install_headers('foolib.h')
 
-This installs the given header file to the system's header directory. This is by default <tt>/[install prefix]/include</tt>, but it can be changed with a command line argument.
+This installs the given header file to the system's header directory. This is by default `/[install prefix]/include`, but it can be changed with a command line argument.
 
-The Meson definition of <tt>src</tt> subdir is simple.
+The Meson definition of `src` subdir is simple.
 
     foo_sources = ['source1.cpp', 'source2.cpp']
     foolib = shared_library('foo',
@@ -50,20 +50,20 @@ The Meson definition of <tt>src</tt> subdir is simple.
                             dependencies : glib_dep,
                             install : true)
 
-Here we just tell Meson to build the library with the given sources. We also tell it to use the include directories we stored to variable <tt>inc</tt> earlier. Since this library uses GLib, we tell Meson to add all necessary compiler and linker flags with the <tt>dependencies</tt> keyword argument. Its value is <tt>glib_dep</tt> which we set at the top level <tt>meson.build</tt> file. The <tt>install</tt> argument tells Meson to install the result. As with the headers, the shared library is installed to the system's default location (usually <tt>/[install prefix]/lib</tt>) but is again overridable.
+Here we just tell Meson to build the library with the given sources. We also tell it to use the include directories we stored to variable `inc` earlier. Since this library uses GLib, we tell Meson to add all necessary compiler and linker flags with the `dependencies` keyword argument. Its value is `glib_dep` which we set at the top level `meson.build` file. The `install` argument tells Meson to install the result. As with the headers, the shared library is installed to the system's default location (usually `/[install prefix]/lib`) but is again overridable.
 
-The resulting library is stored in variable <tt>foolib</tt> just like the include directory was stored in the previous file.
+The resulting library is stored in variable `foolib` just like the include directory was stored in the previous file.
 
-Once Meson has processed the <tt>src</tt> subdir it returns to the main Meson file and executes the next line that moves it into the <tt>test</tt> subdir. Its contents look like this.
+Once Meson has processed the `src` subdir it returns to the main Meson file and executes the next line that moves it into the `test` subdir. Its contents look like this.
 
     testexe = executable('testexe', 'footest.cpp',
                          include_directories : inc,
                          link_with : foolib)
     test('foolib test', testexe)
 
-First we build a test executable that has the same include directory as the main library and which also links against the freshly built shared library. Note that you don't need to specify <tt>glib_dep</tt> here just to be able to use the built library <tt>foolib</tt>. If the executable used GLib functionality itself, then we would of course need to add it as a keyword argument here.
+First we build a test executable that has the same include directory as the main library and which also links against the freshly built shared library. Note that you don't need to specify `glib_dep` here just to be able to use the built library `foolib`. If the executable used GLib functionality itself, then we would of course need to add it as a keyword argument here.
 
-Finally we define a test with the name <tt>foolib test</tt>. It consists of running the binary we just built. If the executable exits with a zero return value, the test is considered passed. Nonzero return values mark the test as failed.
+Finally we define a test with the name `foolib test`. It consists of running the binary we just built. If the executable exits with a zero return value, the test is considered passed. Nonzero return values mark the test as failed.
 
 At this point we can return to the pkg-config generator line. All shared libraries should provide a pkg-config file, which explains how that library is used. Meson provides this simple generator that should be sufficient for most simple projects. All you need to do is list a few basic pieces of information and Meson takes care of generating an appropriate file. More advanced users might want to create their own pkg-config files using Meson's [configuration file generator system](Configuration).
 

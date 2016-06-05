@@ -29,7 +29,7 @@ Strings can be converted to a number like this:
 Booleans
 --
 
-A boolean is either <tt>true</tt> or <tt>false</tt>.
+A boolean is either `true` or `false`.
 
     truth = true
 
@@ -40,7 +40,7 @@ Strings in Meson are declared with single quotes. To enter a literal single quot
 
     single quote = 'contains a \' character'
 
-Similarly <tt>\n</tt> gets converted to a newline and <tt>\\\\</tt> to a single backslash.
+Similarly `\n` gets converted to a newline and `\\\\` to a single backslash.
 
 #### Strings running over multiple lines
 
@@ -61,7 +61,7 @@ Strings can be built using the string formatting functionality.
     res = template.format('text', 1, true)
     # res now has value 'string: text, number: 1, bool: true'
 
-As can be seen, the formatting works by replacing placeholders of type <tt>@number@</tt> with the corresponding argument.
+As can be seen, the formatting works by replacing placeholders of type `@number@` with the corresponding argument.
 
 #### String methods
 
@@ -184,7 +184,7 @@ If statements work just like in other languages.
 
 ## Foreach statements
 
-To do an operation on all elements of an array, use the <tt>foreach</tt> command. As an example, here's how you would define two executables with corresponding tests.
+To do an operation on all elements of an array, use the `foreach` command. As an example, here's how you would define two executables with corresponding tests.
 
     progs = [['prog1', ['prog1.c', 'foo.c']],
              ['prog2', ['prog2.c', 'bar.c']]]
@@ -194,7 +194,7 @@ To do an operation on all elements of an array, use the <tt>foreach</tt> command
       test(p.get(0), exe)
     endforeach
 
-Note that Meson variables are immutable. Trying to assign a new value to <tt>progs</tt> inside a foreach loop will not affect foreach's control flow.
+Note that Meson variables are immutable. Trying to assign a new value to `progs` inside a foreach loop will not affect foreach's control flow.
 
 Logical operations
 --
@@ -219,7 +219,7 @@ Logical operations work only on boolean values.
 Comments
 --
 
-A comment starts with the <tt>#</tt> character and extends until the end of the line.
+A comment starts with the `#` character and extends until the end of the line.
 
     some_function() # This is a comment
     some_other_function()
@@ -227,7 +227,7 @@ A comment starts with the <tt>#</tt> character and extends until the end of the 
 Includes
 --
 
-Most source trees have multiple subdirectories to process. These can be handled by Meson's <tt>subdir</tt> command. It changes to the given subdirectory and executes the contents of <tt>meson.build</tt> in that subdirectory. All state (variables etc) are passed to and from the subdirectory. The effect is roughly the same as if the contents of the subdirectory's Meson file would have been written where the include command is.
+Most source trees have multiple subdirectories to process. These can be handled by Meson's `subdir` command. It changes to the given subdirectory and executes the contents of `meson.build` in that subdirectory. All state (variables etc) are passed to and from the subdirectory. The effect is roughly the same as if the contents of the subdirectory's Meson file would have been written where the include command is.
 
     test_data_dir = 'data'
     subdir('tests')

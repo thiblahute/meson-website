@@ -1,4 +1,4 @@
-Meson provides three kinds of build targets: executables, static libraries and shared libraries. They are created with the commands <tt>executable</tt>, <tt>static_library</tt> and <tt>shared_library</tt>, respectively. All objects created in this way are **immutable**. That is, you can not change any aspect of them after they have been constructed. This ensures that all information pertaining to a given build target is specified in one well defined place.
+Meson provides three kinds of build targets: executables, static libraries and shared libraries. They are created with the commands `executable`, `static_library` and `shared_library`, respectively. All objects created in this way are **immutable**. That is, you can not change any aspect of them after they have been constructed. This ensures that all information pertaining to a given build target is specified in one well defined place.
 
 As an example, here is how you would build a shared library.
 

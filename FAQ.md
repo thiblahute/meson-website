@@ -32,7 +32,7 @@ Instead of specifying files explicitly, people seem to want to do this:
 
 Meson does not support this syntax and the reason for this is simple. This can not be made both reliable and fast. By reliable we mean that if the user adds a new source file to the subdirectory, Meson should detect that and make it part of the build automatically.
 
-One of the main requirements of Meson is that it must be fast. This means that a no-op build in a  tree of 10 000 source files must take no more than a fraction of a second. This is only possible because Meson knows the exact list of files to check. If any target is specified as a wildcard glob, this is no longer possible. Meson would need to re-evaluate the glob every time and compare the list of files produced against the previous list. This means inspecting the entire source tree (because the glob pattern could be <tt>src/\*/\*/\*/\*.cpp</tt> or something like that). This is impossible to do efficiently.
+One of the main requirements of Meson is that it must be fast. This means that a no-op build in a  tree of 10 000 source files must take no more than a fraction of a second. This is only possible because Meson knows the exact list of files to check. If any target is specified as a wildcard glob, this is no longer possible. Meson would need to re-evaluate the glob every time and compare the list of files produced against the previous list. This means inspecting the entire source tree (because the glob pattern could be `src/\*/\*/\*/\*.cpp` or something like that). This is impossible to do efficiently.
 
 The main backend of Meson is Ninja, which does not support wildcard matches either, and for the same reasons.
 
@@ -40,7 +40,7 @@ Because of this, all source files must be specified explicitly.
 
 ## But I really want to use wildcards!
 
-If the tradeoff between reliability and convenience is acceptable to you, then Meson gives you all the tools necessary to do wildcard globbing. You are allowed to run arbitrary commands during configuration. First you need to write a script that locates the files to compile. Here's a simple shell script that writes all <tt>.c</tt> files in the current directory, one per line.
+If the tradeoff between reliability and convenience is acceptable to you, then Meson gives you all the tools necessary to do wildcard globbing. You are allowed to run arbitrary commands during configuration. First you need to write a script that locates the files to compile. Here's a simple shell script that writes all `.c` files in the current directory, one per line.
 
 
     #!/bin/sh
@@ -57,15 +57,15 @@ Then you need to run this script in your Meson file, convert the output into a s
 
 The script can be any executable, so it can be written in shell, Python, Lua, Perl or whatever you wish.
 
-As mentioned above, the tradeoff is that just adding new files to the source directory does *not* add them to the build automatically. To add them you need to tell Meson to reinitialize itself. The simplest way is to touch the <tt>meson.build</tt> file in your source root. Then Meson will reconfigure itself next time the build command is run. Advanced users can even write a small background script that utilizes a filesystem event queue, such as [inotify](https://en.wikipedia.org/wiki/Inotify), to do this automatically.
+As mentioned above, the tradeoff is that just adding new files to the source directory does *not* add them to the build automatically. To add them you need to tell Meson to reinitialize itself. The simplest way is to touch the `meson.build` file in your source root. Then Meson will reconfigure itself next time the build command is run. Advanced users can even write a small background script that utilizes a filesystem event queue, such as [inotify](https://en.wikipedia.org/wiki/Inotify), to do this automatically.
 
-## Should I use <tt>subdir</tt> or <tt>subproject</tt>?
+## Should I use `subdir` or `subproject`?
 
-The answer is almost always <tt>subdir</tt>. Subproject exists for a very specific use case: embedding external dependencies into your build process. As an example, suppose we are writing a game and wish to use SDL. Let us further suppose that SDL comes with a Meson build definition. Let us suppose even further that we don't want to use prebuilt binaries but want to compile SDL for ourselves.
+The answer is almost always `subdir`. Subproject exists for a very specific use case: embedding external dependencies into your build process. As an example, suppose we are writing a game and wish to use SDL. Let us further suppose that SDL comes with a Meson build definition. Let us suppose even further that we don't want to use prebuilt binaries but want to compile SDL for ourselves.
 
-In this case you would use <tt>subproject</tt>. The way to do it would be to grab the source code of SDL and put it inside your own source tree. Then you would do <tt>sdl = subproject('sdl')</tt>, which would cause Meson to build SDL as part of your build and would then allow you to link against it or do whatever else you may prefer.
+In this case you would use `subproject`. The way to do it would be to grab the source code of SDL and put it inside your own source tree. Then you would do `sdl = subproject('sdl')`, which would cause Meson to build SDL as part of your build and would then allow you to link against it or do whatever else you may prefer.
 
-For every other use you would use <tt>subdir</tt>. As an example, if you wanted to build a shared library in one dir and link tests against it in another dir, you would do something like this:
+For every other use you would use `subdir`. As an example, if you wanted to build a shared library in one dir and link tests against it in another dir, you would do something like this:
 
     project('simple', 'c')
     subdir('src')   # library is built here

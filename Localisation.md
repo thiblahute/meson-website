@@ -1,19 +1,19 @@
-Localising your application with GNU Gettext takes a little effort but is quite straightforward. This documentation assumes that you have a <tt>po</tt> subdirectory at your project root directory that contains all the localisation info.
+Localising your application with GNU Gettext takes a little effort but is quite straightforward. This documentation assumes that you have a `po` subdirectory at your project root directory that contains all the localisation info.
 
-The first thing you need is a file called <tt>POTFILES</tt>. It lists all the source files that Gettext should scan in order to find strings to translate. The syntax of the file is one line per source file and the line must contain the relative path from source root. A sample POTFILES might look like this.
+The first thing you need is a file called `POTFILES`. It lists all the source files that Gettext should scan in order to find strings to translate. The syntax of the file is one line per source file and the line must contain the relative path from source root. A sample POTFILES might look like this.
 
     src/file1.c
     src/file2.c
     src/subdir/file3.c
     include/mything/somefile.h
 
-We also need to define an array of strings containing all the locales we want to generate. This is done in the Meson file in the <tt>po</tt> subdirectory. Assuming we want to generate Finnish and German localisations, the definition would look like this.
+We also need to define an array of strings containing all the locales we want to generate. This is done in the Meson file in the `po` subdirectory. Assuming we want to generate Finnish and German localisations, the definition would look like this.
 
     langs = ['fi', 'de']
 
-Then we need to generate the main pot file. Usually this is generated manually or exists already. If not, see later on how to generate it using Meson. The potfile can have any name but is usually the name of the Gettext package. Let's say the project is called *intltest*. In this case the corresponding pot file would be called <tt>inltest.pot</tt>.
+Then we need to generate the main pot file. Usually this is generated manually or exists already. If not, see later on how to generate it using Meson. The potfile can have any name but is usually the name of the Gettext package. Let's say the project is called *intltest*. In this case the corresponding pot file would be called `inltest.pot`.
 
-For each language listed in the array above we need a corresponding <tt>.po</tt> file. This has to be generated manually, see the Gettext manual for details. Once we have all this, we can define the localisation to Meson with this command.
+For each language listed in the array above we need a corresponding `.po` file. This has to be generated manually, see the Gettext manual for details. Once we have all this, we can define the localisation to Meson with this command.
 
     gettext('intltest', languages : langs)
 

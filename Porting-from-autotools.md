@@ -1,6 +1,6 @@
 This page uses [appstream-glib](https://github.com/hughsie/appstream-glib/) as an example project. Appstream-Glib contains some libraries, gobject-introspection, tests, man pages, i18n, bash-completion with optional flags to build/notbuild support for some things.
 
-Meson comes with a helper script <tt>ac_converter</tt> that you can use to convert the basic autoconf checks for your project.
+Meson comes with a helper script `ac_converter` that you can use to convert the basic autoconf checks for your project.
 
 ## Configure.ac
 
@@ -25,8 +25,8 @@ m4_define([as_version],
 as_major_version = '0'
 as_minor_version = '3'
 as_micro_version = '6'
-as_version = '@0@.@1@.@2@'.format(as_major_version, 
-                                  as_minor_version, 
+as_version = '@0@.@1@.@2@'.format(as_major_version,
+                                  as_minor_version,
                                   as_micro_version)
 ```
 
@@ -40,7 +40,7 @@ AC_PROG_CC
 ```
 project('appstream-glib', 'c')
 ```
-Note that this must be the first line of your <tt>meson.build</tt> file.
+Note that this must be the first line of your `meson.build` file.
 
 ### AC_SUBST
 `configure.ac`:

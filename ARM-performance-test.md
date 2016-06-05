@@ -25,9 +25,9 @@ Next we measured the "empty build" case. That is, how long does it take for the 
 
 ![GLib link time](https://raw.githubusercontent.com/wiki/jpakkane/meson/glib_link.png)
 
-One step which takes quite a lot of time is linking. A common case is that you are working on a library and there are tens of small test executables that link to it. Even if the compilation step would be fast, relinking all of the test executables takes time. It is common for people to manually compile only one test application with a command such as <tt>make sometest</tt> rather than rebuild everything.
+One step which takes quite a lot of time is linking. A common case is that you are working on a library and there are tens of small test executables that link to it. Even if the compilation step would be fast, relinking all of the test executables takes time. It is common for people to manually compile only one test application with a command such as `make sometest` rather than rebuild everything.
 
-Meson has an optimization for this case. Whenever a library is rebuilt, Meson inspects the ABI it exports. If it has not changed, Meson will skip all relinking steps as unnecessary. The difference this makes can be clearly seen in the chart above. In that test the source was fully built, then the file <tt>glib/gbytes.c</tt> was touched to force the rebuild of the base glib shared library. As can be seen, Autotools then relinks all test executables that link with glib. Since Meson can detect that the ABI is the same it can skip those steps. The end result being that Meson is almost one hundred times faster on this very common use case.
+Meson has an optimization for this case. Whenever a library is rebuilt, Meson inspects the ABI it exports. If it has not changed, Meson will skip all relinking steps as unnecessary. The difference this makes can be clearly seen in the chart above. In that test the source was fully built, then the file `glib/gbytes.c` was touched to force the rebuild of the base glib shared library. As can be seen, Autotools then relinks all test executables that link with glib. Since Meson can detect that the ABI is the same it can skip those steps. The end result being that Meson is almost one hundred times faster on this very common use case.
 
 Conclusions
 -----
