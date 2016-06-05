@@ -6,15 +6,15 @@ Suppose we have the following Meson snippet:
     conf_data.set('version', '1.2.3')
     configure_file(input : 'config.h.in', output : 'config.h', configuration : conf_data)
 
-and that the contents of <tt>config.h.in</tt> are
+and that the contents of `config.h.in` are
 
     #define VERSION_STR "@version@"
 
-Meson will then create a file called <tt>config.h</tt> in the corresponding build directory whose contents are the following.
+Meson will then create a file called `config.h` in the corresponding build directory whose contents are the following.
 
     #define VERSION_STR "1.2.3"
 
-More specifically, Meson will find all strings of the type <tt>@varname@</tt> and replace them with respective values set in <tt>conf_data</tt>. You can use a single <tt>configuration_data</tt> object as many times as you like, but it becomes immutable after the first use. That is, after it has been used once the <tt>set</tt> function becomes unusable and trying to call it causes an error.
+More specifically, Meson will find all strings of the type `@varname@` and replace them with respective values set in `conf_data`. You can use a single `configuration_data` object as many times as you like, but it becomes immutable after the first use. That is, after it has been used once the `set` function becomes unusable and trying to call it causes an error.
 
 For more complex configuration file generation Meson provides a second form. To use it, put a line like this in your configuration file.
 
@@ -46,7 +46,7 @@ Often you have a boolean value in Meson but need to define the C/C++ token as 0 
 If the input file is not defined then Meson will generate a header file all the entries in the configuration data object. The replacements are the same as when generating `#mesondefine` entries:
 
     cdata.set('FOO', '"string"') => #define FOO "string"
-    cdata.set('FOO', 'return')   => #define FOO return
+    cdata.set('FOO', 'a_token')  => #define FOO a_token
     cdata.set('FOO', true)       => #define FOO
     cdata.set('FOO', false)      => #undef FOO
     cdata.set('FOO', 1)          => #define FOO 1
