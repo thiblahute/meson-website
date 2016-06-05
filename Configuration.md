@@ -41,6 +41,17 @@ Often you have a boolean value in Meson but need to define the C/C++ token as 0 
       conf.set(token, 0)
     endif
 
+## Configuring without an input file
+
+If the input file is not defined then Meson will generate a header file all the entries in the configuration data object. The replacements are the same as when generating `#mesondefine` entries:
+
+    dump.set('FOO', '"string"') => #define FOO "string"
+    dump.set('FOO', 'return')   => #define FOO return
+    dump.set('FOO', true)       => #define FOO
+    dump.set('FOO', false)      => #undef FOO
+    dump.set('FOO', 1)          => #define FOO 1
+    dump.set('FOO', 0)          => #define FOO 0
+
 ---
 
 [Back to index](Manual).
