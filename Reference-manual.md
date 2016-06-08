@@ -99,8 +99,8 @@ Creates a new executable. The first argument specifies its name and the remainin
 Executable supports the following keyword arguments.
 
 - `link_with`, one or more shared or static libraries (built by this project) that this target should be linked with
-- `&lt;languagename&gt;_pch` precompiled header file to use for the given language
-- `&lt;languagename&gt;_args` compiler flags to use for the given language
+- `<languagename>_pch` precompiled header file to use for the given language
+- `<languagename>_args` compiler flags to use for the given language; eg: `cpp_args` for C++
 - `link_args` flags to use during linking. You can use unix-style flags here for all platforms.
 - `link_depends` an extra file that the link step depends on such as a symbol visibility map
 - `include_directories` one or more objects created with the `include_directories` function
