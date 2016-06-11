@@ -321,6 +321,8 @@ This object represents a compiler for a given language and allows you to query i
 - `has_function` returns true if the given function is provided by the standard library or a library passed in with the `args` keyword
 - `has_member` takes two arguments, type name and member name and returns true if the type has the specified member
 - `has_header_symbol` allows one to detect whether a particular symbol (function, variable, #define, type definition, etc) is declared in the specified header.
+- `has_argument` takes one argument and returns true if the compiler accepts that flag, that is, can compile code without erroring out or printing a warning about an unknown flag
+- `first_supported_argument`, given a list of strings, returns the first argument that passes the `has_argument` test above or an empty array if none pass
 
 The `prefix` keyword argument can be used to add #defines, #includes, etc that are required for the symbol to be declared (eg: `#define _GNU_SOURCE` is often required for some symbols to be exposed on Linux). Supported by the methods `sizeof`, `has_type`, `has_function`, `has_member`,`has_header_symbol`.
 
