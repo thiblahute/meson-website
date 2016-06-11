@@ -24,6 +24,7 @@ Meson aims to provide an optimal syntax and implementation for a next-generation
 
 ## Additional documentation
 
+* [List of projects using Meson](Users)
 * [Porting from autotools](Porting-from-autotools)
 * [Original design rationale](Design rationale)
 * [Design rationale for the Wrap dependency system](https://groups.google.com/forum/#!topic/mesonbuild/DliVv-mjOTk)
