@@ -7,7 +7,7 @@ If you have a project that uses Meson that you want to add to this list, let us 
  - [GStreamer](https://github.com/centricular/gstreamer), multimedia framework (not merged to master yet)
  - [Parzip](https://github.com/jpakkane/parzip), a multithreaded reimplementation of Zip 
  - [Graphene](http://ebassi.github.io/graphene/), a thin type library for graphics (not merged to master yet)
-
+ - [Valum](https://github.com/valum-framework/valum), a micro web framework written in Vala
 ----
 
 [Wiki home](Home)
