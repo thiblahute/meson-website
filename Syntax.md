@@ -103,8 +103,8 @@ Strings also support a number of other methods that return transformed copies.
     # components now has the value ['a', 'b', '', '', 'c', 'd', '']
 
     # Similar to the Python str.join()
-    custom_link_args = ' '.join(['-lfoo', '-lbar'])
-    # Output value is '-lfoo -lbar'
+    output = ' '.join(['foo', 'bar'])
+    # Output value is 'foo bar'
     pathsep = '/'
     path = pathsep.join(['/usr', 'local', 'bin'])
     # path now has the value '/usr/local/bin'
