@@ -11,7 +11,7 @@ When first running Meson, set it in an environment variable.
 # Set default C/C++ language version
 
     project('myproj', 'c', 'cpp',
-            default_options : ['c_std=C11', 'cpp_std=c++11'])
+            default_options : ['c_std=c11', 'cpp_std=c++11'])
 
 # Set extra compiler and linker flags 
 
