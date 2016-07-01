@@ -41,6 +41,10 @@ If you want to use the arguments on all targets, then do this.
     cdata.set('SOMETHING', txt)
     configure_file(...)
 
+# Generate a runnable script with `configure_file`
+
+`configure_file` preserves metadata so if your template file has execute permissions, the generated file will have them too.
+
 ----
 
 [Wiki home](Home)
