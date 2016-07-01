@@ -12,6 +12,7 @@ Meson aims to provide an optimal syntax and implementation for a next-generation
 * [Reference manual](Reference manual)
 * [Module reference](Module reference)
 * [FAQ](FAQ)
+* [How do I do X in Meson](howtox)
 * [Mailing list](https://groups.google.com/forum/#!forum/mesonbuild)
 
 ## Wrap documentation
