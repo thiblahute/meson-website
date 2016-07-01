@@ -33,3 +33,14 @@ If you want to use the arguments on all targets, then do this.
     if meson.get_compiler('c').get_id() == 'clang'
       add_global_arguments('-fclang-flag', language : 'c')
     endif
+
+# Set a command's output to configuration
+
+    txt = run_command('script', 'argument').stdout().strip()
+    cdata = configuration_data()
+    cdata.set('SOMETHING', txt)
+    configure_file(...)
+
+----
+
+[Wiki home](Home)
