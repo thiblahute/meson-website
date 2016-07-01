@@ -26,7 +26,7 @@ The most common use case of Meson is compiling code on a code base you are worki
     mkdir build
     cd build
     meson ..
-    ninja
+    ninja -v
     ninja test
 
 The only thing to note is that you need to create a separate build directory. Meson will not allow you to build source code inside your source tree. All build artifacts are stored in the build directory. This allows you to have multiple build trees with different configurations at the same time. This way generated files are not added into revision control by accident. 
