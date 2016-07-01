@@ -14,3 +14,22 @@ The behaviour is the same as with other build systems, with environment variable
 
     CFLAGS=-fsomething LDFLAGS=-Wl,--linker-flag meson <options>
 
+# Use an argument only with a specific compiler
+
+First check which arguments to use.
+
+    if meson.get_compiler('c').get_id() == 'clang'
+      extra_args = ['-fclang-flag']
+    else
+      extra_args = []
+    endif
+
+Then use it in a target.
+
+    executable(..., c_args : extra_args)
+
+If you want to use the arguments on all targets, then do this.
+
+    if meson.get_compiler('c').get_id() == 'clang'
+      add_global_arguments('-fclang-flag', language : 'c')
+    endif
