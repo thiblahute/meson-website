@@ -26,7 +26,7 @@ The most common use case of Meson is compiling code on a code base you are worki
     mkdir build
     cd build
     meson ..
-    ninja -v
+    ninja
     ninja test
 
 The only thing to note is that you need to create a separate build directory. Meson will not allow you to build source code inside your source tree. All build artifacts are stored in the build directory. This allows you to have multiple build trees with different configurations at the same time. This way generated files are not added into revision control by accident. 
@@ -44,7 +44,7 @@ Distro packagers usually want total control on the build flags used. Meson suppo
     mkdir build
     cd build
     CFLAGS=... CXXFLAGS=... LDFLAGS=.. meson --prefix /usr --buildtype=plain ..
-    ninja
+    ninja -v
     ninja test
     DESTDIR=/path/to/staging/root ninja install
 
