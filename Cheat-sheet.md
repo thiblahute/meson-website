@@ -22,15 +22,11 @@ By default the debug build does not use any optimizations. This is the desired a
 
 This causes all subsequent builds to use this command line argument.
 
-## Using address sanitizer ##
+## Using address sanitizer
 
-Clang comes with a selection of analysis tools such as the [address sanitizer](http://clang.llvm.org/docs/AddressSanitizer.html). They are enabled by adding a few compiler flags (requires a relatively recent GCC or Clang).
+Clang comes with a selection of analysis tools such as the [address sanitizer](http://clang.llvm.org/docs/AddressSanitizer.html). Meson has native support for these with the `b_sanitize` option.
 
-First we set up meson.
-
-    CFLAGS='-fsanitize=address -fno-omit-frame-pointer' meson ..
-
-This example uses only plain C. For C++ you would set the variable `CXXFLAGS`.
+    meson <other options> -Db_sanitize=address
 
 After this you just compile your code and run the test suite. Address sanitizer will abort executables which have bugs so they show up as test failures.
 
