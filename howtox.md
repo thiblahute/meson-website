@@ -8,6 +8,11 @@ When first running Meson, set it in an environment variable.
 
     CC=mycc meson <options>
 
+# Set default C/C++ language version
+
+    project('myproj', 'c', 'cpp',
+            default_options : ['c_std=C11', 'cpp_std=c++11'])
+
 # Set extra compiler and linker flags 
 
 The behaviour is the same as with other build systems, with environment variables during first invocation.
