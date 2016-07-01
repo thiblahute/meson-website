@@ -16,6 +16,14 @@ Variables in Meson work just like in other high level programming languages. A v
     var1 = 'hello'
     var2 = 102
 
+One important difference in how variables work in Meson is that all variables are immutable. This is different from, for example, how Python works.
+
+    var1 = [1, 2, 3]
+    var2 = var1
+    var2 += [4]
+    # var2 is now [1, 2, 3, 4]
+    # var1 is still [1, 2, 3]
+
 Numbers
 --
 
