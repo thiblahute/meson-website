@@ -107,6 +107,18 @@ This specifies that C standard library is provided in the Meson subproject `myli
 
 Cross file settings are only read when the build directory is set up the first time. Any changes to them after the fact will be ignored. This is the same as regular compiles where you can't change the compiler once a build tree has been set up. If you need to edit your cross file, then you need to wipe your build tree and recreate it from scratch.
 
+## Custom data
+
+You can store arbitrary data in `properties` and access them from your Meson files. As an example if you cross file has this:
+
+    [properties]
+    somekey = 'somevalue'
+
+then you can access that using the `meson` object like this:
+
+    myvar = meson.get_cross_property('somekey')
+    # myvar now has the value 'somevalue'
+
 ---
 
 [Back to index](Manual).
