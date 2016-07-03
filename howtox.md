@@ -13,6 +13,13 @@ When first running Meson, set it in an environment variable.
     project('myproj', 'c', 'cpp',
             default_options : ['c_std=c11', 'cpp_std=c++11'])
 
+# Enable threads
+
+Lots of people seem to do this manually with `find_library('phtread')` or something similar. Do not do that. It is not portable. Instead do this.
+
+    thread_dep = dependency('threads')
+    executable(..., dependencies : thread_dep)
+
 # Set extra compiler and linker flags from the outside (when e.g. building distro packages)
 
 The behaviour is the same as with other build systems, with environment variables during first invocation.
