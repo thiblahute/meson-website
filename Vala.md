@@ -24,6 +24,24 @@ When dealing with libraries that are not providing Vala bindings, you can point 
                dependencies: [glib, gobject, foo]
                vala_args: ['--pkg=foo', '--vapidir=' + meson.current_source_dir()])
 
+## GObject Introspection
+
+To generate GObject Introspection metadata, the --gir flags has to be set explicitly in vala_args.
+
+    foo_lib = library('foo',
+                      dependencies: [glib, gobject],
+                      vala_args: ['--gir=Foo-1.0.gir'])
+
+For the typelib, use a custom_target depending on the library:
+
+    g_ir_compiler = find_program('g_ir_compiler')
+    custom_target('foo-typelib',
+                   command: [g_ir_compiler, '--output', '@OUTPUT@', meson.current_build_dir() + '/foo@sha/Foo-1.0.gir'],
+                   output: 'Foo-1.0.typelib',
+                   depends: foo_lib,
+                   install: true,
+                   install_dir: get_option('libdir') + '/girepository-1.0')
+
 ---
 
 [Back to index](Manual)
