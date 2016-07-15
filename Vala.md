@@ -42,6 +42,25 @@ For the typelib, use a custom_target depending on the library:
                    install: true,
                    install_dir: get_option('libdir') + '/girepository-1.0')
 
+## Installing VAPI and GIR files
+
+To install generated VAPI and GIR files, it is necessary to add a custom install script.
+
+    meson.add_install_script('install.sh')
+
+    #!/bin/sh
+
+    mkdir -p "${DESTDIR}${MESON_INSTALL_PREFIX}/share/vala/vapi"
+    mkdir -p "${DESTDIR}${MESON_INSTALL_PREFIX}/share/gir-1.0"
+
+    install -m 0644                                         \
+        "${MESON_BUILD_ROOT}/foo-1.0.vapi" \
+        $"{DESTDIR}${MESON_INSTALL_PREFIX}/share/vala/vapi"
+
+    install -m 0644                            \
+        "${MESON_BUILD_ROOT}/foo@sha/Foo-1.0.gir" \
+        "${DESTDIR}${MESON_INSTALL_PREFIX}/share/gir-1.0"
+
 ---
 
 [Back to index](Manual)
