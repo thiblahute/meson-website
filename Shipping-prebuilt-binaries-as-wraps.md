@@ -8,7 +8,7 @@ Packaging a project is straightforward. As an example let's look at a case where
 
     cc = meson.get_compiler('c')
     bin_dep = declare_dependency(
-      dependencies : cc.find_library('bob', dirs : meson.current_source_dir(),
+      dependencies : cc.find_library('bob', dirs : meson.current_source_dir()),
       include_directories : include_directories('include'))
 
 Now you can use this subproject as if it was a Meson project:
