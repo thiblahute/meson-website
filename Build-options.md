@@ -12,14 +12,13 @@ These options are accessed in Meson code with the `get_option` function.
 
     optval = get_option('opt_name')
 
-It should be noted that you can not set option values in your Meson scripts. They have to be set externally with the `mesonconf` command line tool. Running `mesonconf` without arguments in a build dir shows you all options you can set. To change their values use the `-D` option:
-
-    mesonconf -Doption=newvalue
-
 This function also allows you to query the value of Meson's built-in project options. For example, to get the installation prefix you would issue the following command:
 
     prefix = get_option('prefix')
 
+It should be noted that you can not set option values in your Meson scripts. They have to be set externally with the `mesonconf` command line tool. Running `mesonconf` without arguments in a build dir shows you all options you can set. To change their values use the `-D` option:
+
+    mesonconf -Doption=newvalue
 
 ---
 
