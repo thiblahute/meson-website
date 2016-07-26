@@ -74,7 +74,7 @@ By default Meson installs to `/usr/local`. This can be changed by passing the co
 Command line help
 ==
 
-Meson comes with extensive command line help. It can be accessed with the following command.
+Meson has a standard command line help feature. It can be accessed with the following command.
 
     meson --help
 
