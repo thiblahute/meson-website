@@ -296,6 +296,8 @@ The `meson` object allows you to introspect various properties of the system. Th
 
 - `get_cross_property` returns the given property from a cross file, the optional second argument is returned if not cross compiling or the given property is not found
 
+- `install_dependency_manifest` installs a manifest file containing a list of all subprojects, their versions and license files to the file name given as the argument
+
 ### build target object
 
 A build target is either an executable, shared or static library.
