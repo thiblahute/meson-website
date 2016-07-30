@@ -2,7 +2,7 @@ This page lists functions and methods available in Meson scripts. For more in-de
 
 ## Functions
 
-Click on each to see the description and usage.
+The following functions are available in build files. Click on each to see the description and usage. The objects returned by them are [documented afterwards](#object-methods).
 
  * [add_global_arguments](#add_global_arguments)
  * [add_global_link_arguments](#add_global_link_arguments)
@@ -79,12 +79,13 @@ is equivalent to this:
 
     build_target(<arguments and keyword arguments>, target_type : 'executable')
 
+The object returned by `build_target` and all convenience wrappers for `build_target` such as [`executable`](#executable) and [`library`](#library) has methods that are documented in the [object methods section](#build-target-object) below.
 
 ### configuration_data
 
-Creates an empty configuration object. You should add your configuration with its method calls and finally use it in a call to `configure_file`.
+Creates an empty configuration object. You should add your configuration with [its method calls](#configuration-data-object) and finally use it in a call to `configure_file`.
 
-### configure_file ###
+### configure_file
 
 Takes a configuration file template and values and produces a file as specified in [the configuration file documentation](Configuration). The keyword arguments are the following:
 
@@ -94,7 +95,7 @@ Takes a configuration file template and values and produces a file as specified 
 - `command` if specified Meson does not create the file itself but rather runs the specified command, which allows you to do fully custom file generation
 - `install_dir` the subdirectory to install the generated file to (e.g. `share/myproject`), if empty the file is not installed
 
-### custom_target ###
+### custom_target
 
 Create a custom top level build target. The only positional argument is the name of this target and the keyword arguments are the following.
 
@@ -118,7 +119,6 @@ This function creates a dependency object that behaves like the return value of 
   - `link_args`, link arguments to use
   - `version`, the version of this depency, such as `1.2.3`
 
-
 ### dependency
 
 Finds an external dependency with the given name with pkg-config if possible and with fallback detection logic otherwise. Dependency supports the following keyword arguments.
@@ -129,6 +129,8 @@ Finds an external dependency with the given name with pkg-config if possible and
 - `native` if set to `true`, causes Meson to find the dependency on the build machine system rather than the host system (i.e. where the cross compiled binary will run on), usually only needed if you build a tool to be used during compilation.
 - `fallback` specifies a subproject fallback to use in case the dependency is not found in the system. The value is an array `['subproj_name', 'subproj_dep']` where the first value is the name of the subproject and the second is the variable name in that subproject that contains the value of `declare_dependency`.
 - `static` tells the dependency provider to try to get static libraries instead of dynamic ones (note that this is not supported by all dependency backends)
+
+The returned object also has methods that are documented in the [object methods section](#dependency-object) below.
 
 ### error
 
@@ -155,11 +157,15 @@ Executable supports the following keyword arguments. These keyword arguments are
 - `objects` list of prebuilt object files (usually for third party products you don't have source to) that should be linked in this target, **never** use this for object files that you build yourself.
 - `name_suffix` the string that will be used as the extension for the target by overriding the default. By default on Windows this is `exe` and on other platforms it is omitted.
 
+The returned object also has methods that are documented in the [object methods section](#build-target-object) below.
+
 ### find_program ###
 
 Tries to locate the command listed in the positional argument. It can either be a command or a script in the source directory. Meson will also autodetect scripts with a shebang line and run them with the executable specified in it both on Windows (because the command invocator will reject the command otherwise) and unixes (if the script file does not have the executable bit set).
 
 If the program is not found, Meson will abort. You can tell it not to by setting the keyword argument `required` to false.
+
+The returned object also has methods that are documented in the [object methods section](#external-program-object) below.
 
 ### find_library ###
 
@@ -183,6 +189,8 @@ This function creates a generator object that can be used to run custom compilat
 
 - `arguments` list the command line arguments passed to the command
 - `output` a template string defining how an output file name is generated from a source file name
+
+The returned object also has methods that are documented in the [object methods section](#generator-object) below.
 
 ### get_option
 
@@ -313,15 +321,15 @@ This command detects revision control commit information and places it in a spec
 
 Meson will read the contents of `input`, replace the string `@VCS_TAG@` with the detected revision number and write the result to `output`. This method returns an opaque object that you should put in your main program. If you desire more specific behaviour than what this command provides, you should use `custom_command`.
 
-## Object methods ##
+## Object methods
 
 Meson has several different object types that have methods users can call. This section describes them.
 
-### meson object ###
+### meson object
 
 The `meson` object allows you to introspect various properties of the system. This object is always mapped in the `meson` variable. It has the following methods.
 
-- `get_compiler` returns an object describing a compiler, takes one positional argument which is the language to use, and one keyword argument, `native` which when set to true makes Meson return the compiler for the build machine (the "native" compiler) and when false it returns the host compiler (the "cross" compiler)
+- `get_compiler` returns [an object describing a compiler](#compiler-object), takes one positional argument which is the language to use, and one keyword argument, `native` which when set to true makes Meson return the compiler for the build machine (the "native" compiler) and when false it returns the host compiler (the "cross" compiler)
 
 - `is_cross_build` returns true if the current build is a cross build and false otherwise
 
@@ -349,7 +357,7 @@ The `meson` object allows you to introspect various properties of the system. Th
 
 ### build target object
 
-A build target is either an executable, shared or static library.
+A build target is either an [executable](#executable), [shared](#shared_library) or [static library](#static_library).
 
 - `extract_objects` returns an opaque object representing the generated object files of arguments, usually used to take single object files and linking them to unit tests or compiling some source files with custom flags
 
@@ -357,14 +365,14 @@ A build target is either an executable, shared or static library.
 
 - `private_dir_include` returns a opaque object that works like `include_directories` but points to the private directory of this target, usually only needed if an another target needs to access some generated internal headers of this target
 
-### compiler object ###
+### compiler object
 
-This object represents a compiler for a given language and allows you to query its properties. It has the following methods.
+This object is returned by [`meson.get_compiler(lang)`](#meson-object). It represents a compiler for a given language and allows you to query its properties. It has the following methods:
 
-- `get_id` returns a string identifying the compiler (e.g. *gcc*)
+- `get_id` returns a string identifying the compiler (e.g. `'gcc'`)
 - `version` returns the compiler's version number as a string
 - `find_library` tries to find the library specified in the positional argument. The result object can be used just like the return value of `dependency`. If the keyword argument `required` is false, Meson will proceed even if the library is not found. By default the library is searched for in the system library directory (e.g. /usr/lib). This can be overridden with the `dirs` keyword argument, which can be either a string or a list of strings.
-- `sizeof` returns the size of the given type (e.g. *int*) or -1 if the type is unknown, to add includes set them in the `prefix` keyword argument
+- `sizeof` returns the size of the given type (e.g. `'int'`) or -1 if the type is unknown, to add includes set them in the `prefix` keyword argument
 - `alignment` returns the alignment of the type specified in the positional argument
 - `compiles` returns true if the code fragment given in the positional argument compiles
 - `links` returns true if the code fragment given in the positional argument compiles and links
@@ -385,40 +393,40 @@ Note that if you have a single prefix with all your dependencies, you might find
 
 However, with GCC, these variables will be ignored when cross-compiling. In that case you need to use a specs file. See: <http://www.mingw.org/wiki/SpecsFileHOWTO>
 
-### run result object ###
+### run result object
 
-This object encapsulates the result of trying to compile and run a sample piece of code.
+This object encapsulates the result of trying to compile and run a sample piece of code with [`compiler.run()`](#compiler-object). It has the following methods:
 
 - `compiled` if true, the compilation succeeded, if false it did not and the other methods return unspecified data
 - `returncode` the return code of executing the compiled binary
 - `stdout` the standard out produced when the binary was run
 - `stderr` the standard error produced when the binary was run
 
-### configuration data object ###
+### configuration data object
 
-This object encapsulates configuration values to be used for generating configuration files. It has two methods, `set` and `set10` which are fully documented on [the configuration wiki page](Configuration).
+This object is returned by [`configuration_data`](#configuration_data) and encapsulates configuration values to be used for generating configuration files. It has two methods, `set` and `set10` which are fully documented on [the configuration wiki page](Configuration).
 
-### dependency object ###
+### dependency object
 
-Contains an external dependency with the following methods.
+This object is returned by [`dependency`](#dependency) and contains an external dependency with the following methods:
 
  - `found` which returns whether the dependency was found
  - `version` is the version number as a string, for example `1.2.8` 
 
-### external program object ###
+### external program object
 
-Contains an external (i.e. not built as part of this project) program. This object has the following methods:
+This object is returned by [`find_program`](#find_program) and contains an external (i.e. not built as part of this project) program and has the following methods:
 
 - `found` which returns whether the executable was found
 - `path` which returns a string pointing to the executable
 
-### external library object ###
+### external library object
 
-Contains an external (i.e. not built as part of this project) library. This object has only one method, `found`, which returns whether the library was found.
+This object is returned by [`find_library`](#find_library) and contains an external (i.e. not built as part of this project) library. This object has only one method, `found`, which returns whether the library was found.
 
-### generator object ###
+### generator object
 
-This object contains a generator that is used to transform files from one type to another by an executable (e.g. idl files into source code and headers).
+This object is returned by [`generator`](#generator) and contains a generator that is used to transform files from one type to another by an executable (e.g. `idl` files into source code and headers).
 
 - `process` takes a list of files, causes them to be processed and returns an object containing the result which can then, for example, be passed into a build target definition. The keyword argument `extra_args`, if specified, will be used to replace an entry `@EXTRA_ARGS@` in the argument list.
 
@@ -441,14 +449,14 @@ All strings have the following methods. Strings are immutable, all operations re
 
 ### boolean object
 
-A boolean object has two simple methods.
+A boolean object has two simple methods:
 
  - `to_string` returns the string `'true'` if the boolean is true or `'false'`otherwise
  - `to_int` as above, but returns either `1` or `0`
 
 ### array object
 
-The following methods are defined for all arrays.
+The following methods are defined for all arrays:
 
  - `length`, the size of the array
  - `contains`, returns `true` if the array contains the object given as argument, `false` otherwise
