@@ -2,6 +2,48 @@ This page lists functions and methods available in Meson scripts. For more in-de
 
 ## Functions
 
+Click on each to see the description and usage.
+
+ * [add_global_arguments](#add_global_arguments)
+ * [add_global_link_arguments](#add_global_link_arguments)
+ * [add_languages](#add_languages)
+ * [benchmark](#benchmark)
+ * [build_target](#build_target)
+ * [configuration_data](#configuration_data)
+ * [configure_file](#configure_file)
+ * [custom_target](#custom_target)
+ * [declare_dependency](#declare_dependency)
+ * [dependency](#dependency)
+ * [error](#error)
+ * [executable](#executable)
+ * [find_program](#find_program)
+ * [find_library](#find_library)
+ * [files](#files)
+ * [generator](#generator)
+ * [get_option](#get_option)
+ * [get_variable](#get_variable)
+ * [import](#import)
+ * [include_directories](#include_directories)
+ * [install_data](#install_data)
+ * [install_headers](#install_headers)
+ * [install_man](#install_man)
+ * [install_subdir](#install_subdir)
+ * [is_subproject](#is_subproject)
+ * [is_variable](#is_variable)
+ * [jar](#jar)
+ * [library](#library)
+ * [message](#message)
+ * [project](#project)
+ * [run_command](#run_command)
+ * [run_target](#run_target)
+ * [set_variable](#set_variable)
+ * [shared_library](#shared_library)
+ * [static_library](#static_library)
+ * [subdir](#subdir)
+ * [subproject](#subproject)
+ * [test](#test)
+ * [vcs_tag](#vcs_tag)
+
 ### add_global_arguments
 
 Adds the positional arguments to the compiler command line for the language specified in `language` keyword argument. Note that there is no way to remove an argument set in this way. If you have an argument that is only used in a subset of targets, you have to specify it in per-target flags.
