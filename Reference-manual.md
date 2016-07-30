@@ -96,7 +96,7 @@ Print the argument string and halts the build process.
 
 Creates a new executable. The first argument specifies its name and the remaining positional arguments define the source files to use.
 
-Executable supports the following keyword arguments.
+Executable supports the following keyword arguments. These keyword arguments are also used for [shared and static libraries](#library).
 
 - `link_with`, one or more shared or static libraries (built by this project) that this target should be linked with
 - `<languagename>_pch` precompiled header file to use for the given language
@@ -111,6 +111,7 @@ Executable supports the following keyword arguments.
 - `install_rpath` a string to set the target's rpath to after install (but *not* before that)
 - `install_dir` override install directory for this file. The value is relative to the `prefix` specified. F.ex, if you want to install plugins into a subdir, you'd use something like this: `install_dir : get_option('libdir') + '/projectname-1.0'`.
 - `objects` list of prebuilt object files (usually for third party products you don't have source to) that should be linked in this target, **never** use this for object files that you build yourself.
+- `name_suffix` the string that will be used as the extension for the target by overriding the default. By default on Windows this is `exe` and on other platforms it is omitted.
 
 ### find_program ###
 
@@ -190,7 +191,13 @@ Build a jar from the specified Java source files. Keyword arguments are the same
 
 ### library
 
-Builds a library that is either static or shared depending on the value of `default_library` user option. You should use this instead of `shared_library` or `static_library` most of the time. This allows you to toggle your entire project (including subprojects) from shared to static with only one option.
+Builds a library that is either static or shared depending on the value of `default_library` user option. You should use this instead of [`shared_library`](#shared_library) or [`static_library`](#static_library) most of the time. This allows you to toggle your entire project (including subprojects) from shared to static with only one option.
+
+The keyword arguments for this are the same as for [`executable`](#executable) with the following addition:
+
+- `name_prefix` the string that will be used as the suffix for the target by overriding the default (only used for libraries). By default this is `lib` on all platforms and compilers except with MSVC where it is omitted.
+
+`static_library` and `shared_library` also accept this keyword argument.
 
 ### message
 
@@ -224,7 +231,7 @@ Assigns a value to the given variable name. Calling `set_variable('foo', bar)` i
 
 ### shared_library ###
 
-Builds a shared library with the given sources. Positional and keyword arguments are the same as for `executable` with the following extra keyword arguments.
+Builds a shared library with the given sources. Positional and keyword arguments are the same as for [`executable`](#executable) with the following extra keyword arguments.
 
 - `version` a string specifying the version of this shared library, such as `1.1.0`. On Linux and OS X, this is used to set the shared library version in the filename, such as `libfoo.so.1.1.0` and `libfoo.1.1.0.dylib`. If this is not specified, `soversion` is used instead (see below).
 - `soversion` a string specifying the soversion of this shared library, such as `0`. On Linux and Windows this is used to set the soversion (or equivalent) in the filename. For example, if `soversion` is `4`, a Windows DLL will be called `foo-4.dll` and one of the aliases of the Linux shared library would be `libfoo.so.4`. If this is not specified, the first part of `version` is used instead. For example, if `version` is `3.6.0` and `soversion` is not defined, it is set to `3`.
@@ -232,7 +239,7 @@ Builds a shared library with the given sources. Positional and keyword arguments
 
 ### static_library ###
 
-Builds a static library with the given sources. Positional and keyword arguments are the same as for `executable`
+Builds a static library with the given sources. Positional and keyword arguments are the same as for [`executable`](#executable)
 
 ### subdir ###
 
