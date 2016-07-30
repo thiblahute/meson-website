@@ -371,7 +371,7 @@ This object is returned by [`meson.get_compiler(lang)`](#meson-object). It repre
 
 - `get_id` returns a string identifying the compiler (e.g. `'gcc'`)
 - `version` returns the compiler's version number as a string
-- `find_library` tries to find the library specified in the positional argument. The result object can be used just like the return value of `dependency`. If the keyword argument `required` is false, Meson will proceed even if the library is not found. By default the library is searched for in the system library directory (e.g. /usr/lib). This can be overridden with the `dirs` keyword argument, which can be either a string or a list of strings.
+- `find_library` tries to find the library specified in the positional argument. The [result object](#external-library-object) can be used just like the return value of `dependency`. If the keyword argument `required` is false, Meson will proceed even if the library is not found. By default the library is searched for in the system library directory (e.g. /usr/lib). This can be overridden with the `dirs` keyword argument, which can be either a string or a list of strings.
 - `sizeof` returns the size of the given type (e.g. `'int'`) or -1 if the type is unknown, to add includes set them in the `prefix` keyword argument
 - `alignment` returns the alignment of the type specified in the positional argument
 - `compiles` returns true if the code fragment given in the positional argument compiles
