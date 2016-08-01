@@ -17,4 +17,15 @@ Here's a first proposal.
             default_options : <default values for project options>,
 
 Longer descriptions of arguments go here.
-            )
+
+Take two:
+
+## project
+
+    <project name>
+    <languages to use, comma separated>
+    version         : <project version>
+    subproject_dir  : <alternative directory to store subprojects>
+    meson_version   : <required version of Meson>
+    license         : <string or array of licenses>
+    default_options : <default values for project options>
