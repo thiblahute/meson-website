@@ -232,6 +232,15 @@ A comment starts with the `#` character and extends until the end of the line.
     some_function() # This is a comment
     some_other_function()
 
+Ternary operator
+--
+
+The ternary operator works just like in other languages.
+
+    x = condition ? true_value : false_value
+
+The only exception is that nested ternary operators are forbidden to improve legibility. If your branching needs are more complex than this you need to write an `if/else` construct.
+
 Includes
 --
 
