@@ -1,6 +1,6 @@
 # Conference presentations on Meson
 
-- Fosdem 2014, [Introducing the Meson build system(http://video.fosdem.org/2014/H2215_Ferrer/Sunday/Introducing_the_Meson_build_system.webm)
+- Fosdem 2014, [Introducing the Meson build system](http://video.fosdem.org/2014/H2215_Ferrer/Sunday/Introducing_the_Meson_build_system.webm)
 
 - LCA 2015, [Making build systems not suck](https://www.youtube.com/watch?v=KPi0AuVpxLI)
 
