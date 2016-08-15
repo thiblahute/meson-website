@@ -7,7 +7,7 @@ This method takes four keyword arguments, `moc_headers`, `moc_sources`, `ui_file
     qt5 = import('qt5')
     qt5_dep = dependency('qt5', ...)
     moc_files = qt5.preprocess(moc_headers : 'myclass.h')
-    executable('myprog', 'main.cpp', 'myclass.cpp', moc_files
+    executable('myprog', 'main.cpp', 'myclass.cpp', moc_files,
                dependencies : qt5_dep)
 
 ---
