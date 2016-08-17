@@ -57,7 +57,7 @@ If you want to use the arguments on all targets, then do this.
 
 `configure_file` preserves metadata so if your template file has execute permissions, the generated file will have them too.
 
-## Producing a coverage report ##
+## Producing a coverage report
 
 First initialise the build directory with this command.
 
@@ -71,7 +71,7 @@ Then issue the following commands.
 
 The coverage report can be found in the meson-logs subdirectory.
 
-## Adding some optimization to debug builds ##
+## Add some optimization to debug builds ##
 
 By default the debug build does not use any optimizations. This is the desired approach most of the time. However some projects benefit from having some minor optimizations enabled. Gcc even has a specific compiler flag `-Og` for this. To enable its use, just issue the following command.
 
@@ -79,7 +79,7 @@ By default the debug build does not use any optimizations. This is the desired a
 
 This causes all subsequent builds to use this command line argument.
 
-## Using address sanitizer
+## Use address sanitizer
 
 Clang comes with a selection of analysis tools such as the [address sanitizer](http://clang.llvm.org/docs/AddressSanitizer.html). Meson has native support for these with the `b_sanitize` option.
 
@@ -87,13 +87,13 @@ Clang comes with a selection of analysis tools such as the [address sanitizer](h
 
 After this you just compile your code and run the test suite. Address sanitizer will abort executables which have bugs so they show up as test failures.
 
-## Using Clang static analyzer ##
+## Use Clang static analyzer
 
 Install scan-build and configure your project. Then do this:
 
     ninja scanbuild
 
-## Using profile guided optimization ##
+## Use profile guided optimization
 
 Using profile guided optimization with GCC is a two phase operation. First we set up the project with profile measurements enabled and compile it.
 
@@ -108,6 +108,12 @@ Once that is done we change the compiler flags to use the generated information 
     ninja
 
 After these steps the resulting binary is fully optimized.
+
+## Add math library (`-lm`) portably
+
+    cc = meson.get_compiler('c')
+    m_dep = cc.find_library('m', required : false)
+    executable(..., dependencies : m_dep)
 
 ----
 
