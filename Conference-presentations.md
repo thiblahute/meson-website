@@ -10,6 +10,8 @@
 
 - LCA 2016, [Builds, dependencies and deployment in the modern multiplatform world](https://www.youtube.com/watch?v=CTJtKtQ8R5k&feature=youtu.be)
 
+- Guadec 2016, [Making your GNOME app compile 2.4x faster](https://media.ccc.de/v/44-making_your_gnome_app_compile_24x_faster)
+
 ----
 
 [Wiki home](Home)
