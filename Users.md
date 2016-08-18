@@ -8,7 +8,7 @@ If you have a project that uses Meson that you want to add to this list, let us 
  - [Graphene](http://ebassi.github.io/graphene/), a thin type library for graphics (not merged to master yet)
  - [GStreamer](https://github.com/centricular/gstreamer), multimedia framework (not merged to master yet)
  - [Parzip](https://github.com/jpakkane/parzip), a multithreaded reimplementation of Zip 
- - [Pitivi](http://pitivi.org/), a nonlinear video editor ([Git commit](https://git.gnome.org/browse/pitivi/commit/meson.build?id=3003b26a08e8878d30f67de158cb9253cdad8522))
+ - [Pitivi](http://pitivi.org/), a nonlinear video editor
  - [Valum](https://github.com/valum-framework/valum), a micro web framework written in Vala
 
 ----
