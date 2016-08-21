@@ -8,6 +8,7 @@ This function compiles resources specified in an XML file into code that can be 
 
 * `source_dir`: a subdirectory where the resource compiler should look up the files, relative to the location of the xml file
 * `c_name`: passed to the resource compiler as an argument after `--c-name`
+* `extra_args`: extra command line arguments to pass to the resource compiler
 
 Returns an opaque object that you should pass into your build target.
 
@@ -21,6 +22,7 @@ Generates GObject introspection data. Takes one positional argument, the build t
 * `install`: if true, install the generated gir file
 * `install_dir`: which subdirectory to install the gir file into
 * `dependencies`: deps to use during introspection scanning
+* `extra_args`: command line arguments to pass to gir compiler
 
 This function returns nothing.
 
