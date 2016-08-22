@@ -418,7 +418,7 @@ This object is returned by [`dependency`](#dependency) and contains an external 
 This object is returned by [`find_program`](#find_program) and contains an external (i.e. not built as part of this project) program and has the following methods:
 
 - `found` which returns whether the executable was found
-- `path` which returns a string pointing to the executable
+- `path` which returns an array pointing to the executable (this is an array as opposed to a string because the program might be `['python', 'foo.py']`, for example)
 
 ### external library object
 
