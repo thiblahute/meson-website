@@ -273,7 +273,10 @@ Runs the command specified in positional arguments. Returns an opaque object con
 
 ### run_target ###
 
-This function creates a new top level target that runs the command specified by positional arguments. The script is run from an unspecified directory, and Meson will set three environment variables `MESON_SOURCE_ROOT`, `MESON_BUILD_ROOT` and `MESON_SUBDIR` that specify the source directory, build directory and subdirectory the target was defined in, respectively.
+This function creates a new top level target that runs the command specified. The script is run from an *unspecified* directory, and Meson will set three environment variables `MESON_SOURCE_ROOT`, `MESON_BUILD_ROOT` and `MESON_SUBDIR` that specify the source directory, build directory and subdirectory the target was defined in, respectively.
+
+ - `command` is an array of the command to run, each item may be a string or a target
+ - `depends` is a list of targets that this target depend on but which are not listed in the command array (because, for example, the script does file globbing internally)
 
 ### set_variable ###
 
