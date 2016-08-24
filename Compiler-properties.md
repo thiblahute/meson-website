@@ -140,6 +140,14 @@ Most platforms can't access some data types at any address. For example it is co
 
     int_alignment = compiler.alignment('int') # Will most likely contain the value 4.
 
+## Has argument
+
+This method tests if the compiler supports a given command line argument. This is implemented by compiling a small file with the given argument.
+
+    has_special_flags = compiler.has_argument('-Wspecialthing')
+
+*Note*: some compilers silently swallow command line arguments they do not understand. Thus this test can not be made 100% reliable.
+
 ---
 
 [Back to index](Manual).
