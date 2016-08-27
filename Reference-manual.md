@@ -107,6 +107,7 @@ Create a custom top level build target. The only positional argument is the name
 - `build_always` if `true` this target is always considered out of date and is rebuilt every time, useful for things such as build timestamps or revision control tags
 - `depends` specifies that this target depends on the specified target(s), even though it does not take any of them as a command line argument. This is meant for cases where you have a tool that e.g. does globbing internally. Usually you should just put the generated sources as inputs and Meson will set up all dependencies automatically.
 - `capture`, there are some compilers that can't be told to write their output to a file but instead write it to standard output. When this argument is set to true, Meson captures `stdout` and writes it to the target file. Note that your command argument list may not contain `@OUTPUT@` when capture mode is active.
+- `depfile` is a dependency file that the command can write listing all the additional files this target depends on, for example a C compiler would list all the header files it included, and a change in any one of these files triggers a recompilation
 
 ### declare_dependency
 
@@ -184,12 +185,13 @@ Then you can use it in `bar2` like this:
 
 Meson will then do the right thing.
 
-### generator ###
+### generator
 
 This function creates a generator object that can be used to run custom compilation commands. The only positional argument is the executable to use. It can either be a self-built executable or one returned by find_program. Keyword arguments are the following:
 
 - `arguments` list the command line arguments passed to the command
 - `output` a template string defining how an output file name is generated from a source file name
+- `depfile` is a dependency file that a generator can write listing all the additional files this target depends on, for example a C compiler would list all the header files it included, and a change in any one of these files triggers a recompilation
 
 The returned object also has methods that are documented in the [object methods section](#generator-object) below.
 
