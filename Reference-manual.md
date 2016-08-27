@@ -106,6 +106,7 @@ Create a custom top level build target. The only positional argument is the name
 - `install_dir` directory to install to
 - `build_always` if `true` this target is always considered out of date and is rebuilt every time, useful for things such as build timestamps or revision control tags
 - `depends` specifies that this target depends on the specified target(s), even though it does not take any of them as a command line argument. This is meant for cases where you have a tool that e.g. does globbing internally. Usually you should just put the generated sources as inputs and Meson will set up all dependencies automatically.
+- `capture`, there are some compilers that can't be told to write their output to a file but instead write it to standard output. When this argument is set to true, Meson captures `stdout` and writes it to the target file. Note that your command argument list may not contain `@OUTPUT@` when capture mode is active.
 
 ### declare_dependency
 
