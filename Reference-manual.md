@@ -455,6 +455,13 @@ All strings have the following methods. Strings are immutable, all operations re
  - `join` is the opposite of split, for example `'.'.join(['a', 'b', 'c']` yields `'a.b.c'`
  - `version_compare` does semantic version comparison, if `x = '1.2.3'` then `x.version_compare('>1.0.0')` returns `true`
 
+### Number object
+
+Numbers support these methods:
+
+ - `is_even` returns true if the number is even
+ - `is_odd` returns true if the number is odd
+
 ### boolean object
 
 A boolean object has two simple methods:
