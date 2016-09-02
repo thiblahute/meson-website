@@ -27,7 +27,11 @@ One important difference in how variables work in Meson is that all variables ar
 Numbers
 --
 
-Meson supports only integer numbers. They are declared simply by writing them out.
+Meson supports only integer numbers. They are declared simply by writing them out. Basic arithmetic operations are supported.
+
+    x = 1 + 2
+    y = 3 * 4
+    d = 5 % 3 # Yields 2.
 
 Strings can be converted to a number like this:
 
