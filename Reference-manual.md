@@ -272,7 +272,7 @@ You can specify default values for project options with the `default_options` ke
 
 ### run_command ###
 
-Runs the command specified in positional arguments. Returns an opaque object containing the result of the invocation.
+Runs the command specified in positional arguments. Returns an opaque object containing the result of the invocation. The script is run from an *unspecified* directory, and Meson will set three environment variables `MESON_SOURCE_ROOT`, `MESON_BUILD_ROOT` and `MESON_SUBDIR` that specify the source directory, build directory and subdirectory the target was defined in, respectively.
 
 ### run_target ###
 
