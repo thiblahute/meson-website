@@ -65,6 +65,8 @@ Then in your main project you would use them like this:
     executable('toplevel_exe', 'prog.c',
       dependencies : foobar_sp.get_variable('foobar_dep'))
 
+Note that the subproject object is *not* used as the dependency, but rather you need to get the declared dependency from it with `get_variable` because a subproject may have multiple declared dependencies.
+
 ## Toggling between distro packages and embedded source
 
 When building distro packages it is very important that you do not embed any sources. Some distros have a rule forbidding embedded dependencies so your project must be buildable without them or otherwise the packager will hate you.
