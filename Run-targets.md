@@ -13,15 +13,17 @@ Note how the script starts by cd'ing into the source dir. Meson does not guarant
 
 To make this a run target we write it to a script file called `scripts/inspect.sh` and specify it in the top level Meson file like this.
 
-    run_target('inspector', 'scripts/inspect.sh')
+    run_target('inspector',
+      command : 'scripts/inspect.sh')
 
 Run targets are not run by default. To run it run the following command.
 
     ninja inspector
 
-All additional arguments to the `run_target` command are passed unchanged to the inspector script, so you could do things like this:
+All additional entries in `run_target`'s `command` array are passed unchanged to the inspector script, so you can do things like this:
 
-    run_target('inspector', 'scripts/inspect.sh', '--exclude', 'tests')
+    run_target('inspector',
+      command : ['scripts/inspect.sh', '--exclude', 'tests'])
 
 ---
 
