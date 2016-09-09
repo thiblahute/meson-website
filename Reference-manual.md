@@ -220,7 +220,25 @@ Installs files listed in positional and `sources` keyword arguments into the dir
 
 ### install_headers ###
 
-Installs the specified headers into system's header directory during the install step. This directory can be overridden by specifying it with the `install_dir` keyword argument. If you just want to specify a subdirectory on top of the default source dir, then use the `subdir` argument. As an example if this has the value `myproj` then the headers would be installed to `/prefix/include/myproj`.
+Installs the specified header files into the system header directory (usually `/{prefix}/include`) during the install step. This directory can be overridden by specifying it with the `install_dir` keyword argument. If you just want to install into a subdirectory of the system header directory, then use the `subdir` argument. As an example if this has the value `myproj` then the headers would be installed to `/{prefix}/include/myproj`.
+
+For example, this will install `common.h` and `kola.h` into `/{prefix}/include`:
+
+```
+install_headers('common.h', 'proj/kola.h')
+```
+
+This will install `common.h` and `kola.h` into `/{prefix}/include/myproj`:
+
+```
+install_headers('common.h', 'proj/kola.h', subdir : 'myproj')
+```
+
+This will install `common.h` and `kola.h` into `/{prefix}/notinclude/myproj`:
+
+```
+install_headers('common.h', 'proj/kola.h', install_dir : 'notinclude', subdir : 'myproj')
+```
 
 ### install_man ###
 
