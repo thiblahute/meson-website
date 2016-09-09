@@ -22,12 +22,13 @@ m4_define([as_version],
 ```
 `meson.build`:
 ```
-as_major_version = '0'
-as_minor_version = '3'
-as_micro_version = '6'
-as_version = '@0@.@1@.@2@'.format(as_major_version,
-                                  as_minor_version,
-                                  as_micro_version)
+
+as_version = meson.project_version().split('.') # set in project() below
+ver_arr = as_version.split('.')
+
+as_major_version = ver_arr[0]
+as_minor_version = ver_arr[1]
+as_micro_version = ver_arr[2]
 ```
 
 ### Initializing project and setting compilers
@@ -38,7 +39,7 @@ AC_PROG_CC
 ```
 `meson.build`:
 ```
-project('appstream-glib', 'c')
+project('appstream-glib', 'c', version : '0.3.6')
 ```
 Note that this must be the first line of your `meson.build` file.
 
