@@ -234,10 +234,10 @@ This will install `common.h` and `kola.h` into `/{prefix}/include/myproj`:
 install_headers('common.h', 'proj/kola.h', subdir : 'myproj')
 ```
 
-This will install `common.h` and `kola.h` into `/{prefix}/notinclude/myproj`:
+This will install `common.h` and `kola.h` into `/{prefix}/cust/myproj`:
 
 ```
-install_headers('common.h', 'proj/kola.h', install_dir : 'notinclude', subdir : 'myproj')
+install_headers('common.h', 'proj/kola.h', install_dir : 'cust', subdir : 'myproj')
 ```
 
 ### install_man ###
