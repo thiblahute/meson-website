@@ -23,7 +23,7 @@ m4_define([as_version],
 `meson.build`:
 ```
 
-as_version = meson.project_version().split('.') # set in project() below
+as_version = meson.project_version() # set in project() below
 ver_arr = as_version.split('.')
 
 as_major_version = ver_arr[0]
