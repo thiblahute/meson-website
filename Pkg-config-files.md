@@ -2,14 +2,15 @@
 
 In this document we describe the simple generator approach. It is used in the following way.
 
+    pkg = import('pkgconfig')
     libs = ...     # the library/libraries users need to link against
     h = ['.', ...] # subdirectories of ${prefix}/${includedir} to add to header path
-    pkgconfig_gen(libraries : libs,
-                  subdirs : h,
-                  version : '1.0',
-                  name : 'libsimple',
-                  filebase : 'simple',
-                  description : 'A simple demo library.')
+    pkg.generate(libraries : libs,
+                 subdirs : h,
+                 version : '1.0',
+                 name : 'libsimple',
+                 filebase : 'simple',
+                 description : 'A simple demo library.')
 
 This causes a file called `simple.pc` to be created and placed into the install directory during the install phase.
 
