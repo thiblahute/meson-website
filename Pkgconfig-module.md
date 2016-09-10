@@ -12,3 +12,4 @@ The generated file's properties are specified with the following keyword argumen
 - `requires` list of strings to put in the `Requires` field
 - `requires_private` list of strings to put in the `Requires.private` field
 - `libraries_private` list of strings to put in the `Libraries.private` field
+- `install_dir` the directory to install to, defaults to the value of option `libdir` followed by `/pkgconfig`
