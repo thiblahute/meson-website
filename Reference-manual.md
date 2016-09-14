@@ -430,7 +430,11 @@ This object encapsulates the result of trying to compile and run a sample piece 
 
 ### configuration data object
 
-This object is returned by [`configuration_data`](#configuration_data) and encapsulates configuration values to be used for generating configuration files. It has two methods, `set` and `set10` which are fully documented on [the configuration wiki page](Configuration).
+This object is returned by [`configuration_data`](#configuration_data) and encapsulates configuration values to be used for generating configuration files. A more in-depth description can be found in the [the configuration wiki page](Configuration) It has three methods:
+
+ - `set`, sets a variable to a given value
+ - `set10` is the same as above but the value is either `true` or `false` and will be written as 1 or 0, respectively
+ - `set_quoted` is same as `set` but quotes the value in double quotes (`"`)
 
 ### dependency object
 
