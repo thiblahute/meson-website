@@ -15,6 +15,7 @@ The following functions are available in build files. Click on each to see the d
  * [declare_dependency](#declare_dependency)
  * [dependency](#dependency)
  * [error](#error)
+ * [environment](#environment)
  * [executable](#executable)
  * [find_program](#find_program)
  * [find_library](#find_library)
@@ -137,6 +138,10 @@ The returned object also has methods that are documented in the [object methods 
 ### error
 
 Print the argument string and halts the build process.
+
+### environment
+
+Returns an empty [environment variable object](#environment-object).
 
 ### executable ###
 
