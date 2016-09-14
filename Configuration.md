@@ -29,7 +29,12 @@ The replacement that happens depends on what the value and type of TOKEN is:
 
 Note that if you want to define a C string, you need to do the quoting yourself like this:
 
-    conf.set(TOKEN, '"value"')
+    conf.set('TOKEN', '"value"')
+
+Since this is such a common operation, Meson provides a convenience method:
+
+    plain_var = 'value'
+    conf.set_quoted('TOKEN', plain_var) // becomes #define TOKEN "value"
 
 Often you have a boolean value in Meson but need to define the C/C++ token as 0 or 1. Meson provides a convenience function for this use case.
 
