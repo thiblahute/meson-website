@@ -450,6 +450,14 @@ This object is returned by [`find_program`](#find_program) and contains an exter
 - `found` which returns whether the executable was found
 - `path` which returns an array pointing to the executable (this is an array as opposed to a string because the program might be `['python', 'foo.py']`, for example)
 
+### environment object
+
+This objects stores detailed information about how environment variables should be set during tests. It should be passed as the `env` keyword argument to tests. It has the following methods.
+
+ - `set` sets environment variable in the first argument to the value in the second argument, e.g. `env.set('FOO', 'BAR') sets envvar `FOO` to value `BAR`
+ - `append` appends the given value to the old value of the environment variable, e.g. `env.append'('FOO', 'BAR', separator : ';')` produces `BOB;BAR` if `FOO` had the value `BOB` and plain `BAR` if the value was not defined
+ - `prepend` is the same as `append` except that it writes to the beginning of the variable
+
 ### external library object
 
 This object is returned by [`find_library`](#find_library) and contains an external (i.e. not built as part of this project) library. This object has only one method, `found`, which returns whether the library was found.
