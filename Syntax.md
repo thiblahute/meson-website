@@ -159,6 +159,14 @@ You can add additional items to an array like this:
 
     my_array += [ 'foo', 3, 4, another_obj ]
 
+#### Array methods
+
+The following methods are defined for all arrays:
+
+ - `length`, the size of the array
+ - `contains`, returns `true` if the array contains the object given as argument, `false` otherwise
+ - `get`, returns the object at the given index, negative indices count from the back of the array, indexing out of bounds is a fatal error
+
 Function calls
 --
 
