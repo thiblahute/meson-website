@@ -265,7 +265,7 @@ Returns true if the current project is being built as a subproject of some other
 
 Build a jar from the specified Java source files. Keyword arguments are the same as executable's, with the addition of `main_class` which specifies the main class to execute when running the jar with `java -jar file.jar`.
 
-### library
+### library(*library_name*, *list_of_sources*, ...)
 
 Builds a library that is either static or shared depending on the value of `default_library` user option. You should use this instead of [`shared_library`](#shared_library) or [`static_library`](#static_library) most of the time. This allows you to toggle your entire project (including subprojects) from shared to static with only one option.
 
@@ -275,11 +275,11 @@ The keyword arguments for this are the same as for [`executable`](#executable) w
 
 `static_library` and `shared_library` also accept this keyword argument.
 
-### message
+### message(*text*)
 
 This function prints its argument to stdout.
 
-### project ###
+### project(*project_name*, *list_of_languages*, ...)
 
 The first argument to this function must be a string defining the name of this project. It must be followed by one or more programming languages that the project uses. Supported values for languages are `c`, `cpp` (for `C++`), `objc`, `objcpp`, `fortran`, `java`, `cs` (for `C#`) and `vala`.
 
@@ -293,22 +293,22 @@ The argument `meson_version` takes a string describing which Meson version the p
 
 You can specify default values for project options with the `default_options` keyword, which takes an array of strings. The strings are in the form `key=value` and have the same format as options to `mesonconf`. For example to set the default project type you would set this: `default_options : ['buildtype=debugoptimized']`. Note that these settings are only used when running Meson for the first time. They are also ignored in subprojects, only ones in the top level project are used.
 
-### run_command ###
+### run_command(*command*, *list_of_args*)
 
 Runs the command specified in positional arguments. Returns an opaque object containing the result of the invocation. The script is run from an *unspecified* directory, and Meson will set three environment variables `MESON_SOURCE_ROOT`, `MESON_BUILD_ROOT` and `MESON_SUBDIR` that specify the source directory, build directory and subdirectory the target was defined in, respectively.
 
-### run_target ###
+### run_target(*target_name*, ...)
 
 This function creates a new top level target that runs the command specified. The script is run from an *unspecified* directory, and Meson will set three environment variables `MESON_SOURCE_ROOT`, `MESON_BUILD_ROOT` and `MESON_SUBDIR` that specify the source directory, build directory and subdirectory the target was defined in, respectively.
 
  - `command` is an array of the command to run, each item may be a string or a target
  - `depends` is a list of targets that this target depend on but which are not listed in the command array (because, for example, the script does file globbing internally)
 
-### set_variable ###
+### set_variable(*variable_name*, *value*)
 
 Assigns a value to the given variable name. Calling `set_variable('foo', bar)` is equivalent to `foo = bar`.
 
-### shared_library ###
+### shared_library(*library_name*, *list_of_sources*, ...)
 
 Builds a shared library with the given sources. Positional and keyword arguments are the same as for [`library`](#library) with the following extra keyword arguments.
 
@@ -316,7 +316,7 @@ Builds a shared library with the given sources. Positional and keyword arguments
 - `soversion` a string specifying the soversion of this shared library, such as `0`. On Linux and Windows this is used to set the soversion (or equivalent) in the filename. For example, if `soversion` is `4`, a Windows DLL will be called `foo-4.dll` and one of the aliases of the Linux shared library would be `libfoo.so.4`. If this is not specified, the first part of `version` is used instead. For example, if `version` is `3.6.0` and `soversion` is not defined, it is set to `3`.
 - `vs_module_defs` a string pointing to a file that contains Visual Studio symbol export definitions.
 
-### static_library ###
+### static_library(*library_name*, *list_of_sources*, ...)
 
 Builds a static library with the given sources. Positional and keyword arguments are the same as for [`library`](#library)
 
