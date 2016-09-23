@@ -45,17 +45,17 @@ The following functions are available in build files. Click on each to see the d
  * [test](#test)
  * [vcs_tag](#vcs_tag)
 
-### add_global_arguments
+### add_global_arguments(*arg1*, *arg2*, ...)
 
 Adds the positional arguments to the compiler command line for the language specified in `language` keyword argument. Note that there is no way to remove an argument set in this way. If you have an argument that is only used in a subset of targets, you have to specify it in per-target flags.
 
 The arguments are used in all compiler invocations with the exception of compile tests, because you might need to run a compile test with and without the argument in question. For this reason only the arguments explicitly specified are used during compile tests.
 
-### add_global_link_arguments
+### add_global_link_arguments(*arg1*, *arg2*, ...)
 
 Like `add_global_arguments` but the arguments are passed to the linker.
 
-### add_languages
+### add_languages(*langs*)
 
 Add support for new programming languages. Equivalent to having them in the `project` declaration. This function is usually used to add languages that are only used on some platforms like this:
 
@@ -66,7 +66,7 @@ Add support for new programming languages. Equivalent to having them in the `pro
 
 Takes one keyword argument, `required`. It defaults to `true`, which means that if any of the languages specified is not found, Meson will halt. Returns true if all languages specified were found and false otherwise.
 
-### benchmark
+### benchmark(*name*, *executable*, ...)
 
 Creates a benchmark item that will be run when the benchmark target is run. The behaviour of this function is identical to `test` with the exception that there is no `is_parallel` keyword, because benchmarks are never run in parallel.
 
@@ -82,11 +82,11 @@ is equivalent to this:
 
 The object returned by `build_target` and all convenience wrappers for `build_target` such as [`executable`](#executable) and [`library`](#library) has methods that are documented in the [object methods section](#build-target-object) below.
 
-### configuration_data
+### configuration_data()
 
 Creates an empty configuration object. You should add your configuration with [its method calls](#configuration-data-object) and finally use it in a call to `configure_file`.
 
-### configure_file
+### configure_file(...)
 
 Takes a configuration file template and values and produces a file as specified in [the configuration file documentation](Configuration). The keyword arguments are the following:
 
@@ -96,7 +96,7 @@ Takes a configuration file template and values and produces a file as specified 
 - `command` if specified Meson does not create the file itself but rather runs the specified command, which allows you to do fully custom file generation
 - `install_dir` the subdirectory to install the generated file to (e.g. `share/myproject`), if empty the file is not installed
 
-### custom_target
+### custom_target(*targetname*, ...)
 
 Create a custom top level build target. The only positional argument is the name of this target and the keyword arguments are the following.
 
@@ -110,7 +110,7 @@ Create a custom top level build target. The only positional argument is the name
 - `capture`, there are some compilers that can't be told to write their output to a file but instead write it to standard output. When this argument is set to true, Meson captures `stdout` and writes it to the target file. Note that your command argument list may not contain `@OUTPUT@` when capture mode is active.
 - `depfile` is a dependency file that the command can write listing all the additional files this target depends on, for example a C compiler would list all the header files it included, and a change in any one of these files triggers a recompilation
 
-### declare_dependency
+### declare_dependency(...)
 
 This function creates a dependency object that behaves like the return value of `dependency` but is internal to the current build. The main use case for this is in subprojects. This allows a subproject to easily specify how it should be used. This makes it interchangeable with the same dependency that is provided externally by the system. This function has three keyword arguments.
 
@@ -122,7 +122,7 @@ This function creates a dependency object that behaves like the return value of 
   - `link_args`, link arguments to use
   - `version`, the version of this depency, such as `1.2.3`
 
-### dependency
+### dependency(*dependency_name*, ...)
 
 Finds an external dependency with the given name with pkg-config if possible and with fallback detection logic otherwise. Dependency supports the following keyword arguments.
 
@@ -135,15 +135,15 @@ Finds an external dependency with the given name with pkg-config if possible and
 
 The returned object also has methods that are documented in the [object methods section](#dependency-object) below.
 
-### error
+### error(*message*)
 
 Print the argument string and halts the build process.
 
-### environment
+### environment()
 
 Returns an empty [environment variable object](#environment-object).
 
-### executable ###
+### executable(*exe_name*, *sources*, ...)
 
 Creates a new executable. The first argument specifies its name and the remaining positional arguments define the source files to use.
 
