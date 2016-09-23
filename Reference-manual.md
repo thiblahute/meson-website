@@ -320,15 +320,15 @@ Builds a shared library with the given sources. Positional and keyword arguments
 
 Builds a static library with the given sources. Positional and keyword arguments are the same as for [`library`](#library)
 
-### subdir ###
+### subdir(*dir_name*)
 
 Recurses into the specified subdirectory and executes the `meson.build` file in it. Once that is done, it returns and execution continues on the line following this `subdir` command.
 
-### subproject
+### subproject(*subproject_name*, ...)
 
 Takes the project specified in the positional argument and brings that in the current build specification. Subprojects must always be placed inside the `subprojects` directory at the top source directory. So for example a subproject called `foo` must be located in `${MESON_SOURCE_ROOT}/subprojects/foo`. You can specify the `version` keyword argument that works just like the one in `dependency`. It specifies what version the subproject should be, as an example `>=1.0.1`.
 
-### test
+### test(*name*, *executable*, ...)
 
 Defines an unit test. Takes two positional arguments, the first is the name of this test and the second is the executable to run. Keyword arguments are the following.
 
@@ -340,7 +340,7 @@ Defines an unit test. Takes two positional arguments, the first is the name of t
 - `timeout` the amount of seconds the test is allowed to run, a test that exceeds its time limit is always considered failed, defaults to 30 seconds
 - `workdir` absolute path that will be used as the working directory for the test
 
-### vcs_tag ###
+### vcs_tag(...)
 
 This command detects revision control commit information and places it in a specified file. This file is guaranteed to be up to date on every build. Keywords are similar to `custom_target` and all of them are mandatory.
 
@@ -358,29 +358,29 @@ Meson has several different object types that have methods users can call. This 
 
 The `meson` object allows you to introspect various properties of the system. This object is always mapped in the `meson` variable. It has the following methods.
 
-- `get_compiler` returns [an object describing a compiler](#compiler-object), takes one positional argument which is the language to use, and one keyword argument, `native` which when set to true makes Meson return the compiler for the build machine (the "native" compiler) and when false it returns the host compiler (the "cross" compiler)
+- `get_compiler(language)` returns [an object describing a compiler](#compiler-object), takes one positional argument which is the language to use, and one keyword argument, `native` which when set to true makes Meson return the compiler for the build machine (the "native" compiler) and when false it returns the host compiler (the "cross" compiler)
 
-- `is_cross_build` returns true if the current build is a cross build and false otherwise
+- `is_cross_build()` returns true if the current build is a cross build and false otherwise
 
-- `is_unity` returns true when doing a unity build
+- `is_unity()` returns true when doing a unity build
 
-- `has_exe_wrapper` returns true when doing a cross build if there is a wrapper command that can be used to execute cross built binaries (for example when cross compiling from Linux to Windows, one can use `wine` as the wrapper)
+- `has_exe_wrapper()` returns true when doing a cross build if there is a wrapper command that can be used to execute cross built binaries (for example when cross compiling from Linux to Windows, one can use `wine` as the wrapper)
 
-- `add_install_script` causes the script given as an argument to be run during the install step, this script will have the environment variables `MESON_SOURCE_ROOT`, `MESON_BUILD_ROOT` and `MESON_INSTALL_PREFIX` set
+- `add_install_script(script_name, ...)` causes the script given as an argument to be run during the install step, this script will have the environment variables `MESON_SOURCE_ROOT`, `MESON_BUILD_ROOT` and `MESON_INSTALL_PREFIX` set
 
-- `add_postconf_script` will run the executable given as an argument after all project files have been generated. This script will have the environment variables `MESON_SOURCE_ROOT` and `MESON_BUILD_ROOT` set. All additional arguments are passed as parameters.
+- `add_postconf_script(script_name, list_of_args)` will run the executable given as an argument after all project files have been generated. This script will have the environment variables `MESON_SOURCE_ROOT` and `MESON_BUILD_ROOT` set. All additional arguments are passed as parameters.
 
-- `current_source_dir` returns a string to the current source directory
+- `current_source_dir()` returns a string to the current source directory
 
-- `current_build_dir` returns a string to the current build directory
+- `current_build_dir()` returns a string to the current build directory
 
-- `source_root` returns a string with the absolute path to the source root directory
+- `source_root()` returns a string with the absolute path to the source root directory
 
-- `build_root` returns a string with the absolute path to the build root directory
+- `build_root()` returns a string with the absolute path to the build root directory
 
-- `project_version` returns the version string specified in `project` function call
+- `project_version()` returns the version string specified in `project` function call
 
-- `get_cross_property` returns the given property from a cross file, the optional second argument is returned if not cross compiling or the given property is not found
+- `get_cross_property(propname, fallback_value)` returns the given property from a cross file, the optional second argument is returned if not cross compiling or the given property is not found
 
 - `install_dependency_manifest` installs a manifest file containing a list of all subprojects, their versions and license files to the file name given as the argument
 
