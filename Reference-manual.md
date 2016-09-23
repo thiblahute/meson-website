@@ -402,19 +402,19 @@ This object is returned by [`meson.get_compiler(lang)`](#meson-object). It repre
 
 - `get_id` returns a string identifying the compiler (e.g. `'gcc'`)
 - `version` returns the compiler's version number as a string
-- `find_library` tries to find the library specified in the positional argument. The [result object](#external-library-object) can be used just like the return value of `dependency`. If the keyword argument `required` is false, Meson will proceed even if the library is not found. By default the library is searched for in the system library directory (e.g. /usr/lib). This can be overridden with the `dirs` keyword argument, which can be either a string or a list of strings.
-- `sizeof` returns the size of the given type (e.g. `'int'`) or -1 if the type is unknown, to add includes set them in the `prefix` keyword argument
-- `alignment` returns the alignment of the type specified in the positional argument
-- `compiles` returns true if the code fragment given in the positional argument compiles
-- `links` returns true if the code fragment given in the positional argument compiles and links
-- `run` attempts to compile and execute the given code fragment, returns a run result object
+- `find_library(lib_name, ...)` tries to find the library specified in the positional argument. The [result object](#external-library-object) can be used just like the return value of `dependency`. If the keyword argument `required` is false, Meson will proceed even if the library is not found. By default the library is searched for in the system library directory (e.g. /usr/lib). This can be overridden with the `dirs` keyword argument, which can be either a string or a list of strings.
+- `sizeof(typename, ...)` returns the size of the given type (e.g. `'int'`) or -1 if the type is unknown, to add includes set them in the `prefix` keyword argument
+- `alignment(typename)` returns the alignment of the type specified in the positional argument
+- `compiles(code_snippet)` returns true if the code fragment given in the positional argument compiles
+- `links(code_snippet)` returns true if the code fragment given in the positional argument compiles and links
+- `run(code_snippet)` attempts to compile and execute the given code fragment, returns a run result object
 - `has_header` returns true if the specified header can be included
-- `has_type` returns true if the specified token is a type
-- `has_function` returns true if the given function is provided by the standard library or a library passed in with the `args` keyword
-- `has_member` takes two arguments, type name and member name and returns true if the type has the specified member
-- `has_header_symbol` allows one to detect whether a particular symbol (function, variable, #define, type definition, etc) is declared in the specified header.
-- `has_argument` takes one argument and returns true if the compiler accepts that flag, that is, can compile code without erroring out or printing a warning about an unknown flag
-- `first_supported_argument`, given a list of strings, returns the first argument that passes the `has_argument` test above or an empty array if none pass
+- `has_type(typename)` returns true if the specified token is a type
+- `has_function(funcname)` returns true if the given function is provided by the standard library or a library passed in with the `args` keyword
+- `has_member(typename, membername)` takes two arguments, type name and member name and returns true if the type has the specified member
+- `has_header_symbol(headername, symbolname)` allows one to detect whether a particular symbol (function, variable, #define, type definition, etc) is declared in the specified header.
+- `has_argument(argument_name)` returns true if the compiler accepts the specified command line argument, that is, can compile code without erroring out or printing a warning about an unknown flag
+- `first_supported_argument(list_of_strings)`, given a list of strings, returns the first argument that passes the `has_argument` test above or an empty array if none pass
 
 The `prefix` keyword argument can be used to add #defines, #includes, etc that are required for the symbol to be declared (eg: `#define _GNU_SOURCE` is often required for some symbols to be exposed on Linux). Supported by the methods `sizeof`, `has_type`, `has_function`, `has_member`,`has_header_symbol`.
 
@@ -437,9 +437,9 @@ This object encapsulates the result of trying to compile and run a sample piece 
 
 This object is returned by [`configuration_data`](#configuration_data) and encapsulates configuration values to be used for generating configuration files. A more in-depth description can be found in the [the configuration wiki page](Configuration) It has three methods:
 
- - `set`, sets a variable to a given value
- - `set10` is the same as above but the value is either `true` or `false` and will be written as 1 or 0, respectively
- - `set_quoted` is same as `set` but quotes the value in double quotes (`"`)
+ - `set(varname, value)`, sets a variable to a given value
+ - `set10(varname, boolean_value)` is the same as above but the value is either `true` or `false` and will be written as 1 or 0, respectively
+ - `set_quoted(varname, value)` is same as `set` but quotes the value in double quotes (`"`)
 
 ### dependency object
 
@@ -459,9 +459,9 @@ This object is returned by [`find_program`](#find_program) and contains an exter
 
 This objects stores detailed information about how environment variables should be set during tests. It should be passed as the `env` keyword argument to tests. It has the following methods.
 
- - `set` sets environment variable in the first argument to the value in the second argument, e.g. `env.set('FOO', 'BAR') sets envvar `FOO` to value `BAR`
- - `append` appends the given value to the old value of the environment variable, e.g. `env.append'('FOO', 'BAR', separator : ';')` produces `BOB;BAR` if `FOO` had the value `BOB` and plain `BAR` if the value was not defined
- - `prepend` is the same as `append` except that it writes to the beginning of the variable
+ - `set(varname, value)` sets environment variable in the first argument to the value in the second argument, e.g. `env.set('FOO', 'BAR') sets envvar `FOO` to value `BAR`
+ - `append(varname, value)` appends the given value to the old value of the environment variable, e.g. `env.append'('FOO', 'BAR', separator : ';')` produces `BOB;BAR` if `FOO` had the value `BOB` and plain `BAR` if the value was not defined
+ - `prepend(varname, value)` is the same as `append` except that it writes to the beginning of the variable
 
 ### external library object
 
@@ -471,7 +471,7 @@ This object is returned by [`find_library`](#find_library) and contains an exter
 
 This object is returned by [`generator`](#generator) and contains a generator that is used to transform files from one type to another by an executable (e.g. `idl` files into source code and headers).
 
-- `process` takes a list of files, causes them to be processed and returns an object containing the result which can then, for example, be passed into a build target definition. The keyword argument `extra_args`, if specified, will be used to replace an entry `@EXTRA_ARGS@` in the argument list.
+- `process(list_of_files)` takes a list of files, causes them to be processed and returns an object containing the result which can then, for example, be passed into a build target definition. The keyword argument `extra_args`, if specified, will be used to replace an entry `@EXTRA_ARGS@` in the argument list.
 
 ### string object
 
@@ -482,13 +482,13 @@ All strings have the following methods. Strings are immutable, all operations re
  - `to_upper` creates an upper case version of the string
  - `to_lower` creates a lower case version of the string
  - `underscorify` creates a string where every non-alphabetical non-number character is replaced with `_`
- - `split` splits the string at the specified character (or whitespace if not set) and returns the parts in an array
- - `startswith` returns true if string starts with the string specified as the argument
- - `endswith` returns true if string ends with the string specified as the argument
- - `contains` returns true if string contains the string specified as the argument
+ - `split(split_character)` splits the string at the specified character (or whitespace if not set) and returns the parts in an array
+ - `startswith(string)` returns true if string starts with the string specified as the argument
+ - `endswith(string)` returns true if string ends with the string specified as the argument
+ - `contains(string)` returns true if string contains the string specified as the argument
  - `to_int` returns the string converted to an integer (error if string is not a number)
- - `join` is the opposite of split, for example `'.'.join(['a', 'b', 'c']` yields `'a.b.c'`
- - `version_compare` does semantic version comparison, if `x = '1.2.3'` then `x.version_compare('>1.0.0')` returns `true`
+ - `join(list_of_strings)` is the opposite of split, for example `'.'.join(['a', 'b', 'c']` yields `'a.b.c'`
+ - `version_compare(comparison_string)` does semantic version comparison, if `x = '1.2.3'` then `x.version_compare('>1.0.0')` returns `true`
 
 ### Number object
 
@@ -509,5 +509,5 @@ A boolean object has two simple methods:
 The following methods are defined for all arrays:
 
  - `length`, the size of the array
- - `contains`, returns `true` if the array contains the object given as argument, `false` otherwise
- - `get`, returns the object at the given index, negative indices count from the back of the array, indexing out of bounds is a fatal error
+ - `contains(item)`, returns `true` if the array contains the object given as argument, `false` otherwise
+ - `get(index)`, returns the object at the given index, negative indices count from the back of the array, indexing out of bounds is a fatal error
