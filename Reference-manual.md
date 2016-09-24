@@ -45,17 +45,17 @@ The following functions are available in build files. Click on each to see the d
  * [test](#test)
  * [vcs_tag](#vcs_tag)
 
-### add_global_arguments(*arg1*, *arg2*, ...)
+### add_global_arguments(*arg1*, *arg2*, ...) <a id="add_global_arguments"></a>
 
 Adds the positional arguments to the compiler command line for the language specified in `language` keyword argument. Note that there is no way to remove an argument set in this way. If you have an argument that is only used in a subset of targets, you have to specify it in per-target flags.
 
 The arguments are used in all compiler invocations with the exception of compile tests, because you might need to run a compile test with and without the argument in question. For this reason only the arguments explicitly specified are used during compile tests.
 
-### add_global_link_arguments(*arg1*, *arg2*, ...)
+### add_global_link_arguments(*arg1*, *arg2*, ...) <a id="add_global_link_arguments"></a>
 
 Like `add_global_arguments` but the arguments are passed to the linker.
 
-### add_languages(*langs*)
+### add_languages(*langs*) <a id="add_languages"></a>
 
 Add support for new programming languages. Equivalent to having them in the `project` declaration. This function is usually used to add languages that are only used on some platforms like this:
 
@@ -66,11 +66,11 @@ Add support for new programming languages. Equivalent to having them in the `pro
 
 Takes one keyword argument, `required`. It defaults to `true`, which means that if any of the languages specified is not found, Meson will halt. Returns true if all languages specified were found and false otherwise.
 
-### benchmark(*name*, *executable*, ...)
+### benchmark(*name*, *executable*, ...) <a id="benchmark"></a>
 
 Creates a benchmark item that will be run when the benchmark target is run. The behaviour of this function is identical to `test` with the exception that there is no `is_parallel` keyword, because benchmarks are never run in parallel.
 
-### build_target
+### build_target(...) <a id="build_target"></a>
 
 Creates a build target whose type can be set dynamically with the `target_type` keyword argument. This declaration:
 
@@ -82,11 +82,11 @@ is equivalent to this:
 
 The object returned by `build_target` and all convenience wrappers for `build_target` such as [`executable`](#executable) and [`library`](#library) has methods that are documented in the [object methods section](#build-target-object) below.
 
-### configuration_data()
+### configuration_data() <a id="configuration_data"></a>
 
 Creates an empty configuration object. You should add your configuration with [its method calls](#configuration-data-object) and finally use it in a call to `configure_file`.
 
-### configure_file(...)
+### configure_file(...) <a id="configure_file"></a>
 
 Takes a configuration file template and values and produces a file as specified in [the configuration file documentation](Configuration). The keyword arguments are the following:
 
@@ -96,7 +96,7 @@ Takes a configuration file template and values and produces a file as specified 
 - `command` if specified Meson does not create the file itself but rather runs the specified command, which allows you to do fully custom file generation
 - `install_dir` the subdirectory to install the generated file to (e.g. `share/myproject`), if empty the file is not installed
 
-### custom_target(*targetname*, ...)
+### custom_target(*targetname*, ...) <a id="custom_target"></a>
 
 Create a custom top level build target. The only positional argument is the name of this target and the keyword arguments are the following.
 
@@ -110,7 +110,7 @@ Create a custom top level build target. The only positional argument is the name
 - `capture`, there are some compilers that can't be told to write their output to a file but instead write it to standard output. When this argument is set to true, Meson captures `stdout` and writes it to the target file. Note that your command argument list may not contain `@OUTPUT@` when capture mode is active.
 - `depfile` is a dependency file that the command can write listing all the additional files this target depends on, for example a C compiler would list all the header files it included, and a change in any one of these files triggers a recompilation
 
-### declare_dependency(...)
+### declare_dependency(...) <a id="declare_dependency"></a>
 
 This function creates a dependency object that behaves like the return value of `dependency` but is internal to the current build. The main use case for this is in subprojects. This allows a subproject to easily specify how it should be used. This makes it interchangeable with the same dependency that is provided externally by the system. This function has three keyword arguments.
 
@@ -122,7 +122,7 @@ This function creates a dependency object that behaves like the return value of 
   - `link_args`, link arguments to use
   - `version`, the version of this depency, such as `1.2.3`
 
-### dependency(*dependency_name*, ...)
+### dependency(*dependency_name*, ...) <a id="dependency"></a>
 
 Finds an external dependency with the given name with pkg-config if possible and with fallback detection logic otherwise. Dependency supports the following keyword arguments.
 
@@ -135,15 +135,15 @@ Finds an external dependency with the given name with pkg-config if possible and
 
 The returned object also has methods that are documented in the [object methods section](#dependency-object) below.
 
-### error(*message*)
+### error(*message*) <a id="error"></a>
 
 Print the argument string and halts the build process.
 
-### environment()
+### environment() <a id="environment"></a>
 
 Returns an empty [environment variable object](#environment-object).
 
-### executable(*exe_name*, *sources*, ...)
+### executable(*exe_name*, *sources*, ...) <a id="executable"></a>
 
 Creates a new executable. The first argument specifies its name and the remaining positional arguments define the source files to use.
 
@@ -166,7 +166,7 @@ Executable supports the following keyword arguments. These keyword arguments are
 
 The returned object also has methods that are documented in the [object methods section](#build-target-object) below.
 
-### find_program(*program name*)
+### find_program(*program name*) <a id="find_program"></a>
 
 Tries to locate the command listed in the positional argument. It can either be a command or a script in the source directory. Meson will also autodetect scripts with a shebang line and run them with the executable specified in it both on Windows (because the command invocator will reject the command otherwise) and unixes (if the script file does not have the executable bit set).
 
@@ -174,11 +174,11 @@ If the program is not found, Meson will abort. You can tell it not to by setting
 
 The returned object also has methods that are documented in the [object methods section](#external-program-object) below.
 
-### find_library()
+### find_library() <a id="find_library"></a>
 
 This function is deprecated and has been moved to the compiler object as obtained from `meson.get_compiler()`. Please see the documentation for that [below](#compiler-object).
 
-### files(*list_of_filenames*)
+### files(*list_of_filenames*) <a id="files"></a>
 
 This command takes the strings given to it in arguments and returns corresponding File objects that you can use as sources for build targets. The difference is that file objects remember the subdirectory they were defined in and can be used anywhere in the source tree. As an example suppose you have source file `foo.cpp` in subdirectory `bar1` and you would like to use it in a build target that is defined in `bar2`. To make this happen you first create the object in `bar1` like this:
 
@@ -190,7 +190,7 @@ Then you can use it in `bar2` like this:
 
 Meson will then do the right thing.
 
-### generator(*executable*, ...)
+### generator(*executable*, ...) <a id="generator"></a>
 
 This function creates a generator object that can be used to run custom compilation commands. The only positional argument is the executable to use. It can either be a self-built executable or one returned by find_program. Keyword arguments are the following:
 
@@ -200,30 +200,30 @@ This function creates a generator object that can be used to run custom compilat
 
 The returned object also has methods that are documented in the [object methods section](#generator-object) below.
 
-### get_option(*option_name*)
+### get_option(*option_name*) <a id="get_option"></a>
 
 Obtains the value of the [project build option](Build options) specified in the positional argument.
 
-### get_variable(*variable_name*, *fallback*)
+### get_variable(*variable_name*, *fallback*) <a id="get_variable"></a>
 
 This function can be used to dynamically obtain a variable. `res = get_variable(varname, fallback)` takes the value of `varname` (which must be a string) and stores the variable of that name into `res`. If the variable does not exist, the variable `fallback` is stored to `res`instead. If a fallback is not specified, then attempting to read a non-existing variable will cause a fatal error.
 
-### import(*module_name*)
+### import(*module_name*) <a id="import"></a>
 
 Imports the given extension module. Returns an opaque object that can be used to call the methods of the module. Here's an example for a hypothetical `testmod` module.
 
     tmod = import('testmod')
     tmod.do_something()
 
-### include_directories(*directory_names*, ...)
+### include_directories(*directory_names*, ...) <a id="include_directories"></a>
 
 Returns an opaque object which contains the directories given in positional arguments. The result can then be used as a keyword argument when building executables or libraries. Both the source directory and the corresponding build directory are added. Note that this function call itself does not add the directories into the search path, since there is no global search path. You can use the the returned object in any subdirectory you want, Meson will make the paths work automatically. This function has one keyword argument `is_system` which, if set, flags the specified directories as system directories. This means that they will be used with the `-isystem` compiler argument rather than `-I` on compilers that support this flag (in practice everything except Visual Studio).
 
-### install_data(*list_of_files*)
+### install_data(*list_of_files*) <a id="install_data"></a>
 
 Installs files listed in positional and `sources` keyword arguments into the directory specified by the `install_dir` argument during install phase.
 
-### install_headers(*list_of_headers*, ...)
+### install_headers(*list_of_headers*, ...) <a id="install_headers"></a>
 
 Installs the specified header files into the system header directory (usually `/{prefix}/include`) during the install step. This directory can be overridden by specifying it with the `install_dir` keyword argument. If you just want to install into a subdirectory of the system header directory, then use the `subdir` argument. As an example if this has the value `myproj` then the headers would be installed to `/{prefix}/include/myproj`.
 
@@ -245,27 +245,27 @@ This will install `common.h` and `kola.h` into `/{prefix}/cust/myproj`:
 install_headers('common.h', 'proj/kola.h', install_dir : 'cust', subdir : 'myproj')
 ```
 
-### install_man(*list_of_manpages*, ...)
+### install_man(*list_of_manpages*, ...) <a id="install_man"></a>
 
 Installs the man files specified into system's man directory during the install step. This directory can be overridden by specifying it with the `install_dir` keyword argument.
 
-### install_subdir(*subdir_name*, ...)
+### install_subdir(*subdir_name*, ...) <a id="install_subdir"></a>
 
 Installs the entire given subdirectory tree to the location specified by the keyword argument `install_dir`. Note that due to implementation issues this command deletes the entire target dir before copying the files, so you should never use `install_subdir` to install into two overlapping directories (such as `foo` and `foo/bar`) because if you do the behaviour is undefined.
 
-### is_subproject()
+### is_subproject() <a id="is_subproject"></a>
 
 Returns true if the current project is being built as a subproject of some other project and false otherwise.
 
-### is_variable(*varname*)
+### is_variable(*varname*) <a id="is_variable"></a>
 
 `is_variable(varname)` returns true if a variable of the given name exists and false otherwise.
 
-### jar(*name*, *list_of_sources*, ...)
+### jar(*name*, *list_of_sources*, ...) <a id="jar"></a>
 
 Build a jar from the specified Java source files. Keyword arguments are the same as executable's, with the addition of `main_class` which specifies the main class to execute when running the jar with `java -jar file.jar`.
 
-### library(*library_name*, *list_of_sources*, ...)
+### library(*library_name*, *list_of_sources*, ...) <a id="library"></a>
 
 Builds a library that is either static or shared depending on the value of `default_library` user option. You should use this instead of [`shared_library`](#shared_library) or [`static_library`](#static_library) most of the time. This allows you to toggle your entire project (including subprojects) from shared to static with only one option.
 
@@ -275,11 +275,11 @@ The keyword arguments for this are the same as for [`executable`](#executable) w
 
 `static_library` and `shared_library` also accept this keyword argument.
 
-### message(*text*)
+### message(*text*) <a id="message"></a>
 
 This function prints its argument to stdout.
 
-### project(*project_name*, *list_of_languages*, ...)
+### project(*project_name*, *list_of_languages*, ...) <a id="project"></a>
 
 The first argument to this function must be a string defining the name of this project. It must be followed by one or more programming languages that the project uses. Supported values for languages are `c`, `cpp` (for `C++`), `objc`, `objcpp`, `fortran`, `java`, `cs` (for `C#`) and `vala`.
 
@@ -293,22 +293,22 @@ The argument `meson_version` takes a string describing which Meson version the p
 
 You can specify default values for project options with the `default_options` keyword, which takes an array of strings. The strings are in the form `key=value` and have the same format as options to `mesonconf`. For example to set the default project type you would set this: `default_options : ['buildtype=debugoptimized']`. Note that these settings are only used when running Meson for the first time. They are also ignored in subprojects, only ones in the top level project are used.
 
-### run_command(*command*, *list_of_args*)
+### run_command(*command*, *list_of_args*) <a id="run_command"></a>
 
 Runs the command specified in positional arguments. Returns an opaque object containing the result of the invocation. The script is run from an *unspecified* directory, and Meson will set three environment variables `MESON_SOURCE_ROOT`, `MESON_BUILD_ROOT` and `MESON_SUBDIR` that specify the source directory, build directory and subdirectory the target was defined in, respectively.
 
-### run_target(*target_name*, ...)
+### run_target(*target_name*, ...) <a id="run_target"></a>
 
 This function creates a new top level target that runs the command specified. The script is run from an *unspecified* directory, and Meson will set three environment variables `MESON_SOURCE_ROOT`, `MESON_BUILD_ROOT` and `MESON_SUBDIR` that specify the source directory, build directory and subdirectory the target was defined in, respectively.
 
  - `command` is an array of the command to run, each item may be a string or a target
  - `depends` is a list of targets that this target depend on but which are not listed in the command array (because, for example, the script does file globbing internally)
 
-### set_variable(*variable_name*, *value*)
+### set_variable(*variable_name*, *value*) <a id="set_variable"></a>
 
 Assigns a value to the given variable name. Calling `set_variable('foo', bar)` is equivalent to `foo = bar`.
 
-### shared_library(*library_name*, *list_of_sources*, ...)
+### shared_library(*library_name*, *list_of_sources*, ...) <a id="shared_library"></a>
 
 Builds a shared library with the given sources. Positional and keyword arguments are the same as for [`library`](#library) with the following extra keyword arguments.
 
@@ -316,19 +316,19 @@ Builds a shared library with the given sources. Positional and keyword arguments
 - `soversion` a string specifying the soversion of this shared library, such as `0`. On Linux and Windows this is used to set the soversion (or equivalent) in the filename. For example, if `soversion` is `4`, a Windows DLL will be called `foo-4.dll` and one of the aliases of the Linux shared library would be `libfoo.so.4`. If this is not specified, the first part of `version` is used instead. For example, if `version` is `3.6.0` and `soversion` is not defined, it is set to `3`.
 - `vs_module_defs` a string pointing to a file that contains Visual Studio symbol export definitions.
 
-### static_library(*library_name*, *list_of_sources*, ...)
+### static_library(*library_name*, *list_of_sources*, ...) <a id="static_library"></a>
 
 Builds a static library with the given sources. Positional and keyword arguments are the same as for [`library`](#library)
 
-### subdir(*dir_name*)
+### subdir(*dir_name*) <a id="subdir"></a>
 
 Recurses into the specified subdirectory and executes the `meson.build` file in it. Once that is done, it returns and execution continues on the line following this `subdir` command.
 
-### subproject(*subproject_name*, ...)
+### subproject(*subproject_name*, ...) <a id="subproject"></a>
 
 Takes the project specified in the positional argument and brings that in the current build specification. Subprojects must always be placed inside the `subprojects` directory at the top source directory. So for example a subproject called `foo` must be located in `${MESON_SOURCE_ROOT}/subprojects/foo`. You can specify the `version` keyword argument that works just like the one in `dependency`. It specifies what version the subproject should be, as an example `>=1.0.1`.
 
-### test(*name*, *executable*, ...)
+### test(*name*, *executable*, ...) <a id="test"></a>
 
 Defines an unit test. Takes two positional arguments, the first is the name of this test and the second is the executable to run. Keyword arguments are the following.
 
@@ -340,7 +340,7 @@ Defines an unit test. Takes two positional arguments, the first is the name of t
 - `timeout` the amount of seconds the test is allowed to run, a test that exceeds its time limit is always considered failed, defaults to 30 seconds
 - `workdir` absolute path that will be used as the working directory for the test
 
-### vcs_tag(...)
+### vcs_tag(...) <a id="vcs_tag"></a>
 
 This command detects revision control commit information and places it in a specified file. This file is guaranteed to be up to date on every build. Keywords are similar to `custom_target` and all of them are mandatory.
 
