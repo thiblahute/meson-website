@@ -2,7 +2,7 @@ This page lists functions and methods available in Meson scripts. For more in-de
 
 ## Functions
 
-The following functions are available in build files. Click on each to see the description and usage. The objects returned by them are [documented afterwards](#object-methods).
+The following functions are available in build files. Click on each to see the description and usage. The objects returned by them are [list afterwards](#returned-objects).
 
  * [add_global_arguments](#add_global_argumentsarg1-arg2-)
  * [add_global_link_arguments](#add_global_link_argumentsarg1-arg2-)
@@ -45,7 +45,7 @@ The following functions are available in build files. Click on each to see the d
  * [test](#testname-executable-)
  * [vcs_tag](#vcs_tag)
 
-## Built-in Objects
+## Built-in objects
 
 These are built-in objects that are always available.
 
@@ -55,7 +55,7 @@ These are built-in objects that are always available.
  * [Boolean](#boolean-object)
  * [Array](#array-object)
 
-## Other objects
+## Returned objects
 
 These are objects returned by the [functions listed above](#functions).
 
