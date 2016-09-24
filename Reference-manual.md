@@ -70,7 +70,7 @@ Takes one keyword argument, `required`. It defaults to `true`, which means that 
 
 Creates a benchmark item that will be run when the benchmark target is run. The behaviour of this function is identical to `test` with the exception that there is no `is_parallel` keyword, because benchmarks are never run in parallel.
 
-### build_target
+### build_target(...)
 
 Creates a build target whose type can be set dynamically with the `target_type` keyword argument. This declaration:
 
@@ -80,7 +80,7 @@ is equivalent to this:
 
     build_target(<arguments and keyword arguments>, target_type : 'executable')
 
-The object returned by `build_target` and all convenience wrappers for `build_target` such as [`executable`](#executable) and [`library`](#library) has methods that are documented in the [object methods section](#build-target-object) below.
+The object returned by `build_target` and all convenience wrappers for `build_target` such as [`executable`](#executableexe_name-sources-) and [`library`](#librarylibrary_name-list_of_sources-) has methods that are documented in the [object methods section](#build-target-object) below.
 
 ### configuration_data()
 
@@ -147,7 +147,7 @@ Returns an empty [environment variable object](#environment-object).
 
 Creates a new executable. The first argument specifies its name and the remaining positional arguments define the source files to use.
 
-Executable supports the following keyword arguments. These keyword arguments are also used for [shared and static libraries](#library).
+Executable supports the following keyword arguments. These keyword arguments are also used for [shared and static libraries](#librarylibrary_name-list_of_sources-).
 
 - `link_with`, one or more shared or static libraries (built by this project) that this target should be linked with
 - `<languagename>_pch` precompiled header file to use for the given language
@@ -267,9 +267,9 @@ Build a jar from the specified Java source files. Keyword arguments are the same
 
 ### library(*library_name*, *list_of_sources*, ...)
 
-Builds a library that is either static or shared depending on the value of `default_library` user option. You should use this instead of [`shared_library`](#shared_library) or [`static_library`](#static_library) most of the time. This allows you to toggle your entire project (including subprojects) from shared to static with only one option.
+Builds a library that is either static or shared depending on the value of `default_library` user option. You should use this instead of [`shared_library`](#shared_librarylibrary_name-list_of_sources-) or [`static_library`](#static_librarylibrary_name-list_of_sources-) most of the time. This allows you to toggle your entire project (including subprojects) from shared to static with only one option.
 
-The keyword arguments for this are the same as for [`executable`](#executable) with the following addition:
+The keyword arguments for this are the same as for [`executable`](#executableexe_name-sources-) with the following addition:
 
 - `name_prefix` the string that will be used as the suffix for the target by overriding the default (only used for libraries). By default this is `lib` on all platforms and compilers except with MSVC where it is omitted.
 
@@ -310,7 +310,7 @@ Assigns a value to the given variable name. Calling `set_variable('foo', bar)` i
 
 ### shared_library(*library_name*, *list_of_sources*, ...)
 
-Builds a shared library with the given sources. Positional and keyword arguments are the same as for [`library`](#library) with the following extra keyword arguments.
+Builds a shared library with the given sources. Positional and keyword arguments are the same as for [`library`](#librarylibrary_name-list_of_sources-) with the following extra keyword arguments.
 
 - `version` a string specifying the version of this shared library, such as `1.1.0`. On Linux and OS X, this is used to set the shared library version in the filename, such as `libfoo.so.1.1.0` and `libfoo.1.1.0.dylib`. If this is not specified, `soversion` is used instead (see below).
 - `soversion` a string specifying the soversion of this shared library, such as `0`. On Linux and Windows this is used to set the soversion (or equivalent) in the filename. For example, if `soversion` is `4`, a Windows DLL will be called `foo-4.dll` and one of the aliases of the Linux shared library would be `libfoo.so.4`. If this is not specified, the first part of `version` is used instead. For example, if `version` is `3.6.0` and `soversion` is not defined, it is set to `3`.
@@ -318,7 +318,7 @@ Builds a shared library with the given sources. Positional and keyword arguments
 
 ### static_library(*library_name*, *list_of_sources*, ...)
 
-Builds a static library with the given sources. Positional and keyword arguments are the same as for [`library`](#library)
+Builds a static library with the given sources. Positional and keyword arguments are the same as for [`library`](#librarylibrary_name-list_of_sources-)
 
 ### subdir(*dir_name*)
 
@@ -386,7 +386,7 @@ The `meson` object allows you to introspect various properties of the system. Th
 
 ### build target object
 
-A build target is either an [executable](#executable), [shared](#shared_library) or [static library](#static_library).
+A build target is either an [executable](#executableexe_name-sources-), [shared](#shared_librarylibrary_name-list_of_sources-) or [static library](#static_librarylibrary_name-list_of_sources-).
 
 - `extract_objects` returns an opaque object representing the generated object files of arguments, usually used to take single object files and linking them to unit tests or compiling some source files with custom flags
 
@@ -443,14 +443,14 @@ This object is returned by [`configuration_data`](#configuration_data) and encap
 
 ### dependency object
 
-This object is returned by [`dependency`](#dependency) and contains an external dependency with the following methods:
+This object is returned by [`dependency`](#dependencydependency_name-) and contains an external dependency with the following methods:
 
  - `found` which returns whether the dependency was found
  - `version` is the version number as a string, for example `1.2.8` 
 
 ### external program object
 
-This object is returned by [`find_program`](#find_program) and contains an external (i.e. not built as part of this project) program and has the following methods:
+This object is returned by [`find_program`](#find_programprogram-name) and contains an external (i.e. not built as part of this project) program and has the following methods:
 
 - `found` which returns whether the executable was found
 - `path` which returns an array pointing to the executable (this is an array as opposed to a string because the program might be `['python', 'foo.py']`, for example)
@@ -469,7 +469,7 @@ This object is returned by [`find_library`](#find_library) and contains an exter
 
 ### generator object
 
-This object is returned by [`generator`](#generator) and contains a generator that is used to transform files from one type to another by an executable (e.g. `idl` files into source code and headers).
+This object is returned by [`generator`](#generatorexecutable-) and contains a generator that is used to transform files from one type to another by an executable (e.g. `idl` files into source code and headers).
 
 - `process(list_of_files)` takes a list of files, causes them to be processed and returns an object containing the result which can then, for example, be passed into a build target definition. The keyword argument `extra_args`, if specified, will be used to replace an entry `@EXTRA_ARGS@` in the argument list.
 
