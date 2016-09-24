@@ -358,7 +358,7 @@ Meson has several different object types that have methods users can call. This 
 
 The `meson` object allows you to introspect various properties of the system. This object is always mapped in the `meson` variable. It has the following methods.
 
-- `get_compiler(language)` returns [an object describing a compiler](#compiler-object), takes one positional argument which is the language to use, and one keyword argument, `native` which when set to true makes Meson return the compiler for the build machine (the "native" compiler) and when false it returns the host compiler (the "cross" compiler)
+- `get_compiler(language)` returns [an object describing a compiler](#compiler-object), takes one positional argument which is the language to use. It also accepts one keyword argument, `native` which when set to true makes Meson return the compiler for the build machine (the "native" compiler) and when false it returns the host compiler (the "cross" compiler). If `native` is omitted, Meson returns the "cross" compiler if we're currently cross-compiling and the "native" compiler if we're not.
 
 - `is_cross_build()` returns true if the current build is a cross build and false otherwise
 
