@@ -45,6 +45,30 @@ The following functions are available in build files. Click on each to see the d
  * [test](#testname-executable-)
  * [vcs_tag](#vcs_tag)
 
+## Built-in Objects
+
+These are built-in objects that are always available.
+
+ * [meson](#meson-object)
+ * [String](#string-object)
+ * [Number](#number-object)
+ * [Boolean](#boolean-object)
+ * [Array](#array-object)
+
+## Other objects
+
+These are objects returned by the [functions listed above](#functions).
+
+ * [build target object](#build-target-object)
+ * [compiler object](#compiler-object)
+ * [run result object](#run-result-object)
+ * [configuration data object](#configuration-data-object)
+ * [dependency object](#dependency-object)
+ * [external program object](#external-program-object)
+ * [environment object](#environment-object)
+ * [external library object](#external library object)
+ * [generator object](#generator-object)
+
 ### add_global_arguments(*arg1*, *arg2*, ...)
 
 Adds the positional arguments to the compiler command line for the language specified in `language` keyword argument. Note that there is no way to remove an argument set in this way. If you have an argument that is only used in a subset of targets, you have to specify it in per-target flags.
