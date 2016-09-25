@@ -341,7 +341,9 @@ Returns true if a variable of the given name exists and false otherwise.
 
 Build a jar from the specified Java source files. Keyword arguments are the same as executable's, with the addition of `main_class` which specifies the main class to execute when running the jar with `java -jar file.jar`.
 
-### library(*library_name*, *list_of_sources*, ...)
+### library
+
+    buildtarget library(library_name, list_of_sources, ...)
 
 Builds a library that is either static or shared depending on the value of `default_library` user option. You should use this instead of [`shared_library`](#shared_librarylibrary_name-list_of_sources-) or [`static_library`](#static_librarylibrary_name-list_of_sources-) most of the time. This allows you to toggle your entire project (including subprojects) from shared to static with only one option.
 
@@ -351,11 +353,15 @@ The keyword arguments for this are the same as for [`executable`](#executableexe
 
 `static_library` and `shared_library` also accept this keyword argument.
 
-### message(*text*)
+### message
+
+    void message(text)
 
 This function prints its argument to stdout.
 
-### project(*project_name*, *list_of_languages*, ...)
+### project
+
+    void project(project_name, list_of_languages, ...)
 
 The first argument to this function must be a string defining the name of this project. It must be followed by one or more programming languages that the project uses. Supported values for languages are `c`, `cpp` (for `C++`), `objc`, `objcpp`, `fortran`, `java`, `cs` (for `C#`) and `vala`.
 
@@ -369,22 +375,30 @@ The argument `meson_version` takes a string describing which Meson version the p
 
 You can specify default values for project options with the `default_options` keyword, which takes an array of strings. The strings are in the form `key=value` and have the same format as options to `mesonconf`. For example to set the default project type you would set this: `default_options : ['buildtype=debugoptimized']`. Note that these settings are only used when running Meson for the first time. They are also ignored in subprojects, only ones in the top level project are used.
 
-### run_command(*command*, *list_of_args*)
+### run_command
+
+    runresult run_command(command, list_of_args)
 
 Runs the command specified in positional arguments. Returns an opaque object containing the result of the invocation. The script is run from an *unspecified* directory, and Meson will set three environment variables `MESON_SOURCE_ROOT`, `MESON_BUILD_ROOT` and `MESON_SUBDIR` that specify the source directory, build directory and subdirectory the target was defined in, respectively.
 
-### run_target(*target_name*, ...)
+### run_target
+
+    buildtarget run_target(target_name, ...)
 
 This function creates a new top level target that runs the command specified. The script is run from an *unspecified* directory, and Meson will set three environment variables `MESON_SOURCE_ROOT`, `MESON_BUILD_ROOT` and `MESON_SUBDIR` that specify the source directory, build directory and subdirectory the target was defined in, respectively.
 
  - `command` is an array of the command to run, each item may be a string or a target
  - `depends` is a list of targets that this target depend on but which are not listed in the command array (because, for example, the script does file globbing internally)
 
-### set_variable(*variable_name*, *value*)
+### set_variable
+
+    void set_variable(variable_name, value)
 
 Assigns a value to the given variable name. Calling `set_variable('foo', bar)` is equivalent to `foo = bar`.
 
-### shared_library(*library_name*, *list_of_sources*, ...)
+### shared_library
+
+    buildtarget shared_library(library_name, list_of_sources, ...)
 
 Builds a shared library with the given sources. Positional and keyword arguments are the same as for [`library`](#librarylibrary_name-list_of_sources-) with the following extra keyword arguments.
 
@@ -392,19 +406,27 @@ Builds a shared library with the given sources. Positional and keyword arguments
 - `soversion` a string specifying the soversion of this shared library, such as `0`. On Linux and Windows this is used to set the soversion (or equivalent) in the filename. For example, if `soversion` is `4`, a Windows DLL will be called `foo-4.dll` and one of the aliases of the Linux shared library would be `libfoo.so.4`. If this is not specified, the first part of `version` is used instead. For example, if `version` is `3.6.0` and `soversion` is not defined, it is set to `3`.
 - `vs_module_defs` a string pointing to a file that contains Visual Studio symbol export definitions.
 
-### static_library(*library_name*, *list_of_sources*, ...)
+### static_library
+
+    buildtarget static_library(library_name, list_of_sources, ...)
 
 Builds a static library with the given sources. Positional and keyword arguments are the same as for [`library`](#librarylibrary_name-list_of_sources-)
 
-### subdir(*dir_name*)
+### subdir
+
+    void subdir(dir_name)
 
 Recurses into the specified subdirectory and executes the `meson.build` file in it. Once that is done, it returns and execution continues on the line following this `subdir` command.
 
-### subproject(*subproject_name*, ...)
+### subproject
+
+    subproject_object subproject(subproject_name, ...)
 
 Takes the project specified in the positional argument and brings that in the current build specification. Subprojects must always be placed inside the `subprojects` directory at the top source directory. So for example a subproject called `foo` must be located in `${MESON_SOURCE_ROOT}/subprojects/foo`. You can specify the `version` keyword argument that works just like the one in `dependency`. It specifies what version the subproject should be, as an example `>=1.0.1`.
 
-### test(*name*, *executable*, ...)
+### test
+
+    void test(name, executable, ...)
 
 Defines an unit test. Takes two positional arguments, the first is the name of this test and the second is the executable to run. Keyword arguments are the following.
 
@@ -416,7 +438,9 @@ Defines an unit test. Takes two positional arguments, the first is the name of t
 - `timeout` the amount of seconds the test is allowed to run, a test that exceeds its time limit is always considered failed, defaults to 30 seconds
 - `workdir` absolute path that will be used as the working directory for the test
 
-### vcs_tag(...)
+### vcs_tag
+
+    void vcs_tag(...)
 
 This command detects revision control commit information and places it in a specified file. This file is guaranteed to be up to date on every build. Keywords are similar to `custom_target` and all of them are mandatory.
 
