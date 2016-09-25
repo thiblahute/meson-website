@@ -69,17 +69,23 @@ These are objects returned by the [functions listed above](#functions).
  * [external library object](#external library object)
  * [generator object](#generator-object)
 
-### add_global_arguments(*arg1*, *arg2*, ...)
+### add_global_arguments
+
+    void add_global_arguments(arg1, arg2, ...)
 
 Adds the positional arguments to the compiler command line for the language specified in `language` keyword argument. Note that there is no way to remove an argument set in this way. If you have an argument that is only used in a subset of targets, you have to specify it in per-target flags.
 
 The arguments are used in all compiler invocations with the exception of compile tests, because you might need to run a compile test with and without the argument in question. For this reason only the arguments explicitly specified are used during compile tests.
 
-### add_global_link_arguments(*arg1*, *arg2*, ...)
+### add_global_link_arguments
+
+    void add_global_link_arguments(*arg1*, *arg2*, ...)
 
 Like `add_global_arguments` but the arguments are passed to the linker.
 
-### add_languages(*langs*)
+### add_languages
+
+    add_languages(*langs*)
 
 Add support for new programming languages. Equivalent to having them in the `project` declaration. This function is usually used to add languages that are only used on some platforms like this:
 
@@ -90,11 +96,13 @@ Add support for new programming languages. Equivalent to having them in the `pro
 
 Takes one keyword argument, `required`. It defaults to `true`, which means that if any of the languages specified is not found, Meson will halt. Returns true if all languages specified were found and false otherwise.
 
-### benchmark(*name*, *executable*, ...)
+### benchmark
+
+    void benchmark(name, executable, ...)
 
 Creates a benchmark item that will be run when the benchmark target is run. The behaviour of this function is identical to `test` with the exception that there is no `is_parallel` keyword, because benchmarks are never run in parallel.
 
-### build_target(...)
+### build_target
 
 Creates a build target whose type can be set dynamically with the `target_type` keyword argument. This declaration:
 
@@ -106,11 +114,15 @@ is equivalent to this:
 
 The object returned by `build_target` and all convenience wrappers for `build_target` such as [`executable`](#executableexe_name-sources-) and [`library`](#librarylibrary_name-list_of_sources-) has methods that are documented in the [object methods section](#build-target-object) below.
 
-### configuration_data()
+### configuration_data
+
+    configuration_data_object = configuration_data()
 
 Creates an empty configuration object. You should add your configuration with [its method calls](#configuration-data-object) and finally use it in a call to `configure_file`.
 
-### configure_file(...)
+### configure_file
+
+    generated_file = configure_file(...)
 
 Takes a configuration file template and values and produces a file as specified in [the configuration file documentation](Configuration). The keyword arguments are the following:
 
