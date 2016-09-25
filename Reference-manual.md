@@ -467,6 +467,8 @@ This object is returned by [`configuration_data`](#configuration_data) and encap
  - `set10(varname, boolean_value)` is the same as above but the value is either `true` or `false` and will be written as 1 or 0, respectively
  - `set_quoted(varname, value)` is same as `set` but quotes the value in double quotes (`"`)
 
+They all take the `description` keyword that will be written in the result file. The replacement assumes a file with C syntax. If your generated file is source code in some other lanaguage, you probably don't want to add a description field because it most likely will cause a syntax error.
+
 ### dependency object
 
 This object is returned by [`dependency`](#dependencydependency_name-) and contains an external dependency with the following methods:
