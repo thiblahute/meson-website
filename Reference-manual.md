@@ -224,11 +224,13 @@ If the program is not found, Meson will abort. You can tell it not to by setting
 
 The returned object also has methods that are documented in the [object methods section](#external-program-object) below.
 
-### find_library()
+### find_library
 
 This function is deprecated and has been moved to the compiler object as obtained from `meson.get_compiler()`. Please see the documentation for that [below](#compiler-object).
 
-### files(*list_of_filenames*)
+### files
+
+    file_array files(list_of_filenames)
 
 This command takes the strings given to it in arguments and returns corresponding File objects that you can use as sources for build targets. The difference is that file objects remember the subdirectory they were defined in and can be used anywhere in the source tree. As an example suppose you have source file `foo.cpp` in subdirectory `bar1` and you would like to use it in a build target that is defined in `bar2`. To make this happen you first create the object in `bar1` like this:
 
@@ -240,7 +242,9 @@ Then you can use it in `bar2` like this:
 
 Meson will then do the right thing.
 
-### generator(*executable*, ...)
+### generator
+
+    generator_object gen(*executable*, ...)
 
 This function creates a generator object that can be used to run custom compilation commands. The only positional argument is the executable to use. It can either be a self-built executable or one returned by find_program. Keyword arguments are the following:
 
@@ -250,30 +254,42 @@ This function creates a generator object that can be used to run custom compilat
 
 The returned object also has methods that are documented in the [object methods section](#generator-object) below.
 
-### get_option(*option_name*)
+### get_option
+
+  value get_option(option_name)
 
 Obtains the value of the [project build option](Build options) specified in the positional argument.
 
-### get_variable(*variable_name*, *fallback*)
+### get_variable
+
+    value get_variable(variable_name, fallback)
 
 This function can be used to dynamically obtain a variable. `res = get_variable(varname, fallback)` takes the value of `varname` (which must be a string) and stores the variable of that name into `res`. If the variable does not exist, the variable `fallback` is stored to `res`instead. If a fallback is not specified, then attempting to read a non-existing variable will cause a fatal error.
 
-### import(*module_name*)
+### import
+
+    module_object import(module_name)
 
 Imports the given extension module. Returns an opaque object that can be used to call the methods of the module. Here's an example for a hypothetical `testmod` module.
 
     tmod = import('testmod')
     tmod.do_something()
 
-### include_directories(*directory_names*, ...)
+### include_directories
+
+    include_object include_directories(directory_names, ...)
 
 Returns an opaque object which contains the directories given in positional arguments. The result can then be used as a keyword argument when building executables or libraries. Both the source directory and the corresponding build directory are added. Note that this function call itself does not add the directories into the search path, since there is no global search path. You can use the the returned object in any subdirectory you want, Meson will make the paths work automatically. This function has one keyword argument `is_system` which, if set, flags the specified directories as system directories. This means that they will be used with the `-isystem` compiler argument rather than `-I` on compilers that support this flag (in practice everything except Visual Studio).
 
-### install_data(*list_of_files*)
+### install_data
+
+    void install_data(list_of_files, ...)
 
 Installs files listed in positional and `sources` keyword arguments into the directory specified by the `install_dir` argument during install phase.
 
-### install_headers(*list_of_headers*, ...)
+### install_headers
+
+    void install_headers(list_of_headers, ...)
 
 Installs the specified header files into the system header directory (usually `/{prefix}/include`) during the install step. This directory can be overridden by specifying it with the `install_dir` keyword argument. If you just want to install into a subdirectory of the system header directory, then use the `subdir` argument. As an example if this has the value `myproj` then the headers would be installed to `/{prefix}/include/myproj`.
 
@@ -295,23 +311,33 @@ This will install `common.h` and `kola.h` into `/{prefix}/cust/myproj`:
 install_headers('common.h', 'proj/kola.h', install_dir : 'cust', subdir : 'myproj')
 ```
 
-### install_man(*list_of_manpages*, ...)
+### install_man
+
+    void install_man(list_of_manpages, ...)
 
 Installs the man files specified into system's man directory during the install step. This directory can be overridden by specifying it with the `install_dir` keyword argument.
 
-### install_subdir(*subdir_name*, ...)
+### install_subdir
+
+    void install_subdir(subdir_name)
 
 Installs the entire given subdirectory tree to the location specified by the keyword argument `install_dir`. Note that due to implementation issues this command deletes the entire target dir before copying the files, so you should never use `install_subdir` to install into two overlapping directories (such as `foo` and `foo/bar`) because if you do the behaviour is undefined.
 
-### is_subproject()
+### is_subproject
+
+    bool is_subproject()
 
 Returns true if the current project is being built as a subproject of some other project and false otherwise.
 
-### is_variable(*varname*)
+### is_variable
 
-`is_variable(varname)` returns true if a variable of the given name exists and false otherwise.
+    bool is_variable(varname)
 
-### jar(*name*, *list_of_sources*, ...)
+Returns true if a variable of the given name exists and false otherwise.
+
+### jar
+
+   jar_object jar(name, list_of_sources, ...)
 
 Build a jar from the specified Java source files. Keyword arguments are the same as executable's, with the addition of `main_class` which specifies the main class to execute when running the jar with `java -jar file.jar`.
 
