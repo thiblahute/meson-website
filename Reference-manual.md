@@ -132,7 +132,9 @@ Takes a configuration file template and values and produces a file as specified 
 - `command` if specified Meson does not create the file itself but rather runs the specified command, which allows you to do fully custom file generation
 - `install_dir` the subdirectory to install the generated file to (e.g. `share/myproject`), if empty the file is not installed
 
-### custom_target(*targetname*, ...)
+### custom_target
+
+    ctarget custom_target(...)
 
 Create a custom top level build target. The only positional argument is the name of this target and the keyword arguments are the following.
 
@@ -146,7 +148,9 @@ Create a custom top level build target. The only positional argument is the name
 - `capture`, there are some compilers that can't be told to write their output to a file but instead write it to standard output. When this argument is set to true, Meson captures `stdout` and writes it to the target file. Note that your command argument list may not contain `@OUTPUT@` when capture mode is active.
 - `depfile` is a dependency file that the command can write listing all the additional files this target depends on, for example a C compiler would list all the header files it included, and a change in any one of these files triggers a recompilation
 
-### declare_dependency(...)
+### declare_dependency
+
+    dependency_object declare_dependency(...)
 
 This function creates a dependency object that behaves like the return value of `dependency` but is internal to the current build. The main use case for this is in subprojects. This allows a subproject to easily specify how it should be used. This makes it interchangeable with the same dependency that is provided externally by the system. This function has three keyword arguments.
 
@@ -158,7 +162,9 @@ This function creates a dependency object that behaves like the return value of 
   - `link_args`, link arguments to use
   - `version`, the version of this depency, such as `1.2.3`
 
-### dependency(*dependency_name*, ...)
+### dependency
+
+    dependency_object dependency(*dependency_name*, ...)
 
 Finds an external dependency with the given name with pkg-config if possible and with fallback detection logic otherwise. Dependency supports the following keyword arguments.
 
@@ -171,15 +177,21 @@ Finds an external dependency with the given name with pkg-config if possible and
 
 The returned object also has methods that are documented in the [object methods section](#dependency-object) below.
 
-### error(*message*)
+### error
+
+    void error(message)
 
 Print the argument string and halts the build process.
 
-### environment()
+### environment
+
+    environment_object environment()
 
 Returns an empty [environment variable object](#environment-object).
 
-### executable(*exe_name*, *sources*, ...)
+### executable
+
+    exe executable(*exe_name*, *sources*, ...)
 
 Creates a new executable. The first argument specifies its name and the remaining positional arguments define the source files to use.
 
@@ -202,7 +214,9 @@ Executable supports the following keyword arguments. These keyword arguments are
 
 The returned object also has methods that are documented in the [object methods section](#build-target-object) below.
 
-### find_program(*program name*)
+### find_program
+
+   program find_program(program_name)
 
 Tries to locate the command listed in the positional argument. It can either be a command or a script in the source directory. Meson will also autodetect scripts with a shebang line and run them with the executable specified in it both on Windows (because the command invocator will reject the command otherwise) and unixes (if the script file does not have the executable bit set).
 
