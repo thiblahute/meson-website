@@ -24,7 +24,7 @@ Generates GObject introspection data. Takes one positional argument, the build t
 * `dependencies`: deps to use during introspection scanning
 * `extra_args`: command line arguments to pass to gir compiler
 
-This function returns nothing.
+This function returns an array of two elements which are the gir target and the typelib target.
 
 ## compile_schemas
 
