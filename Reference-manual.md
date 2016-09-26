@@ -505,17 +505,17 @@ This object is returned by [`meson.get_compiler(lang)`](#meson-object). It repre
 - `get_id()` returns a string identifying the compiler (e.g. `'gcc'`)
 - `version()` returns the compiler's version number as a string
 - `find_library(lib_name, ...)` tries to find the library specified in the positional argument. The [result object](#external-library-object) can be used just like the return value of `dependency`. If the keyword argument `required` is false, Meson will proceed even if the library is not found. By default the library is searched for in the system library directory (e.g. /usr/lib). This can be overridden with the `dirs` keyword argument, which can be either a string or a list of strings.
-- `sizeof(typename, ...)` returns the size of the given type (e.g. `'int'`) or -1 if the type is unknown, to add includes set them in the `prefix` keyword argument
-- `alignment(typename)` returns the alignment of the type specified in the positional argument
-- `compiles(code_snippet)` returns true if the code fragment given in the positional argument compiles
-- `links(code_snippet)` returns true if the code fragment given in the positional argument compiles and links
-- `run(code_snippet)` attempts to compile and execute the given code fragment, returns a run result object
-- `has_header` returns true if the specified header can be included
-- `has_type(typename)` returns true if the specified token is a type
-- `has_function(funcname)` returns true if the given function is provided by the standard library or a library passed in with the `args` keyword
-- `has_member(typename, membername)` takes two arguments, type name and member name and returns true if the type has the specified member
-- `has_header_symbol(headername, symbolname)` allows one to detect whether a particular symbol (function, variable, #define, type definition, etc) is declared in the specified header.
-- `has_argument(argument_name)` returns true if the compiler accepts the specified command line argument, that is, can compile code without erroring out or printing a warning about an unknown flag
+- `sizeof(typename, ...)` returns the size of the given type (e.g. `'int'`) or -1 if the type is unknown, to add includes set them in the `prefix` keyword argument, you can specify external dependencies to use with `dependencies` keyword argument
+- `alignment(typename)` returns the alignment of the type specified in the positional argument, you can specify external dependencies to use with `dependencies` keyword argument
+- `compiles(code_snippet)` returns true if the code fragment given in the positional argument compiles, you can specify external dependencies to use with `dependencies` keyword argument
+- `links(code_snippet)` returns true if the code fragment given in the positional argument compiles and links, you can specify external dependencies to use with `dependencies` keyword argument
+- `run(code_snippet)` attempts to compile and execute the given code fragment, returns a run result object, you can specify external dependencies to use with `dependencies` keyword argument
+- `has_header` returns true if the specified header can be included, you can specify external dependencies to use with `dependencies` keyword argument
+- `has_type(typename)` returns true if the specified token is a type, you can specify external dependencies to use with `dependencies` keyword argument
+- `has_function(funcname)` returns true if the given function is provided by the standard library or a library passed in with the `args` keyword, you can specify external dependencies to use with `dependencies` keyword argument
+- `has_member(typename, membername)` takes two arguments, type name and member name and returns true if the type has the specified member, you can specify external dependencies to use with `dependencies` keyword argument
+- `has_header_symbol(headername, symbolname)` allows one to detect whether a particular symbol (function, variable, #define, type definition, etc) is declared in the specified header, , you can specify external dependencies to use with `dependencies` keyword argument
+- `has_argument(argument_name)` returns true if the compiler accepts the specified command line argument, that is, can compile code without erroring out or printing a warning about an unknown flag, you can specify external dependencies to use with `dependencies` keyword argument
 - `first_supported_argument(list_of_strings)`, given a list of strings, returns the first argument that passes the `has_argument` test above or an empty array if none pass
 
 The `prefix` keyword argument can be used to add #defines, #includes, etc that are required for the symbol to be declared (eg: `#define _GNU_SOURCE` is often required for some symbols to be exposed on Linux). Supported by the methods `sizeof`, `has_type`, `has_function`, `has_member`,`has_header_symbol`.
