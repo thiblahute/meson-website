@@ -66,7 +66,7 @@ These are objects returned by the [functions listed above](#functions).
  * [dependency object](#dependency-object)
  * [external program object](#external-program-object)
  * [environment object](#environment-object)
- * [external library object](#external library object)
+ * [external library object](#external-library-object)
  * [generator object](#generator-object)
 
 ### add_global_arguments
