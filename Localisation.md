@@ -13,13 +13,14 @@ We also need to define an array of strings containing all the locales we want to
 
 Then we need to generate the main pot file. Usually this is generated manually or exists already. If not, see later on how to generate it using Meson. The potfile can have any name but is usually the name of the Gettext package. Let's say the project is called *intltest*. In this case the corresponding pot file would be called `inltest.pot`.
 
-For each language listed in the array above we need a corresponding `.po` file. This has to be generated manually, see the Gettext manual for details. Once we have all this, we can define the localisation to Meson with this command.
+For each language listed in the array above we need a corresponding `.po` file. This has to be generated manually, see the Gettext manual for details. Once we have all this, we can define the localisation to Meson with these lines.
 
-    gettext('intltest', languages : langs)
+    i18n = import('i18n')
+    i18n.gettext('intltest', languages : langs)
 
-The first argument is the Gettext package name. This causes two things to happen. The first is that Meson will generate binary mo files and put them to their proper locations when doing an install. The second is that it creates a build rule to regenerate the main pot file. If you are using the Ninja backend, this is how you would invoke the rebuild.
+The first command imports the `i18n` module that provides Gettext features. The second line does the actual invocation. The first argument to the is the Gettext package name. This causes two things to happen. The first is that Meson will generate binary mo files and put them to their proper locations when doing an install. The second is that it creates a build rule to regenerate the main pot file. If you are using the Ninja backend, this is how you would invoke the rebuild.
 
-    ninja pot
+    ninja intltest-pot
 
 If the pot file does not yet exist, it will be created. It is recommended to inspect it manually afterwards and fill in e.g. proper copyright and contact information.
 
