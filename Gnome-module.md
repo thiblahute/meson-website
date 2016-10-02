@@ -10,7 +10,7 @@ This function compiles resources specified in an XML file into code that can be 
 * `c_name`: passed to the resource compiler as an argument after `--c-name`
 * `extra_args`: extra command line arguments to pass to the resource compiler
 
-Returns an opaque object that you should pass into your build target.
+This function returns an array of two elements which are the c target and the header target.
 
 ## generate_gir
 
