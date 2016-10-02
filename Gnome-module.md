@@ -14,11 +14,18 @@ Returns an opaque object that you should pass into your build target.
 
 ## generate_gir
 
-Generates GObject introspection data. Takes one positional argument, the build target you want to build gir data for. There are several keyword arguments.
+Generates GObject introspection data. Takes one positional argument, the build target you want to build gir data for. There are several keyword arguments. Many of these map directly to the `g-ir-scanner` tool so see its documentation for more information.
 
 * `sources`: the list of sources to be scanned for gir data
 * `nsversion`: namespace version
-* `namespace`: the namespace for this gir object
+* `namespace`: the namespace for this gir object which determines output files
+* `symbol_prefix`: the symbol prefix for the gir object, e.g. `gtk`
+* `identifier_prefix`: the identifier prefix for the gir object, e.g. `Gtk`
+* `export_packages`: extra packages the gir file exports
+* `includes`: list of gir names to be included, can also be a GirTarget
+* `dependencies`: extra dependencies for building the gir and typelib
+* `link_with`: list of libraries to link with
+* `include_directories`: extra include paths to look for gir files
 * `install`: if true, install the generated gir file
 * `install_dir`: which subdirectory to install the gir file into
 * `dependencies`: deps to use during introspection scanning
