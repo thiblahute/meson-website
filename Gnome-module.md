@@ -95,6 +95,7 @@ Compiles and installs gtkdoc documentation. Takes one positional arguments; The 
 * `main_xml`: specifies the main xml file
 * `main_sgml`: equal to `main_xml`
 * `src_dir`: include_directories to include
+* `dependencies`: a list of dependencies
 * `install`: if true, installs the generated docs
 * `install_dir`: the directory to install the generated docs
 * `scan_args`: a list of arguments to pass to `gtkdoc-scan`
