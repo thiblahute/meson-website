@@ -34,6 +34,26 @@ Generates GObject introspection data. Takes one positional argument, the build t
 
 This function returns an array of two elements which are the gir target and the typelib target.
 
+## genmarshal
+
+Generates a marshal file using the `glib-genmarshal` tool. The first argument is the basename of
+the output files.
+
+* `sources`: the list of sources to use as inputs
+* `prefix`: the prefix to use for symbols
+* `install_header`: if true, install the generated header
+* `install_dir`: directory to install header to
+* `stdinc`: if true, include the standard marshallers from glib
+* `nostdinc`: if true, don't include the standard marshallers from glib
+* `internal`: if true, mark generated sources as internal
+* `skip_source`: if true, skip source location comments
+* `valist_marshallers`: if true, generate va_list marshallers
+
+
+*Added 0.35.0*
+
+Returns an array of two elements which are the c source and header file
+
 ## mkenums
 
 Generates enum files for GObject using the `glib-mkenums` tool. The first argument is the base name of
