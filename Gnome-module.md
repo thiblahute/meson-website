@@ -90,7 +90,7 @@ Returns an opaque object containing the source files. Add it to a top level targ
 
 ## gtkdoc
 
-Compiles and installs gtkdoc documentation. Takes two positional arguments. The first one is the name of the module and the second is the directory containing sources.
+Compiles and installs gtkdoc documentation. Takes one positional arguments; The name of the module.
 
 * `main_xml`: specifies the main xml file
 * `main_sgml`: equal to `main_xml`
