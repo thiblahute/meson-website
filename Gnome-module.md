@@ -34,6 +34,30 @@ Generates GObject introspection data. Takes one positional argument, the build t
 
 This function returns an array of two elements which are the gir target and the typelib target.
 
+## mkenums
+
+Generates enum files for GObject using the `glib-mkenums` tool. The first argument is the base name of
+the output files.
+
+* `sources`: the list of sources to make enums with
+* `c_template`: template to use for generating the source
+* `h_template`: template to use for generating the header
+* `install_header`: if true, install the generated header
+* `install_dir`: directory to install the header
+* `comments`: comment passed to the command
+* `identifier_prefix`: prefix to use for the identifiers
+* `symbol_prefix`: prefix to use for the symbols
+* `eprod`: enum text
+* `fhead`: file header
+* `fprod`: file text
+* `ftail`: file tail
+* `vhead`: value text
+* `vtail`: value tail
+
+*Added 0.35.0*
+
+Returns an array of two elements which are the c source and header file
+
 ## compile_schemas
 
 When called, this method will compile the gschemas in the current directory.
