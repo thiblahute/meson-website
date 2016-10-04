@@ -10,7 +10,7 @@ This function compiles resources specified in an XML file into code that can be 
 * `c_name`: passed to the resource compiler as an argument after `--c-name`
 * `extra_args`: extra command line arguments to pass to the resource compiler
 
-This function returns an array of two elements which are the c target and the header target.
+Returns an array of two elements which are the c target and the header target.
 
 ## generate_gir
 
@@ -32,7 +32,7 @@ Generates GObject introspection data. Takes one positional argument, the build t
 * `dependencies`: deps to use during introspection scanning
 * `extra_args`: command line arguments to pass to gir compiler
 
-This function returns an array of two elements which are the gir target and the typelib target.
+Returns an array of two elements which are the gir target and the typelib target.
 
 ## genmarshal
 
@@ -86,11 +86,24 @@ When called, this method will compile the gschemas in the current directory.
 
 Compiles the given XML schema into gdbus source code. Takes two positional arguments, the first one specifies the name of the source files and the second specifies the XML file name. There are two keyword arguments, `interface_prefix` and `namespace` which map to corresponding features of the compiler.
 
-Return value is an opaque object containing the source files. Add it to a top level target's source list.
+Returns an opaque object containing the source files. Add it to a top level target's source list.
 
 ## gtkdoc
 
-Compiles and installs gtkdoc documentation. Takes two positional arguments. The first one is the name for this target and the second is the directory containing sources. Keyword arguments are `main_sgml`which specifies the main sgml (or xml) file, `install` which, if true, installs the generated docs and `scan_args` and `html_args` for extra arguments to pass to `gtkdoc-scan` and `gtkdoc-mkhtml`, respectively.
+Compiles and installs gtkdoc documentation. Takes two positional arguments. The first one is the name of the module and the second is the directory containing sources.
+
+* `main_xml`: specifies the main xml file
+* `main_sgml`: equal to `main_xml`
+* `src_dir`: include_directories to include
+* `install`: if true, installs the generated docs
+* `install_dir`: the directory to install the generated docs
+* `scan_args`: a list of arguments to pass to `gtkdoc-scan`
+* `scanobjs_args`: a list of arguments to pass to `gtkdoc-scangobj`
+* `gobject_typesfile`: a list of type files
+* `fixxref_args`: a list of arguments to pass to `gtkdoc-fixxref`
+* `html_args` a list of arguments to pass to `gtkdoc-mkhtml`
+* `html_assets`: a list of assets for the html pages
+* `content_files`: a list of content files
 
 ## gtkdoc_html_dir
 
