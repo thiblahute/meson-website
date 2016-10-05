@@ -80,7 +80,8 @@ Returns an array of two elements which are the c source and header file
 
 ## compile_schemas
 
-When called, this method will compile the gschemas in the current directory.
+When called, this method will compile the gschemas in the current directory. Note that this is not
+for installing schemas and is only useful when running the application locally for example during tests.
 
 ## gdbus_codegen
 
