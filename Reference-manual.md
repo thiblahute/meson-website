@@ -412,7 +412,7 @@ Builds a shared library with the given sources. Positional and keyword arguments
 
 Builds a static library with the given sources. Positional and keyword arguments are otherwise the same as for [`library`](#library), but it has one argument the others don't have:
 
- - `pic`, builds the library as positional independent code (so it can be linked into a shared library)
+ - `pic`, builds the library as positional independent code (so it can be linked into a shared library). This option has no effect on Windows and OS X since it doesn't make sense on Windows and PIC cannot be disabled on OS X.
 
 ### subdir
 
