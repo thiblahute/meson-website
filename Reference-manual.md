@@ -410,7 +410,9 @@ Builds a shared library with the given sources. Positional and keyword arguments
 
     buildtarget static_library(library_name, list_of_sources, ...)
 
-Builds a static library with the given sources. Positional and keyword arguments are the same as for [`library`](#library)
+Builds a static library with the given sources. Positional and keyword arguments are otherwise the same as for [`library`](#library), but it has one argument the others don't have:
+
+ - `pic`, builds the library as positional independent code (so it can be linked into a shared library)
 
 ### subdir
 
