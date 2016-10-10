@@ -366,6 +366,8 @@ This function prints its argument to stdout.
 
 Joins the given strings into a file system path segment. For example `path_join('foo', 'bar')` results in `foo/bar`. If any one of the individual segments is an absolute path, all segments before it are dropped. That means that `path_join('foo', '/bar')` returns `/bar`.
 
+*Added 0.36.0*
+
 ### project
 
     void project(project_name, list_of_languages, ...)
