@@ -34,6 +34,7 @@ The following functions are available in build files. Click on each to see the d
  * [jar](#jar)
  * [library](#library)
  * [message](#message)
+ * [path_join](#path_join)
  * [project](#project)
  * [run_command](#run_command)
  * [run_target](#run_target)
@@ -358,6 +359,12 @@ The keyword arguments for this are the same as for [`executable`](#executable) w
     void message(text)
 
 This function prints its argument to stdout.
+
+### path_join
+
+   string path_join([strings to join])
+
+Joins the given strings into a file system path segment. For example `path_join('foo', 'bar')` results in `foo/bar`. If any one of the individual segments is an absolute path, all segments before it are dropped. That means that `path_join('foo', '/bar')` returns `/bar`.
 
 ### project
 
