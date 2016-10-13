@@ -32,9 +32,9 @@ The following functions are available in build files. Click on each to see the d
  * [is_subproject](#is_subproject)
  * [is_variable](#is_variable)
  * [jar](#jar)
+ * [join_paths](#join_paths)
  * [library](#library)
  * [message](#message)
- * [path_join](#path_join)
  * [project](#project)
  * [run_command](#run_command)
  * [run_target](#run_target)
@@ -342,6 +342,14 @@ Returns true if a variable of the given name exists and false otherwise.
 
 Build a jar from the specified Java source files. Keyword arguments are the same as executable's, with the addition of `main_class` which specifies the main class to execute when running the jar with `java -jar file.jar`.
 
+### join_paths
+
+   string join_paths([strings to join])
+
+Joins the given strings into a file system path segment. For example `join_paths('foo', 'bar')` results in `foo/bar`. If any one of the individual segments is an absolute path, all segments before it are dropped. That means that `join_paths('foo', '/bar')` returns `/bar`.
+
+*Added 0.36.0*
+
 ### library
 
     buildtarget library(library_name, list_of_sources, ...)
@@ -359,14 +367,6 @@ The keyword arguments for this are the same as for [`executable`](#executable) w
     void message(text)
 
 This function prints its argument to stdout.
-
-### path_join
-
-   string path_join([strings to join])
-
-Joins the given strings into a file system path segment. For example `path_join('foo', 'bar')` results in `foo/bar`. If any one of the individual segments is an absolute path, all segments before it are dropped. That means that `path_join('foo', '/bar')` returns `/bar`.
-
-*Added 0.36.0*
 
 ### project
 
