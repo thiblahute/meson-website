@@ -204,7 +204,7 @@ Executable supports the following keyword arguments. These keyword arguments are
 - `link_args` flags to use during linking. You can use unix-style flags here for all platforms.
 - `link_depends` an extra file that the link step depends on such as a symbol visibility map
 - `include_directories` one or more objects created with the `include_directories` function
-- `dependencies` one or more objects created with `dependency` or `find_library`
+- `dependencies` one or more objects created with [`dependency`](#dependency) or [`find_library`](#compiler-object) (for external deps) or [`declare_dependency`](#declare_dependency) (for deps built by the project)
 - `gui_app` when set to true flags this target as a GUI application on platforms where this makes a difference (e.g. Windows)
 - `extra_files` are not used for the build itself but are shown as source files in IDEs that group files by targets (such as Visual Studio)
 - `install`, when set to true, this executable should be installed
