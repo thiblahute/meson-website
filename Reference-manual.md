@@ -616,7 +616,7 @@ Numbers support these methods:
 
 A boolean object has two simple methods:
 
- - `to_string()` returns the string `'true'` if the boolean is true or `'false'`otherwise
+ - `to_string()` returns the string `'true'` if the boolean is true or `'false'` otherwise. You can also pass it two strings as positional arguments to specify what to return for true/false. For instance, `bool.to_string('yes', 'no')` will return `yes` if the boolean is true and `no` if it is false.
  - `to_int()` as above, but returns either `1` or `0`
 
 ### array object
