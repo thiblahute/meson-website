@@ -64,7 +64,8 @@ You don't need to do the same in Meson, because it does not have two different t
 
 ```
 conf = configuration_data()
-conf.set('VERSION', as_version)
+# Surround the version in quotes to make it a C string
+conf.set_quoted('VERSION', as_version)
 configure_file(input : 'config.h.in',
                output : 'config.h',
                configuration : conf)
