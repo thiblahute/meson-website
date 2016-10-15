@@ -12,7 +12,7 @@
 
 - Guadec 2016, [Making your GNOME app compile 2.4x faster](https://media.ccc.de/v/44-making_your_gnome_app_compile_24x_faster)
 
-- LAS 206, [New world, new tools](https://youtu.be/0-gx1qU2pPo)
+- LAS 2016, [New world, new tools](https://youtu.be/0-gx1qU2pPo)
 
 ----
 
