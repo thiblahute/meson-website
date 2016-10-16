@@ -561,6 +561,7 @@ They all take the `description` keyword that will be written in the result file.
 This object is returned by [`dependency`](#dependency) and contains an external dependency with the following methods:
 
  - `found()` which returns whether the dependency was found
+ - `type()` which returns a string describing the type of the dependency, the most common values are `internal` for deps created with `declare_dependencies` and `pkgconfig` for system dependencies obtained with Pkg-config.
  - `version()` is the version number as a string, for example `1.2.8` 
 
 ### external program object
