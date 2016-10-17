@@ -11,5 +11,5 @@ Sets up gettext localisation so that translations are built and placed into thei
 This function also defines targets for maintainers to use:  
 **Note**: These output to the source directory
 
-* `<project_id>-pot`: runs `xgettext` to regenerate the pot file.
+* `<project_id>-pot`: runs `xgettext` to regenerate the pot file
 
