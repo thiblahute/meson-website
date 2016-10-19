@@ -563,7 +563,7 @@ This object is returned by [`dependency`](#dependency) and contains an external 
  - `found()` which returns whether the dependency was found
  - `type_name()` which returns a string describing the type of the dependency, the most common values are `internal` for deps created with `declare_dependencies` and `pkgconfig` for system dependencies obtained with Pkg-config.
  - `version()` is the version number as a string, for example `1.2.8`
- - `get_pkgconfig_variable(varname)` will get the pkg-config variable specified, or, if invoked on a non pkg-config dependency, error out
+ - `get_pkgconfig_variable(varname)` (*Added 0.36.0*) will get the pkg-config variable specified, or, if invoked on a non pkg-config dependency, error out
 
 ### external program object
 
