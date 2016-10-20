@@ -17,11 +17,6 @@ Valgrind
 
 [Valgrind](http://valgrind.org/) is a multi purpose memory usage checker. If Meson detects Valgrind on the system being run, it will automatically provide a target named *test-valgrind*. This will run each test in the test suite under Valgrind using the default checking options. The output of these tests can be found in the file `meson-private/testlog-valgrind.txt`.
 
-Cppcheck
---
-
-[Cppcheck](http://cppcheck.sourceforge.net/‎) is a tool for detecting errors in C/C++ programs through static analysis. Meson will automatically create a cppcheck target if you have the program installed on your system.
-
 ---
 
 [Back to index](Manual).
