@@ -19,7 +19,7 @@ Sometimes you want to copy an entire subtree directly. For this use case there i
 
 Most of the time you want to install files relative to the install prefix. Sometimes you need to go outside of the prefix (such as writing files to `/etc` instead of `/usr/etc`. This can be accomplished by giving an absolute install path.
 
-    install_data('foobar', sources : 'foo.dat', install_dir : '/etc') # -> /etc/foo.dat
+    install_data(sources : 'foo.dat', install_dir : '/etc') # -> /etc/foo.dat
 
 ## Custom install behaviour ##
 
