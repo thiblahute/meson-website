@@ -217,7 +217,7 @@ The returned object also has methods that are documented in the [object methods 
 
 ### find_program
 
-   program find_program(program_name)
+    program find_program(program_name)
 
 Tries to locate the command listed in the positional argument. It can either be a command or a script in the source directory. Meson will also autodetect scripts with a shebang line and run them with the executable specified in it both on Windows (because the command invocator will reject the command otherwise) and unixes (if the script file does not have the executable bit set).
 
@@ -257,7 +257,7 @@ The returned object also has methods that are documented in the [object methods 
 
 ### get_option
 
-  value get_option(option_name)
+    value get_option(option_name)
 
 Obtains the value of the [project build option](Build options) specified in the positional argument.
 
