@@ -4,7 +4,9 @@ Suppose we have the following Meson snippet:
 
     conf_data = configuration_data()
     conf_data.set('version', '1.2.3')
-    configure_file(input : 'config.h.in', output : 'config.h', configuration : conf_data)
+    configure_file(input : 'config.h.in',
+                   output : 'config.h',
+                   configuration : conf_data)
 
 and that the contents of `config.h.in` are
 
@@ -34,7 +36,7 @@ Note that if you want to define a C string, you need to do the quoting yourself 
 Since this is such a common operation, Meson provides a convenience method:
 
     plain_var = 'value'
-    conf.set_quoted('TOKEN', plain_var) // becomes #define TOKEN "value"
+    conf.set_quoted('TOKEN', plain_var) # becomes #define TOKEN "value"
 
 Often you have a boolean value in Meson but need to define the C/C++ token as 0 or 1. Meson provides a convenience function for this use case.
 
