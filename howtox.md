@@ -115,6 +115,10 @@ After these steps the resulting binary is fully optimized.
     m_dep = cc.find_library('m', required : false)
     executable(..., dependencies : m_dep)
 
+## Install an executable to `libexecdir`
+
+    executable(..., install : true, install_dir : get_option('libexecdir'))
+
 ----
 
 [Wiki home](Home)
