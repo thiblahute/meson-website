@@ -7,6 +7,8 @@ The following functions are available in build files. Click on each to see the d
  * [add_global_arguments](#add_global_arguments)
  * [add_global_link_arguments](#add_global_link_arguments)
  * [add_languages](#add_languages)
+ * [add_project_arguments](#add_project_arguments)
+ * [add_project_link_arguments](#add_project_link_arguments)
  * [benchmark](#benchmark)
  * [build_target](#build_target)
  * [configuration_data](#configuration_data)
@@ -78,6 +80,8 @@ Adds the positional arguments to the compiler command line for the language spec
 
 The arguments are used in all compiler invocations with the exception of compile tests, because you might need to run a compile test with and without the argument in question. For this reason only the arguments explicitly specified are used during compile tests.
 
+Note that usually you should use `add_project_arguments` instead, because that works even when you project is used as a subproject.
+
 ### add_global_link_arguments
 
     void add_global_link_arguments(*arg1*, *arg2*, ...)
@@ -96,6 +100,18 @@ Add support for new programming languages. Equivalent to having them in the `pro
     endif
 
 Takes one keyword argument, `required`. It defaults to `true`, which means that if any of the languages specified is not found, Meson will halt. Returns true if all languages specified were found and false otherwise.
+
+### add_project_arguments
+
+    void add_project_arguments(arg1, arg2, ...)
+
+This function behaves in the same way as `add_global_arguments` except that the arguments are only used for the current project, they won't be used in any other subproject.
+
+### add_project_link_arguments
+
+    void add_project_link_arguments(*arg1*, *arg2*, ...)
+
+Like `add_project_arguments` but the arguments are passed to the linker.
 
 ### benchmark
 
