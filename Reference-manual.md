@@ -233,9 +233,11 @@ The returned object also has methods that are documented in the [object methods 
 
 ### find_program
 
-    program find_program(program_name)
+    program find_program(program_name1, program_name2, ...)
 
 Tries to locate the command listed in the positional argument. It can either be a command or a script in the source directory. Meson will also autodetect scripts with a shebang line and run them with the executable specified in it both on Windows (because the command invocator will reject the command otherwise) and unixes (if the script file does not have the executable bit set).
+
+This function takes many arguments and is meant to be used for cases where the program may have many alternative names, such as `foo` and `foo.py`. The function will check for the arguments one by one and the first one that is found is returned. Meson versions earlier than 0.37.0 only accept one argument.
 
 If the program is not found, Meson will abort. You can tell it not to by setting the keyword argument `required` to false.
 
