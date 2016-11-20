@@ -5,6 +5,8 @@ let's first go over some nomenclature. The three most important definitions are 
 * *host machine* is the machine on which the compiled binary will run
 * *target machine* is the machine on which the compiled binary's output will run (this is only meaningful for programs such as compilers that, when run, produce object code for a different CPU than what the program is being run on)
 
+The `tl/dr` summary is the following: if you are doing regular cross compilation, you only care about *build_machine* and *host_machine*. Just ignore *target_machine* altogether and you will be correct 99% of the time. If you are interested in the actual details, do read on.
+
 This might be easier to understand through examples. Let's start with the regular, not cross-compiling case. In these cases all of these three machines are the same. Simple so far.
 
 Let's next look at the most common cross-compilation setup. Let's suppose you are on a 64 bit OSX machine and you are cross compiling a binary that will run on a 32 bit ARM Linux board. In this case your *build machine* is 64 bit OSX and both your *host* and *target machines* are 32 bit ARM Linux. This should be quite understandable as well.
