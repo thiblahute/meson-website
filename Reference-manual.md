@@ -147,7 +147,7 @@ Takes a configuration file template and values and produces a file as specified 
 - `output` the output file name
 - `configuration` the configuration data object as returned by `configuration_data`
 - `command` if specified Meson does not create the file itself but rather runs the specified command, which allows you to do fully custom file generation
-- `install_dir` the subdirectory to install the generated file to (e.g. `share/myproject`), if empty the file is not installed
+- `install_dir` the subdirectory to install the generated file to (e.g. `share/myproject`), if omitted the file is not installed
 
 ### custom_target
 
