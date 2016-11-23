@@ -91,7 +91,7 @@ After this you just compile your code and run the test suite. Address sanitizer 
 
 Install scan-build and configure your project. Then do this:
 
-    ninja scanbuild
+    ninja scan-build
 
 ## Use profile guided optimization
 
