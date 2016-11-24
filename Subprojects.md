@@ -30,7 +30,7 @@ Then we could use that from a master project. First we generate a subdirectory c
       i = sp.get_variable('i')
       l = sp.get_variable('l')
     endif
-    exe = executable('prog', 'prog.c', include_dirs : i, link_with : l,
+    exe = executable('prog', 'prog.c', include_directories : i, link_with : l,
                      deps : dep, install : true)
 
 With this setup the system dependency is used when it is available, otherwise we fall back on the bundled version.
