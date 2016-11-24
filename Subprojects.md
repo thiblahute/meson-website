@@ -16,7 +16,7 @@ As an example, suppose we have a simple project that provides a shared library.
 
     project('simple', 'c')
     i = include_directories('include')
-    l = shared_library('simple', 'simple.c', include_dirs : i, install : true)
+    l = shared_library('simple', 'simple.c', include_directories : i, install : true)
 
 Then we could use that from a master project. First we generate a subdirectory called `subprojects` in the root of the master directory. Then we create a subdirectory called `simple` and put the subproject in that directory. Now the subproject can be used like this.
 
