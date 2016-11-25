@@ -268,7 +268,7 @@ Meson will then do the right thing.
 This function creates a generator object that can be used to run custom compilation commands. The only positional argument is the executable to use. It can either be a self-built executable or one returned by find_program. Keyword arguments are the following:
 
 - `arguments` list the command line arguments passed to the command
-- `output` a template string defining how an output file name is generated from a source file name
+- `output` a template string (or list of strings) defining how an output file name is generated from a source file name
 - `depfile` is a dependency file that a generator can write listing all the additional files this target depends on, for example a C compiler would list all the header files it included, and a change in any one of these files triggers a recompilation
 
 The returned object also has methods that are documented in the [object methods section](#generator-object) below.
