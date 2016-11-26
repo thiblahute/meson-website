@@ -49,6 +49,10 @@ The format is straightforward. The only thing to note is the revision element th
 
 Note that in this case you cannot specify an extra patch file to use. The git repo must contain all necessary Meson build definitions.
 
+Usually you would use subprojects as read only. However in some cases you want to do commits to subprojects and push them upstream. For these cases you can specify the upload url by adding the following at the end of your wrap file:
+
+    push-url=git@git.example.com:projects/someproject.git # Supported since version 0.37.0
+
 ## Using wrapped projects
 
 To use a subproject simply do this in your top level `meson.build`.
