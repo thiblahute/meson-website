@@ -535,13 +535,13 @@ If you think the returned values for any of these are incorrect for your system 
 
 Provides information about the host machine — the machine on which the compiled binary will run. See [Cross-compilation](Cross-compilation).
 
-It has the same methods as [`build_machine`](##build_machine-object), but note that it simply returns the values defined in the cross-info file.
+It has the same methods as [`build_machine`](#build_machine-object), but note that it simply returns the values defined in the cross-info file.
 
 ### target_machine object
 
 Provides information about the target machine — the machine on which the compiled binary's output will run. Hence, this object should only be used while cross-compiling a compiler. See [Cross-compilation](Cross-compilation).
 
-It has the same methods as [`build_machine`](##build_machine-object), but note that it simply returns the values defined in the cross-info file. If `target_machine` values are not defined in the cross-info file, `host_machine` values are returned instead.
+It has the same methods as [`build_machine`](#build_machine-object), but note that it simply returns the values defined in the cross-info file. If `target_machine` values are not defined in the cross-info file, `host_machine` values are returned instead.
 
 ### build target object
 
