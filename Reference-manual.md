@@ -53,6 +53,9 @@ The following functions are available in build files. Click on each to see the d
 These are built-in objects that are always available.
 
  * [meson](#meson-object)
+ * [build_machine](#build_machine-object)
+ * [host_machine](#host_machine-object)
+ * [target_machine](#target_machine-object)
  * [String](#string-object)
  * [Number](#number-object)
  * [Boolean](#boolean-object)
@@ -516,6 +519,29 @@ The `meson` object allows you to introspect various properties of the system. Th
 - `get_cross_property(propname, fallback_value)` returns the given property from a cross file, the optional second argument is returned if not cross compiling or the given property is not found
 
 - `install_dependency_manifest(output_name)` installs a manifest file containing a list of all subprojects, their versions and license files to the file name given as the argument
+
+### build_machine object
+
+Provides information about the build machine — the machine that is doing the actual compilation. See [Cross-compilation](Cross-compilation). It has the following methods:
+
+- `cpu_family()` returns the CPU family name. Guaranteed to return `x86` for 32-bit userland on x86 CPUs, `x86_64` for 64-bit userland on x86 CPUs, `arm` for 32-bit userland on all ARM CPUs, etc.
+- `cpu()` returns a more specific CPU name, such as `i686`, `amd64`, etc.
+- `system()` returns the operating system name, such as `windows` (all versions of Windows), `linux` (all Linux distros), `darwin` (all versions of OS X), etc.
+- `endian()` returns `big` on big-endian systems and `little` on little-endian systems.
+
+If you think the returned values for any of these are incorrect for your system or CPU, please file [a bug report](/mesonbuild/meson/issues/new).
+
+### host_machine object
+
+Provides information about the host machine — the machine on which the compiled binary will run. See [Cross-compilation](Cross-compilation).
+
+It has the same methods as [`build_machine`](##build_machine-object), but note that it simply returns the values defined in the cross-info file.
+
+### target_machine object
+
+Provides information about the target machine — the machine on which the compiled binary's output will run. Hence, this object should only be used while cross-compiling a compiler. See [Cross-compilation](Cross-compilation).
+
+It has the same methods as [`build_machine`](##build_machine-object), but note that it simply returns the values defined in the cross-info file. If `target_machine` values are not defined in the cross-info file, `host_machine` values are returned instead.
 
 ### build target object
 
