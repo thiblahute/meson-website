@@ -46,6 +46,10 @@ By default Meson uses as many concurrent processes as there are cores on the tes
 
     MESON_TESTTHREADS=5 ninja test
 
+## Skipped tests
+
+Sometimes a test can only determine at runtime that it can not be run. The GNU standard approach in this case is to exit the program with error code 77. Meson will detect this and report these tests as skipped rather than failed. This behaviour was added in version 0.37.0.
+
 ---
 
 [Back to index](Manual).
