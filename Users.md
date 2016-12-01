@@ -4,6 +4,7 @@ If you have a project that uses Meson that you want to add to this list, let us 
 
  - [AQEMU](https://github.com/tobimensch/aqemu), a Qt GUI for QEMU virtual machines, since version 0.9.3
  - [Arduino sample project](https://github.com/jpakkane/mesonarduino)
+ - [Emeus](https://github.com/ebassi/emeus), Constraint based layout manager for Gtk
  - [Gnome Twitch](https://github.com/vinszent/gnome-twitch), an app for viewing Twitch streams on Gnome desktop
  - [Graphene](http://ebassi.github.io/graphene/), a thin type library for graphics
  - [GStreamer](https://cgit.freedesktop.org/gstreamer/gstreamer/), multimedia framework (not the default yet)
