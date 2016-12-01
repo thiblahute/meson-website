@@ -10,6 +10,7 @@ If you have a project that uses Meson that you want to add to this list, let us 
  - [Libhttpseverywhere](https://github.com/grindhold/libhttpseverywhere), a library to enable httpseverywhere on any desktop app
  - [Parzip](https://github.com/jpakkane/parzip), a multithreaded reimplementation of Zip 
  - [Pitivi](http://pitivi.org/), a nonlinear video editor
+ - [Sysprof[(https://wiki.gnome.org/Apps/Sysprof), a profiling tool
  - [Valum](https://github.com/valum-framework/valum), a micro web framework written in Vala
 
 ----
