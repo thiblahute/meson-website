@@ -154,7 +154,7 @@ Takes a configuration file template and values and produces a file as specified 
 
 ### custom_target
 
-    ctarget custom_target(...)
+    ctarget custom_target(*name*, ...)
 
 Create a custom top level build target. The only positional argument is the name of this target and the keyword arguments are the following.
 
