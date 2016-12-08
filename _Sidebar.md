@@ -5,6 +5,7 @@
 * [Configuration](Configuration)
 * [Dependencies](Dependencies)
 * [Tests](Unit-tests)
+* [Syntax](Syntax)
 
 ### Modules
 
