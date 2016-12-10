@@ -1,4 +1,4 @@
-** 0.37.0 is not released yet, these are preliminary **
+**0.37.0 is not released yet, these are preliminary**
 
 # New features
 
