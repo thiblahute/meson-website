@@ -31,6 +31,7 @@ Meson aims to provide an optimal syntax and implementation for a next-generation
 * [Original design rationale](Design rationale)
 * [Design rationale for the Wrap dependency system](https://groups.google.com/forum/#!topic/mesonbuild/DliVv-mjOTk)
 * [Use of Python](Use of Python)
+* [Release procedure](Release procedure)
 * [Comparison to other build system](Comparisons)
 * [Using multiple build directories](Using multiple build directories)
 * [Screencast of basic features](http://www.youtube.com/watch?v=rzLta78Jbi8)
