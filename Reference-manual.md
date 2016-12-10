@@ -248,7 +248,7 @@ The returned object also has methods that are documented in the [object methods 
 
 ### find_library
 
-This function is deprecated and has been moved to the compiler object as obtained from `meson.get_compiler()`. Please see the documentation for that [below](#compiler-object).
+This function is deprecated and in the 0.31.0 release it was moved to [the compiler object](#compiler-object) as obtained from `meson.get_compiler(lang)`.
 
 ### files
 
