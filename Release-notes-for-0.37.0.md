@@ -4,7 +4,17 @@
 
 ## Mesontest
 
-Add description here.
+Mesontest is a new testing tool that allows you to run your tests in many different ways. As an example you can run tests multiple times:
+
+    mesontest --repeat=1000 a_test
+
+or with an arbitrary wrapper executable:
+
+    mesontest --wrap='valgrind --tool=helgrind' a_test
+
+or under gdb, 1000 times in a row. This is handy for tests that fail spuriously, as when the crash happens you are given the full GDB command line:
+
+    mesontest --repeat=1000 --gdb a_test
 
 ## Mesonrewrite
 
