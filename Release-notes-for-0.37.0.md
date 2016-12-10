@@ -16,9 +16,13 @@ or under gdb, 1000 times in a row. This is handy for tests that fail spuriously,
 
     mesontest --repeat=1000 --gdb a_test
 
-## Mesonrewrite
+## Mesonrewriter
 
-Add description here.
+Mesonrewrite is an experimental tool to manipulate your build definitions programmatically. It is not installed by default yet but those interested can run it from the source repository.
+
+As an example, here is how you would add a source file to a build target:
+
+    mesonrewriter add --target=program --filename=new_source.c
 
 ## Gnome module
 
