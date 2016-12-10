@@ -36,4 +36,4 @@ The request should contain the following information:
 
 There is no need to write a long and complicated request report. Something like the following is sufficient:
 
-> The latest release has a regression where trying to do Foo using Bar breaks. This breaks all projects that use both, which includes at least [list of affected projects].
+> The latest release has a regression where trying to do Foo using Bar breaks. This breaks all projects that use both, which includes at least [list of affected projects]. This causes problems for X amount of people and because of this we should do a bugfix release.
