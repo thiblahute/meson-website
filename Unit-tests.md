@@ -65,11 +65,17 @@ Arguments to the wrapper binary can be given like this:
 
     mesontest --wrap='valgrind --tool=helgrind' testname
 
-Meson also supports running the tests under gdb. So if you have a test that segfaults only rarely, you can invoke the following command:
+Meson also supports running the tests under gdb. Just doing this:
+
+    mesontest --gdb testname
+
+Mesontest will launch gdb all set up to run the test. Just type `run` in the gdb command prompt to start the program.
+
+The second use case is a test that segfaults only rarely. In this case you can invoke the following command:
 
     mesontest --gdb --repeat=10000 testname
 
-This runs the test up to 10 000 times under gdb. If the program crashes, gdb will halt and the user can debug the application. Note that testing timeouts are disabled in this case so mesontest will not kill gdb while the developer is still debugging it. The downside is that if the test binary freezes, the test runner will wait forever.
+This runs the test up to 10 000 times under gdb automatically. If the program crashes, gdb will halt and the user can debug the application. Note that testing timeouts are disabled in this case so mesontest will not kill gdb while the developer is still debugging it. The downside is that if the test binary freezes, the test runner will wait forever.
 
 For further information see the command line help of Mesontest by running `mesontest -h`.
 
