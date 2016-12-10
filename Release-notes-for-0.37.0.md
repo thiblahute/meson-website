@@ -25,7 +25,7 @@ Add description here.
 
 - Add `gresource_bundle` kwarg to output `.gresource` files
 - Add `export` and `install_header` kwargs
-- Use depfile support available in GLib >= 2.42.0
+- Use depfile support available in GLib >= 2.52.0
 
 ## i18n module
 
