@@ -24,15 +24,6 @@ If you enable coverage measurements by giving Meson the command line flag `-Db_c
 
 The the output of these commands is written to the log directory `meson-logs` in your build directory.
 
-Valgrind
---
-
-If you have [Valgrind](http://valgrind.org/) installed, Meson will provide a `test-valgrind` target, which runs all your unit tests under Valgrind. The full Valgrind log can be found in `meson-logs/testlog-valgrind.txt`
-
-You can pass custom arguments to Valgrind by specifying them in a keyword argument like this:
-
-    test('foo', executable, valgrind_args : ['-tool=helgrind', '-v'])
-
 Parallelism
 --
 
@@ -49,6 +40,38 @@ By default Meson uses as many concurrent processes as there are cores on the tes
 ## Skipped tests
 
 Sometimes a test can only determine at runtime that it can not be run. The GNU standard approach in this case is to exit the program with error code 77. Meson will detect this and report these tests as skipped rather than failed. This behaviour was added in version 0.37.0.
+
+## Testing tool
+
+In version 0.37.0 a new tool called `mesontest` was added. The goal of this tool is to provide a simple way to run tests in a variety of different ways. The tool is designed to be run in the build directory.
+
+The simplest thing to do is just to run all tests, which is equivalent to running `ninja test`.
+
+    mesontest
+
+You can also run only a single test by giving its name:
+
+    mesontest testname
+
+Sometimes you need to run the tests multiple times, which is done like this:
+
+    mesontest --repeat=10
+
+Invoking tests via a helper executable such as Valgrind can be done with the `--wrap` argument
+
+    mesontest --wrap=valgrind testname
+
+Arguments to the wrapper binary can be given like this:
+
+    mesontest --wrap='valgrind --tool=helgrind' testname
+
+Meson also supports running the tests under gdb. So if you have a test that segfaults only rarely, you can invoke the following command:
+
+    mesontest --gdb --repeat=10000 testname
+
+This runs the test up to 10 000 times under gdb. If the program crashes, gdb will halt and the user can debug the application. Note that testing timeouts are disabled in this case so mesontest will not kill gdb while the developer is still debugging it. The downside is that if the test binary freezes, the test runner will wait forever.
+
+For further information see the command line help of Mesontest by running `mesontest -h`.
 
 ---
 
