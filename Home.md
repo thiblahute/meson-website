@@ -25,6 +25,7 @@ Meson aims to provide an optimal syntax and implementation for a next-generation
 
 ## Additional documentation
 
+* [Release notes](Release notes)
 * [Conference presentations](Conference presentations)
 * [List of projects using Meson](Users)
 * [Porting from autotools](Porting-from-autotools)
