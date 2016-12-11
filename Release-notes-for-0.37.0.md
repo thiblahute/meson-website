@@ -82,6 +82,33 @@ dependency('opencv', version : ['>=2.3.0', '<=3.1.0'])
 dependency('foolite', version : ['>=3.12.1', '!=3.13.99'])
 ```
 
+## Overriding more binaries with environment variables
+
+You can now specify the binary to be used for the following tools by setting the corresponding environment variable
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Environment variable</th>
+  </tr>
+  <tr>
+    <td>pkg-config</td>
+    <td>PKG_CONFIG</td>
+  </tr>
+  <tr>
+    <td>readelf</td>
+    <td>READELF</td>
+  </tr>
+  <tr>
+    <td>nm</td>
+    <td>NM</td>
+  </tr>
+</table>
+
+## Support for `localstatedir`
+
+Similar to other options such as `bindir` and `datadir`, you can now specify the `localstatedir` for a project by passing `--localstatedir=dir` to `meson` or `-Dlocalstatedir=dir` to `mesonconf` after configuration. You can also access it from inside the `meson.build` file with `get_option('localstatedir')`.
+
 ## Other stuff
 
 Add your highlights here.
