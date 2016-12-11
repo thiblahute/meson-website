@@ -86,24 +86,11 @@ dependency('foolite', version : ['>=3.12.1', '!=3.13.99'])
 
 You can now specify the binary to be used for the following tools by setting the corresponding environment variable
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Environment variable</th>
-  </tr>
-  <tr>
-    <td>pkg-config</td>
-    <td>PKG_CONFIG</td>
-  </tr>
-  <tr>
-    <td>readelf</td>
-    <td>READELF</td>
-  </tr>
-  <tr>
-    <td>nm</td>
-    <td>NM</td>
-  </tr>
-</table>
+| Name | Environment variable |
+| ---- | -------------------- |
+| pkg-config | PKG_CONFIG     |
+| readelf    | READELF        |
+| nm         | NM             |
 
 ## Support for `localstatedir`
 
