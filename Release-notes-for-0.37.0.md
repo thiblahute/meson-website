@@ -61,6 +61,27 @@ executable('some-exe', 'main.c', 'asm-file.S', 'ir-file.ll')
 
 As always, you can also mix LLVM IR files with C++, C, and Assembly (GAS) sources.
 
+## ViM indent and syntax files
+
+We now include filetype, indent, and syntax files for ViM [with the source tree](https://github.com/mesonbuild/meson/tree/master/syntax-highlighting/vim). Please file issues (or pull requests!) for enhancements or if you face any problems using them.
+
+## Push URLs in .wrap files
+
+[.wrap files](Using-the-WrapDB) for subprojects can now include a separate push URL to allow developers to push changes directly from a subproject git checkout.
+
+## pkg-config dependencies
+
+Meson now supports multiple version restrictions while searching for pkg-config dependencies.
+
+```
+# Just want a lower limit
+dependency('zlib', version : '>1.2.1')
+# Want both a lower and an upper limit
+dependency('opencv', version : ['>=2.3.0', '<=3.1.0'])
+# Want to exclude one specific broken version
+dependency('foolite', version : ['>=3.12.1', '!=3.13.99'])
+```
+
 ## Other stuff
 
 Add your highlights here.
