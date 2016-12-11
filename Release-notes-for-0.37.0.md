@@ -53,7 +53,13 @@ The new `shared_module` function allows the creation of shared modules, that is,
 
 ## LLVM IR compilation
 
-Meson has long had support for compiling assembler files. In this release we add support for compiling LLVM IR files in a similar way with the Clang compiler.
+Meson has long had support for compiling assembler (GAS) files. In this release we add support for compiling LLVM IR files in a similar way when building with the Clang compiler. Just add it to the list of files when creating a `library` or `executable` target like any other source file. No special handling is required:
+
+```
+executable('some-exe', 'main.c', 'asm-file.S', 'ir-file.ll')
+```
+
+As always, you can also mix LLVM IR files with C++, C, and Assembly (GAS) sources.
 
 ## Other stuff
 
