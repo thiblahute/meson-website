@@ -51,6 +51,10 @@ The new `shared_module` function allows the creation of shared modules, that is,
 - Add `preset` kwarg to included common gettext flags
 - Read languages from `LINGUAS` file
 
+## LLVM IR compilation
+
+Meson has long had support for compiling assembler files. In this release we add support for compiling LLVM IR files in a similar way with the Clang compiler.
+
 ## Other stuff
 
 Add your highlights here.
