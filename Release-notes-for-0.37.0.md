@@ -24,6 +24,10 @@ As an example, here is how you would add a source file to a build target:
 
     mesonrewriter add --target=program --filename=new_source.c
 
+## Shared modules
+
+The new `shared_module` function allows the creation of shared modules, that is, extension modules such as plugins that are meant to be used solely with `dlopen` rather than linking them to targets.
+
 ## Gnome module
 
 - Detect required programs and print useful errors if missing
