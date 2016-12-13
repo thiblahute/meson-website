@@ -96,6 +96,20 @@ You can now specify the binary to be used for the following tools by setting the
 
 Similar to other options such as `bindir` and `datadir`, you can now specify the `localstatedir` for a project by passing `--localstatedir=dir` to `meson` or `-Dlocalstatedir=dir` to `mesonconf` after configuration. You can also access it from inside the `meson.build` file with `get_option('localstatedir')`.
 
+## New compiler function `symbols_have_underscore_prefix`
+
+Checks if the compiler prefixes an underscore to C global symbols with the default calling convention. This is useful when linking to compiled assembly code, or other code that does not have its C symbol mangling handled transparently by the compiler.
+
+```
+cc = meson.get_compiler('c')
+conf = configuration_data()
+if cc.symbols_have_underscore_prefix()
+    conf.set('SYMBOLS_HAVE_UNDERSCORE', true)
+endif
+```
+
+C symbol mangling is platform and architecture dependent, and a helper function is needed to detect it. Eg: Windows 32-bit prefixes underscore, but 64-bit does not. Linux does not prefix an underscore but OS X does.
+
 ## Other stuff
 
 Add your highlights here.
