@@ -574,8 +574,9 @@ This object is returned by [`meson.get_compiler(lang)`](#meson-object). It repre
 - `has_members(typename, membername1, membername2, ...)` takes at least two arguments, type name and one or more member names, returns true if the type has all the specified members, you can specify external dependencies to use with `dependencies` keyword argument
 - `has_header_symbol(headername, symbolname)` allows one to detect whether a particular symbol (function, variable, #define, type definition, etc) is declared in the specified header, you can specify external dependencies to use with `dependencies` keyword argument
 - `has_argument(argument_name)` returns true if the compiler accepts the specified command line argument, that is, can compile code without erroring out or printing a warning about an unknown flag, you can specify external dependencies to use with `dependencies` keyword argument
-- `has_multi_arguments(arg1, arg2, arg3, ...) is the same as `has_argument` but takes multiple arguments and uses them all in a single compiler invocation, available since 0.37.0
+- `has_multi_arguments(arg1, arg2, arg3, ...)` is the same as `has_argument` but takes multiple arguments and uses them all in a single compiler invocation, available since 0.37.0
 - `first_supported_argument(list_of_strings)`, given a list of strings, returns the first argument that passes the `has_argument` test above or an empty array if none pass
+- `symbols_have_underscore_prefix()` returns `true` if the C symbol mangling is one underscore (`_`) prefixed to the symbol, available since 0.37.0
 
 The `prefix` keyword argument can be used to add #defines, #includes, etc that are required for the symbol to be declared (eg: `#define _GNU_SOURCE` is often required for some symbols to be exposed on Linux). Supported by the methods `sizeof`, `has_type`, `has_function`, `has_member`, `has_members`, `has_header_symbol`.
 
