@@ -270,11 +270,23 @@ Meson will then do the right thing.
 
 This function creates a generator object that can be used to run custom compilation commands. The only positional argument is the executable to use. It can either be a self-built executable or one returned by find_program. Keyword arguments are the following:
 
-- `arguments` list the command line arguments passed to the command
-- `output` a template string (or list of strings) defining how an output file name is generated from a source file name
-- `depfile` is a dependency file that a generator can write listing all the additional files this target depends on, for example a C compiler would list all the header files it included, and a change in any one of these files triggers a recompilation
+- `arguments` a list of template strings that will be the command line arguments passed to the executable
+- `output` a template string (or list of template strings) defining how an output file name is (or multiple output names are) generated from a single source file name
+- `depfile` is a template string pointing to a dependency file that a generator can write listing all the additional files this target depends on, for example a C compiler would list all the header files it included, and a change in any one of these files triggers a recompilation
 
 The returned object also has methods that are documented in the [object methods section](#generator-object) below.
+
+The template strings passed to all the above kwargs accept the following special substitutions:
+
+- `@PLAINNAME@`: the complete input file name, e.g: `foo.c` becomes `foo.c` (unchanged)
+- `@BASENAME@`: the base of the input filename, e.g.: `foo.c.y` becomes `foo.c` (extension is removed)
+
+In addition to the above, the `arguments` kwarg also accepts the following special substitutions:
+
+- `@OUTPUT@`: the full path to the output file
+- `@INPUT@`: the full path to the input file
+- `@SOURCE_DIR@`: the full path to the root of the source tree 
+- `@BUILD_DIR@`: the full path to the root of the build dir where the output will be placed
 
 NOTE: Generators should only be used for outputs that will only be used as inputs for a [build target](#build_target) or a [custom target](#custom_target). When you use the processed output of a generator in multiple targets, the generator will be run multiple times to create outputs for each target. Each output will be created in an target-private directory.
 
