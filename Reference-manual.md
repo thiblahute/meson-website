@@ -626,7 +626,7 @@ This object is returned by [`find_program`](#find_program) and contains an exter
 This objects stores detailed information about how environment variables should be set during tests. It should be passed as the `env` keyword argument to tests. It has the following methods.
 
  - `set(varname, value)` sets environment variable in the first argument to the value in the second argument, e.g. `env.set('FOO', 'BAR') sets envvar `FOO` to value `BAR`
- - `append(varname, value)` appends the given value to the old value of the environment variable, e.g. `env.append'('FOO', 'BAR', separator : ';')` produces `BOB;BAR` if `FOO` had the value `BOB` and plain `BAR` if the value was not defined
+ - `append(varname, value)` appends the given value to the old value of the environment variable, e.g. `env.append'('FOO', 'BAR', separator : ';')` produces `BOB;BAR` if `FOO` had the value `BOB` and plain `BAR` if the value was not defined. If the separator is not specified explicitly, the default path separator for the host operating system will be used, i.e. ';' for Windows and ':' for UNIX/POSIX systems.
  - `prepend(varname, value)` is the same as `append` except that it writes to the beginning of the variable
 
 ### external library object
