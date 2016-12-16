@@ -281,7 +281,9 @@ The template strings passed to all the above kwargs accept the following special
 - `@PLAINNAME@`: the complete input file name, e.g: `foo.c` becomes `foo.c` (unchanged)
 - `@BASENAME@`: the base of the input filename, e.g.: `foo.c.y` becomes `foo.c` (extension is removed)
 
-In addition to the above, the `arguments` kwarg also accepts the following special substitutions:
+Each string passed to the `outputs` kwarg *must* be constructed using one or both of these two substitutions.
+
+In addition to the above substitutions, the `arguments` kwarg also accepts the following:
 
 - `@OUTPUT@`: the full path to the output file
 - `@INPUT@`: the full path to the input file
