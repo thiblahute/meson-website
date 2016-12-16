@@ -168,6 +168,15 @@ Create a custom top level build target. The only positional argument is the name
 - `capture`, there are some compilers that can't be told to write their output to a file but instead write it to standard output. When this argument is set to true, Meson captures `stdout` and writes it to the target file. Note that your command argument list may not contain `@OUTPUT@` when capture mode is active.
 - `depfile` is a dependency file that the command can write listing all the additional files this target depends on, for example a C compiler would list all the header files it included, and a change in any one of these files triggers a recompilation
 
+The list of strings passed to the `command` kwarg accept the following special string substitutions:
+
+- `@INPUT@` the full path to the input passed to `input` (if only one was specified)
+- `@OUTPUT@` the full path to the output passed to `output` (if only one was specified)
+- `@INPUT0@` `@INPUT1@` `...` the full path to the input with the specified array index in `input`
+- `@OUTPUT0@` `@OUTPUT1@` `...` the full path to the output with the specified array index in `output`
+- `@OUTDIR@` the full path to the directory where the output(s) must be written
+- `@DEPFILE@` the full path to the dependency file passed to `depfile`
+
 ### declare_dependency
 
     dependency_object declare_dependency(...)
