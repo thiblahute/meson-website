@@ -147,7 +147,7 @@ Creates an empty configuration object. You should add your configuration with [i
 Takes a configuration file template and values and produces a file as specified in [the configuration file documentation](Configuration). The keyword arguments are the following:
 
 - `input` the input file name. If it's not specified, all the variables in the `configuration` object (see below) are written to the `output` file.
-- `output` the output file name
+- `output` the output file name. The permissions of the input file (if it is specified) are copied to the output file.
 - `configuration` the configuration data object as returned by `configuration_data`
 - `command` if specified Meson does not create the file itself but rather runs the specified command, which allows you to do fully custom file generation
 - `install_dir` the subdirectory to install the generated file to (e.g. `share/myproject`), if omitted the file is not installed
