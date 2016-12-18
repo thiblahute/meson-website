@@ -34,3 +34,63 @@ script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker run withgit /bin/sh -c "cd /root && TRAVIS=true CC=$CC CXX=$CXX meson build && ninja -C build test"; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then SDKROOT=$(xcodebuild -version -sdk macosx Path) meson build && ninja -C build test; fi
 ```
+
+```
+os: Visual Studio 2015
+
+matrix:
+  - arch: x86
+    compiler: msvc2010
+  - arch: x86
+    compiler: msvc2015
+  - arch: x64
+    compiler: msvc2015
+
+platform:
+  - x64
+
+install:
+  # Use the x86 python only when building for x86 for the cpython tests.
+  # For all other archs (including, say, arm), use the x64 python.
+  - ps: (new-object net.webclient).DownloadFile('https://dl.dropboxusercontent.com/u/37517477/ninja.exe', 'C:\projects\meson\ninja.exe')
+  - cmd: if %arch%==x86 (set MESON_PYTHON_PATH=C:\python34) else (set MESON_PYTHON_PATH=C:\python34-x64)
+  - cmd: echo Using Python at %MESON_PYTHON_PATH%
+  - cmd: %MESON_PYTHON_PATH%\pip install meson
+  - cmd: if %compiler%==msvc2010 ( call "C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" %arch% )
+  - cmd: if %compiler%==msvc2015 ( call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" %arch% )
+
+build_script:
+  - cmd: echo Building on %arch% with %compiler%
+  - cmd: PATH=%cd%;%MESON_PYTHON_PATH%;%PATH%; && python meson.py --backend=ninja build
+  - cmd: PATH=%cd%;%MESON_PYTHON_PATH%;%PATH%; && ninja -C build
+
+test_script:
+  - cmd: PATH=%cd%;%MESON_PYTHON_PATH%;%PATH%; && ninja -C build test
+```
+
+## Travis without Docker
+
+This setup is not recommended but included here for completeness
+
+```
+sudo: false
+language: cpp
+group: beta
+
+matrix:
+  include:
+    - os: linux
+      dist: trusty
+    - os: osx
+
+install:
+  - export PATH="`pwd`/build:${PATH}"
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update && brew install python3 ninja; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then wget https://github.com/ninja-build/ninja/releases/download/v1.7.2/ninja-linux.zip && unzip -q ninja-linux.zip -d build; fi
+  - pip3 install meson
+
+script:
+  - meson build
+  - ninja -C build
+  - ninja -C build test
+```
