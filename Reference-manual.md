@@ -526,9 +526,11 @@ The `meson` object allows you to introspect various properties of the system. Th
 
 - `has_exe_wrapper()` returns true when doing a cross build if there is a wrapper command that can be used to execute cross built binaries (for example when cross compiling from Linux to Windows, one can use `wine` as the wrapper)
 
-- `add_install_script(script_name)` causes the script given as an argument to be run during the install step, this script will have the environment variables `MESON_SOURCE_ROOT`, `MESON_BUILD_ROOT` and `MESON_INSTALL_PREFIX` set
+- `add_install_script(script_name, arg1, arg2, ...)` causes the script given as an argument to be run during the install step, this script will have the environment variables `MESON_SOURCE_ROOT`, `MESON_BUILD_ROOT`, `MESON_INSTALL_PREFIX`, and `MESON_INSTALL_DESTDIR_PREFIX` set. All additional arguments are passed as parameters.
 
-- `add_postconf_script(script_name, list_of_args)` will run the executable given as an argument after all project files have been generated. This script will have the environment variables `MESON_SOURCE_ROOT` and `MESON_BUILD_ROOT` set. All additional arguments are passed as parameters.
+`MESON_INSTALL_PREFIX` has the value of the `prefix` option passed to Meson, and `MESON_INSTALL_DESTDIR_PREFIX` has both the value of `DESTDIR` and `prefix` joined together. This is useful because both are absolute paths, and many path-joining functions such as [`os.path.join` in Python](https://docs.python.org/3/library/os.path.html#os.path.join) special-case absolute paths.
+
+- `add_postconf_script(script_name, arg1, arg2, ...)` will run the executable given as an argument after all project files have been generated. This script will have the environment variables `MESON_SOURCE_ROOT` and `MESON_BUILD_ROOT` set.
 
 - `current_source_dir()` returns a string to the current source directory. Note: use the `files()` function to refer to files in the source directory instead of constructing paths manually with `meson.current_source_dir()`.
 
