@@ -117,8 +117,13 @@ Strings also support a number of other methods that return transformed copies.
     # Similar to the Python str.join()
     output = ' '.join(['foo', 'bar'])
     # Output value is 'foo bar'
-    pathsep = '/'
-    path = pathsep.join(['/usr', 'local', 'bin'])
+    pathsep = ':'
+    path = pathsep.join(['/usr/bin', '/bin', '/usr/local/bin'])
+    # path now has the value '/usr/bin:/bin:/usr/local/bin'
+
+    # For joining paths, you should use join_paths()
+    # This has the advantage of being cross-platform
+    path = join_paths(['/usr', 'local', 'bin'])
     # path now has the value '/usr/local/bin'
 
     # Example to set an API version for use in library(), install_header(), etc
