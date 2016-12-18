@@ -166,7 +166,7 @@ Create a custom top level build target. The only positional argument is the name
 - `build_always` if `true` this target is always considered out of date and is rebuilt every time, useful for things such as build timestamps or revision control tags
 - `capture`, there are some compilers that can't be told to write their output to a file but instead write it to standard output. When this argument is set to true, Meson captures `stdout` and writes it to the target file. Note that your command argument list may not contain `@OUTPUT@` when capture mode is active.
 - `depends` specifies that this target depends on the specified target(s), even though it does not take any of them as a command line argument. This is meant for cases where you have a tool that e.g. does globbing internally. Usually you should just put the generated sources as inputs and Meson will set up all dependencies automatically.
-- `depend_files` files ([`string`](#string-object), [`files()`](#files), or [`configure_file`](#configure_file)) that this target depends on but are not listed in the `command` kwarg.
+- `depend_files` files ([`string`](#string-object), [`files()`](#files), or [`configure_file()`](#configure_file)) that this target depends on but are not listed in the `command` kwarg. Useful for adding regen dependencies.
 - `depfile` is a dependency file that the command can write listing all the additional files this target depends on, for example a C compiler would list all the header files it included, and a change in any one of these files triggers a recompilation
 
 The list of strings passed to the `command` kwarg accept the following special string substitutions:
