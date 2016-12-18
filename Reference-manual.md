@@ -526,7 +526,7 @@ The `meson` object allows you to introspect various properties of the system. Th
 
 - `has_exe_wrapper()` returns true when doing a cross build if there is a wrapper command that can be used to execute cross built binaries (for example when cross compiling from Linux to Windows, one can use `wine` as the wrapper)
 
-- `add_install_script(script_name, ...)` causes the script given as an argument to be run during the install step, this script will have the environment variables `MESON_SOURCE_ROOT`, `MESON_BUILD_ROOT` and `MESON_INSTALL_PREFIX` set
+- `add_install_script(script_name)` causes the script given as an argument to be run during the install step, this script will have the environment variables `MESON_SOURCE_ROOT`, `MESON_BUILD_ROOT` and `MESON_INSTALL_PREFIX` set
 
 - `add_postconf_script(script_name, list_of_args)` will run the executable given as an argument after all project files have been generated. This script will have the environment variables `MESON_SOURCE_ROOT` and `MESON_BUILD_ROOT` set. All additional arguments are passed as parameters.
 
