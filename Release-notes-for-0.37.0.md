@@ -1,5 +1,3 @@
-**0.37.0 is not released yet, these are preliminary**
-
 # New features
 
 ## Mesontest
@@ -119,7 +117,3 @@ Glib Resources compiled with [`gnome.compile_resources`](Gnome-module#compile_re
 You can now pass arguments to install scripts added with [`meson.add_install_script()`](Reference-manual#meson-object). All arguments after the script name will be passed to the script.
 
 The `MESON_INSTALL_DESTDIR_PREFIX` environment variable is now set when install scripts are called. This contains the values of the `DESTDIR` environment variable and the `prefix` option passed to Meson joined together. This is useful because both those are usually absolute paths, and joining absolute paths in a cross-platform way is tricky. [`os.path.join` in Python](https://docs.python.org/3/library/os.path.html#os.path.join) will discard all previous path segments when it encounters an absolute path, and simply concatenating them will not work on Windows where absolute paths begin with the drive letter.
-
-## Other stuff
-
-Add your highlights here.
