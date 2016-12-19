@@ -1,4 +1,8 @@
-This module provides internationalisation and localisation functionality. It has the following methods.
+This module provides internationalisation and localisation functionality. 
+
+## Usage
+
+To use this module, just do: **`i18n = import('i18n')`**. The following functions will then be available as methods on the object with the name `i18n`. You can, of course, replace the name `i18n` with anything else.
 
 ### gettext
 
