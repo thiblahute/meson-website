@@ -2,6 +2,8 @@ This module provides helper tools for build operations needed when building Gnom
 
 **Note**: the compilation commands here might not work properly when you change the source files. This is a bug in the respective compilers which do not expose the required dependency information. This has been reported upstream in [this bug](https://bugzilla.gnome.org/show_bug.cgi?id=745754). Until this is fixed you need to be careful when changing your source files.
 
+To use this module, just do: `gnome = import('gnome')`. The following functions will then be available as methods on the object with the name `gnome`. You can, of course, replace the name `gnome` with anything else.
+
 ## compile_resources
 
 This function compiles resources specified in an XML file into code that can be embedded inside the main binary. Similar a build target it takes two positional arguments. The first one is the name of the resource and the second is the xml file containing the resource definitions. If the name is `foobar`, Meson will generate a header file called `foobar.h`, which you can then include in your sources. There are two keyword arguments.
