@@ -595,3 +595,36 @@ gnome.generate_gir(asglib,
   install : true
 )
 ```
+
+### GSettings
+
+`configure.ac`:
+```sh
+GLIB_GSETTINGS
+```
+
+`Makefile.am`:
+```make
+gsettings_SCHEMAS = foo.gschema.xml
+@GSETTINGS_RULES@
+```
+
+`meson.build`:
+```python
+install_data('foo.gschema.xml', install_dir: join_paths(get_option('datadir'), 'glib-2.0', 'schemas'))
+meson.add_install_script('meson_post_install.py')
+```
+
+`meson_post_install.py`:
+```python
+#!/usr/bin/env python3
+
+import os
+import subprocess
+
+schemadir = os.path.join(os.environ['MESON_INSTALL_PREFIX'], 'share', 'glib-2.0', 'schemas')
+
+if not os.environ.get('DESTDIR'):
+	print('Compiling gsettings schemas...')
+	subprocess.call(['glib-compile-schemas', schemadir])
+```
