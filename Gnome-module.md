@@ -14,7 +14,7 @@ This function compiles resources specified in an XML file into code that can be 
 * `c_name`: passed to the resource compiler as an argument after `--c-name`
 * `extra_args`: extra command line arguments to pass to the resource compiler
 
-Returns an array of two elements which are the c target and the header target.
+Returns an array of two elements which are: `[c_source, header_file]`
 
 ## generate_gir
 
@@ -36,7 +36,7 @@ Generates GObject introspection data. Takes one positional argument, the build t
 * `dependencies`: deps to use during introspection scanning
 * `extra_args`: command line arguments to pass to gir compiler
 
-Returns an array of two elements which are the gir target and the typelib target.
+Returns an array of two elements which are: `[gir_target, typelib_target]`
 
 ## genmarshal
 
@@ -56,7 +56,7 @@ the output files.
 
 *Added 0.35.0*
 
-Returns an array of two elements which are the c source and header file
+Returns an array of two elements which are: `[c_source, header_file]`
 
 ## mkenums
 
@@ -82,7 +82,7 @@ Note that if you `#include` the generated header in any of the sources for a bui
 
 *Added 0.35.0*
 
-Returns an array of two elements which are the c source and header file
+Returns an array of two elements which are: `[c_source, header_file]`
 
 ## compile_schemas
 
