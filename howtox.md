@@ -111,6 +111,8 @@ After these steps the resulting binary is fully optimized.
 
 ## Add math library (`-lm`) portably
 
+Some platforms (e.g. Linux) have a standalone math library. Other platforms (pretty much everyone else) do not. How to specify that `m` is used only when needed?
+
     cc = meson.get_compiler('c')
     m_dep = cc.find_library('m', required : false)
     executable(..., dependencies : m_dep)
