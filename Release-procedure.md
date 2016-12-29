@@ -18,7 +18,7 @@ Bugfix releases contain only minor fixes to major releases and are designated by
  - the release has a serious bug causing data loss or equivalent
  - other unforeseen major issue
 
-In these cases a bug fix release can be made. It shall contain _only_ the fix for the issue (or issues) in question. Other changes such as new features or usability improvements shall not be added.
+In these cases a bug fix release can be made. It shall contain _only_ the fix for the issue (or issues) in question and other minor bug fixes. Only changes that have already landed in trunk will be considered for inclusion. No new functionality shall be added.
 
 # Requesting a bug fix release
 
