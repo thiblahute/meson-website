@@ -14,7 +14,7 @@ Sometimes you need to run unit tests with special settings. For example under Va
 
 This tells Meson to run tests with Valgrind using the given options and multiplying the test timeout values by 100. To run this test setup simply issue the following command:
 
-    mesontest --suite=valgrind
+    mesontest --setup=valgrind
 
 # Other Features
 
