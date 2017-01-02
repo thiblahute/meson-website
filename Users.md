@@ -9,6 +9,7 @@ If you have a project that uses Meson that you want to add to this list, let us 
  - [Graphene](http://ebassi.github.io/graphene/), a thin type library for graphics
  - [GStreamer](https://cgit.freedesktop.org/gstreamer/gstreamer/), multimedia framework (not the default yet)
  - [Libhttpseverywhere](https://github.com/grindhold/libhttpseverywhere), a library to enable httpseverywhere on any desktop app
+ - [Lightdm-Webkit2-Greeter](https://github.com/Antergos/lightdm-webkit2-greeter)
  - [Parzip](https://github.com/jpakkane/parzip), a multithreaded reimplementation of Zip 
  - [Pitivi](http://pitivi.org/), a nonlinear video editor
  - [Sysprof](https://wiki.gnome.org/Apps/Sysprof), a profiling tool
