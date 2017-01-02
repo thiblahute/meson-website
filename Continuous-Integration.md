@@ -35,6 +35,8 @@ script:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then SDKROOT=$(xcodebuild -version -sdk macosx Path) meson build && ninja -C build test; fi
 ```
 
+## AppVeyor for Windows
+
 ```
 os: Visual Studio 2015
 
