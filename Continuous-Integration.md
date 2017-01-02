@@ -37,6 +37,8 @@ script:
 
 ## AppVeyor for Windows
 
+For CI on Windows, [AppVeyor](https://www.appveyor.com/) is probably your best bet. Here's a sample `yml` file for use with that.
+
 ```
 os: Visual Studio 2015
 
