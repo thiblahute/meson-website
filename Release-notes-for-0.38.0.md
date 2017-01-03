@@ -16,6 +16,10 @@ This tells Meson to run tests with Valgrind using the given options and multiply
 
     mesontest --setup=valgrind
 
+# Intel C/C++ compiler support
+
+Currently only Linux is supported.
+
 # Other Features
 
 Add them here.
