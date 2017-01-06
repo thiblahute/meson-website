@@ -20,6 +20,15 @@ This tells Meson to run tests with Valgrind using the given options and multiply
 
 Currently only Linux is supported.
 
+# Get values from configuration data objects
+
+Now it is possible to query values stored in configuration data objects.
+
+    cdata.set('key', 'value')
+    cdata.get('key') # returns 'value'
+    cdata.get('nokey', 'default') # returns 'default'
+    cdata.get('nokey') # halts with an error
+
 # Other Features
 
 Add them here.
