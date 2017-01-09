@@ -29,6 +29,16 @@ Now it is possible to query values stored in configuration data objects.
     cdata.get('nokey', 'default') # returns 'default'
     cdata.get('nokey') # halts with an error
 
+# Python 3 module support
+
+Building Python 3 extension modules has always been possible, but it is now even easier:
+
+    py3_mod = import('python3')
+    pylib = py3_mod.extension_module('modname',
+      'modsource.c',
+      dependencies : py3_dep)
+
+
 # Other Features
 
 Add them here.
