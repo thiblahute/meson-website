@@ -30,13 +30,13 @@ Full power of Python available for defining your build.
 
 ### Cons ###
 
-Slow.
+Slow. Requires you to pass your configuration settings on every invocation. That is, if you do `scons OPT1 OPT2` and then just `scons`, it will reconfigure everything without settings `OPT1` and `OPT2`. Every other build system remembers build options from the previous invocation.
 
 ## Meson ##
 
 ### Pros ###
 
-The fastest build system [see measurements](Performance comparison), user friendly, designed to be as invisible to the developer as possible, native support for modern tools (precompiled headers, coverage, Valgrind etc).
+The fastest build system [see measurements](Performance comparison), user friendly, designed to be as invisible to the developer as possible, native support for modern tools (precompiled headers, coverage, Valgrind etc). Not Turing complete so build definition files are easy to read and understand.
 
 ### Cons ###
 
