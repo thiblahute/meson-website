@@ -32,6 +32,16 @@ Full power of Python available for defining your build.
 
 Slow. Requires you to pass your configuration settings on every invocation. That is, if you do `scons OPT1 OPT2` and then just `scons`, it will reconfigure everything without settings `OPT1` and `OPT2`. Every other build system remembers build options from the previous invocation.
 
+## Bazel
+
+# Pros
+
+Proven to scale to very large projects.
+
+## Cons
+
+Implemented in Java. Poor Windows support. Heavily focused on Google's way of doing things (which may be a good or a bad thing). Contributing code requires [signing a CLA](https://bazel.build/contributing.html).
+
 ## Meson ##
 
 ### Pros ###
