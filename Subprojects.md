@@ -39,6 +39,18 @@ It should be noted that this only works for subprojects that are built with Meso
 
 Subprojects can use other subprojects, but all subprojects must reside in the top level `subprojects` directory. Recursive use of subprojects is not allowed, though, so you can't have subproject `a` that uses subproject `b` and have `b` also use `a`.
 
+## Subprojects and dependencies
+
+A common use case is to use subprojects to provide dependencies on platforms that do not provide them out of the box. This is especially common on Windows. Meson makes this easy while at the same time using system dependencies if are available. The way to do this is to set up a subproject that builds the dependency and has an internal dependency declared like this:
+
+    proj_dep = declare_dependency(...)
+
+Then you can use the subproject in the master project like this:
+
+    sp_dep = dependency('subproj_pkgconfig_name', fallback : ['subproj_name', 'proj_dep']
+
+This uses the system dependency when available and the self built version if not. If you want to always use the subproject, that is also possible, just use `subproject` and `get_variable` as discussed above to get the dependency object.
+
 ---
 
 [Back to index](Manual).
