@@ -57,6 +57,17 @@ Meson has native Qt5 support. Its usage is best demonstrated with an example.
 
 Here we have an UI file created with Qt Designer and one source and header file each that require preprocessing with the `moc` tool. We also define a resource file to be compiled with `rcc`. We just have to tell Meson which files are which and it will take care of invoking all the necessary tools in the correct order, which is done with the `preprocess` method of the `qt5` module. Its output is simply put in the list of sources for the target. The `modules` keyword of `dependency` works just like it does with Boost. It tells which subparts of Qt the program uses.
 
+## Declaring your own
+
+You can declare your own dependency objects that can be used interchangeably with dependency objects obtained from the system. The syntax is straightforward:
+
+    my_inc = include_directories(...)
+    my_lib = static_library(...)
+    my_dep = declare_dependency(link_with : my_lib,
+      include_directories : my_inc)
+
+This declares a dependency that adds the given include directories and static library to any target you use it in.
+
 ---
 
 [Back to index](Manual).
