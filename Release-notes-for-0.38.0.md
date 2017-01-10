@@ -38,6 +38,13 @@ Building Python 3 extension modules has always been possible, but it is now even
       'modsource.c',
       dependencies : py3_dep)
 
+# Default options to subprojects
+
+Projects can specify overriding values for subprojects' `default_options` when invoking a subproject:
+
+  subproject('foo', default_options : ['optname=overridevalue']
+
+The effect is the same as if the default options were written in the subproject's `project` call. 
 
 # Other Features
 
