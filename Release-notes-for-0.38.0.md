@@ -46,6 +46,10 @@ Projects can specify overriding values for subprojects' `default_options` when i
 
 The effect is the same as if the default options were written in the subproject's `project` call. 
 
+# Set targets to be built (or not) by default
+
+Build targets got a new keyword `build_by_default` which tells whether the target should be built by default when running e.g. `ninja`. Custom targets are not built by default but other targets are. Any target that is tagged as installed or to be built always is also built by default, regardless of the value of this keyword.
+
 # Other Features
 
 Add them here.
