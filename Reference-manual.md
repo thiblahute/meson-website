@@ -242,6 +242,8 @@ Executable supports the following keyword arguments. These keyword arguments are
 - `objects` list of prebuilt object files (usually for third party products you don't have source to) that should be linked in this target, **never** use this for object files that you build yourself.
 - `name_suffix` the string that will be used as the extension for the target by overriding the default. By default on Windows this is `exe` and on other platforms it is omitted.
 
+The list of `sources`, `objects`, and `dependencies` is always flattened, which means you can freely nest and add lists while creating the final list. As a corollary, the best way to handle a 'disabled dependency' is by assigning an empty list `[]` to it and passing it like any other dependency to the `dependencies:` kwarg.
+
 The returned object also has methods that are documented in the [object methods section](#build-target-object) below.
 
 ### find_program
