@@ -449,10 +449,12 @@ Runs the command specified in positional arguments. Returns [an opaque object](#
 
     buildtarget run_target(target_name, ...)
 
-This function creates a new top level target that runs the command specified. The script is run from an *unspecified* directory, and Meson will set three environment variables `MESON_SOURCE_ROOT`, `MESON_BUILD_ROOT` and `MESON_SUBDIR` that specify the source directory, build directory and subdirectory the target was defined in, respectively.
+This function creates a new top-level target that runs a specified command with the specified arguments. Like all top-level targets, this integrates with the selected backend. For instance, with Ninja you can run it as `ninja target_name`.
 
- - `command` is an array of the command to run, each item may be a string or a target
- - `depends` is a list of targets that this target depend on but which are not listed in the command array (because, for example, the script does file globbing internally)
+The script is run from an *unspecified* directory, and Meson will set three environment variables `MESON_SOURCE_ROOT`, `MESON_BUILD_ROOT` and `MESON_SUBDIR` that specify the source directory, build directory and subdirectory the target was defined in, respectively.
+
+ - `command` is a list containing the command to run and the arguments to pass to it. Each list item may be a string or a target. For instance, passing the return value of [`executable()`](#executable) as the first item will run that executable.
+ - `depends` is a list of targets that this target depends on but which are not listed in the command array (because, for example, the script does file globbing internally)
 
 ### set_variable
 
