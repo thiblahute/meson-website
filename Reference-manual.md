@@ -453,7 +453,7 @@ This function creates a new top-level target that runs a specified command with 
 
 The script is run from an *unspecified* directory, and Meson will set three environment variables `MESON_SOURCE_ROOT`, `MESON_BUILD_ROOT` and `MESON_SUBDIR` that specify the source directory, build directory and subdirectory the target was defined in, respectively.
 
- - `command` is a list containing the command to run and the arguments to pass to it. Each list item may be a string or a target. For instance, passing the return value of [`executable()`](#executable) as the first item will run that executable.
+ - `command` is a list containing the command to run and the arguments to pass to it. Each list item may be a string or a target. For instance, passing the return value of [`executable()`](#executable) as the first item will run that executable, or passing a string as the first item will find that command in `PATH` and run it.
  - `depends` is a list of targets that this target depends on but which are not listed in the command array (because, for example, the script does file globbing internally)
 
 ### set_variable
