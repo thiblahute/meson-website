@@ -339,13 +339,13 @@ Returns an opaque object which contains the directories given in positional argu
 
     void install_data(list_of_files, ...)
 
-Installs files listed in positional and `sources` keyword arguments into the directory specified by the `install_dir` argument during install phase.
+Installs files from the source tree that are listed as positional arguments and in the `sources` keyword arguments into the directory specified by the `install_dir` kwarg during install phase.
 
 ### install_headers
 
     void install_headers(list_of_headers, ...)
 
-Installs the specified header files into the system header directory (usually `/{prefix}/include`) during the install step. This directory can be overridden by specifying it with the `install_dir` keyword argument. If you just want to install into a subdirectory of the system header directory, then use the `subdir` argument. As an example if this has the value `myproj` then the headers would be installed to `/{prefix}/include/myproj`.
+Installs the specified header files from the source tree into the system header directory (usually `/{prefix}/include`) during the install step. This directory can be overridden by specifying it with the `install_dir` keyword argument. If you just want to install into a subdirectory of the system header directory, then use the `subdir` argument. As an example if this has the value `myproj` then the headers would be installed to `/{prefix}/include/myproj`.
 
 For example, this will install `common.h` and `kola.h` into `/{prefix}/include`:
 
@@ -369,13 +369,13 @@ install_headers('common.h', 'proj/kola.h', install_dir : 'cust', subdir : 'mypro
 
     void install_man(list_of_manpages, ...)
 
-Installs the man files specified into system's man directory during the install step. This directory can be overridden by specifying it with the `install_dir` keyword argument.
+Installs the specified man files from the source tree into system's man directory during the install step. This directory can be overridden by specifying it with the `install_dir` keyword argument.
 
 ### install_subdir
 
     void install_subdir(subdir_name)
 
-Installs the entire given subdirectory tree to the location specified by the keyword argument `install_dir`. Note that due to implementation issues this command deletes the entire target dir before copying the files, so you should never use `install_subdir` to install into two overlapping directories (such as `foo` and `foo/bar`) because if you do the behaviour is undefined.
+Installs the entire given subdirectory and its contents from the source tree to the location specified by the keyword argument `install_dir`. Note that due to implementation issues this command deletes the entire target dir before copying the files, so you should never use `install_subdir` to install into two overlapping directories (such as `foo` and `foo/bar`) because if you do the behaviour is undefined.
 
 ### is_subproject
 
