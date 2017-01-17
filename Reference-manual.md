@@ -543,11 +543,11 @@ The `meson` object allows you to introspect various properties of the system. Th
 
 - `add_postconf_script(script_name, arg1, arg2, ...)` will run the executable given as an argument after all project files have been generated. This script will have the environment variables `MESON_SOURCE_ROOT` and `MESON_BUILD_ROOT` set.
 
-- `current_source_dir()` returns a string to the current source directory. Note: use the `files()` function to refer to files in the source directory instead of constructing paths manually with `meson.current_source_dir()`.
+- `current_source_dir()` returns a string to the current source directory. Note: **you do not need to use this function** when passing files from the current source directory to a function since that is the default. Also, you can use the `files()` function to refer to files in the current or any other source directory instead of constructing paths manually with `meson.current_source_dir()`.
 
 - `current_build_dir()` returns a string to the current build directory
 
-- `source_root()` returns a string with the absolute path to the source root directory. Note: use the `files()` function to refer to files in the source directory instead of constructing paths manually with `meson.current_source_dir()`.
+- `source_root()` returns a string with the absolute path to the source root directory. Note: you should use the `files()` function to refer to files in the root source directory instead of constructing paths manually with `meson.source_root()`.
 
 - `build_root()` returns a string with the absolute path to the build root directory
 
