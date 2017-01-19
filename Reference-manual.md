@@ -284,6 +284,8 @@ Meson will then do the right thing.
 
     generator_object gen(*executable*, ...)
 
+See also: [`custom_target`](#custom_target)
+
 This function creates a generator object that can be used to run custom compilation commands. The only positional argument is the executable to use. It can either be a self-built executable or one returned by find_program. Keyword arguments are the following:
 
 - `arguments` a list of template strings that will be the command line arguments passed to the executable
