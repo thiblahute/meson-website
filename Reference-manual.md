@@ -256,11 +256,13 @@ This function is deprecated and in the 0.31.0 release it was moved to [the compi
 
     program find_program(program_name1, program_name2, ...)
 
-Tries to locate the command listed in the positional argument. It can either be a command or a script in the source directory. Meson will also autodetect scripts with a shebang line and run them with the executable specified in it both on Windows (because the command invocator will reject the command otherwise) and unixes (if the script file does not have the executable bit set).
+`program_name1` here is a string that can be an executable or script to be searched for in `PATH`, or a script in the current source directory.
 
-This function takes many arguments and is meant to be used for cases where the program may have many alternative names, such as `foo` and `foo.py`. The function will check for the arguments one by one and the first one that is found is returned. Meson versions earlier than 0.37.0 only accept one argument.
+Meson will also autodetect scripts with a shebang line and run them with the executable specified in it both on Windows (because the command invocator will reject the command otherwise) and unixes (if the script file does not have the executable bit set).
 
-If the program is not found, Meson will abort. You can tell it not to by setting the keyword argument `required` to false, and then use the `.found()` method on the returned object to check whether it was found or not.
+`program_name2` and later positional arguments are used as fallback strings to search for. This is meant to be used for cases where the program may have many alternative names, such as `foo` and `foo.py`. The function will check for the arguments one by one and the first one that is found is returned. Meson versions earlier than 0.37.0 only accept one argument.
+
+If none of the programs are found, Meson will abort. You can tell it not to by setting the keyword argument `required` to false, and then use the `.found()` method on the returned object to check whether it was found or not.
 
 The returned object also has methods that are documented in the [object methods section](#external-program-object) below.
 
