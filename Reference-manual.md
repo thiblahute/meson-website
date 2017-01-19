@@ -248,6 +248,10 @@ The list of `sources`, `objects`, and `dependencies` is always flattened, which 
 
 The returned object also has methods that are documented in the [object methods section](#build-target-object) below.
 
+### find_library
+
+This function is deprecated and in the 0.31.0 release it was moved to [the compiler object](#compiler-object) as obtained from `meson.get_compiler(lang)`.
+
 ### find_program
 
     program find_program(program_name1, program_name2, ...)
@@ -256,13 +260,9 @@ Tries to locate the command listed in the positional argument. It can either be 
 
 This function takes many arguments and is meant to be used for cases where the program may have many alternative names, such as `foo` and `foo.py`. The function will check for the arguments one by one and the first one that is found is returned. Meson versions earlier than 0.37.0 only accept one argument.
 
-If the program is not found, Meson will abort. You can tell it not to by setting the keyword argument `required` to false.
+If the program is not found, Meson will abort. You can tell it not to by setting the keyword argument `required` to false, and then use the `.found()` method on the returned object to check whether it was found or not.
 
 The returned object also has methods that are documented in the [object methods section](#external-program-object) below.
-
-### find_library
-
-This function is deprecated and in the 0.31.0 release it was moved to [the compiler object](#compiler-object) as obtained from `meson.get_compiler(lang)`.
 
 ### files
 
