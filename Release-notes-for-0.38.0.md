@@ -50,6 +50,9 @@ The effect is the same as if the default options were written in the subproject'
 
 Build targets got a new keyword `build_by_default` which tells whether the target should be built by default when running e.g. `ninja`. Custom targets are not built by default but other targets are. Any target that is tagged as installed or to be built always is also built by default, regardless of the value of this keyword.
 
+# Add option to mesonconf to wipe cached data.
+
+Meson caches the results of depencency lookups. Sometimes these may get out of sync with the system state. Mesonconf now has a `--clearcache` option to clear these values so they will be re-searched from the system upon next compile.
 # Other Features
 
 Add them here.
