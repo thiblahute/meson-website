@@ -623,7 +623,7 @@ This object is returned by [`meson.get_compiler(lang)`](#meson-object). It repre
 - `first_supported_argument(list_of_strings)`, given a list of strings, returns the first argument that passes the `has_argument` test above or an empty array if none pass
 - `symbols_have_underscore_prefix()` returns `true` if the C symbol mangling is one underscore (`_`) prefixed to the symbol, available since 0.37.0
 
-The `prefix` keyword argument can be used to add #defines, #includes, etc that are required for the symbol to be declared (eg: `#define _GNU_SOURCE` is often required for some symbols to be exposed on Linux). Supported by the methods `sizeof`, `has_type`, `has_function`, `has_member`, `has_members`, `has_header_symbol`.
+The `prefix` keyword argument can be used to add #includes and other things that are required for the symbol to be declared. System definitions should be passed via compiler args (eg: `_GNU_SOURCE` is often required for some symbols to be exposed on Linux, and it should be passed via `args` keyword argument, see below). Supported by the methods `sizeof`, `has_type`, `has_function`, `has_member`, `has_members`, `has_header_symbol`.
 
 You can pass the `include_directories` keyword argument to specify extra directories for header searches. Available since version 0.38.0.
 
