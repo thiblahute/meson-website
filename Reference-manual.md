@@ -228,8 +228,8 @@ Creates a new executable. The first argument specifies its name and the remainin
 
 - Strings relative to the current source directory
 - [`files()`](#files) objects defined in any preceding build file
-- The return value of configure-time generators such as [`configure_file()`](#configure-file)
-- The return value of build-time generators such as [`custom_target()`](#custom-target) or [`generator.process()`](#generator-object) which can be generated sources, objects, or libraries.
+- The return value of configure-time generators such as [`configure_file()`](#configure_file)
+- The return value of build-time generators such as [`custom_target()`](#custom_target) or [`generator.process()`](#generator-object) which can be generated sources, objects, or libraries.
 
 Executable supports the following keyword arguments. These keyword arguments are also used for [shared and static libraries](#library).
 
