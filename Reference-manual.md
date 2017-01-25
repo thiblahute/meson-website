@@ -224,7 +224,12 @@ Returns an empty [environment variable object](#environment-object).
 
     exe executable(*exe_name*, *sources*, ...)
 
-Creates a new executable. The first argument specifies its name and the remaining positional arguments define the source files to use.
+Creates a new executable. The first argument specifies its name and the remaining positional arguments define the source files to use. They can be of the following types:
+
+- Strings relative to the current source directory
+- [`files()`](#files) objects defined in any preceding build file
+- The return value of configure-time generators such as [`configure_file()`](#configure-file)
+- The return value of build-time generators such as [`custom_target()`](#custom-target) or [`generator.process()`](#generator-object) which can be generated sources, objects, or libraries.
 
 Executable supports the following keyword arguments. These keyword arguments are also used for [shared and static libraries](#library).
 
