@@ -58,6 +58,10 @@ Meson caches the results of depencency lookups. Sometimes these may get out of s
 
 The new `install_mode` keyword argument can be used to specify file permissions and uid/gid of files when doing the install. This allows you to, for example, install suid root scripts.
 
+# `has_header()` checks are now faster
+
+When using compilers that implement the [`__has_include()` preprocessor macro](https://clang.llvm.org/docs/LanguageExtensions.html#include-file-checking-macros), the check is now ~40% faster.
+
 # Array indexing now supports fallback values
 
 The second argument to the array [`.get()`](https://github.com/mesonbuild/meson/wiki/Reference-manual#array-object) function is now returned if the specified index could not be found
