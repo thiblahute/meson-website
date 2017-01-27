@@ -9,6 +9,7 @@ The following functions are available in build files. Click on each to see the d
  * [add_languages](#add_languages)
  * [add_project_arguments](#add_project_arguments)
  * [add_project_link_arguments](#add_project_link_arguments)
+ * [add_test_setup](#add_test_setup)
  * [benchmark](#benchmark)
  * [build_target](#build_target)
  * [configuration_data](#configuration_data)
@@ -116,6 +117,21 @@ This function behaves in the same way as `add_global_arguments` except that the 
     void add_project_link_arguments(*arg1*, *arg2*, ...)
 
 Like `add_project_arguments` but the arguments are passed to the linker.
+
+### add_test_setup
+
+    void add_test_setup(*name*, ...)
+
+Add a custom test setup that can be used to run the tests with a custom setup, for example under Valgrind. The keyword arguments are the following:
+
+- `exe_wrapper` a list containing the wrapper command or script followed by the arguments to it
+- `gdb` if `true`, the tests are also run under `gdb`
+- `timeout_multiplier` a number to multiply the test timeout with
+- `env` an [environment object](#environment-object) to use a custom environment
+
+To use the test setup, run `mesontest --setup=*name*` inside the build dir.
+
+Note that all these options are also available while running the `mesontest` script for running tests instead of `ninja test` or `msbuild RUN_TESTS.vcxproj`, etc depending on the backend.
 
 ### benchmark
 
@@ -527,6 +543,8 @@ Defines an unit test. Takes two positional arguments, the first is the name of t
 - `valgrind_args` if the test is run under Valgrind, pass these arguments to Valgrind (and not to the executable itself)
 - `timeout` the amount of seconds the test is allowed to run, a test that exceeds its time limit is always considered failed, defaults to 30 seconds
 - `workdir` absolute path that will be used as the working directory for the test
+
+Defined tests can be run in a backend-agnostic way by calling `mesontest` inside the build dir, or by using backend-specific commands, such as `ninja test` or `msbuild RUN_TESTS.vcxproj`.
 
 ### vcs_tag
 
