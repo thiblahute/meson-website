@@ -204,8 +204,9 @@ Finds an external dependency with the given name with pkg-config if possible and
 - `required`, when set to false, Meson will proceed with the build even if the dependency is not found
 - `version`, specifies the required version, a string containing a comparison operator followed by the version string, examples include `>1.0.0`, `<=2.3.5` or `3.1.4` for exact matching. (*Added 0.37.0*) You can also specify multiple restrictions by passing a list to this kwarg, such as: `['>=3.14.0', '<=4.1.0']`.
 - `native` if set to `true`, causes Meson to find the dependency on the build machine system rather than the host system (i.e. where the cross compiled binary will run on), usually only needed if you build a tool to be used during compilation.
-- `fallback` specifies a subproject fallback to use in case the dependency is not found in the system. The value is an array `['subproj_name', 'subproj_dep']` where the first value is the name of the subproject and the second is the variable name in that subproject that contains the value of `declare_dependency`.
 - `static` tells the dependency provider to try to get static libraries instead of dynamic ones (note that this is not supported by all dependency backends)
+- `fallback` specifies a subproject fallback to use in case the dependency is not found in the system. The value is an array `['subproj_name', 'subproj_dep']` where the first value is the name of the subproject and the second is the variable name in that subproject that contains the value of `declare_dependency`.
+- `default_options` an array of option values that override those set in the project's `default_options` invocation (like `default_options` in [`project()`](#project), they only have effect when Meson is run for the first time, and command line arguments override any default options in build files)
 
 The returned object also has methods that are documented in the [object methods section](#dependency-object) below.
 
