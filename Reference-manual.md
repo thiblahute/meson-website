@@ -739,4 +739,4 @@ The following methods are defined for all arrays:
 
  - `length()`, the size of the array
  - `contains(item)`, returns `true` if the array contains the object given as argument, `false` otherwise
- - `get(index, fallback)`, returns the object at the given index, negative indices count from the back of the array, indexing out of bounds returns the `fallback` value or, if it is not specified, causes a fatal error (since 0.38.0)
+ - `get(index, fallback)`, returns the object at the given index, negative indices count from the back of the array, indexing out of bounds returns the `fallback` value or, if it is not specified, causes a fatal error (`fallback` is available since 0.38.0)
