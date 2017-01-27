@@ -60,7 +60,7 @@ The new `install_mode` keyword argument can be used to specify file permissions 
 
 # Array indexing now supports fallback values
 
-The second argument to the array [`.get()`](https://github.com/mesonbuild/meson/wiki/Reference-manual#array-object) function
+The second argument to the array [`.get()`](https://github.com/mesonbuild/meson/wiki/Reference-manual#array-object) function is now returned if the specified index could not be found
 ```
 array = [10, 11, 12, 13]
 array.get(0) # this will return `10`
