@@ -42,7 +42,8 @@ Building Python 3 extension modules has always been possible, but it is now even
 
 Projects can specify overriding values for subprojects' `default_options` when invoking a subproject:
 
-  subproject('foo', default_options : ['optname=overridevalue']
+    subproject('foo', default_options : ['optname=overridevalue'])
+    dependency('some-dep', fallback : ['some_subproject', 'some_dep'], default_options : ['optname=overridevalue'])
 
 The effect is the same as if the default options were written in the subproject's `project` call. 
 
