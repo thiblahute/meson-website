@@ -58,6 +58,16 @@ Meson caches the results of depencency lookups. Sometimes these may get out of s
 
 The new `install_mode` keyword argument can be used to specify file permissions and uid/gid of files when doing the install. This allows you to, for example, install suid root scripts.
 
+# Array indexing now supports fallback values
+
+The second argument to the array [`.get()`](https://github.com/mesonbuild/meson/wiki/Reference-manual#array-object) function
+```
+array = [10, 11, 12, 13]
+array.get(0) # this will return `10`
+array.get(4) # this will give an error about invalid index
+array.get(4, 0) # this will return `0`
+```
+
 # Other Features
 
 Add them here.
