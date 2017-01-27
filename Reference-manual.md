@@ -169,7 +169,7 @@ Create a custom top level build target. The only positional argument is the name
 - `depends` specifies that this target depends on the specified target(s), even though it does not take any of them as a command line argument. This is meant for cases where you have a tool that e.g. does globbing internally. Usually you should just put the generated sources as inputs and Meson will set up all dependencies automatically.
 - `depend_files` files ([`string`](#string-object), [`files()`](#files), or [`configure_file()`](#configure_file)) that this target depends on but are not listed in the `command` kwarg. Useful for adding regen dependencies.
 - `depfile` is a dependency file that the command can write listing all the additional files this target depends on, for example a C compiler would list all the header files it included, and a change in any one of these files triggers a recompilation
-- `build_by_default` causes, when set to true, to have this target be built by default, that is, when invoking plain `ninja`, the default value is false, available since 0.38.0
+- `build_by_default` *(added 0.38.0)* causes, when set to true, to have this target be built by default, that is, when invoking plain `ninja`; the default value is false
 
 The list of strings passed to the `command` kwarg accept the following special string substitutions:
 
@@ -639,7 +639,7 @@ This object is returned by [`meson.get_compiler(lang)`](#meson-object). It repre
 
 The `prefix` keyword argument can be used to add #includes and other things that are required for the symbol to be declared. System definitions should be passed via compiler args (eg: `_GNU_SOURCE` is often required for some symbols to be exposed on Linux, and it should be passed via `args` keyword argument, see below). Supported by the methods `sizeof`, `has_type`, `has_function`, `has_member`, `has_members`, `has_header_symbol`.
 
-You can pass the `include_directories` keyword argument to specify extra directories for header searches. Available since version 0.38.0.
+You can pass the `include_directories` keyword argument to specify extra directories for header searches. *(added 0.38.0)*
 
 The `args` keyword argument can be used to pass a list of compiler arguments that are required to find the header or symbol. For example, you might need to pass the include path `-Isome/path/to/header` if a header is not in the default include path. In versions newer than 0.38.0 you should use the `include_directories` keyword described above. You may also want to pass a library name `-lfoo` for `has_function` to check for a function. Supported by all methods except `get_id`, `version`, and `find_library`. 
 
@@ -664,7 +664,7 @@ This object is returned by [`configuration_data`](#configuration_data) and encap
  - `set10(varname, boolean_value)` is the same as above but the value is either `true` or `false` and will be written as 1 or 0, respectively
  - `set_quoted(varname, value)` is same as `set` but quotes the value in double quotes (`"`)
  - `has(varname)`, returns `true` if the specified variable is set
- - `get(varname, default_value)` returns the value of `varname`, if the value has not been set returns `default_value` if it is defined and errors out if not, since 0.38.0
+ - `get(varname, default_value)` returns the value of `varname`, if the value has not been set returns `default_value` if it is defined *(added 0.38.0)* and errors out if not
 
 They all take the `description` keyword that will be written in the result file. The replacement assumes a file with C syntax. If your generated file is source code in some other language, you probably don't want to add a description field because it most likely will cause a syntax error.
 
@@ -739,4 +739,4 @@ The following methods are defined for all arrays:
 
  - `length()`, the size of the array
  - `contains(item)`, returns `true` if the array contains the object given as argument, `false` otherwise
- - `get(index, fallback)`, returns the object at the given index, negative indices count from the back of the array, indexing out of bounds returns the `fallback` value or, if it is not specified, causes a fatal error (`fallback` is available since 0.38.0)
+ - `get(index, fallback)`, returns the object at the given index, negative indices count from the back of the array, indexing out of bounds returns the `fallback` value *(added 0.38.0)* or, if it is not specified, causes a fatal error
