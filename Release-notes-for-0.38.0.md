@@ -73,6 +73,10 @@ array.get(4) # this will give an error about invalid index
 array.get(4, 0) # this will return `0`
 ```
 
+# Silent mode for Mesontest
+
+The Meson test executor got a new argument `-q` (and `--quiet`) that suppresses all output of successful tests. This makes interactive usage nicer because only errors are printed.
+
 # Other Features
 
 Add them here.
