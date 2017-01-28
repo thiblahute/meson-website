@@ -10,6 +10,7 @@ If you have a project that uses Meson that you want to add to this list, let us 
  - [Gnome Twitch](https://github.com/vinszent/gnome-twitch), an app for viewing Twitch streams on Gnome desktop
  - [Graphene](http://ebassi.github.io/graphene/), a thin type library for graphics
  - [GStreamer](https://cgit.freedesktop.org/gstreamer/gstreamer/), multimedia framework (not the default yet)
+ - [Libepoxy](https://github.com/anholt/libepoxy/), a library for handling OpenGL function pointer management
  - [Libhttpseverywhere](https://github.com/grindhold/libhttpseverywhere), a library to enable httpseverywhere on any desktop app
  - [Lightdm-Webkit2-Greeter](https://github.com/Antergos/lightdm-webkit2-greeter)
  - [Parzip](https://github.com/jpakkane/parzip), a multithreaded reimplementation of Zip 
