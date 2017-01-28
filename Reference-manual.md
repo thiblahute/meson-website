@@ -281,7 +281,7 @@ This function is deprecated and in the 0.31.0 release it was moved to [the compi
 
 `program_name1` here is a string that can be an executable or script to be searched for in `PATH`, or a script in the current source directory.
 
-Meson will also autodetect scripts with a shebang line and run them with the executable specified in it both on Windows (because the command invocator will reject the command otherwise) and unixes (if the script file does not have the executable bit set).
+Meson will also autodetect scripts with a shebang line and run them with the executable/interpreter specified in it both on Windows (because the command invocator will reject the command otherwise) and UNIXes (if the script file does not have the executable bit set). Hence, you *must not* manually add the interpreter while using this script as part of a list of commands.
 
 `program_name2` and later positional arguments are used as fallback strings to search for. This is meant to be used for cases where the program may have many alternative names, such as `foo` and `foo.py`. The function will check for the arguments one by one and the first one that is found is returned. Meson versions earlier than 0.37.0 only accept one argument.
 
