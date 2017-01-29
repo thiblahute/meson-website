@@ -1,5 +1,3 @@
-**This is preliminary. 0.38.0 has not been released yet.**
-
 # Uninstall target
 
 Meson allows you to uninstall an install step by invoking the uninstall target. This will remove all files installed as part of install. Note that this does not restore the original files. This also does not undo changes done by custom install scripts (because they can do arbitrary install operations).
@@ -76,7 +74,3 @@ array.get(4, 0) # this will return `0`
 # Silent mode for Mesontest
 
 The Meson test executor got a new argument `-q` (and `--quiet`) that suppresses all output of successful tests. This makes interactive usage nicer because only errors are printed.
-
-# Other Features
-
-Add them here.
