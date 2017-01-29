@@ -16,7 +16,7 @@ This tells Meson to run tests with Valgrind using the given options and multiply
 
 # Intel C/C++ compiler support
 
-Currently only Linux is supported.
+As usual, just set `CC=icc CXX=icpc` and Meson will use it as the C/C++ compiler. Currently only Linux is supported.
 
 # Get values from configuration data objects
 
