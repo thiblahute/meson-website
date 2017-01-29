@@ -1,2 +1,3 @@
  - [Release notes for 0.37.0](Release notes for 0.37.0)
  - [Release notes for 0.38.0](Release notes for 0.38.0)
+ - [Release notes for 0.39.0](Release notes for 0.39.0)
