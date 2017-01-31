@@ -371,13 +371,13 @@ Installs files from the source tree that are listed as positional arguments. The
 - `install_dir` the absolute or relative path to the installation directory. If this is a relative path, it is assumed to be relative to the prefix.
 - `install_mode` specify the file mode in symbolic format and optionally the owner/uid and group/gid for the installed files. For example: 
 
-`install_mode: 'rw-r--r--'` for just the file mode
+ `install_mode: 'rw-r--r--'` for just the file mode
 
-`install_mode: ['rw-r--r--', 'nobody', 'nobody']` for the file mode and the user/group
+ `install_mode: ['rw-r--r--', 'nobody', 'nobody']` for the file mode and the user/group
 
-`install_mode: ['rw-r-----', 0, 0]` for the file mode and uid/gid
+ `install_mode: ['rw-r-----', 0, 0]` for the file mode and uid/gid
 
-To leave any of these three as the default, specify `false`.
+ To leave any of these three as the default, specify `false`.
 
 ### install_headers
 
