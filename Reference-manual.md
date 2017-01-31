@@ -366,7 +366,10 @@ Returns an opaque object which contains the directories given in positional argu
 
     void install_data(list_of_files, ...)
 
-Installs files from the source tree that are listed as positional arguments and in the `sources` keyword arguments into the directory specified by the `install_dir` kwarg during install phase.
+Installs files from the source tree that are listed as positional arguments. The following keyword arguments are supported:
+
+- `install_dir` the absolute or relative path to the installation directory. If this is a relative path, it is assumed to be relative to the prefix.
+- `install_mode` specify the file mode in symbolic format and optionally the owner/uid and group/gid for the installed files. For instance, `install_mode: 'rw-r--r--'` for just the file mode, `install_mode: ['rw-r--r--', 'nobody', 'nobody']` for the file mode and the user/group, `install_mode: ['rw-r-----', 0, 0]` for the file mode and uid/gid. To leave any of these three as the default, specify `false`.
 
 ### install_headers
 
