@@ -514,7 +514,9 @@ Builds a shared library with the given sources. Positional and keyword arguments
 
     buildtarget shared_module(module_name, list_of_sources, ...)
 
-Builds a shared library with the given sources. Positional and keyword arguments are the same as for [`library`](#library).
+Builds a shared module with the given sources. Positional and keyword arguments are the same as for [`library`](#library).
+
+This is useful for building modules that will be `dlopen()`ed and hence may contain undefined symbols that will be provided by the library that is loading it.
 
 *Added 0.37.0*
 
