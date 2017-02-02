@@ -215,8 +215,8 @@ To do an operation on all elements of an array, use the `foreach` command. As an
              ['prog2', ['prog2.c', 'bar.c']]]
 
     foreach p : progs
-      exe = executable(p.get(0), p.get(1))
-      test(p.get(0), exe)
+      exe = executable(p[0], p[1])
+      test(p[0], exe)
     endforeach
 
 Note that Meson variables are immutable. Trying to assign a new value to `progs` inside a foreach loop will not affect foreach's control flow.
