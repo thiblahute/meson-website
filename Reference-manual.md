@@ -1,4 +1,4 @@
-This page lists functions and methods available in Meson scripts. For more in-depth documentation on how to use them, refer to the [manual](Manual).
+This page lists functions and methods available in Meson scripts. For more in-depth documentation on how to use them, refer to the [manual](Manual). For more basic information about how Meson works, take a look at the [syntax reference](Syntax).
 
 ## Functions
 
@@ -736,7 +736,7 @@ This object is returned by [`generator`](#generator) and contains a generator th
 
 ### string object
 
-All strings have the following methods. Strings are immutable, all operations return their results as a new string.
+All [strings](Syntax#strings) have the following methods. Strings are immutable, all operations return their results as a new string.
 
  - `strip()` removes whitespace at the beginning and end of the string
  - `format()` formats text, see the [[Syntax manual|Syntax#string-formatting]] for usage info
@@ -753,22 +753,24 @@ All strings have the following methods. Strings are immutable, all operations re
 
 ### Number object
 
-Numbers support these methods:
+[Numbers](Syntax#numbers) support these methods:
 
  - `is_even()` returns true if the number is even
  - `is_odd()` returns true if the number is odd
 
 ### boolean object
 
-A boolean object has two simple methods:
+A [boolean](Syntax#booleans) object has two simple methods:
 
  - `to_string()` returns the string `'true'` if the boolean is true or `'false'` otherwise. You can also pass it two strings as positional arguments to specify what to return for true/false. For instance, `bool.to_string('yes', 'no')` will return `yes` if the boolean is true and `no` if it is false.
  - `to_int()` as above, but returns either `1` or `0`
 
 ### array object
 
-The following methods are defined for all arrays:
+The following methods are defined for all [arrays](Syntax#arrays):
 
  - `length()`, the size of the array
  - `contains(item)`, returns `true` if the array contains the object given as argument, `false` otherwise
  - `get(index, fallback)`, returns the object at the given index, negative indices count from the back of the array, indexing out of bounds returns the `fallback` value *(added 0.38.0)* or, if it is not specified, causes a fatal error
+
+You can also iterate over arrays with the [`foreach` statement](https://github.com/mesonbuild/meson/wiki/Syntax#foreach-statements).
