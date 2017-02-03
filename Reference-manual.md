@@ -532,7 +532,9 @@ Builds a static library with the given sources. Positional and keyword arguments
 
     void subdir(dir_name)
 
-Recurses into the specified subdirectory and executes the `meson.build` file in it. Once that is done, it returns and execution continues on the line following this `subdir` command.
+Enters the specified subdirectory and executes the `meson.build` file in it. Once that is done, it returns and execution continues on the line following this `subdir()` command. Variables defined in that `meson.build` file are then available for use in later parts of the current build file and in all subsequent build files executed with `subdir()`.
+
+Note that this means that each `meson.build` file in a source tree can and must only be executed once.
 
 ### subproject
 
