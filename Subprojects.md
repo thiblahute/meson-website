@@ -51,6 +51,10 @@ Then you can use the subproject in the master project like this:
 
 This uses the system dependency when available and the self built version if not. If you want to always use the subproject, that is also possible, just use `subproject` and `get_variable` as discussed above to get the dependency object.
 
+# Obtaining subprojects
+
+Meson ships with a dependency system to automatically obtain dependency subprojects. It is documented in the [Wrap dependency system manual](Wrap dependency system manual).
+
 ---
 
 [Back to index](Manual).
