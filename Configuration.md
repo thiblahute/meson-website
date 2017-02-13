@@ -59,6 +59,10 @@ If the input file is not defined then Meson will generate a header file all the 
     cdata.set('FOO', 1)          => #define FOO 1
     cdata.set('FOO', 0)          => #define FOO 0
 
+In this mode, you can also specify a comment which will be placed before the value so that your generated files are self-documenting.
+
+    cdata.set('BAR', true, description : 'Set BAR if it is available')
+
 ---
 
 [Back to index](Manual).
