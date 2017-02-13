@@ -63,6 +63,11 @@ In this mode, you can also specify a comment which will be placed before the val
 
     cdata.set('BAR', true, description : 'Set BAR if it is available')
 
+Will produce:
+
+    /* Set BAR if it is available */
+    #define BAR
+
 ---
 
 [Back to index](Manual).
