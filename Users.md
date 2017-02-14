@@ -13,6 +13,7 @@ If you have a project that uses Meson that you want to add to this list, let us 
  - [Grilo plugins](https://git.gnome.org/browse/grilo-plugins/commit/?id=ea047c4fb63e90268eb795ed91a09a2be5068a4c), a collection of plugins to the Grilo framework
  - [GStreamer](https://cgit.freedesktop.org/gstreamer/gstreamer/), multimedia framework (not the default yet)
  - [Libepoxy](https://github.com/anholt/libepoxy/), a library for handling OpenGL function pointer management
+ - [Libgit2-glib](https://git.gnome.org/browse/libgit2-glib/), a GLib wrapper for libgit2
  - [Libhttpseverywhere](https://github.com/grindhold/libhttpseverywhere), a library to enable httpseverywhere on any desktop app
  - [Lightdm-Webkit2-Greeter](https://github.com/Antergos/lightdm-webkit2-greeter)
  - [Parzip](https://github.com/jpakkane/parzip), a multithreaded reimplementation of Zip 
