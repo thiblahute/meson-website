@@ -32,7 +32,6 @@ The following functions are available in build files. Click on each to see the d
  * [install_headers](#install_headers)
  * [install_man](#install_man)
  * [install_subdir](#install_subdir)
- * [is_subproject](#is_subproject)
  * [is_variable](#is_variable)
  * [jar](#jar)
  * [join_paths](#join_paths)
@@ -421,12 +420,6 @@ Installs the specified man files from the source tree into system's man director
 
 Installs the entire given subdirectory and its contents from the source tree to the location specified by the keyword argument `install_dir`. Note that due to implementation issues this command deletes the entire target dir before copying the files, so you should never use `install_subdir` to install into two overlapping directories (such as `foo` and `foo/bar`) because if you do the behaviour is undefined.
 
-### is_subproject
-
-    bool is_subproject()
-
-Returns true if the current project is being built as a subproject of some other project and false otherwise.
-
 ### is_variable
 
     bool is_variable(varname)
@@ -589,9 +582,11 @@ The `meson` object allows you to introspect various properties of the system. Th
 
 - `get_compiler(language)` returns [an object describing a compiler](#compiler-object), takes one positional argument which is the language to use. It also accepts one keyword argument, `native` which when set to true makes Meson return the compiler for the build machine (the "native" compiler) and when false it returns the host compiler (the "cross" compiler). If `native` is omitted, Meson returns the "cross" compiler if we're currently cross-compiling and the "native" compiler if we're not.
 
-- `is_cross_build()` returns true if the current build is a cross build and false otherwise
+- `is_cross_build()` returns `true` if the current build is a cross build and `false` otherwise
 
-- `is_unity()` returns true when doing a unity build
+- `is_unity()` returns `true` when doing a unity build and `false` otherwise
+
+- `is_subproject()` returns `true` if the current project is being built as a subproject of some other project and `false` otherwise
 
 - `has_exe_wrapper()` returns true when doing a cross build if there is a wrapper command that can be used to execute cross built binaries (for example when cross compiling from Linux to Windows, one can use `wine` as the wrapper)
 
