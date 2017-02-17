@@ -27,13 +27,12 @@ Generates GObject introspection data. Takes one positional argument, the build t
 * `identifier_prefix`: the identifier prefix for the gir object, e.g. `Gtk`
 * `export_packages`: extra packages the gir file exports
 * `includes`: list of gir names to be included, can also be a GirTarget
-* `dependencies`: extra dependencies for building the gir and typelib
+* `dependencies`: deps to use during introspection scanning
 * `link_with`: list of libraries to link with
 * `include_directories`: extra include paths to look for gir files
 * `install`: if true, install the generated files
 * `install_dir_gir`: (*Added 0.35.0*) which directory to install the gir file into
 * `install_dir_typelib`: (*Added 0.35.0*) which directory to install the typelib file into
-* `dependencies`: deps to use during introspection scanning
 * `extra_args`: command line arguments to pass to gir compiler
 
 Returns an array of two elements which are: `[gir_target, typelib_target]`
