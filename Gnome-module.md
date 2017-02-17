@@ -95,6 +95,20 @@ Compiles the given XML schema into gdbus source code. Takes two positional argum
 
 Returns an opaque object containing the source files. Add it to a top level target's source list.
 
+## compile_vapi
+
+Creates a vapi file from gir. The first argument is the name of the library.
+
+* `sources`: the gir source to generate the vapi from
+* `packages`: vapi packages that are depended upon
+* `metadata_dirs`: extra directories to include for metadata files
+* `gir_dirs`: extra directories to include for gir files
+* `vapi_dirs`: extra directories to include for vapi files
+
+Returns a custom dependency that can be included when building other vapi or vala binaries.
+
+*Added 0.36.0*
+
 ## gtkdoc
 
 Compiles and installs gtkdoc documentation. Takes one positional arguments; The name of the module.
