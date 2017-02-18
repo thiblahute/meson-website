@@ -583,6 +583,8 @@ The `meson` object allows you to introspect various properties of the system. Th
 
 - `get_compiler(language)` returns [an object describing a compiler](#compiler-object), takes one positional argument which is the language to use. It also accepts one keyword argument, `native` which when set to true makes Meson return the compiler for the build machine (the "native" compiler) and when false it returns the host compiler (the "cross" compiler). If `native` is omitted, Meson returns the "cross" compiler if we're currently cross-compiling and the "native" compiler if we're not.
 
+- `backend()` *(added 0.37.0)* returns a string representing the current backend: `ninja`, `vs2010`, `vs2015`, or `xcode`.
+
 - `is_cross_build()` returns `true` if the current build is a cross build and `false` otherwise
 
 - `is_unity()` returns `true` when doing a unity build and `false` otherwise
