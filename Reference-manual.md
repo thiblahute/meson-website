@@ -75,6 +75,7 @@ These are objects returned by the [functions listed above](#functions).
  * [environment object](#environment-object)
  * [external library object](#external-library-object)
  * [generator object](#generator-object)
+ * [subproject object](#subproject-object)
 
 ### add_global_arguments
 
@@ -736,6 +737,12 @@ This object is returned by [`find_library`](#find_library) and contains an exter
 This object is returned by [`generator`](#generator) and contains a generator that is used to transform files from one type to another by an executable (e.g. `idl` files into source code and headers).
 
 - `process(list_of_files)` takes a list of files, causes them to be processed and returns an object containing the result which can then, for example, be passed into a build target definition. The keyword argument `extra_args`, if specified, will be used to replace an entry `@EXTRA_ARGS@` in the argument list.
+
+### subproject object
+
+This object is returned by [`subproject`](#subproject) and is an opaque object representing it.
+
+- `get_variable(name)` fetches the specified variable from inside the subproject. This is useful to, for instance, get a [declared dependency](#declare_dependency) from the subproject.
 
 ### string object
 
