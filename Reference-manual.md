@@ -206,7 +206,7 @@ The list of strings passed to the `command` kwarg accept the following special s
 
     dependency_object declare_dependency(...)
 
-This function creates a dependency object that behaves like the return value of `dependency` but is internal to the current build. The main use case for this is in subprojects. This allows a subproject to easily specify how it should be used. This makes it interchangeable with the same dependency that is provided externally by the system. This function has three keyword arguments.
+This function returns a [dependency object](#dependency-object) that behaves like the return value of [`dependency`](#dependency) but is internal to the current build. The main use case for this is in subprojects. This allows a subproject to easily specify how it should be used. This makes it interchangeable with the same dependency that is provided externally by the system. This function has three keyword arguments.
 
   - `include_directories`, the directories to add to header search path
   - `link_with`, libraries to link against
@@ -220,14 +220,14 @@ This function creates a dependency object that behaves like the return value of 
 
     dependency_object dependency(*dependency_name*, ...)
 
-Finds an external dependency with the given name with pkg-config if possible and with fallback detection logic otherwise. Dependency supports the following keyword arguments.
+Finds an external dependency with the given name with `pkg-config` if possible and with fallback detection logic otherwise. Dependency supports the following keyword arguments.
 
 - `modules` specifies submodules to use for dependencies such as Qt5 or Boost.
 - `required`, when set to false, Meson will proceed with the build even if the dependency is not found
 - `version`, specifies the required version, a string containing a comparison operator followed by the version string, examples include `>1.0.0`, `<=2.3.5` or `3.1.4` for exact matching. (*Added 0.37.0*) You can also specify multiple restrictions by passing a list to this kwarg, such as: `['>=3.14.0', '<=4.1.0']`.
 - `native` if set to `true`, causes Meson to find the dependency on the build machine system rather than the host system (i.e. where the cross compiled binary will run on), usually only needed if you build a tool to be used during compilation.
 - `static` tells the dependency provider to try to get static libraries instead of dynamic ones (note that this is not supported by all dependency backends)
-- `fallback` specifies a subproject fallback to use in case the dependency is not found in the system. The value is an array `['subproj_name', 'subproj_dep']` where the first value is the name of the subproject and the second is the variable name in that subproject that contains the value of `declare_dependency`.
+- `fallback` specifies a subproject fallback to use in case the dependency is not found in the system. The value is an array `['subproj_name', 'subproj_dep']` where the first value is the name of the subproject and the second is the variable name in that subproject that contains the value of [`declare_dependency`](#declare_dependency).
 - `default_options` an array of option values that override those set in the project's `default_options` invocation (like `default_options` in [`project()`](#project), they only have effect when Meson is run for the first time, and command line arguments override any default options in build files)
 
 The returned object also has methods that are documented in the [object methods section](#dependency-object) below.
@@ -315,7 +315,7 @@ Meson will then do the right thing.
 
 See also: [`custom_target`](#custom_target)
 
-This function creates a generator object that can be used to run custom compilation commands. The only positional argument is the executable to use. It can either be a self-built executable or one returned by find_program. Keyword arguments are the following:
+This function creates a [generator object](#generator-object) that can be used to run custom compilation commands. The only positional argument is the executable to use. It can either be a self-built executable or one returned by find_program. Keyword arguments are the following:
 
 - `arguments` a list of template strings that will be the command line arguments passed to the executable
 - `output` a template string (or list of template strings) defining how an output file name is (or multiple output names are) generated from a single source file name
@@ -540,7 +540,7 @@ Note that this means that each `meson.build` file in a source tree can and must 
 
     subproject_object subproject(subproject_name, ...)
 
-Takes the project specified in the positional argument and brings that in the current build specification. Subprojects must always be placed inside the `subprojects` directory at the top source directory. So for example a subproject called `foo` must be located in `${MESON_SOURCE_ROOT}/subprojects/foo`. Supports the following keyword arguments:
+Takes the project specified in the positional argument and brings that in the current build specification by returning a [subproject object](#subproject-object). Subprojects must always be placed inside the `subprojects` directory at the top source directory. So for example a subproject called `foo` must be located in `${MESON_SOURCE_ROOT}/subprojects/foo`. Supports the following keyword arguments:
 
  - `version` keyword argument that works just like the one in `dependency`. It specifies what version the subproject should be, as an example `>=1.0.1`
  - `default_options`, an array of default option values that override those set in the project's `default_options` invocation (like `default_options` in `project`, they only have effect when Meson is run for the first time, and command line arguments override any default options in build files)
