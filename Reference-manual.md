@@ -435,7 +435,7 @@ Build a jar from the specified Java source files. Keyword arguments are the same
 
 ### join_paths
 
-   string join_paths([strings to join])
+   string join_paths(string1, string2, ...)
 
 Joins the given strings into a file system path segment. For example `join_paths('foo', 'bar')` results in `foo/bar`. If any one of the individual segments is an absolute path, all segments before it are dropped. That means that `join_paths('foo', '/bar')` returns `/bar`.
 
