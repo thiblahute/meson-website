@@ -85,7 +85,9 @@ Adds the positional arguments to the compiler command line for the language spec
 
 The arguments are used in all compiler invocations with the exception of compile tests, because you might need to run a compile test with and without the argument in question. For this reason only the arguments explicitly specified are used during compile tests.
 
-Note that usually you should use `add_project_arguments` instead, because that works even when you project is used as a subproject.
+**Note:** Usually you should use `add_project_arguments` instead, because that works even when you project is used as a subproject.
+
+**Note:** You must pass always arguments individually `arg1, arg2, ...` rather than as a string `'arg1 arg2', ...`
 
 ### add_global_link_arguments
 
