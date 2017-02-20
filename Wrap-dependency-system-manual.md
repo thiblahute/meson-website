@@ -8,7 +8,7 @@ This is both tedious and error prone because it is always done by hand. The Wrap
 
 Meson has a concept of [subprojects](Subprojects). They are a way of nesting one Meson project inside another. Any project that builds with Meson can detect that it is built as a subproject and build itself in a way that makes it easy to use (usually this means as a static library).
 
-To use this kind of a project as a dependency you could just copy and extract it inside your project's `subprojects` directory. However there is a simpler way. You can specify a Wrap file that tells Meson how to download it for you. An example wrap file would look like this:
+To use this kind of a project as a dependency you could just copy and extract it inside your project's `subprojects` directory. However there is a simpler way. You can specify a Wrap file that tells Meson how to download it for you. An example wrap file would look like this and should be put in `subprojects/foobar.wrap`:
 
     [wrap-file]
     directory = libfoobar-1.0
