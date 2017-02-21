@@ -5,7 +5,7 @@ If you have a project that uses Meson that you want to add to this list, let us 
  - [AQEMU](https://github.com/tobimensch/aqemu), a Qt GUI for QEMU virtual machines, since version 0.9.3
  - [Arduino sample project](https://github.com/jpakkane/mesonarduino)
  - [Emeus](https://github.com/ebassi/emeus), Constraint based layout manager for Gtk
- - [Gnome Builder](https://git.gnome.org/browse/gnome-builder/log/?h=wip/tingping/meson-build), an IDE for the Gnome platform (not yet merged)
+ - [Gnome Builder](https://git.gnome.org/browse/gnome-builder/), an IDE for the Gnome platform
  - [Gnome MPV](https://github.com/gnome-mpv/gnome-mpv), Gnome frontend to the mpv video player
  - [Gnome Software](https://git.gnome.org//browse/gnome-software), an app store for Gnome
  - [Gnome Twitch](https://github.com/vinszent/gnome-twitch), an app for viewing Twitch streams on Gnome desktop
