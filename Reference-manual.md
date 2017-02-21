@@ -565,15 +565,15 @@ Defined tests can be run in a backend-agnostic way by calling `mesontest` inside
 
 ### vcs_tag
 
-    void vcs_tag(...)
+    ctarget vcs_tag(...)
 
-This command detects revision control commit information and places it in a specified file. This file is guaranteed to be up to date on every build. Keywords are similar to `custom_target` and all of them are mandatory.
+This command detects revision control commit information at build time and places it in the specified output file. This file is guaranteed to be up to date on every build. Keywords are similar to `custom_target` and all of them are mandatory.
 
 - `input` file to modify (e.g. `version.c.in`)
 - `output` file to write the results to (e.g. `version.c`)
 - `fallback` version number to use when no revision control information is present, such as when building from a release tarball
 
-Meson will read the contents of `input`, replace the string `@VCS_TAG@` with the detected revision number and write the result to `output`. This method returns an opaque object that you should put in your main program. If you desire more specific behavior than what this command provides, you should use `custom_target`.
+Meson will read the contents of `input`, replace the string `@VCS_TAG@` with the detected revision number and write the result to `output`. This method returns an opaque [`custom_target`](#custom_target) object that you should put in your main program. If you desire more specific behavior than what this command provides, you should use `custom_target`.
 
 ## Object methods
 
