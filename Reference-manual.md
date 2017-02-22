@@ -185,7 +185,7 @@ Create a custom top level build target. The only positional argument is the name
 
 - `input` list of source files
 - `output` list of output files
-- `command` command to run to create outputs from inputs (note: always specify commands in array form `['commandname', '-arg1', '-arg2']` rather than as a string `'commandname -arg1 -arg2'` as the latter will *not* work)
+- `command` command to run to create outputs from inputs. The command may be strings or the return of `find_program()` or `executable()` (note: always specify commands in array form `['commandname', '-arg1', '-arg2']` rather than as a string `'commandname -arg1 -arg2'` as the latter will *not* work)
 - `install` when true, this target is installed during the install step
 - `install_dir` directory to install to
 - `build_always` if `true` this target is always considered out of date and is rebuilt every time, useful for things such as build timestamps or revision control tags
