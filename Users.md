@@ -7,6 +7,7 @@ If you have a project that uses Meson that you want to add to this list, let us 
  - [Emeus](https://github.com/ebassi/emeus), Constraint based layout manager for Gtk
  - [Gnome Builder](https://git.gnome.org/browse/gnome-builder/), an IDE for the Gnome platform
  - [Gnome MPV](https://github.com/gnome-mpv/gnome-mpv), Gnome frontend to the mpv video player
+ - [Gnome Recipes](https://github.com/matthiasclasen/gr), application for cooking recipes
  - [Gnome Software](https://git.gnome.org//browse/gnome-software), an app store for Gnome
  - [Gnome Twitch](https://github.com/vinszent/gnome-twitch), an app for viewing Twitch streams on Gnome desktop
  - [Graphene](http://ebassi.github.io/graphene/), a thin type library for graphics
