@@ -1,11 +1,13 @@
 As a part of the software configuration, you may want to get extra data by running external commands. The basic syntax is the following.
 
-    r = run_command('command', 'arg1', 'arg2', 'arg3')
-    if r.returncode() != 0
-      # it failed
-    endif
-    output = r.stdout().strip()
-    errortxt = r.stderr().strip()
+```meson
+r = run_command('command', 'arg1', 'arg2', 'arg3')
+if r.returncode() != 0
+  # it failed
+endif
+output = r.stdout().strip()
+errortxt = r.stderr().strip()
+```
 
 The `run_command` function returns an object that can be queried for return value and text written to stdout and stderr. The `strip` method call is used to strip trailing and leading whitespace from strings. Usually output from command line programs ends in a newline, which is unwanted in string variables. The first argument can be either a string or an executable you have detected earlier with `find_program`.
 

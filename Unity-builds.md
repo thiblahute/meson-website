@@ -1,8 +1,10 @@
 Unity builds are a technique for cutting down build times. The way it works is relatively straightforward. Suppose we have source files `src1.c`, `src2.c` and `src3.c`. Normally we would run the compiler three times, once for each file. In a unity build we instead compile all these sources in a single unit. The simplest approach is to create a new source file that looks like this.
 
-    #include<src1.c>
-    #include<src2.c>
-    #include<src3.c>
+```c
+#include<src1.c>
+#include<src2.c>
+#include<src3.c>
+```
 
 This is then compiled rather than the individual files. The exact speedup depends on the code base, of course, but it is not uncommon to obtain more than 50% speedup in compile times. This happens even though the Unity build uses only one CPU whereas individual compiles can be run in parallel. Unity builds can also lead to faster code, because the compiler can do more aggressive optimizations (e.g. inlining).
 

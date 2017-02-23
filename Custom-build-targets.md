@@ -1,17 +1,18 @@
 While Meson tries to support as many languages and tools as possible, there is no possible way for it to cover all corner cases. For these cases it permits you to define custom build targets. Here is how one would use it.
 
-     comp = find_program('custom_compiler')
-     
-     infile = 'source_code.txt'
-     outfile = 'output.bin'
-     
-     mytarget = custom_target('targetname',
-       output : 'output.bin',
-       input : 'source_code.txt'
-       command : [comp, '@INPUT@', '@OUTPUT@'],
-       install : true,
-       install_dir : 'subdir'
-     )
+```meson
+comp = find_program('custom_compiler')
+
+infile = 'source_code.txt'
+outfile = 'output.bin'
+
+mytarget = custom_target('targetname',
+  output : 'output.bin',
+  input : 'source_code.txt'
+  command : [comp, '@INPUT@', '@OUTPUT@'],
+  install : true,
+  install_dir : 'subdir')
+```
 
 This would generate the binary `output.bin` and install it to `${prefix}/subdir/output.bin`. Variable substitution works just like it does for source generation. 
 

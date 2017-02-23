@@ -8,34 +8,44 @@ OSX app bundles are actually extremely simple. They are just a directory of file
 
 Let's assume that we are creating our app bundle into `/tmp/myapp.app`. Suppose we have one executable, so we need to install that into `Contents/MacOS`. If we define the executable like this:
 
-    executable('myapp', 'foo1.c', ..., install : true)
+```meson
+executable('myapp', 'foo1.c', ..., install : true)
+```
 
 then we just need to initialize our build tree with this command:
 
-    meson --prefix=/tmp/myapp.app \
-          --bindir=Contents/MacOS \
-          builddir \
-          <other flags you might need>
+```console
+$ meson --prefix=/tmp/myapp.app \
+        --bindir=Contents/MacOS \
+        builddir \
+        <other flags you might need>
+```
 
 Now when we do `ninja install` the bundle is properly staged. If you have any resource files or data, you need to install them into `Contents/Resources` either by custom install commands or specifying more install paths to the Meson command.
 
 Next we need to install an `Info.plist` file and an icon. For those we need the following two Meson definitions.
 
-    install_data('myapp.icns', install_dir : 'Contents/Resources')
-    install_data('Info.plist', install_dir : 'Contents')
+```meson
+install_data('myapp.icns', install_dir : 'Contents/Resources')
+install_data('Info.plist', install_dir : 'Contents')
+```
 
 The format of `Info.plist` can be found in the link or the sample project linked above. Be careful, the sample code on the linked page is malformed, it is missing a less than character (<) before `!DOCTYPE`. The simplest way to get an icon in the `icns` format is to save your image as a tiff an then use the `tiff2icns` helper application that comes with XCode.
 
 Some applications assume that the working directory of the app process is the same where the binary executable is. If this is the case for you, then you need to create a wrapper script that looks like this:
 
-    #!/bin/bash
+```bash
+#!/bin/bash
 
-    cd "${0%/*}"
-    ./myapp
+cd "${0%/*}"
+./myapp
+```
 
 install it with this:
 
-    install_data('myapp.sh', install_dir : 'Contents/MacOS')
+```meson
+install_data('myapp.sh', install_dir : 'Contents/MacOS')
+```
 
 and make sure that you specify `myapp.sh` as the executable to run in your `Info.plist`.
 
@@ -43,19 +53,25 @@ If you are not using any external libraries, this is all you need to do. You now
 
 As an example we are going to use the [SDL2](https://libsdl.org/) framework. In order to bundle it in our app, we first specify an installer script to run.
 
-    meson.set_install_script('install_script.sh')
+```meson
+meson.set_install_script('install_script.sh')
+```
 
 The install script does two things. First it copies the whole framework into our bundle.
 
-    mkdir -p ${MESON_INSTALL_PREFIX}/Contents/Frameworks
-    cp -R /Library/Frameworks/SDL2.framework \
-          ${MESON_INSTALL_PREFIX}/Contents/Frameworks
+```console
+$ mkdir -p ${MESON_INSTALL_PREFIX}/Contents/Frameworks
+$ cp -R /Library/Frameworks/SDL2.framework \
+        ${MESON_INSTALL_PREFIX}/Contents/Frameworks
+```
 
 Then it needs to alter the library search path of our executable(s). This tells OSX that the libraries your app needs are inside your bundle. In the case of SDL2, the invocation goes like this:
 
-    install_name_tool -change @rpath/SDL2.framework/Versions/A/SDL2 \
-      @executable_path/../FrameWorks/SDL2.framework/Versions/A/SDL2 \
-      ${MESON_INSTALL_PREFIX}/Contents/MacOS/myapp
+```console
+$ install_name_tool -change @rpath/SDL2.framework/Versions/A/SDL2 \
+    @executable_path/../FrameWorks/SDL2.framework/Versions/A/SDL2 \
+    ${MESON_INSTALL_PREFIX}/Contents/MacOS/myapp
+```
 
 This is the part of OSX app bundling that you must always do manually. OSX dependencies come in many shapes and forms and unfortunately there is no reliable automatic way to determine how each dependency should be handled. Frameworks go to the `Frameworks` directory while plain `.dylib` files usually go to `Contents/Resources/lib` (but you can put them wherever you like). To get this done you have to check what your program links against with `otool -L /path/to/binary` and manually add the copy and fix steps to your install script. Do not copy system libraries inside your bundle, though.
 

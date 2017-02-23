@@ -74,40 +74,50 @@ Enough design talk, let's get to the code. Before looking at the examples we wou
 
 Let's start simple. Here is the code to compile a single executable binary.
 
-    project('compile one', 'c')
-    executable('program', 'prog.c')
+```meson
+project('compile one', 'c')
+executable('program', 'prog.c')
+```
 
 This is about as simple as one can get. First you declare the project name and the languages it uses. Then you specify the binary to build and its sources. The build system will do all the rest. It will add proper suffixes (e.g. '.exe' on Windows), set the default compiler flags and so on.
 
 Usually programs have more than one source file. Listing them all in the function call can become unwieldy. That is why the system supports keyword arguments. They look like this.
 
-    project('compile several', 'c')
-    sources = ['main.c', 'file1.c', 'file2.c', 'file3.c']
-    executable('program', sources : sourcelist)
+```meson
+project('compile several', 'c')
+sources = ['main.c', 'file1.c', 'file2.c', 'file3.c']
+executable('program', sources : sourcelist)
+```
 
 External depencencies are simple to use.
 
-    project('external lib', 'c')
-    libdep = find_dep('extlibrary', required : true)
-    sources = ['main.c', 'file1.c', 'file2.c', 'file3.c']
-    executable('program', sources : sourcelist, dep : libdep)
+```meson
+project('external lib', 'c')
+libdep = find_dep('extlibrary', required : true)
+sources = ['main.c', 'file1.c', 'file2.c', 'file3.c']
+executable('program', sources : sourcelist, dep : libdep)
+```
 
 In other build systems you have to manually add the compile and link flags from external dependencies to targets. In this system you just declare that extlibrary is mandatory and that the generated program uses that. The build system does all the plumbing for you.
 
 Here's a slightly more complicated definition. It should still be understandable.
 
-    project('build library', 'c')
-    foolib = shared_library('foobar', sources : 'foobar.c',\ 
-     install : true)
-    exe = executable('testfoobar', 'tester.c', link : foolib)
-    add_test('test library', exe)
+```meson
+project('build library', 'c')
+foolib = shared_library('foobar', sources : 'foobar.c',\ 
+install : true)
+exe = executable('testfoobar', 'tester.c', link : foolib)
+add_test('test library', exe)
+```
 
 First we build a shared library named foobar. It is marked installable, so running `ninja install` installs it to the library directory (the system knows which one so the user does not have to care). Then we build a test executable which is linked against the library. It will no tbe installed, but instead it is added to the list of unit tests, which can be run with the command `ninja test`.
 
 Above we mentioned precompiled headers as a feature not supported by other build systems. Here's how you would use them.
 
-    project('pch demo', 'cxx')
-    executable('myapp', 'myapp.cpp', pch : 'pch/myapp.hh')
+```meson
+project('pch demo', 'cxx')
+executable('myapp', 'myapp.cpp', pch : 'pch/myapp.hh')
+```
 
 The main reason other build systems can not provide pch support this easily is because they don't enforce certain best practices. Due to the way include paths work, it is impossible to provide pch support that always works with both in-source and out-of-source builds. Mandating separate build and source directories makes this and many other problems a lot easier.
 

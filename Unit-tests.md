@@ -1,7 +1,9 @@
 Meson comes with a fully functional unit test system. To use it simply build an executable and then use it in a test.
 
-    e = executable('prog', 'testprog.c')
-    test('name of test', e)
+```meson
+e = executable('prog', 'testprog.c')
+test('name of test', e)
+```
 
 You can add as many tests as you want. They are run with the command `ninja test`.
 
@@ -12,8 +14,10 @@ Test parameters
 
 Some tests require the use of command line arguments or environment variables. These are simple to define.
 
-    test('command line test', exe, args : ['first', 'second'])
-    test('envvar test', exe2, env : ['key1=value1', 'key2=value2'])
+```meson
+test('command line test', exe, args : ['first', 'second'])
+test('envvar test', exe2, env : ['key1=value1', 'key2=value2'])
+```
 
 Note how you need to specify multiple values as an array.
 
@@ -29,13 +33,17 @@ Parallelism
 
 To reduce test times, Meson will by default run multiple unit tests in parallel. It is common to have some tests which can not be run in parallel because they require unique hold on some resource such as a file or a dbus name. You have to specify these tests with a keyword argument.
 
-    test('unique test', t, is_parallel : false)
+```meson
+test('unique test', t, is_parallel : false)
+```
 
 Meson will then make sure that no other unit test is running at the same time. Non-parallel tests take longer to run so it is recommended that you write your unit tests to be parallel executable whenever possible.
 
 By default Meson uses as many concurrent processes as there are cores on the test machine. You can override this with the environment variable `MESON_TESTTHREADS` like this.
 
-    MESON_TESTTHREADS=5 ninja test
+```console
+$ MESON_TESTTHREADS=5 ninja test
+```
 
 ## Skipped tests
 
@@ -47,33 +55,47 @@ In version 0.37.0 a new tool called `mesontest` was added. The goal of this tool
 
 The simplest thing to do is just to run all tests, which is equivalent to running `ninja test`.
 
-    mesontest
+```console
+$ mesontest
+```
 
 You can also run only a single test by giving its name:
 
-    mesontest testname
+```console
+$ mesontest testname
+```
 
 Sometimes you need to run the tests multiple times, which is done like this:
 
-    mesontest --repeat=10
+```console
+$ mesontest --repeat=10
+```
 
 Invoking tests via a helper executable such as Valgrind can be done with the `--wrap` argument
 
-    mesontest --wrap=valgrind testname
+```console
+$ mesontest --wrap=valgrind testname
+```
 
 Arguments to the wrapper binary can be given like this:
 
-    mesontest --wrap='valgrind --tool=helgrind' testname
+```console
+$ mesontest --wrap='valgrind --tool=helgrind' testname
+```
 
 Meson also supports running the tests under gdb. Just doing this:
 
-    mesontest --gdb testname
+```console
+$ mesontest --gdb testname
+```
 
 Mesontest will launch gdb all set up to run the test. Just type `run` in the gdb command prompt to start the program.
 
 The second use case is a test that segfaults only rarely. In this case you can invoke the following command:
 
-    mesontest --gdb --repeat=10000 testname
+```console
+$ mesontest --gdb --repeat=10000 testname
+```
 
 This runs the test up to 10 000 times under gdb automatically. If the program crashes, gdb will halt and the user can debug the application. Note that testing timeouts are disabled in this case so mesontest will not kill gdb while the developer is still debugging it. The downside is that if the test binary freezes, the test runner will wait forever.
 

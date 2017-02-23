@@ -10,7 +10,9 @@ Unfortunately this name was taken, too. Then the rest of physical elementary par
 
 ## What is the correct way to use threads (such as pthreads)?
 
-    thread_dep = dependency('threads')
+```meson
+thread_dep = dependency('threads')
+```
 
 This will set up everything on your behalf. People coming from Autotools or CMake want to do this by looking for `libpthread.so` manually. Don't do that, it has tricky corner cases especially when cross compiling. 
 
@@ -18,11 +20,15 @@ This will set up everything on your behalf. People coming from Autotools or CMak
 
 Starting from version 0.29.0, Meson is available from the [Python Package Index](https://pypi.python.org/pypi/meson/), so installing it simply a matter of running this command:
 
-    pip3 install <your options here> meson
+```console
+$ pip3 install <your options here> meson
+```
 
 If you don't have access to PyPi, that is not a problem either. Meson has been designed to be easily runnable from an extracted source tarball or even a git checkout. First you need to download Meson. Then use this command to set up you build instead of plain `meson`.
 
-    /path/to/meson <options>
+```console
+$ /path/to/meson.py <options>
+```
 
 After this you don't have to care about invoking Meson any more. It remembers where it was originally invoked from and calls itself appropriately. As a user the only thing you need to do is to `cd` into your build directory and invoke `ninja`. 
 
@@ -30,7 +36,9 @@ After this you don't have to care about invoking Meson any more. It remembers wh
 
 Instead of specifying files explicitly, people seem to want to do this:
 
-    executable('myprog', sources : '*.cpp') # This does NOT work!
+```meson
+executable('myprog', sources : '*.cpp') # This does NOT work!
+```
 
 Meson does not support this syntax and the reason for this is simple. This can not be made both reliable and fast. By reliable we mean that if the user adds a new source file to the subdirectory, Meson should detect that and make it part of the build automatically.
 
@@ -45,17 +53,21 @@ Because of this, all source files must be specified explicitly.
 If the tradeoff between reliability and convenience is acceptable to you, then Meson gives you all the tools necessary to do wildcard globbing. You are allowed to run arbitrary commands during configuration. First you need to write a script that locates the files to compile. Here's a simple shell script that writes all `.c` files in the current directory, one per line.
 
 
-    #!/bin/sh
+```bash
+#!/bin/sh
 
-    for i in *.c; do
-      echo $i
-    done
+for i in *.c; do
+  echo $i
+done
+```
 
 Then you need to run this script in your Meson file, convert the output into a string array and use the result in a target.
 
-    c = run_command('grabber.sh')
-    sources = c.stdout().strip().split('\n')
-    e = executable('prog', sources)
+```meson
+c = run_command('grabber.sh')
+sources = c.stdout().strip().split('\n')
+e = executable('prog', sources)
+```
 
 The script can be any executable, so it can be written in shell, Python, Lua, Perl or whatever you wish.
 
@@ -69,9 +81,11 @@ In this case you would use `subproject`. The way to do it would be to grab the s
 
 For every other use you would use `subdir`. As an example, if you wanted to build a shared library in one dir and link tests against it in another dir, you would do something like this:
 
-    project('simple', 'c')
-    subdir('src')   # library is built here
-    subdir('tests') # test binaries would link against the library here
+```meson
+project('simple', 'c')
+subdir('src')   # library is built here
+subdir('tests') # test binaries would link against the library here
+```
 
 ## Why is there not a Make backend?
 
@@ -101,22 +115,30 @@ With gcc, all symbols on shared libraries are exported automatically unless you 
 
 You probably did the equivalent to this:
 
-    executable('foobar', ...
-               c_args : '-some_arg -other_arg')
+```meson
+executable('foobar', ...
+           c_args : '-some_arg -other_arg')
+```
 
 Meson is *explicit*. In this particular case it will **not** automatically split your strings at whitespaces, instead it will take it as is and work extra hard to pass it to the compiler unchanged, including quoting it properly over shell invocations. This is mandatory to make e.g. files with spaces in them work flawlessly. To pass multiple command line arguments, you need to explicitly put them in an array like this:
 
-    executable('foobar', ...
-               c_args : ['-some_arg', '-other_arg'])
+```meson
+executable('foobar', ...
+           c_args : ['-some_arg', '-other_arg'])
+```
 
 ## Why are changes to default project options ignored?
 
 You probably had a project that looked something like this:
 
-    project('foobar', 'cpp')
+```meson
+project('foobar', 'cpp')
+```
 
 This defaults to `c++11` on Gcc compilers. Suppose you want to use `c++14` instead, so you change the definition to this:
 
-    project('foobar', 'cpp', default_options : ['cpp_std=c++14'])
+```meson
+project('foobar', 'cpp', default_options : ['cpp_std=c++14'])
+```
 
 But when you recompile, it still uses `c++11`. The reason for this is that default options are only looked at when you are setting up a build directory for the very first time. After that the setting is considered to have a value and thus the default value is ignored. To change an existing build dir to `c++14`, either reconfigure your build dir with `mesonconf` or delete the build dir and recreate it from scratch.

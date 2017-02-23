@@ -3,12 +3,14 @@ Compiling Java applications
 
 Meson has experimental support for compiling Java programs. The basic syntax consists of only one function and would be used like this:
 
-    project('javaprog', 'java')
-    
-    myjar = jar('mything', 'com/example/Prog.java',
-                main_class : 'com.example.Prog')
-    
-    test('javatest', myjar)
+```meson
+project('javaprog', 'java')
+
+myjar = jar('mything', 'com/example/Prog.java',
+            main_class : 'com.example.Prog')
+
+test('javatest', myjar)
+```
 
 However note that Meson places limitations on how you lay out your code.
 

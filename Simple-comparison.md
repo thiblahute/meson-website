@@ -3,10 +3,12 @@ A simple comparison
 
 In this experiment we generated one thousand C files with contents that looked like this.
 
-    #include<stdio.h>
-    #include"header.h"
+```c
+#include<stdio.h>
+#include"header.h"
 
-    int func23() { return 0; }
+int func23() { return 0; }
+```
 
 The function number was different in each file. In addition there was a main C file that just called each function in turn. We then generated build system files for *Meson*, *CMake*, *SCons*, *Premake* and *Autotools* that compiled these files into a single executable.
 

@@ -8,13 +8,17 @@ The basic problem is that the users of the subproject must be able to include su
 
 The pragmatic solution is to put the config header in a directory that has no other header files and then hide that from everyone else. One way is to create a top level subdirectory called `internal` and use that to build your own sources, like this:
 
-    subdir('internal') # create config.h in this subdir
-    internal_inc = include_directories('internal')
-    shared_library('foo', 'foo.c', include_directories : internal_inc)
+```meson
+subdir('internal') # create config.h in this subdir
+internal_inc = include_directories('internal')
+shared_library('foo', 'foo.c', include_directories : internal_inc)
+```
 
 Many projects keep their `config.h` in the top level directory that has no other source files in it. In that case you don't need to move it but can just do this instead:
 
-    internal_inc = include_directories('.') # At top level meson.build
+```meson
+internal_inc = include_directories('.') # At top level meson.build
+```
 
 ## Make libraries buildable both as static and shared
 
@@ -22,14 +26,16 @@ Some platforms (e.g. iOS) requires linking everything in your main app staticall
 
 Your project should provide a toggle specifying which type of library it should build. As an example if you have a Meson option called `shared_lib` then you could do this:
 
-    if get_option('shared_lib')
-      libtype = 'shared_library'
-    else
-      libtype = 'static_library'
-    endif
+```meson
+if get_option('shared_lib')
+  libtype = 'shared_library'
+else
+  libtype = 'static_library'
+endif
 
-    mylib = build_target('foo', 'foo.c',
-      target_type : libtype)
+mylib = build_target('foo', 'foo.c',
+  target_type : libtype)
+```
 
 ## Declare generated headers explicitly
 
@@ -37,15 +43,19 @@ Meson's Ninja backend works differently from Make and other systems. Rather than
 
 The reason for this is that this is much more efficient so your builds finish faster. The downside is that you have to be careful with your dependencies. The most common problem here is headers that are generated at compile time with e.g. code generators. If these headers are needed when building code that uses these libraries, the compile job might be run before the code generation step. The fix is to make the dependency explicit like this:
 
-    myheader = custom_target(...)
-    mylibrary = shared_library(...)
-    mydep = declare_dependency(link_with : mylibrary,
-      include_directories : include_directories(...),
-      sources : myheader)
+```meson
+myheader = custom_target(...)
+mylibrary = shared_library(...)
+mydep = declare_dependency(link_with : mylibrary,
+  include_directories : include_directories(...),
+  sources : myheader)
+```
 
 And then you can use the dependency in the usual way:
 
-    executable('dep_using_exe', 'main.c',
-      dependencies : mydep)
+```meson
+executable('dep_using_exe', 'main.c',
+  dependencies : mydep)
+```
 
 Meson will ensure that the header file has been built before compiling `main.c`.

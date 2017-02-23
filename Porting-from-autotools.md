@@ -6,14 +6,14 @@ Meson comes with a helper script `ac_converter` that you can use to convert the 
 
 First let's look at `configure.ac` and write the same in `meson.build`.
 
-```
+```autoconf
 AC_PREREQ(2.63)
 ```
 Meson doesn't provide the same function, so just ignore this.
 
 ### Defining variables
 `configure.ac`:
-```
+```autoconf
 m4_define([as_major_version], [0])
 m4_define([as_minor_version], [3])
 m4_define([as_micro_version], [6])
@@ -33,7 +33,7 @@ as_micro_version = ver_arr[2]
 
 ### Initializing project and setting compilers
 `configure.ac`:
-```
+```autoconf
 AC_INIT([appstream-glib],[as_version])
 AC_PROG_CC
 ```
@@ -45,7 +45,7 @@ Note that this must be the first line of your `meson.build` file.
 
 ### AC_SUBST
 `configure.ac`:
-```
+```autoconf
 AC_SUBST(AS_MAJOR_VERSION)
 AC_SUBST(AS_MINOR_VERSION)
 AC_SUBST(AS_MICRO_VERSION)
@@ -58,7 +58,9 @@ You don't need to do the same in Meson, because it does not have two different t
 
 `configure.ac`:
 
-    AC_CONFIG_HEADERS([config.h])
+```autoconf
+AC_CONFIG_HEADERS([config.h])
+```
 
 `meson.build`:
 
@@ -66,15 +68,8 @@ You don't need to do the same in Meson, because it does not have two different t
 conf = configuration_data()
 # Surround the version in quotes to make it a C string
 conf.set_quoted('VERSION', as_version)
-configure_file(input : 'config.h.in',
-               output : 'config.h',
+configure_file(output : 'config.h',
                configuration : conf)
-```
-
-`config.h.in`:
-
-```
-#mesondefine VERSION
 ```
 
 Meson doesn't support autoheaders, you need to manually specify what do you want to see in header file, write `configuration_data()` object and use `configure_file()`.
@@ -85,7 +80,7 @@ You can also substitute variables of type `@SOME_VAR@` with configure data. The 
 
 `configure.ac`:
 
-```
+```autoconf
 AC_PATH_PROG(GPERF, [gperf], [no])
 if test x$GPERF != xno ; then
         AC_DEFINE(HAVE_GPERF,[1], [Use gperf])
@@ -106,7 +101,7 @@ endif
 
 `configure.ac`:
 
-```
+```autoconf
 PKG_CHECK_MODULES(SOUP, libsoup-2.4 >= 2.24)
 ```
 
@@ -120,7 +115,7 @@ soup = dependency('libsoup-2.4', version : '>= 2.24')
 
 `configure.ac`:
 
-```
+```autoconf
 AC_ARG_ENABLE(dep11, AS_HELP_STRING([--enable-dep11],[enable DEP-11]),
               enable_dep11=$enableval,enable_dep11=yes)
 AM_CONDITIONAL(HAVE_DEP11, test x$enable_dep11 = xyes)
@@ -157,7 +152,7 @@ Next step is `Makefile.am`. In meson you don't need to have other file, you stil
 
 `Makefile.am`:
 
-```
+```make
 SUBDIRS =                                         \
         libappstream-glib
 ```
@@ -172,7 +167,7 @@ subdir('libappstream-glib')
 
 `Makefile.am`:
 
-```
+```make
 DISTCLEANFILES =                                        \
         appstream-glib-*.tar.xz
 
@@ -201,7 +196,7 @@ In Meson you don't need have `*CLEANFILES`, because in meson you are building in
 ### glib-compile-resources
 
 `Makefile.am`:
-```
+```make
 as-resources.c: appstream-glib.gresource.xml                    \
                 as-stock-icons.txt                              \
                 as-license-ids.txt                              \
@@ -249,7 +244,7 @@ asresources = gnome.compile_resources(
 
 `Makefile.am`:
 
-```
+```make
 libappstream_glib_includedir = $(includedir)/libappstream-glib
 libappstream_glib_include_HEADERS =                             \
         appstream-glib.h                                        \
@@ -296,7 +291,7 @@ install_headers(headers, subdir : 'libappstream-glib')
 ### Libraries
 
 `Makefile.am`:
-```
+```make
 lib_LTLIBRARIES =                                               \
         libappstream-glib.la
 libappstream_glib_la_SOURCES =                                  \
@@ -417,7 +412,7 @@ local:
 
 `Makefile.am`:
 
-```
+```make
 if HAVE_GPERF
 as-tag-private.h: as-tag.gperf
         $(AM_V_GEN) gperf < $< > $@
@@ -443,7 +438,7 @@ endif
 
 `Makefile.am`:
 
-```
+```make
 AM_CPPFLAGS =                                                   \
         -DAS_COMPILATION                                        \
         -DLOCALSTATEDIR=\""$(localstatedir)"\"                  \
@@ -462,7 +457,7 @@ add_global_arguments('-DLOCALSTATEDIR="/var"', language : 'c')
 
 `Makefile.am`:
 
-```
+```make
 check_PROGRAMS =                                                \
         as-self-test
 as_self_test_SOURCES =                                          \
@@ -495,7 +490,7 @@ test('as-self-test', selftest)
 
 `Makefile.am`:
 
-```
+```make
 introspection_sources =                                         \
         as-app.c                                                \
         as-app-validate.c                                       \

@@ -85,6 +85,6 @@ $ ninja test
 
 To then install the project you only need one command.
 
-```
+```console
 $ ninja install
 ```

@@ -6,13 +6,17 @@ Meson allows you to uninstall an install step by invoking the uninstall target. 
 
 Sometimes you need to run unit tests with special settings. For example under Valgrind. Usually this requires extra command line options for the tool. This is supported with the new *test setup* feature. For example to set up a test run with Valgrind, you'd write this in a `meson.build` file:
 
-    add_test_setup('valgrind',
-      exe_wrapper : [vg, '--error-exitcode=1', '--leak-check=full'],
-      timeout_multiplier : 100)
+```meson
+add_test_setup('valgrind',
+  exe_wrapper : [vg, '--error-exitcode=1', '--leak-check=full'],
+  timeout_multiplier : 100)
+```
 
 This tells Meson to run tests with Valgrind using the given options and multiplying the test timeout values by 100. To run this test setup simply issue the following command:
 
-    mesontest --setup=valgrind
+```console
+$ mesontest --setup=valgrind
+```
 
 # Intel C/C++ compiler support
 
@@ -22,26 +26,32 @@ As usual, just set `CC=icc CXX=icpc` and Meson will use it as the C/C++ compiler
 
 Now it is possible to query values stored in configuration data objects.
 
-    cdata.set('key', 'value')
-    cdata.get('key') # returns 'value'
-    cdata.get('nokey', 'default') # returns 'default'
-    cdata.get('nokey') # halts with an error
+```meson
+cdata.set('key', 'value')
+cdata.get('key') # returns 'value'
+cdata.get('nokey', 'default') # returns 'default'
+cdata.get('nokey') # halts with an error
+```
 
 # Python 3 module support
 
 Building Python 3 extension modules has always been possible, but it is now even easier:
 
-    py3_mod = import('python3')
-    pylib = py3_mod.extension_module('modname',
-      'modsource.c',
-      dependencies : py3_dep)
+```meson
+py3_mod = import('python3')
+pylib = py3_mod.extension_module('modname',
+  'modsource.c',
+  dependencies : py3_dep)
+```
 
 # Default options to subprojects
 
 Projects can specify overriding values for subprojects' `default_options` when invoking a subproject:
 
-    subproject('foo', default_options : ['optname=overridevalue'])
-    dependency('some-dep', fallback : ['some_subproject', 'some_dep'], default_options : ['optname=overridevalue'])
+```meson
+subproject('foo', default_options : ['optname=overridevalue'])
+dependency('some-dep', fallback : ['some_subproject', 'some_dep'], default_options : ['optname=overridevalue'])
+```
 
 The effect is the same as if the default options were written in the subproject's `project` call. 
 
@@ -64,7 +74,7 @@ When using compilers that implement the [`__has_include()` preprocessor macro](h
 # Array indexing now supports fallback values
 
 The second argument to the array [`.get()`](https://github.com/mesonbuild/meson/wiki/Reference-manual#array-object) function is now returned if the specified index could not be found
-```
+```meson
 array = [10, 11, 12, 13]
 array.get(0) # this will return `10`
 array.get(4) # this will give an error about invalid index

@@ -53,7 +53,7 @@ The new `shared_module` function allows the creation of shared modules, that is,
 
 Meson has long had support for compiling assembler (GAS) files. In this release we add support for compiling LLVM IR files in a similar way when building with the Clang compiler. Just add it to the list of files when creating a `library` or `executable` target like any other source file. No special handling is required:
 
-```
+```meson
 executable('some-exe', 'main.c', 'asm-file.S', 'ir-file.ll')
 ```
 
@@ -71,7 +71,7 @@ We now include filetype, indent, and syntax files for ViM [with the source tree]
 
 Meson now supports multiple version restrictions while searching for pkg-config dependencies.
 
-```
+```meson
 # Just want a lower limit
 dependency('zlib', version : '>1.2.1')
 # Want both a lower and an upper limit
@@ -98,7 +98,7 @@ Similar to other options such as `bindir` and `datadir`, you can now specify the
 
 Checks if the compiler prefixes an underscore to C global symbols with the default calling convention. This is useful when linking to compiled assembly code, or other code that does not have its C symbol mangling handled transparently by the compiler.
 
-```
+```meson
 cc = meson.get_compiler('c')
 conf = configuration_data()
 if cc.symbols_have_underscore_prefix()

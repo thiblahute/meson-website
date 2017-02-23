@@ -8,7 +8,7 @@ Travis for Linux provides ancient versions of Ubuntu which will likely cause pro
 
 This `yml` file is derived from the [configuration used by Meson for running its own tests](https://github.com/mesonbuild/meson/blob/master/.travis.yml).
 
-```
+```yaml
 sudo: false
 
 os:
@@ -39,7 +39,7 @@ script:
 
 For CI on Windows, [AppVeyor](https://www.appveyor.com/) is probably your best bet. Here's a sample `yml` file for use with that.
 
-```
+```yaml
 os: Visual Studio 2015
 
 matrix:
@@ -76,7 +76,7 @@ test_script:
 
 This setup is not recommended but included here for completeness
 
-```
+```yaml
 sudo: false
 language: cpp
 group: beta

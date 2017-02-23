@@ -6,29 +6,35 @@ First you need to do a fresh operating system install. You can use spare hardwar
 
 Once you have installed the system, you need to install build-dependencies for GCC. In Debian-based distros this can be done with the following commands:
 
-    apt-get build-dep g++
-    apt-get install pkg-config libgmp-dev libmpfr-dev libmpc-dev
+```console
+$ apt-get build-dep g++
+$ apt-get install pkg-config libgmp-dev libmpfr-dev libmpc-dev
+```
 
 Then create a `src` subdirectory in your home directory. Copypaste the following into `install_gcc.sh` and execute it.
 
-    #!/bin/sh
+```bash
+#!/bin/sh
 
-    wget ftp://ftp.fu-berlin.de/unix/languages/gcc/releases/gcc-4.9.2/gcc-4.9.2.tar.bz2
-    tar xf gcc-4.9.2.tar.bz2
+wget ftp://ftp.fu-berlin.de/unix/languages/gcc/releases/gcc-4.9.2/gcc-4.9.2.tar.bz2
+tar xf gcc-4.9.2.tar.bz2
 
-    mkdir objdir
-    cd objdir
-    ../gcc-4.9.2/configure --disable-bootstrap --prefix=${HOME}/devroot \
-                           --disable-multilib --enable-languages=c,c++
-    make -j 4
-    make install-strip
-    ln -s gcc ${HOME}/devroot/bin/cc
+mkdir objdir
+cd objdir
+../gcc-4.9.2/configure --disable-bootstrap --prefix=${HOME}/devroot \
+                       --disable-multilib --enable-languages=c,c++
+make -j 4
+make install-strip
+ln -s gcc ${HOME}/devroot/bin/cc
+```
 
 Then finally add the following lines to your `.bashrc`.
 
-    export LD_LIBRARY_PATH=${HOME}/devroot/lib
-    export PATH=${HOME}/devroot/bin:$PATH
-    export PKG_CONFIG_PATH=${HOME}/devroot/lib/pkgconfig
+```console
+$ export LD_LIBRARY_PATH=${HOME}/devroot/lib
+$ export PATH=${HOME}/devroot/bin:$PATH
+$ export PKG_CONFIG_PATH=${HOME}/devroot/lib/pkgconfig
+```
 
 Log out and back in and now your build environment is ready to use.
 
@@ -44,27 +50,35 @@ You want to embed and statically link every dependency you can (especially C++ d
 
 Building happens in much the same way as normally. There are just two things to note. First, you must tell GCC to link the C++ standard library statically. If you don't then your app is guaranteed to break as different distros have binary-incompatible C++ libraries. The second thing is that you need to point your install prefix to some empty staging area. Here's the meson command to do that:
 
-    LDFLAGS=-static-libstdc++ meson --prefix=/tmp/myapp <other args>
+```console
+$ LDFLAGS=-static-libstdc++ meson --prefix=/tmp/myapp <other args>
+```
 
 The aim is to put the executable in `/tmp/myapp/bin` and shared libraries to `/tmp/myapp/lib`. The next thing you need is the embedder. It takes your dependencies (in this case only `libSDL2-2.0.so.0`) and copies them in the lib directory. Depending on your use case you can either copy the files by hand or write a script that parses the output of `ldd binary_file`. Be sure not to copy system libraries (`libc`, `libpthread`, `libm` etc). For an example, see the [sample project](https://github.com/jpakkane/meson/tree/master/manual%20tests/4%20standalone%20binaries).
 
 Make the script run during install with this:
 
-     meson.set_install_script('linux_bundler.sh')
+```meson
+meson.set_install_script('linux_bundler.sh')
+```
 
 ## Final steps
 
 If you try to run the program now it will most likely fail to start or crashes. The reason for this is that the system does not know that the executable needs libraries from the `lib` directory. The solution for this is a simple wrapper script. Create a script called `myapp.sh` with the following content:
 
-    #!/bin/bash
+```bash
+#!/bin/bash
 
-    cd "${0%/*}"
-    export LD_LIBRARY_PATH="`pwd`/lib"
-    bin/myapp
+cd "${0%/*}"
+export LD_LIBRARY_PATH="`pwd`/lib"
+bin/myapp
+```
 
 Install it with this Meson snippet:
 
-    install_data('myapp.sh', install_dir : '.')
+```meson
+install_data('myapp.sh', install_dir : '.')
+```
 
 And now you are done. Zip up your `/tmp/myapp` directory and you have a working binary ready for deployment. To run the program, just unzip the file and run `myapp.sh`.
 

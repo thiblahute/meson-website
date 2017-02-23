@@ -21,40 +21,46 @@ If you did not understand all of the details, don't worry. For most people it ta
 
 Meson requires you to write a cross build definition file. It defines various properties of the cross build environment. The cross file consists of different sections. The first one is the list of executables that we are going to use. A sample snippet might look like this:
 
-    [binaries]
-    c = '/usr/bin/i586-mingw32msvc-gcc'
-    cpp = '/usr/bin/i586-mingw32msvc-g++'
-    ar = '/usr/i586-mingw32msvc/bin/ar'
-    strip = '/usr/i586-mingw32msvc/bin/strip'
-    exe_wrapper = 'wine' # A command used to run generated executables.
+```ini
+[binaries]
+c = '/usr/bin/i586-mingw32msvc-gcc'
+cpp = '/usr/bin/i586-mingw32msvc-g++'
+ar = '/usr/i586-mingw32msvc/bin/ar'
+strip = '/usr/i586-mingw32msvc/bin/strip'
+exe_wrapper = 'wine' # A command used to run generated executables.
+```
 
 The entries are pretty self explanatory but the last line is special. It defines a *wrapper command* that can be used to run executables for this host. In this case we can use Wine, which runs Windows applications on Linux. Other choices include running the application with qemu or a hardware simulator. If you have this kind of a wrapper, these lines are all you need to write. Meson will automatically use the given wrapper when it needs to run host binaries. This happens e.g. when running the project's test suite.
 
 The next section lists properties of the cross compiler and thus of the target system. It looks like this:
 
-    [properties]
-    sizeof_int = 4
-    sizeof_wchar_t = 4
-    sizeof_void* = 4
+```ini
+[properties]
+sizeof_int = 4
+sizeof_wchar_t = 4
+sizeof_void* = 4
 
-    alignment_char = 1
-    alignment_void* = 4
-    alignment_double = 4
+alignment_char = 1
+alignment_void* = 4
+alignment_double = 4
 
-    has_function_printf = true
+has_function_printf = true
 
-    c_args = ['-DCROSS=1', '-DSOMETHING=3']
-    c_link_args = ['-some_link_arg']
+c_args = ['-DCROSS=1', '-DSOMETHING=3']
+c_link_args = ['-some_link_arg']
+```
 
 In most cases you don't need the size and alignment settings, Meson will detect all these by compiling and running some sample programs. If your build requires some piece of data that is not listed here, Meson will stop and write an error message describing how to fix the issue. If you need extra compiler arguments to be used during cross compilation you can set them with `[langname]_args = [args]`. Just remember to specify the args as an array and not as a single string (i.e. not as `'-DCROSS=1 -DSOMETHING=3'`).
 
 The last bit is the definition of host and target machines. Every cross build definition must have one or both of them. If it had neither, the build would not be a cross build but a native build. You do not need to define the build machine, as all necessary information about it is extracted automatically. The definitions for host and target machines look the same. Here is a sample for host machine.
 
-    [host_machine]
-    system = 'windows'
-    cpu_family = 'x86'
-    cpu = 'i686'
-    endian = 'little'
+```ini
+[host_machine]
+system = 'windows'
+cpu_family = 'x86'
+cpu = 'i686'
+endian = 'little'
+```
 
 These values define the machines sufficiently for cross compilation purposes. The corresponding target definition would look the same but have `target_machine` in the header. These values are available in your Meson scripts. There are three predefined variables called, surprisingly, `build_machine`, `host_machine` and `target_machine`. Determining the operating system of your host machine is simply a matter of calling `host_machine.system()`.
 
@@ -67,7 +73,9 @@ If you do not define your host machine, it is assumed to be the build machine. S
 
 Once you have the cross file, starting a build is simple
 
-    meson srcdir builddir --cross-file cross_file.txt
+```console
+$ meson srcdir builddir --cross-file cross_file.txt
+```
 
 Once configuration is done, compilation is started by invoking Ninja in the usual way.
 
@@ -75,24 +83,30 @@ Once configuration is done, compilation is started by invoking Ninja in the usua
 
 The main *meson* object provides two functions to determine cross compilation status.
 
-    meson.is_cross_build()  # returns true when cross compiling
-    meson.has_exe_wrapper() # returns true if an exe wrapper has been defined
+```meson
+meson.is_cross_build()  # returns true when cross compiling
+meson.has_exe_wrapper() # returns true if an exe wrapper has been defined
+```
 
 Note that the latter gives undefined return value when doing a native build.
 
 You can run system checks on both the system compiler or the cross compiler. You just have to specify which one to use.
 
-    build_compiler = meson.get_compiler('c', native : true)
-    host_compiler = meson.get_compiler('c', native : false)
+```meson
+build_compiler = meson.get_compiler('c', native : true)
+host_compiler = meson.get_compiler('c', native : false)
 
-    build_int_size = build_compiler.sizeof('int')
-    host_int_size  = host_compiler.sizeof('int')
+build_int_size = build_compiler.sizeof('int')
+host_int_size  = host_compiler.sizeof('int')
+```
 
 ## Mixing host and build targets
 
 Sometimes you need to build a tool which is used to generate source files. These are then compiled for the actual target. For this you would want to build some targets with the system's native compiler. This requires only one extra keyword argument.
 
-    native_exe = executable('mygen', 'mygen.c', native : true)
+```meson
+native_exe = executable('mygen', 'mygen.c', native : true)
+```
 
 You can then take `native_exe` and use it as part of a generator rule or anything else you might want.
 
@@ -100,8 +114,10 @@ You can then take `native_exe` and use it as part of a generator rule or anythin
 
 Sometimes in cross compilation you need to build your own standard library instead of using the one provided by the compiler. Meson has built-in support for switching standard libraries transparently. The invocation to use in your cross file is the following:
 
-    [properties]
-    c_stdlib = ['mylibc', 'mylibc_dep'] # Subproject name, dependency name
+```ini
+[properties]
+c_stdlib = ['mylibc', 'mylibc_dep'] # Subproject name, dependency name
+```
 
 This specifies that C standard library is provided in the Meson subproject `mylibc` in internal dependency variable `mylibc_dep`. It is used on every cross built C target in the entire source tree (including subprojects) and the standard library is disabled. The build definitions of these targets do not need any modification.
 
@@ -113,13 +129,17 @@ Cross file settings are only read when the build directory is set up the first t
 
 You can store arbitrary data in `properties` and access them from your Meson files. As an example if you cross file has this:
 
-    [properties]
-    somekey = 'somevalue'
+```ini
+[properties]
+somekey = 'somevalue'
+```
 
 then you can access that using the `meson` object like this:
 
-    myvar = meson.get_cross_property('somekey')
-    # myvar now has the value 'somevalue'
+```meson
+myvar = meson.get_cross_property('somekey')
+# myvar now has the value 'somevalue'
+```
 
 ---
 

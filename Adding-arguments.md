@@ -5,7 +5,9 @@ Global arguments
 
 Global compiler arguments are set with the following command. As an example you could do this.
 
-    add_global_arguments('-DFOO=bar', language : 'c')
+```meson
+add_global_arguments('-DFOO=bar', language : 'c')
+```
 
 This makes Meson add the define to all C compilations. Usually you would use this setting for flags for global settings. Note that for setting the C/C++ language standard (the `-std=c99` argument in Gcc), you would probably want to use a default option of the `project()` function. For details see the [reference manual](Reference manual).
 
@@ -18,13 +20,17 @@ Per target arguments
 
 Per target arguments are just as simple to define.
 
-    executable('prog', 'prog.cc', cpp_args : '-DCPPTHING')
+```meson
+executable('prog', 'prog.cc', cpp_args : '-DCPPTHING')
+```
 
 Here we create a C++ executable with an extra argument that is used during compilation but not for linking. 
 
 Specifying extra linker arguments is done in the same way:
 
-    executable('prog', 'prog.cc', link_args : '-Wl,--linker-option')
+```meson
+executable('prog', 'prog.cc', link_args : '-Wl,--linker-option')
+```
 
 
 ---
