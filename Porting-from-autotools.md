@@ -21,7 +21,7 @@ m4_define([as_version],
           [as_major_version.as_minor_version.as_micro_version])
 ```
 `meson.build`:
-```
+```meson
 
 as_version = meson.project_version() # set in project() below
 ver_arr = as_version.split('.')
@@ -38,7 +38,7 @@ AC_INIT([appstream-glib],[as_version])
 AC_PROG_CC
 ```
 `meson.build`:
-```
+```meson
 project('appstream-glib', 'c', version : '0.3.6')
 ```
 Note that this must be the first line of your `meson.build` file.
@@ -62,7 +62,7 @@ You don't need to do the same in Meson, because it does not have two different t
 
 `meson.build`:
 
-```
+```meson
 conf = configuration_data()
 # Surround the version in quotes to make it a C string
 conf.set_quoted('VERSION', as_version)
@@ -95,7 +95,7 @@ AM_CONDITIONAL(HAVE_GPERF, [test x$GPERF != xno])
 
 `meson.build`:
 
-```
+```meson
 gperf = find_program('gperf', required : false)
 if gperf.found()
   conf.set('HAVE_GPERF', 1)
@@ -112,7 +112,7 @@ PKG_CHECK_MODULES(SOUP, libsoup-2.4 >= 2.24)
 
 `meson.build`:
 
-```
+```meson
 soup = dependency('libsoup-2.4', version : '>= 2.24')
 ```
 
@@ -134,7 +134,7 @@ fi
 
 `meson.build`:
 
-```
+```meson
 if get_option('enable-dep11')
   yaml = dependency('yaml-0.1')
   conf.set('AS_BUILD_DEP11', 1)
@@ -145,7 +145,7 @@ endif
 
 `meson_options.txt`:
 
-```
+```meson
 option('enable-dep11', type : 'boolean', value : true, description : 'enable DEP-11')
 ```
 
@@ -164,7 +164,7 @@ SUBDIRS =                                         \
 
 `meson.build`:
 
-```
+```meson
 subdir('libappstream-glib')
 ```
 
@@ -238,7 +238,7 @@ BUILT_SOURCES =                                                 \
 
 `meson.build`:
 
-```
+```meson
 asresources = gnome.compile_resources(
   'as-resources', 'appstream-glib.gresource.xml',
   source_dir : '.',
@@ -272,7 +272,7 @@ libappstream_glib_include_HEADERS =                             \
 
 `meson.build`:
 
-```
+```meson
 headers = [
   'appstream-glib.h',
   'as-app.h',
@@ -351,7 +351,7 @@ libappstream_glib_la_LDFLAGS =                                  \
 
 `meson.build`:
 
-```
+```meson
 sources = [
   'as-app.c',
   'as-app-desktop.c',
@@ -429,7 +429,7 @@ endif
 
 `meson.build`:
 
-```
+```meson
 if gperf.found()
   astagpriv = custom_target('gperf as-tag',
                             output : 'as-tag-private.h',
@@ -452,7 +452,7 @@ AM_CPPFLAGS =                                                   \
 
 `meson.build`:
 
-```
+```meson
 add_global_arguments('-DG_LOG_DOMAIN="As"', language : 'c')
 add_global_arguments('-DAS_COMPILATION', language : 'c')
 add_global_arguments('-DLOCALSTATEDIR="/var"', language : 'c')
@@ -481,7 +481,7 @@ TESTS = as-self-test
 
 `meson.build`:
 
-```
+```meson
 selftest = executable(
   'as-self-test', 'as-self-test.c',
   include_directories : include_directories('@0@/..'.format(meson.current_build_dir())),
@@ -551,7 +551,7 @@ CLEANFILES += $(gir_DATA) $(typelib_DATA)
 
 `meson.build`:
 
-```
+```meson
 introspection_sources = [
   'as-app.c',
   'as-app-validate.c',
@@ -610,7 +610,7 @@ gsettings_SCHEMAS = foo.gschema.xml
 ```
 
 `meson.build`:
-```python
+```meson
 install_data('foo.gschema.xml', install_dir: join_paths(get_option('datadir'), 'glib-2.0', 'schemas'))
 meson.add_install_script('meson_post_install.py')
 ```
