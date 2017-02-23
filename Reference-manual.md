@@ -101,10 +101,12 @@ Like `add_global_arguments` but the arguments are passed to the linker.
 
 Add support for new programming languages. Equivalent to having them in the `project` declaration. This function is usually used to add languages that are only used on some platforms like this:
 
-    project('foobar', 'c')
-    if compiling_for_osx
-      add_languages('objc')
-    endif
+```meson
+project('foobar', 'c')
+if compiling_for_osx
+  add_languages('objc')
+endif
+````
 
 Takes one keyword argument, `required`. It defaults to `true`, which means that if any of the languages specified is not found, Meson will halt. Returns true if all languages specified were found and false otherwise.
 
@@ -145,11 +147,15 @@ Creates a benchmark item that will be run when the benchmark target is run. The 
 
 Creates a build target whose type can be set dynamically with the `target_type` keyword argument. This declaration:
 
-    executable(<arguments and keyword arguments>)
+```meson
+executable(<arguments and keyword arguments>)
+```
 
 is equivalent to this:
 
-    build_target(<arguments and keyword arguments>, target_type : 'executable')
+```meson
+build_target(<arguments and keyword arguments>, target_type : 'executable')
+```
 
 The object returned by `build_target` and all convenience wrappers for `build_target` such as [`executable`](#executable) and [`library`](#library) has methods that are documented in the [object methods section](#build-target-object) below.
 
@@ -303,11 +309,15 @@ The returned object also has methods that are documented in the [object methods 
 
 This command takes the strings given to it in arguments and returns corresponding File objects that you can use as sources for build targets. The difference is that file objects remember the subdirectory they were defined in and can be used anywhere in the source tree. As an example suppose you have source file `foo.cpp` in subdirectory `bar1` and you would like to use it in a build target that is defined in `bar2`. To make this happen you first create the object in `bar1` like this:
 
+```meson
     foofile = files('foo.cpp')
+```
 
 Then you can use it in `bar2` like this:
 
+```meson
     executable('myprog', 'myprog.cpp', foofile, ...)
+```
 
 Meson will then do the right thing.
 
@@ -361,8 +371,10 @@ This function can be used to dynamically obtain a variable. `res = get_variable(
 
 Imports the given extension module. Returns an opaque object that can be used to call the methods of the module. Here's an example for a hypothetical `testmod` module.
 
+```meson
     tmod = import('testmod')
     tmod.do_something()
+```
 
 ### include_directories
 
@@ -395,19 +407,19 @@ Installs the specified header files from the source tree into the system header 
 
 For example, this will install `common.h` and `kola.h` into `/{prefix}/include`:
 
-```
+```meson
 install_headers('common.h', 'proj/kola.h')
 ```
 
 This will install `common.h` and `kola.h` into `/{prefix}/include/myproj`:
 
-```
+```meson
 install_headers('common.h', 'proj/kola.h', subdir : 'myproj')
 ```
 
 This will install `common.h` and `kola.h` into `/{prefix}/cust/myproj`:
 
-```
+```meson
 install_headers('common.h', 'proj/kola.h', install_dir : 'cust', subdir : 'myproj')
 ```
 
