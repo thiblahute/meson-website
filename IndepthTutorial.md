@@ -78,13 +78,13 @@ At this point we can return to the pkg-config generator line. All shared librari
 With these four files we are done. To configure, build and run the test suite, we just need to execute the following commands (starting at source tree root directory).
 
 ```console
-meson build && cd build
-ninja
-ninja test
+$ meson build && cd build
+$ ninja
+$ ninja test
 ```
 
 To then install the project you only need one command.
 
 ```
-ninja install
+$ ninja install
 ```
