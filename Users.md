@@ -17,6 +17,7 @@ If you have a project that uses Meson that you want to add to this list, let us 
  - [Libgit2-glib](https://git.gnome.org/browse/libgit2-glib/), a GLib wrapper for libgit2
  - [Libhttpseverywhere](https://github.com/grindhold/libhttpseverywhere), a library to enable httpseverywhere on any desktop app
  - [Lightdm-Webkit2-Greeter](https://github.com/Antergos/lightdm-webkit2-greeter)
+ - [Nautilus](https://git.gnome.org/browse/nautilus/commit/?id=ed5652c89ac0654df2e82b54b00b27d51c825465) the Gnome file manager
  - [Parzip](https://github.com/jpakkane/parzip), a multithreaded reimplementation of Zip 
  - [Pitivi](http://pitivi.org/), a nonlinear video editor
  - [Sysprof](https://wiki.gnome.org/Apps/Sysprof), a profiling tool
