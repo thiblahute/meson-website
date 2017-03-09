@@ -689,11 +689,15 @@ This object is returned by [`meson.get_compiler(lang)`](#meson-object). It repre
 - `first_supported_argument(list_of_strings)`, given a list of strings, returns the first argument that passes the `has_argument` test above or an empty array if none pass
 - `symbols_have_underscore_prefix()` returns `true` if the C symbol mangling is one underscore (`_`) prefixed to the symbol, available since 0.37.0
 
-The `prefix` keyword argument can be used to add #includes and other things that are required for the symbol to be declared. System definitions should be passed via compiler args (eg: `_GNU_SOURCE` is often required for some symbols to be exposed on Linux, and it should be passed via `args` keyword argument, see below). Supported by the methods `sizeof`, `has_type`, `has_function`, `has_member`, `has_members`, `has_header_symbol`.
+The following keyword arguments can be used:
 
-You can pass the `include_directories` keyword argument to specify extra directories for header searches. *(added 0.38.0)*
+- `name` the name to use for printing a message about the compiler check. Supported by the methods `compiles()`, `links()`, and `run()`. If this kwarg is not passed to those methods, no message will be printed about the check.
 
-The `args` keyword argument can be used to pass a list of compiler arguments that are required to find the header or symbol. For example, you might need to pass the include path `-Isome/path/to/header` if a header is not in the default include path. In versions newer than 0.38.0 you should use the `include_directories` keyword described above. You may also want to pass a library name `-lfoo` for `has_function` to check for a function. Supported by all methods except `get_id`, `version`, and `find_library`. 
+- `prefix` can be used to add #includes and other things that are required for the symbol to be declared. System definitions should be passed via compiler args (eg: `_GNU_SOURCE` is often required for some symbols to be exposed on Linux, and it should be passed via `args` keyword argument, see below). Supported by the methods `sizeof`, `has_type`, `has_function`, `has_member`, `has_members`, `has_header_symbol`.
+
+- `include_directories` specifies extra directories for header searches. *(added 0.38.0)*
+
+- `args` can be used to pass a list of compiler arguments that are required to find the header or symbol. For example, you might need to pass the include path `-Isome/path/to/header` if a header is not in the default include path. In versions newer than 0.38.0 you should use the `include_directories` keyword described above. You may also want to pass a library name `-lfoo` for `has_function` to check for a function. Supported by all methods except `get_id`, `version`, and `find_library`. 
 
 Note that if you have a single prefix with all your dependencies, you might find it easier to append to the environment variables `C_INCLUDE_PATH` with gcc/clang and `INCLUDE` with msvc to expand the default include path, and `LIBRARY_PATH` with gcc/clang and `LIB` with msvc to expand the default library search path.
 
