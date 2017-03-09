@@ -203,7 +203,7 @@ Create a custom top level build target. The only positional argument is the name
 
 The list of strings passed to the `command` kwarg accept the following special string substitutions:
 
-- `@INPUT@` the full path to the input passed to `input`. If more than one inputs are specified, all of them will be substituted as separate arguments; unless the argument uses `@INPUT@` as part of a larger string. For instance, this would not work: `command : ['cp', './@INPUT@']`, but this would: `command : ['cp', '@INPUT@']`.
+- `@INPUT@` the full path to the input passed to `input`. If more than one input is specified, all of them will be substituted as separate arguments only if the command uses `'@INPUT@'` as a standalone-argument. For instance, this would not work: `command : ['cp', './@INPUT@']`, but this would: `command : ['cp', '@INPUT@']`.
 - `@OUTPUT@` the full path to the output passed to `output`. If more than one outputs are specified, the behaviour is the same as `@INPUT@`.
 - `@INPUT0@` `@INPUT1@` `...` the full path to the input with the specified array index in `input`
 - `@OUTPUT0@` `@OUTPUT1@` `...` the full path to the output with the specified array index in `output`
