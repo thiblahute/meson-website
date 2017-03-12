@@ -664,7 +664,7 @@ A build target is either an [executable](#executable), [shared](#shared_library)
 
 - `private_dir_include()` returns a opaque value that works like `include_directories` but points to the private directory of this target, usually only needed if an another target needs to access some generated internal headers of this target
 
-- `full path()` returns a full path pointing to the result target file
+- `full_path()` returns a full path pointing to the result target file
 
 ### compiler object
 
