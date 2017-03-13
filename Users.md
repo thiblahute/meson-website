@@ -13,6 +13,7 @@ If you have a project that uses Meson that you want to add to this list, let us 
  - [Graphene](http://ebassi.github.io/graphene/), a thin type library for graphics
  - [Grilo](https://mail.gnome.org/archives/grilo-list/2017-February/msg00000.html) and [Grilo plugins](https://git.gnome.org/browse/grilo-plugins/commit/?id=ea047c4fb63e90268eb795ed91a09a2be5068a4c), the Grilo multimedia framework
  - [GStreamer](https://cgit.freedesktop.org/gstreamer/gstreamer/), multimedia framework (not the default yet)
+ - [Json-glib](https://git.gnome.org/browse/json-glib), GLib-based JSON manipulation library
  - [Libepoxy](https://github.com/anholt/libepoxy/), a library for handling OpenGL function pointer management
  - [Libgit2-glib](https://git.gnome.org/browse/libgit2-glib/), a GLib wrapper for libgit2
  - [Libhttpseverywhere](https://github.com/grindhold/libhttpseverywhere), a library to enable httpseverywhere on any desktop app
