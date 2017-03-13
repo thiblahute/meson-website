@@ -21,6 +21,7 @@ If you have a project that uses Meson that you want to add to this list, let us 
  - [Nautilus](https://git.gnome.org/browse/nautilus/commit/?id=ed5652c89ac0654df2e82b54b00b27d51c825465) the Gnome file manager
  - [Parzip](https://github.com/jpakkane/parzip), a multithreaded reimplementation of Zip 
  - [Pitivi](http://pitivi.org/), a nonlinear video editor
+ - [Polari](https://git.gnome.org/browse/polari), an IRC client
  - [Sysprof](https://wiki.gnome.org/Apps/Sysprof), a profiling tool
  - [Valum](https://github.com/valum-framework/valum), a micro web framework written in Vala
  - [Wayland and Weston](https://lists.freedesktop.org/archives/wayland-devel/2016-November/031984.html), a next generation display server (not merged yet)
