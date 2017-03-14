@@ -4,7 +4,7 @@ Meson aims to provide an optimal syntax and implementation for a next-generation
 
 ## Meson documentation
 
-* [Quick guide](Quick guide)
+* [Quick guide](Quick-guide)
 * [A simple tutorial](Tutorial)
 * [A more in-depth tutorial](IndepthTutorial)
 * [Manual](Manual)
