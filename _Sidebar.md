@@ -1,6 +1,6 @@
 ## Quick References
 
-* [Functions](Reference manual)
+* [Functions](Reference-manual)
 * [Options](Build-options)
 * [Configuration](Configuration)
 * [Dependencies](Dependencies)
@@ -11,4 +11,4 @@
 
 * [gnome](gnome-module)
 * [i18n](i18n-module)
-* [pkgconfig](Pkgconfig module)
+* [pkgconfig](Pkgconfig-module)
