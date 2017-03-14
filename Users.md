@@ -25,6 +25,7 @@ If you have a project that uses Meson that you want to add to this list, let us 
  - [Sysprof](https://wiki.gnome.org/Apps/Sysprof), a profiling tool
  - [Valum](https://github.com/valum-framework/valum), a micro web framework written in Vala
  - [Wayland and Weston](https://lists.freedesktop.org/archives/wayland-devel/2016-November/031984.html), a next generation display server (not merged yet)
+ - [ZStandard](https://github.com/facebook/zstd/commit/4dca56ed832c6a88108a2484a8f8ff63d8d76d91) a compression algorithm developed at Facebook (not used by default)
 
 ----
 
