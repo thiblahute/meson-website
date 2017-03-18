@@ -108,6 +108,19 @@ Returns a custom dependency that can be included when building other vapi or val
 
 *Added 0.36.0*
 
+## yelp
+
+Installs help documentation using Yelp. The first argument is the project id.
+
+This also creates two targets for translations `help-$project-update-po` and `help-$project-pot`.
+
+* `sources`: list of pages
+* `media`: list of media such as images
+* `symlink_media`: if media should be symlinked (requires newish yelp) defaults to `false`
+* `languages`: list of languages for translations
+
+*Added 0.36.0*
+
 ## gtkdoc
 
 Compiles and installs gtkdoc documentation. Takes one positional arguments; The name of the module.
