@@ -236,7 +236,7 @@ Finds an external dependency with the given name with `pkg-config` if possible a
 - `native` if set to `true`, causes Meson to find the dependency on the build machine system rather than the host system (i.e. where the cross compiled binary will run on), usually only needed if you build a tool to be used during compilation.
 - `static` tells the dependency provider to try to get static libraries instead of dynamic ones (note that this is not supported by all dependency backends)
 - `fallback` specifies a subproject fallback to use in case the dependency is not found in the system. The value is an array `['subproj_name', 'subproj_dep']` where the first value is the name of the subproject and the second is the variable name in that subproject that contains the value of [`declare_dependency`](#declare_dependency).
-- `default_options` an array of option values that override those set in the project's `default_options` invocation (like `default_options` in [`project()`](#project), they only have effect when Meson is run for the first time, and command line arguments override any default options in build files)
+- `default_options` *(added 0.37.0)* an array of option values that override those set in the project's `default_options` invocation (like `default_options` in [`project()`](#project), they only have effect when Meson is run for the first time, and command line arguments override any default options in build files)
 
 The returned object also has methods that are documented in the [object methods section](#dependency-object) below.
 
@@ -557,7 +557,7 @@ Note that this means that each `meson.build` file in a source tree can and must 
 Takes the project specified in the positional argument and brings that in the current build specification by returning a [subproject object](#subproject-object). Subprojects must always be placed inside the `subprojects` directory at the top source directory. So for example a subproject called `foo` must be located in `${MESON_SOURCE_ROOT}/subprojects/foo`. Supports the following keyword arguments:
 
  - `version` keyword argument that works just like the one in `dependency`. It specifies what version the subproject should be, as an example `>=1.0.1`
- - `default_options`, an array of default option values that override those set in the project's `default_options` invocation (like `default_options` in `project`, they only have effect when Meson is run for the first time, and command line arguments override any default options in build files)
+ - `default_options`, *(added 0.37.0)* an array of default option values that override those set in the project's `default_options` invocation (like `default_options` in `project`, they only have effect when Meson is run for the first time, and command line arguments override any default options in build files)
 
 ### test
 
