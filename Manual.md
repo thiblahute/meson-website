@@ -1,39 +1,39 @@
 This is the user manual for Meson. It currently tracks the state of Git head, which will eventually become version 0.39. If you are using an older version, some of the information here might not work for you.
 
 * [Overview](Overview)
-* [Running Meson](Running Meson)
-* [Using with Visual Studio](Using with Visual Studio)
-* [Sample Meson files](Meson sample)
+* [[Running Meson|Running Meson]]
+* [[Using with Visual Studio|Using with Visual Studio]]
+* [[Sample Meson files|Meson sample]]
 * [Syntax](Syntax)
-* [Build targets](Build targets)
-* [Include directories](Include directories)
+* [[Build targets|Build targets]]
+* [[Include directories|Include directories]]
 * [Installing](Installing)
-* [Adding arguments](Adding arguments)
+* [[Adding arguments|Adding arguments]]
 * [Configuration](Configuration)
-* [Detecting compiler and system properties](Compiler properties)
+* [[Detecting compiler and system properties|Compiler properties]]
 * [Dependencies](Dependencies)
 * [Threads](Threads)
-* [External commands](External commands)
-* [Precompiled headers](Precompiled headers)
-* [Unity builds](Unity builds)
-* [Generating sources](Generating sources)
-* [Feature autodetection](Feature autodetection)
-* [Unit tests](Unit tests)
-* [Cross compilation](Cross compilation)
+* [[External commands|External commands]]
+* [[Precompiled headers|Precompiled headers]]
+* [[Unity builds|Unity builds]]
+* [[Generating sources|Generating sources]]
+* [[Feature autodetection|Feature autodetection]]
+* [[Unit tests|Unit tests]]
+* [[Cross compilation|Cross compilation]]
 * [Localisation](Localisation)
-* [Build options](Build options)
+* [[Build options|Build options]]
 * [Subprojects](Subprojects)
-* [Pkg-config files](Pkg-config files)
+* [[Pkg-config files|Pkg-config files]]
 * [Java](Java)
 * [Vala](Vala)
-* [IDE integration](IDE integration)
-* [Custom build targets](Custom build targets)
-* [Build system converters](Build system converters)
-* [Configuring a build directory](Configuring a build directory)
-* [Run targets](Run targets)
+* [[IDE integration|IDE integration]]
+* [[Custom build targets|Custom build targets]]
+* [[Build system converters|Build system converters]]
+* [[Configuring a build directory|Configuring a build directory]]
+* [[Run targets|Run targets]]
 * [Modules](Modules)
-* [Creating OSX packages](Creating OSX packages)
-* [Creating Linux binaries](Creating Linux binaries)
+* [[Creating OSX packages|Creating OSX packages]]
+* [[Creating Linux binaries|Creating Linux binaries]]
 
 ----
 
