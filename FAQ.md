@@ -142,3 +142,11 @@ project('foobar', 'cpp', default_options : ['cpp_std=c++14'])
 ```
 
 But when you recompile, it still uses `c++11`. The reason for this is that default options are only looked at when you are setting up a build directory for the very first time. After that the setting is considered to have a value and thus the default value is ignored. To change an existing build dir to `c++14`, either reconfigure your build dir with `mesonconf` or delete the build dir and recreate it from scratch.
+
+## Does wrap download sources behind my back?
+
+It does not. In order for Meson to download anything from the net while building, two conditions must be met.
+
+First of all there needs to be a `.wrap` file with a download URL in the `subprojects` directory. If one does not exist, Meson will not download anything.
+
+The second requirement is that there needs to be an explicit subproject invocation in your `meson.build` files. Either `subproject('foobar')` or `dependency('foobar', fallback : ['foobar', 'foo_dep']). If these calls either are not in the build files or they are not called (due to e.g. `if/else`) then nothing is downloaded.
