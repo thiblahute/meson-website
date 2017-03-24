@@ -261,7 +261,9 @@ Creates a new executable. The first argument specifies its name and the remainin
 - Strings relative to the current source directory
 - [`files()`](#files) objects defined in any preceding build file
 - The return value of configure-time generators such as [`configure_file()`](#configure_file)
-- The return value of build-time generators such as [`custom_target()`](#custom_target) or [`generator.process()`](#generator-object) which can be generated sources, objects, or libraries.
+- The return value of build-time generators such as [`custom_target()`](#custom_target) or [`generator.process()`](#generator-object)
+
+These source files can be sources, objects, libraries, or any other file. Meson will automatically categorize them based on the extension and use them accordingly. For instance, sources (`.c`, `.cpp`, `.vala`, `.rs`, etc) will be compiled, objects (`.o`, `.obj`) and libraries (`.so`, `.dll`, etc) will be linked, and all other files (headers, unknown extensions, etc) will be ignored. Meson will still create a build-time dependency on all source files, which is useful with generated files.
 
 Executable supports the following keyword arguments. Note that just like the positional arguments above, these keyword arguments can also be passed to [shared and static libraries](#library).
 
