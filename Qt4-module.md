@@ -2,4 +2,4 @@ This module provides support for Qt4's `moc`, `uic` and `rcc` tools. It is used 
 
 ---
 
-Back to [module reference](Module reference).
+Back to [[module reference|Module reference]].
