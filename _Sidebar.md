@@ -7,7 +7,7 @@
 * [Tests](Unit-tests)
 * [Syntax](Syntax)
 
-### Modules
+### [Modules](https://github.com/mesonbuild/meson/wiki/Module-reference)
 
 * [gnome](gnome-module)
 * [i18n](i18n-module)
