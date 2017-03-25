@@ -150,3 +150,5 @@ It does not. In order for Meson to download anything from the net while building
 First of all there needs to be a `.wrap` file with a download URL in the `subprojects` directory. If one does not exist, Meson will not download anything.
 
 The second requirement is that there needs to be an explicit subproject invocation in your `meson.build` files. Either `subproject('foobar')` or `dependency('foobar', fallback : ['foobar', 'foo_dep'])`. If these declarations either are not in any build file or they are not called (due to e.g. `if/else`) then nothing is downloaded.
+
+If this is not sufficient for you, starting from release 0.40.0 Meson has a option called `wrap-mode`, which can be used to disable wrap downloads altogether.
