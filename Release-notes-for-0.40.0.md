@@ -17,6 +17,10 @@ This method can be used to evaluate the value of an expression. As an example:
 
 There is now a VS2017 backend (`--backend=vs2017`) as well as a generic VS backend (`--backend=vs`) that autodetects the currently active VS version.
 
+## No download mode for wraps
+
+Added a new option `wrap-mode` that can be toggled to prevent Meson from downloading dependency projects. Attempting to do so will cause an error. This is useful for distro packagers and other cases where you must explicitly enforce that nothing is downloaded from the net during configuration or build.
+
 ## More
 
 Add here as they are merged to master.
