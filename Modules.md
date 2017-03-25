@@ -10,7 +10,7 @@ After this you can use the returned object to use the functionality provided:
 mymod.do_something('text argument')
 ```
 
-The list of modules and their functionality is available on [this page](Module reference).
+The list of modules and their functionality is available on [this page](Module-reference).
 
 ---
 
