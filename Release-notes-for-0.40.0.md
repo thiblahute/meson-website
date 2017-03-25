@@ -15,7 +15,7 @@ This method can be used to evaluate the value of an expression. As an example:
 
 ## Visual Studio 2017 support
 
-There is now a VS2017 backend as well as a generic VS backend that autodetects the currently active VS version.
+There is now a VS2017 backend (`--backend=vs2017`) as well as a generic VS backend (`--backend=vs`) that autodetects the currently active VS version.
 
 ## More
 
