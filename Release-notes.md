@@ -1,7 +1,0 @@
- - [Release notes for 0.37.0](Release-notes-for-0.37.0)
-   - [Bugs fixed in 0.37.1](https://github.com/mesonbuild/meson/milestone/7?closed=1)
- - [Release notes for 0.38.0](Release-notes-for-0.38.0)
-   - [Bugs fixed in 0.38.1](https://github.com/mesonbuild/meson/milestone/10?closed=1)
- - [Release notes for 0.39.0](Release-notes-for-0.39.0)
-   - [Bugs fixed in 0.39.1](https://github.com/mesonbuild/meson/milestone/13?closed=1)
- - [Release notes for 0.40.0](Release-notes-for-0.40.0) (unreleased)

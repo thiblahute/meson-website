@@ -1,0 +1,17 @@
+# The Meson Build system
+
+## Overview
+
+Meson is an open source build system meant to be both extremely fast, and, even more importantly, as user friendly as possible.
+
+The main design point of Meson is that every moment a developer spends writing or debugging build definitions is a second wasted. So is every second spent waiting for the build system to actually start compiling code.
+
+## Features
+
+*   multiplatform support for Linux, OSX, Windows, Gcc, Clang, Visual Studio and others
+*   supported languages include C, C++, Fortran, Java, Rust
+*   build definitions in a very readable and user friendly non-turing complete DSL
+*   cross compilation for many operating systems as well as bare metal
+*   optimized for extremely fast full and incremental builds without sacrificing correctness
+*   built-in multiplatform dependency provider that works together with distro packages
+*   fun!
