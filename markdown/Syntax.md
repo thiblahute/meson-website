@@ -2,7 +2,7 @@
 short-description: Syntax and structure of Meson files
 ...
 
-# Synthax
+# Syntax
 
 The syntax of Meson's specification language has been kept as simple as possible. It is *strongly typed* so no object is ever converted to another under the covers. Variables have no visible type which makes Meson *dynamically typed* (also known as *duck typed*).
 
