@@ -79,7 +79,7 @@ These are objects returned by the [functions listed above](#functions).
  * [generator object](#generator-object)
  * [subproject object](#subproject-object)
 
-### add_global_arguments
+### add_global_arguments()
 
     void add_global_arguments(arg1, arg2, ...)
 
@@ -91,13 +91,13 @@ The arguments are used in all compiler invocations with the exception of compile
 
 **Note:** You must pass always arguments individually `arg1, arg2, ...` rather than as a string `'arg1 arg2', ...`
 
-### add_global_link_arguments
+### add_global_link_arguments()
 
     void add_global_link_arguments(*arg1*, *arg2*, ...)
 
 Like `add_global_arguments` but the arguments are passed to the linker.
 
-### add_languages
+### add_languages()
 
     add_languages(*langs*)
 
@@ -112,19 +112,19 @@ endif
 
 Takes one keyword argument, `required`. It defaults to `true`, which means that if any of the languages specified is not found, Meson will halt. Returns true if all languages specified were found and false otherwise.
 
-### add_project_arguments
+### add_project_arguments()
 
     void add_project_arguments(arg1, arg2, ...)
 
 This function behaves in the same way as `add_global_arguments` except that the arguments are only used for the current project, they won't be used in any other subproject.
 
-### add_project_link_arguments
+### add_project_link_arguments()
 
     void add_project_link_arguments(*arg1*, *arg2*, ...)
 
 Like `add_project_arguments` but the arguments are passed to the linker.
 
-### add_test_setup
+### add_test_setup()
 
     void add_test_setup(*name*, ...)
 
@@ -139,13 +139,13 @@ To use the test setup, run `mesontest --setup=*name*` inside the build dir.
 
 Note that all these options are also available while running the `mesontest` script for running tests instead of `ninja test` or `msbuild RUN_TESTS.vcxproj`, etc depending on the backend.
 
-### benchmark
+### benchmark()
 
     void benchmark(name, executable, ...)
 
 Creates a benchmark item that will be run when the benchmark target is run. The behaviour of this function is identical to `test` with the exception that there is no `is_parallel` keyword, because benchmarks are never run in parallel.
 
-### build_target
+### build_target()
 
 Creates a build target whose type can be set dynamically with the `target_type` keyword argument. This declaration:
 
@@ -161,13 +161,13 @@ build_target(<arguments and keyword arguments>, target_type : 'executable')
 
 The object returned by `build_target` and all convenience wrappers for `build_target` such as [`executable`](#executable) and [`library`](#library) has methods that are documented in the [object methods section](#build-target-object) below.
 
-### configuration_data
+### configuration_data()
 
     configuration_data_object = configuration_data()
 
 Creates an empty configuration object. You should add your configuration with [its method calls](#configuration-data-object) and finally use it in a call to `configure_file`.
 
-### configure_file
+### configure_file()
 
     generated_file = configure_file(...)
 
@@ -185,7 +185,7 @@ These are all the supported keyword arguments:
 - `command` as explained above, if specified, Meson does not create the file itself but rather runs the specified command, which allows you to do fully custom file generation
 - `install_dir` the subdirectory to install the generated file to (e.g. `share/myproject`), if omitted the file is not installed.
 
-### custom_target
+### custom_target()
 
     ctarget custom_target(*name*, ...)
 
@@ -212,7 +212,7 @@ The list of strings passed to the `command` kwarg accept the following special s
 - `@OUTDIR@` the full path to the directory where the output(s) must be written
 - `@DEPFILE@` the full path to the dependency file passed to `depfile`
 
-### declare_dependency
+### declare_dependency()
 
     dependency_object declare_dependency(...)
 
@@ -226,7 +226,7 @@ This function returns a [dependency object](#dependency-object) that behaves lik
   - `link_args`, link arguments to use
   - `version`, the version of this depency, such as `1.2.3`
 
-### dependency
+### dependency()
 
     dependency_object dependency(*dependency_name*, ...)
 
@@ -242,19 +242,19 @@ Finds an external dependency with the given name with `pkg-config` if possible a
 
 The returned object also has methods that are documented in the [object methods section](#dependency-object) below.
 
-### error
+### error()
 
     void error(message)
 
 Print the argument string and halts the build process.
 
-### environment
+### environment()
 
     environment_object environment()
 
 Returns an empty [environment variable object](#environment-object).
 
-### executable
+### executable()
 
     exe executable(*exe_name*, *sources*, ...)
 
@@ -289,11 +289,11 @@ The list of `sources`, `objects`, and `dependencies` is always flattened, which 
 
 The returned object also has methods that are documented in the [object methods section](#build-target-object) below.
 
-### find_library
+### find_library()
 
 This function is deprecated and in the 0.31.0 release it was moved to [the compiler object](#compiler-object) as obtained from `meson.get_compiler(lang)`.
 
-### find_program
+### find_program()
 
     program find_program(program_name1, program_name2, ...)
 
@@ -307,7 +307,7 @@ If none of the programs are found, Meson will abort. You can tell it not to by s
 
 The returned object also has methods that are documented in the [object methods section](#external-program-object) below.
 
-### files
+### files()
 
     file_array files(list_of_filenames)
 
@@ -325,7 +325,7 @@ Then you can use it in `bar2` like this:
 
 Meson will then do the right thing.
 
-### generator
+### generator()
 
     generator_object gen(*executable*, ...)
 
@@ -357,19 +357,19 @@ NOTE: Generators should only be used for outputs that will ***only*** be used as
 
 If you want to generate files for general purposes such as for generating headers to be used by several sources, or data that will be installed, and so on, use a [`custom_target`](#custom_target) instead.
 
-### get_option
+### get_option()
 
     value get_option(option_name)
 
 Obtains the value of the [project build option](Build options) specified in the positional argument.
 
-### get_variable
+### get_variable()
 
     value get_variable(variable_name, fallback)
 
 This function can be used to dynamically obtain a variable. `res = get_variable(varname, fallback)` takes the value of `varname` (which must be a string) and stores the variable of that name into `res`. If the variable does not exist, the variable `fallback` is stored to `res`instead. If a fallback is not specified, then attempting to read a non-existing variable will cause a fatal error.
 
-### import
+### import()
 
     module_object import(module_name)
 
@@ -380,7 +380,7 @@ Imports the given extension module. Returns an opaque object that can be used to
     tmod.do_something()
 ```
 
-### include_directories
+### include_directories()
 
     include_object include_directories(directory_names, ...)
 
@@ -424,7 +424,7 @@ If the build tree is `/tmp/build-tree`, the following include paths will be used
 
 This function has one keyword argument `is_system` which, if set, flags the specified directories as system directories. This means that they will be used with the `-isystem` compiler argument rather than `-I` on compilers that support this flag (in practice everything except Visual Studio).
 
-### install_data
+### install_data()
 
     void install_data(list_of_files, ...)
 
@@ -441,7 +441,7 @@ Installs files from the source tree that are listed as positional arguments. The
 
  To leave any of these three as the default, specify `false`.
 
-### install_headers
+### install_headers()
 
     void install_headers(list_of_headers, ...)
 
@@ -465,31 +465,31 @@ This will install `common.h` and `kola.h` into `/{prefix}/cust/myproj`:
 install_headers('common.h', 'proj/kola.h', install_dir : 'cust', subdir : 'myproj')
 ```
 
-### install_man
+### install_man()
 
     void install_man(list_of_manpages, ...)
 
 Installs the specified man files from the source tree into system's man directory during the install step. This directory can be overridden by specifying it with the `install_dir` keyword argument.
 
-### install_subdir
+### install_subdir()
 
     void install_subdir(subdir_name)
 
 Installs the entire given subdirectory and its contents from the source tree to the location specified by the keyword argument `install_dir`. Note that due to implementation issues this command deletes the entire target dir before copying the files, so you should never use `install_subdir` to install into two overlapping directories (such as `foo` and `foo/bar`) because if you do the behaviour is undefined.
 
-### is_variable
+### is_variable()
 
     bool is_variable(varname)
 
 Returns true if a variable of the given name exists and false otherwise.
 
-### jar
+### jar()
 
    jar_object jar(name, list_of_sources, ...)
 
 Build a jar from the specified Java source files. Keyword arguments are the same as executable's, with the addition of `main_class` which specifies the main class to execute when running the jar with `java -jar file.jar`.
 
-### join_paths
+### join_paths()
 
    string join_paths(string1, string2, ...)
 
@@ -497,7 +497,7 @@ Joins the given strings into a file system path segment. For example `join_paths
 
 *Added 0.36.0*
 
-### library
+### library()
 
     buildtarget library(library_name, list_of_sources, ...)
 
@@ -509,13 +509,13 @@ The keyword arguments for this are the same as for [`executable`](#executable) w
 
 `static_library` and `shared_library` also accept this keyword argument.
 
-### message
+### message()
 
     void message(text)
 
 This function prints its argument to stdout.
 
-### project
+### project()
 
     void project(project_name, list_of_languages, ...)
 
@@ -533,7 +533,7 @@ Project supports the following keyword arguments.
 
  - `default_options` takes an array of strings. The strings are in the form `key=value` and have the same format as options to `mesonconf`. For example to set the default project type you would set this: `default_options : ['buildtype=debugoptimized']`. Note that these settings are only used when running Meson for the first time. Global options such as `buildtype` can only be specified in the master project, settings in subprojects are ignored. Project specific options are used normally even in subprojects.
 
-### run_command
+### run_command()
 
     runresult run_command(command, list_of_args)
 
@@ -550,13 +550,13 @@ The script is run from an *unspecified* directory, and Meson will set three envi
  - `command` is a list containing the command to run and the arguments to pass to it. Each list item may be a string or a target. For instance, passing the return value of [`executable()`](#executable) as the first item will run that executable, or passing a string as the first item will find that command in `PATH` and run it.
  - `depends` is a list of targets that this target depends on but which are not listed in the command array (because, for example, the script does file globbing internally)
 
-### set_variable
+### set_variable()
 
     void set_variable(variable_name, value)
 
 Assigns a value to the given variable name. Calling `set_variable('foo', bar)` is equivalent to `foo = bar`.
 
-### shared_library
+### shared_library()
 
     buildtarget shared_library(library_name, list_of_sources, ...)
 
@@ -566,7 +566,7 @@ Builds a shared library with the given sources. Positional and keyword arguments
 - `soversion` a string specifying the soversion of this shared library, such as `0`. On Linux and Windows this is used to set the soversion (or equivalent) in the filename. For example, if `soversion` is `4`, a Windows DLL will be called `foo-4.dll` and one of the aliases of the Linux shared library would be `libfoo.so.4`. If this is not specified, the first part of `version` is used instead. For example, if `version` is `3.6.0` and `soversion` is not defined, it is set to `3`.
 - `vs_module_defs` a string pointing to a file that contains Visual Studio symbol export definitions.
 
-### shared_module
+### shared_module()
 
     buildtarget shared_module(module_name, list_of_sources, ...)
 
@@ -576,7 +576,7 @@ This is useful for building modules that will be `dlopen()`ed and hence may cont
 
 *Added 0.37.0*
 
-### static_library
+### static_library()
 
     buildtarget static_library(library_name, list_of_sources, ...)
 
@@ -584,7 +584,7 @@ Builds a static library with the given sources. Positional and keyword arguments
 
  - `pic`, (*Added 0.36.0*) builds the library as positional independent code (so it can be linked into a shared library). This option has no effect on Windows and OS X since it doesn't make sense on Windows and PIC cannot be disabled on OS X.
 
-### subdir
+### subdir()
 
     void subdir(dir_name)
 
@@ -592,7 +592,7 @@ Enters the specified subdirectory and executes the `meson.build` file in it. Onc
 
 Note that this means that each `meson.build` file in a source tree can and must only be executed once.
 
-### subproject
+### subproject()
 
     subproject_object subproject(subproject_name, ...)
 
@@ -601,7 +601,7 @@ Takes the project specified in the positional argument and brings that in the cu
  - `version` keyword argument that works just like the one in `dependency`. It specifies what version the subproject should be, as an example `>=1.0.1`
  - `default_options`, *(added 0.37.0)* an array of default option values that override those set in the project's `default_options` invocation (like `default_options` in `project`, they only have effect when Meson is run for the first time, and command line arguments override any default options in build files)
 
-### test
+### test()
 
     void test(name, executable, ...)
 
@@ -617,7 +617,7 @@ Defines an unit test. Takes two positional arguments, the first is the name of t
 
 Defined tests can be run in a backend-agnostic way by calling `mesontest` inside the build dir, or by using backend-specific commands, such as `ninja test` or `msbuild RUN_TESTS.vcxproj`.
 
-### vcs_tag
+### vcs_tag()
 
     ctarget vcs_tag(...)
 
@@ -633,7 +633,7 @@ Meson will read the contents of `input`, replace the string `@VCS_TAG@` with the
 
 Meson has several different object types that have methods users can call. This section describes them.
 
-### meson object
+### `meson` object
 
 The `meson` object allows you to introspect various properties of the system. This object is always mapped in the `meson` variable. It has the following methods.
 
@@ -673,7 +673,7 @@ The `meson` object allows you to introspect various properties of the system. Th
 
 - `install_dependency_manifest(output_name)` installs a manifest file containing a list of all subprojects, their versions and license files to the file name given as the argument
 
-### build_machine object
+### `build_machine` object
 
 Provides information about the build machine — the machine that is doing the actual compilation. See [Cross-compilation](Cross-compilation.md). It has the following methods:
 
@@ -684,19 +684,19 @@ Provides information about the build machine — the machine that is doing the a
 
 If you think the returned values for any of these are incorrect for your system or CPU, please file [a bug report](https://github.com/mesonbuild/meson/issues/new).
 
-### host_machine object
+### `host_machine` object
 
 Provides information about the host machine — the machine on which the compiled binary will run. See [Cross-compilation](Cross-compilation.md).
 
 It has the same methods as [`build_machine`](#build_machine-object), but note that it simply returns the values defined in the cross-info file.
 
-### target_machine object
+### `target_machine` object
 
 Provides information about the target machine — the machine on which the compiled binary's output will run. Hence, this object should only be used while cross-compiling a compiler. See [Cross-compilation](Cross-compilation.md).
 
 It has the same methods as [`build_machine`](#build_machine-object), but note that it simply returns the values defined in the cross-info file. If `target_machine` values are not defined in the cross-info file, `host_machine` values are returned instead.
 
-### build target object
+### `build target` object
 
 A build target is either an [executable](#executable), [shared](#shared_library) or [static library](#static_library).
 
@@ -708,7 +708,7 @@ A build target is either an [executable](#executable), [shared](#shared_library)
 
 - `full_path()` returns a full path pointing to the result target file
 
-### compiler object
+### `compiler` object
 
 This object is returned by [`meson.get_compiler(lang)`](#meson-object). It represents a compiler for a given language and allows you to query its properties. It has the following methods:
 
@@ -746,7 +746,7 @@ Note that if you have a single prefix with all your dependencies, you might find
 
 However, with GCC, these variables will be ignored when cross-compiling. In that case you need to use a specs file. See: <http://www.mingw.org/wiki/SpecsFileHOWTO>
 
-### run result object
+### `run result` object
 
 This object encapsulates the result of trying to compile and run a sample piece of code with [`compiler.run()`](#compiler-object). It has the following methods:
 
@@ -755,7 +755,7 @@ This object encapsulates the result of trying to compile and run a sample piece 
 - `stdout()` the standard out produced when the binary was run
 - `stderr()` the standard error produced when the binary was run
 
-### configuration data object
+### `configuration` data object
 
 This object is returned by [`configuration_data`](#configuration_data) and encapsulates configuration values to be used for generating configuration files. A more in-depth description can be found in the [the configuration wiki page](Configuration.md) It has three methods:
 
@@ -767,7 +767,7 @@ This object is returned by [`configuration_data`](#configuration_data) and encap
 
 They all take the `description` keyword that will be written in the result file. The replacement assumes a file with C syntax. If your generated file is source code in some other language, you probably don't want to add a description field because it most likely will cause a syntax error.
 
-### dependency object
+### `dependency` object
 
 This object is returned by [`dependency`](#dependency) and contains an external dependency with the following methods:
 
@@ -776,14 +776,14 @@ This object is returned by [`dependency`](#dependency) and contains an external 
  - `version()` is the version number as a string, for example `1.2.8`
  - `get_pkgconfig_variable(varname)` (*Added 0.36.0*) will get the pkg-config variable specified, or, if invoked on a non pkg-config dependency, error out
 
-### external program object
+### `external program` object
 
 This object is returned by [`find_program`](#find_program) and contains an external (i.e. not built as part of this project) program and has the following methods:
 
 - `found()` which returns whether the executable was found
 - `path()` which returns an array pointing to the executable (this is an array as opposed to a string because the program might be `['python', 'foo.py']`, for example)
 
-### environment object
+### `environment` object
 
 This object is returned by [`environment()`](#environment) and stores detailed information about how environment variables should be set during tests. It should be passed as the `env` keyword argument to tests. It has the following methods.
 
@@ -791,23 +791,23 @@ This object is returned by [`environment()`](#environment) and stores detailed i
  - `append(varname, value)` appends the given value to the old value of the environment variable, e.g. `env.append'('FOO', 'BAR', separator : ';')` produces `BOB;BAR` if `FOO` had the value `BOB` and plain `BAR` if the value was not defined. If the separator is not specified explicitly, the default path separator for the host operating system will be used, i.e. ';' for Windows and ':' for UNIX/POSIX systems.
  - `prepend(varname, value)` is the same as `append` except that it writes to the beginning of the variable
 
-### external library object
+### `external library` object
 
 This object is returned by [`find_library`](#find_library) and contains an external (i.e. not built as part of this project) library. This object has only one method, `found`, which returns whether the library was found.
 
-### generator object
+### `generator` object
 
 This object is returned by [`generator`](#generator) and contains a generator that is used to transform files from one type to another by an executable (e.g. `idl` files into source code and headers).
 
 - `process(list_of_files)` takes a list of files, causes them to be processed and returns an object containing the result which can then, for example, be passed into a build target definition. The keyword argument `extra_args`, if specified, will be used to replace an entry `@EXTRA_ARGS@` in the argument list.
 
-### subproject object
+### `subproject` object
 
 This object is returned by [`subproject`](#subproject) and is an opaque object representing it.
 
 - `get_variable(name)` fetches the specified variable from inside the subproject. This is useful to, for instance, get a [declared dependency](#declare_dependency) from the subproject.
 
-### string object
+### `string` object
 
 All [strings](Syntax.md#strings) have the following methods. Strings are immutable, all operations return their results as a new string.
 
@@ -824,21 +824,21 @@ All [strings](Syntax.md#strings) have the following methods. Strings are immutab
  - `join(list_of_strings)` is the opposite of split, for example `'.'.join(['a', 'b', 'c']` yields `'a.b.c'`
  - `version_compare(comparison_string)` does semantic version comparison, if `x = '1.2.3'` then `x.version_compare('>1.0.0')` returns `true`
 
-### Number object
+### `Number` object
 
 [Numbers](Syntax.md#numbers) support these methods:
 
  - `is_even()` returns true if the number is even
  - `is_odd()` returns true if the number is odd
 
-### boolean object
+### `boolean` object
 
 A [boolean](Syntax.md#booleans) object has two simple methods:
 
  - `to_string()` returns the string `'true'` if the boolean is true or `'false'` otherwise. You can also pass it two strings as positional arguments to specify what to return for true/false. For instance, `bool.to_string('yes', 'no')` will return `yes` if the boolean is true and `no` if it is false.
  - `to_int()` as above, but returns either `1` or `0`
 
-### array object
+### `array` object
 
 The following methods are defined for all [arrays](Syntax.md#arrays):
 

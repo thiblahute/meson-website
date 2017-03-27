@@ -10,7 +10,7 @@ This module provides helper tools for build operations needed when building Gnom
 
 To use this module, just do: **`gnome = import('gnome')`**. The following functions will then be available as methods on the object with the name `gnome`. You can, of course, replace the name `gnome` with anything else.
 
-## compile_resources
+### gnome.compile_resources()
 
 This function compiles resources specified in an XML file into code that can be embedded inside the main binary. Similar a build target it takes two positional arguments. The first one is the name of the resource and the second is the xml file containing the resource definitions. If the name is `foobar`, Meson will generate a header file called `foobar.h`, which you can then include in your sources. There are two keyword arguments.
 
@@ -20,7 +20,7 @@ This function compiles resources specified in an XML file into code that can be 
 
 Returns an array of two elements which are: `[c_source, header_file]`
 
-## generate_gir
+### gnome.generate_gir()
 
 Generates GObject introspection data. Takes one positional argument, the build target you want to build gir data for. There are several keyword arguments. Many of these map directly to the `g-ir-scanner` tool so see its documentation for more information.
 
@@ -41,7 +41,7 @@ Generates GObject introspection data. Takes one positional argument, the build t
 
 Returns an array of two elements which are: `[gir_target, typelib_target]`
 
-## genmarshal
+### gnome.genmarshal()
 
 Generates a marshal file using the `glib-genmarshal` tool. The first argument is the basename of
 the output files.
@@ -61,7 +61,7 @@ the output files.
 
 Returns an array of two elements which are: `[c_source, header_file]`
 
-## mkenums
+### gnome.mkenums()
 
 Generates enum files for GObject using the `glib-mkenums` tool. The first argument is the base name of
 the output files.
@@ -87,18 +87,18 @@ Note that if you `#include` the generated header in any of the sources for a bui
 
 Returns an array of two elements which are: `[c_source, header_file]`
 
-## compile_schemas
+### gnome.compile_schemas()
 
 When called, this method will compile the gschemas in the current directory. Note that this is not
 for installing schemas and is only useful when running the application locally for example during tests.
 
-## gdbus_codegen
+### gnome.gdbus_codegen()
 
 Compiles the given XML schema into gdbus source code. Takes two positional arguments, the first one specifies the name of the source files and the second specifies the XML file name. There are two keyword arguments, `interface_prefix` and `namespace` which map to corresponding features of the compiler.
 
 Returns an opaque object containing the source files. Add it to a top level target's source list.
 
-## compile_vapi
+### gnome.compile_vapi()
 
 Creates a vapi file from gir. The first argument is the name of the library.
 
@@ -112,7 +112,7 @@ Returns a custom dependency that can be included when building other vapi or val
 
 *Added 0.36.0*
 
-## yelp
+### gnome.yelp()
 
 Installs help documentation using Yelp. The first argument is the project id.
 
@@ -125,7 +125,7 @@ This also creates two targets for translations `help-$project-update-po` and `he
 
 *Added 0.36.0*
 
-## gtkdoc
+### gnome.gtkdoc()
 
 Compiles and installs gtkdoc documentation. Takes one positional arguments; The name of the module.
 
@@ -143,6 +143,6 @@ Compiles and installs gtkdoc documentation. Takes one positional arguments; The 
 * `html_assets`: a list of assets for the html pages
 * `content_files`: a list of content files
 
-## gtkdoc_html_dir
+### gnome.gtkdoc_html_dir()
 
 Takes as argument a module name and returns the path where that module's HTML files will be installed. Usually used with `install_data` to install extra files, such as images, to the output directory.

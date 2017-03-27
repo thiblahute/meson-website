@@ -6,7 +6,7 @@ This module is a simple generator for [pkg-config](http://pkg-config.freedesktop
 
 To use this module, just do: **`pkg = import('pkgconfig')`**. The following function will then be available as `pkg.generate()`. You can, of course, replace the name `pkg` with anything else.
 
-### generate
+### pkg.generate()
 
 The generated file's properties are specified with the following keyword arguments.
 

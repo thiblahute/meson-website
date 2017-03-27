@@ -6,7 +6,7 @@ This module provides internationalisation and localisation functionality.
 
 To use this module, just do: **`i18n = import('i18n')`**. The following functions will then be available as methods on the object with the name `i18n`. You can, of course, replace the name `i18n` with anything else.
 
-### gettext
+### i18n.gettext()
 
 Sets up gettext localisation so that translations are built and placed into their proper locations during install. Takes one positional argument which is the name of the gettext module.
 
@@ -20,7 +20,7 @@ This function also defines targets for maintainers to use:
 
 * `<project_id>-pot`: runs `xgettext` to regenerate the pot file
 
-### merge_file
+### i18n.merge_file()
 
 This merges translations into a text file using `msgfmt`. See [custom_target](https://github.com/mesonbuild/meson/wiki/Reference%20manual#custom_target) for normal keywords. In addition it accepts these keywords:
 
