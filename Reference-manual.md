@@ -568,7 +568,7 @@ Takes the project specified in the positional argument and brings that in the cu
 Defines an unit test. Takes two positional arguments, the first is the name of this test and the second is the executable to run. Keyword arguments are the following.
 
 - `args` arguments to pass to the executable
-- `env` environment variables to set, such as `['NAME1=value1', 'NAME2=value2']`
+- `env` environment variables to set, such as `['NAME1=value1', 'NAME2=value2']`, or an [`environment()` object](#environment-object) which allows more sophisticated environment juggling
 - `is_parallel` when false, specifies that no other test must be running at the same time as this test
 - `should_fail` when true the test is considered passed if the executable returns a non-zero return value (i.e. reports an error)
 - `valgrind_args` if the test is run under Valgrind, pass these arguments to Valgrind (and not to the executable itself)
@@ -745,7 +745,7 @@ This object is returned by [`find_program`](#find_program) and contains an exter
 
 ### environment object
 
-This object is returned by [`environment`](#environment) and stores detailed information about how environment variables should be set during tests. It should be passed as the `env` keyword argument to tests. It has the following methods.
+This object is returned by [`environment()`](#environment) and stores detailed information about how environment variables should be set during tests. It should be passed as the `env` keyword argument to tests. It has the following methods.
 
  - `set(varname, value)` sets environment variable in the first argument to the value in the second argument, e.g. `env.set('FOO', 'BAR') sets envvar `FOO` to value `BAR`
  - `append(varname, value)` appends the given value to the old value of the environment variable, e.g. `env.append'('FOO', 'BAR', separator : ';')` produces `BOB;BAR` if `FOO` had the value `BOB` and plain `BAR` if the value was not defined. If the separator is not specified explicitly, the default path separator for the host operating system will be used, i.e. ';' for Windows and ':' for UNIX/POSIX systems.
