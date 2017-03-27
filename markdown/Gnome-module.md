@@ -63,8 +63,7 @@ Returns an array of two elements which are: `[c_source, header_file]`
 
 ### gnome.mkenums()
 
-Generates enum files for GObject using the `glib-mkenums` tool. The first argument is the base name of
-the output files.
+Generates enum files for GObject using the `glib-mkenums` tool. The first argument is the base name of the output files.
 
 Note that if you `#include` the generated header in any of the sources for a build target, you must add the generated header to the build target's list of sources to codify the dependency. This is true for all generated sources, not just `mkenums`.
 

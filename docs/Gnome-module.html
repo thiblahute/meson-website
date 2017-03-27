@@ -53,7 +53,7 @@
 				<span class="icon-bar"></span>
 			</button>
 			<a id="home-link" class="hotdoc-navbar-brand">
-				<p style="font-size: 20px"><img src="images/meson_logo.png" alt="Home" id="home">  The meson build system</p>
+				<img src="images/meson_logo.png" alt="Home" id="home">
 			</a>
 		</div>
 		<div class="navbar-collapse collapse" id="navbar-wrapper">
@@ -137,8 +137,7 @@ the output files.</p>
 <p><em>Added 0.35.0</em></p>
 <p>Returns an array of two elements which are: <code>[c_source, header_file]</code></p>
 <h3 id="gnomemkenums">gnome.mkenums()</h3>
-<p>Generates enum files for GObject using the <code>glib-mkenums</code> tool. The first argument is the base name of
-the output files.</p>
+<p>Generates enum files for GObject using the <code>glib-mkenums</code> tool. The first argument is the base name of the output files.</p>
 <p>Note that if you <code>#include</code> the generated header in any of the sources for a build target, you must add the generated header to the build target's list of sources to codify the dependency. This is true for all generated sources, not just <code>mkenums</code>.</p>
 <ul>
 <li><code>sources</code>: the list of sources to make enums with</li>
