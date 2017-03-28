@@ -289,18 +289,15 @@ endif
 </ul>
 <p>The returned object also has methods that are documented in the <a href="#dependency-object">object methods section</a> below.</p>
 <h3 id="error">error()</h3>
-<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
-    void error(message)
+<pre><code class="language-meson">    void error(message)
 </code></pre>
 <p>Print the argument string and halts the build process.</p>
 <h3 id="environment">environment()</h3>
-<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
-    environment_object environment()
+<pre><code class="language-meson">    environment_object environment()
 </code></pre>
 <p>Returns an empty <a href="#environment-object">environment variable object</a>.</p>
 <h3 id="executable">executable()</h3>
-<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
-    exe executable(*exe_name*, *sources*, ...)
+<pre><code class="language-meson">    exe executable(*exe_name*, *sources*, ...)
 </code></pre>
 <p>Creates a new executable. The first argument specifies its name and the remaining positional arguments define the source files to use. They can be of the following types:</p>
 <ul>
@@ -351,8 +348,7 @@ endif
 </code></pre>
 <p>Meson will then do the right thing.</p>
 <h3 id="generator">generator()</h3>
-<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
-    generator_object gen(*executable*, ...)
+<pre><code class="language-meson">    generator_object gen(*executable*, ...)
 </code></pre>
 <p>See also: <a href="#custom_target"><code>custom_target</code></a></p>
 <p>This function creates a <a href="#generator-object">generator object</a> that can be used to run custom compilation commands. The only positional argument is the executable to use. It can either be a self-built executable or one returned by find_program. Keyword arguments are the following:</p>
@@ -378,31 +374,53 @@ endif
 <p>NOTE: Generators should only be used for outputs that will <strong><em>only</em></strong> be used as inputs for a <a href="#build_target">build target</a> or a <a href="#custom_target">custom target</a>. When you use the processed output of a generator in multiple targets, the generator will be run multiple times to create outputs for each target. Each output will be created in a target-private directory <code>@BUILD_DIR@</code>.</p>
 <p>If you want to generate files for general purposes such as for generating headers to be used by several sources, or data that will be installed, and so on, use a <a href="#custom_target"><code>custom_target</code></a> instead.</p>
 <h3 id="get_option">get_option()</h3>
-<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
-    value get_option(option_name)
+<pre><code class="language-meson">    value get_option(option_name)
 </code></pre>
 <p>Obtains the value of the [project build option](Build options) specified in the positional argument.</p>
 <h3 id="get_variable">get_variable()</h3>
-<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
-    value get_variable(variable_name, fallback)
+<pre><code class="language-meson">    value get_variable(variable_name, fallback)
 </code></pre>
 <p>This function can be used to dynamically obtain a variable. <code>res = get_variable(varname, fallback)</code> takes the value of <code>varname</code> (which must be a string) and stores the variable of that name into <code>res</code>. If the variable does not exist, the variable <code>fallback</code> is stored to <code>res</code>instead. If a fallback is not specified, then attempting to read a non-existing variable will cause a fatal error.</p>
 <h3 id="import">import()</h3>
-<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
-    module_object import(module_name)
+<pre><code class="language-meson">    module_object import(module_name)
 </code></pre>
 <p>Imports the given extension module. Returns an opaque object that can be used to call the methods of the module. Here's an example for a hypothetical <code>testmod</code> module.</p>
 <pre><code class="language-meson">    tmod = import('testmod')
     tmod.do_something()
 </code></pre>
 <h3 id="include_directories">include_directories()</h3>
-<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
-    include_object include_directories(directory_names, ...)
+<pre><code class="language-meson">    include_object include_directories(directory_names, ...)
 </code></pre>
-<p>Returns an opaque object which contains the directories given in positional arguments. The result can then be used as a keyword argument when building executables or libraries. Both the source directory and the corresponding build directory are added. Note that this function call itself does not add the directories into the search path, since there is no global search path. You can use the the returned object in any subdirectory you want, Meson will make the paths work automatically. This function has one keyword argument <code>is_system</code> which, if set, flags the specified directories as system directories. This means that they will be used with the <code>-isystem</code> compiler argument rather than <code>-I</code> on compilers that support this flag (in practice everything except Visual Studio).</p>
+<p>Returns an opaque object which contains the directories (relative to the current directory) given in the positional arguments. The result can then be passed to the <code>include_directories:</code> keyword argument when building executables or libraries. You can use the returned object in any subdirectory you want, Meson will make the paths work automatically.</p>
+<p>Note that this function call itself does not add the directories into the search path, since there is no global search path. For something like that, see <a href="#add_project_arguments"><code>add_project_arguments()</code></a>.</p>
+<p>Each directory given is converted to two include paths: one that is relative to the source root and one relative to the build root.</p>
+<p>For example, with the following source tree layout in <code>/home/user/project.git</code>:</p>
+<p><code>meson.build</code>:</p>
+<pre><code class="language-meson">project(...)
+
+subdir('include')
+subdir('src')
+
+...
+</code></pre>
+<p><code>include/meson.build</code>:</p>
+<pre><code class="language-meson">inc = include_directories('.')
+
+...
+</code></pre>
+<p><code>src/meson.build</code>:</p>
+<pre><code class="language-meson">sources = [...]
+
+executable('some-tool', sources,
+  include_directories : inc,
+  ...)
+
+...
+</code></pre>
+<p>If the build tree is <code>/tmp/build-tree</code>, the following include paths will be used in the <code>executable()</code> call: <code>-I/tmp/build-tree/src/include -I/home/user/project.git/src/include</code>.</p>
+<p>This function has one keyword argument <code>is_system</code> which, if set, flags the specified directories as system directories. This means that they will be used with the <code>-isystem</code> compiler argument rather than <code>-I</code> on compilers that support this flag (in practice everything except Visual Studio).</p>
 <h3 id="install_data">install_data()</h3>
-<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
-    void install_data(list_of_files, ...)
+<pre><code class="language-meson">    void install_data(list_of_files, ...)
 </code></pre>
 <p>Installs files from the source tree that are listed as positional arguments. The following keyword arguments are supported:</p>
 <ul>
@@ -431,18 +449,15 @@ endif
 <pre><code class="language-meson">install_headers('common.h', 'proj/kola.h', install_dir : 'cust', subdir : 'myproj')
 </code></pre>
 <h3 id="install_man">install_man()</h3>
-<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
-    void install_man(list_of_manpages, ...)
+<pre><code class="language-meson">    void install_man(list_of_manpages, ...)
 </code></pre>
 <p>Installs the specified man files from the source tree into system's man directory during the install step. This directory can be overridden by specifying it with the <code>install_dir</code> keyword argument.</p>
 <h3 id="install_subdir">install_subdir()</h3>
-<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
-    void install_subdir(subdir_name)
+<pre><code class="language-meson">    void install_subdir(subdir_name)
 </code></pre>
 <p>Installs the entire given subdirectory and its contents from the source tree to the location specified by the keyword argument <code>install_dir</code>. Note that due to implementation issues this command deletes the entire target dir before copying the files, so you should never use <code>install_subdir</code> to install into two overlapping directories (such as <code>foo</code> and <code>foo/bar</code>) because if you do the behaviour is undefined.</p>
 <h3 id="is_variable">is_variable()</h3>
-<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
-    bool is_variable(varname)
+<pre><code class="language-meson">    bool is_variable(varname)
 </code></pre>
 <p>Returns true if a variable of the given name exists and false otherwise.</p>
 <h3 id="jar">jar()</h3>
@@ -545,7 +560,7 @@ endif
 <p>Defines an unit test. Takes two positional arguments, the first is the name of this test and the second is the executable to run. Keyword arguments are the following.</p>
 <ul>
 <li><code>args</code> arguments to pass to the executable</li>
-<li><code>env</code> environment variables to set, such as <code>['NAME1=value1', 'NAME2=value2']</code></li>
+<li><code>env</code> environment variables to set, such as <code>['NAME1=value1', 'NAME2=value2']</code>, or an <a href="#environment-object"><code>environment()</code> object</a> which allows more sophisticated environment juggling</li>
 <li><code>is_parallel</code> when false, specifies that no other test must be running at the same time as this test</li>
 <li><code>should_fail</code> when true the test is considered passed if the executable returns a non-zero return value (i.e. reports an error)</li>
 <li><code>valgrind_args</code> if the test is run under Valgrind, pass these arguments to Valgrind (and not to the executable itself)</li>
@@ -725,7 +740,7 @@ endif
 <li><code>path()</code> which returns an array pointing to the executable (this is an array as opposed to a string because the program might be <code>['python', 'foo.py']</code>, for example)</li>
 </ul>
 <h3 id="environment-object"><code>environment</code> object</h3>
-<p>This object is returned by <a href="#environment"><code>environment</code></a> and stores detailed information about how environment variables should be set during tests. It should be passed as the <code>env</code> keyword argument to tests. It has the following methods.</p>
+<p>This object is returned by <a href="#environment"><code>environment()</code></a> and stores detailed information about how environment variables should be set during tests. It should be passed as the <code>env</code> keyword argument to tests. It has the following methods.</p>
 <ul>
 <li><code>set(varname, value)</code> sets environment variable in the first argument to the value in the second argument, e.g. <code>env.set('FOO', 'BAR') sets envvar</code>FOO<code>to value</code>BAR`</li>
 <li><code>append(varname, value)</code> appends the given value to the old value of the environment variable, e.g. <code>env.append'('FOO', 'BAR', separator : ';')</code> produces <code>BOB;BAR</code> if <code>FOO</code> had the value <code>BOB</code> and plain <code>BAR</code> if the value was not defined. If the separator is not specified explicitly, the default path separator for the host operating system will be used, i.e. ';' for Windows and ':' for UNIX/POSIX systems.</li>
