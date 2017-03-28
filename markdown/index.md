@@ -1,3 +1,7 @@
+---
+render-subpages: false
+...
+
 # The Meson Build system
 
 ## Overview
