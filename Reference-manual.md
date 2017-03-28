@@ -382,7 +382,45 @@ Imports the given extension module. Returns an opaque object that can be used to
 
     include_object include_directories(directory_names, ...)
 
-Returns an opaque object which contains the directories given in positional arguments. The result can then be used as a keyword argument when building executables or libraries. Both the source directory and the corresponding build directory are added. Note that this function call itself does not add the directories into the search path, since there is no global search path. You can use the the returned object in any subdirectory you want, Meson will make the paths work automatically. This function has one keyword argument `is_system` which, if set, flags the specified directories as system directories. This means that they will be used with the `-isystem` compiler argument rather than `-I` on compilers that support this flag (in practice everything except Visual Studio).
+Returns an opaque object which contains the directories (relative to the current directory) given in the positional arguments. The result can then be passed to the `include_directories:` keyword argument when building executables or libraries. You can use the returned object in any subdirectory you want, Meson will make the paths work automatically.
+
+Note that this function call itself does not add the directories into the search path, since there is no global search path. For something like that, see [`add_project_arguments()`](#add_project_arguments).
+
+Each directory given is converted to two include paths: one that is relative to the source root and one relative to the build root.
+
+For example, let's say your source tree is `/home/user/project.git` and the build tree is `/tmp/build-tree`. An `include_directories('include')` object declared inside a directory called `src` will resolve to `-I/tmp/build-tree/src/include -I/home/user/project.git/src/include` when used in an `executable()` call.
+
+Idiomatic usage of `include_directories()` can look like this:
+
+`meson.build`:
+```meson
+project(...)
+
+subdir('include')
+subdir('src')
+
+...
+```
+
+`include/meson.build`:
+```meson
+inc = include_directories('.')
+
+...
+```
+
+`src/meson.build`:
+```meson
+sources = [...]
+
+executable('some-tool', sources,
+  include_directories : inc,
+  ...)
+
+...
+```
+
+This function has one keyword argument `is_system` which, if set, flags the specified directories as system directories. This means that they will be used with the `-isystem` compiler argument rather than `-I` on compilers that support this flag (in practice everything except Visual Studio).
 
 ### install_data
 
