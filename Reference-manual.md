@@ -388,9 +388,7 @@ Note that this function call itself does not add the directories into the search
 
 Each directory given is converted to two include paths: one that is relative to the source root and one relative to the build root.
 
-For example, let's say your source tree is `/home/user/project.git` and the build tree is `/tmp/build-tree`. An `include_directories('include')` object declared inside a directory called `src` will resolve to `-I/tmp/build-tree/src/include -I/home/user/project.git/src/include` when used in an `executable()` call.
-
-Idiomatic usage of `include_directories()` can look like this:
+For example, with the following source tree layout in `/home/user/project.git`:
 
 `meson.build`:
 ```meson
@@ -419,6 +417,8 @@ executable('some-tool', sources,
 
 ...
 ```
+
+If the build tree is `/tmp/build-tree`, the following include paths will be used in the `executable()` call: `-I/tmp/build-tree/src/include -I/home/user/project.git/src/include`.
 
 This function has one keyword argument `is_system` which, if set, flags the specified directories as system directories. This means that they will be used with the `-isystem` compiler argument rather than `-I` on compilers that support this flag (in practice everything except Visual Studio).
 
