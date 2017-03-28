@@ -81,7 +81,9 @@ These are objects returned by the [functions listed above](#functions).
 
 ### add_global_arguments()
 
-    void add_global_arguments(arg1, arg2, ...)
+``` meson
+  void add_global_arguments(arg1, arg2, ...)
+```
 
 Adds the positional arguments to the compiler command line for the language specified in `language` keyword argument. Note that there is no way to remove an argument set in this way. If you have an argument that is only used in a subset of targets, you have to specify it in per-target flags.
 
@@ -93,13 +95,17 @@ The arguments are used in all compiler invocations with the exception of compile
 
 ### add_global_link_arguments()
 
+``` meson
     void add_global_link_arguments(*arg1*, *arg2*, ...)
+```
 
 Like `add_global_arguments` but the arguments are passed to the linker.
 
 ### add_languages()
 
-    add_languages(*langs*)
+``` meson
+  add_languages(*langs*)
+```
 
 Add support for new programming languages. Equivalent to having them in the `project` declaration. This function is usually used to add languages that are only used on some platforms like this:
 
@@ -114,19 +120,25 @@ Takes one keyword argument, `required`. It defaults to `true`, which means that 
 
 ### add_project_arguments()
 
-    void add_project_arguments(arg1, arg2, ...)
+``` meson
+  void add_project_arguments(arg1, arg2, ...)
+```
 
 This function behaves in the same way as `add_global_arguments` except that the arguments are only used for the current project, they won't be used in any other subproject.
 
 ### add_project_link_arguments()
 
-    void add_project_link_arguments(*arg1*, *arg2*, ...)
+``` meson
+  void add_project_link_arguments(*arg1*, *arg2*, ...)
+```
 
 Like `add_project_arguments` but the arguments are passed to the linker.
 
 ### add_test_setup()
 
-    void add_test_setup(*name*, ...)
+``` meson
+  void add_test_setup(*name*, ...)
+```
 
 Add a custom test setup that can be used to run the tests with a custom setup, for example under Valgrind. The keyword arguments are the following:
 
@@ -141,7 +153,9 @@ Note that all these options are also available while running the `mesontest` scr
 
 ### benchmark()
 
+``` meson
     void benchmark(name, executable, ...)
+```
 
 Creates a benchmark item that will be run when the benchmark target is run. The behaviour of this function is identical to `test` with the exception that there is no `is_parallel` keyword, because benchmarks are never run in parallel.
 
@@ -163,13 +177,17 @@ The object returned by `build_target` and all convenience wrappers for `build_ta
 
 ### configuration_data()
 
+``` meson
     configuration_data_object = configuration_data()
+```
 
 Creates an empty configuration object. You should add your configuration with [its method calls](#configuration-data-object) and finally use it in a call to `configure_file`.
 
 ### configure_file()
 
+``` meson
     generated_file = configure_file(...)
+```
 
 This function can run in two modes depending on the keyword arguments passed to it.
 
@@ -187,7 +205,9 @@ These are all the supported keyword arguments:
 
 ### custom_target()
 
+``` meson
     ctarget custom_target(*name*, ...)
+```
 
 Create a custom top level build target. The only positional argument is the name of this target and the keyword arguments are the following.
 
@@ -214,7 +234,9 @@ The list of strings passed to the `command` kwarg accept the following special s
 
 ### declare_dependency()
 
+``` meson
     dependency_object declare_dependency(...)
+```
 
 This function returns a [dependency object](#dependency-object) that behaves like the return value of [`dependency`](#dependency) but is internal to the current build. The main use case for this is in subprojects. This allows a subproject to easily specify how it should be used. This makes it interchangeable with the same dependency that is provided externally by the system. This function has three keyword arguments.
 
@@ -228,7 +250,9 @@ This function returns a [dependency object](#dependency-object) that behaves lik
 
 ### dependency()
 
+``` meson
     dependency_object dependency(*dependency_name*, ...)
+```
 
 Finds an external dependency with the given name with `pkg-config` if possible and with fallback detection logic otherwise. Dependency supports the following keyword arguments.
 
@@ -244,19 +268,25 @@ The returned object also has methods that are documented in the [object methods 
 
 ### error()
 
+``` meson
     void error(message)
+```
 
 Print the argument string and halts the build process.
 
 ### environment()
 
+``` meson
     environment_object environment()
+```
 
 Returns an empty [environment variable object](#environment-object).
 
 ### executable()
 
+``` meson
     exe executable(*exe_name*, *sources*, ...)
+```
 
 Creates a new executable. The first argument specifies its name and the remaining positional arguments define the source files to use. They can be of the following types:
 
@@ -295,7 +325,9 @@ This function is deprecated and in the 0.31.0 release it was moved to [the compi
 
 ### find_program()
 
+``` meson
     program find_program(program_name1, program_name2, ...)
+```
 
 `program_name1` here is a string that can be an executable or script to be searched for in `PATH`, or a script in the current source directory.
 
@@ -309,7 +341,9 @@ The returned object also has methods that are documented in the [object methods 
 
 ### files()
 
+``` meson
     file_array files(list_of_filenames)
+```
 
 This command takes the strings given to it in arguments and returns corresponding File objects that you can use as sources for build targets. The difference is that file objects remember the subdirectory they were defined in and can be used anywhere in the source tree. As an example suppose you have source file `foo.cpp` in subdirectory `bar1` and you would like to use it in a build target that is defined in `bar2`. To make this happen you first create the object in `bar1` like this:
 
@@ -327,7 +361,9 @@ Meson will then do the right thing.
 
 ### generator()
 
+``` meson
     generator_object gen(*executable*, ...)
+```
 
 See also: [`custom_target`](#custom_target)
 
@@ -350,7 +386,7 @@ In addition to the above substitutions, the `arguments` kwarg also accepts the f
 
 - `@OUTPUT@`: the full path to the output file
 - `@INPUT@`: the full path to the input file
-- `@SOURCE_DIR@`: the full path to the root of the source tree 
+- `@SOURCE_DIR@`: the full path to the root of the source tree
 - `@BUILD_DIR@`: the full path to the root of the build dir where the output will be placed
 
 NOTE: Generators should only be used for outputs that will ***only*** be used as inputs for a [build target](#build_target) or a [custom target](#custom_target). When you use the processed output of a generator in multiple targets, the generator will be run multiple times to create outputs for each target. Each output will be created in a target-private directory `@BUILD_DIR@`.
@@ -359,19 +395,25 @@ If you want to generate files for general purposes such as for generating header
 
 ### get_option()
 
+``` meson
     value get_option(option_name)
+```
 
 Obtains the value of the [project build option](Build options) specified in the positional argument.
 
 ### get_variable()
 
+``` meson
     value get_variable(variable_name, fallback)
+```
 
 This function can be used to dynamically obtain a variable. `res = get_variable(varname, fallback)` takes the value of `varname` (which must be a string) and stores the variable of that name into `res`. If the variable does not exist, the variable `fallback` is stored to `res`instead. If a fallback is not specified, then attempting to read a non-existing variable will cause a fatal error.
 
 ### import()
 
+``` meson
     module_object import(module_name)
+```
 
 Imports the given extension module. Returns an opaque object that can be used to call the methods of the module. Here's an example for a hypothetical `testmod` module.
 
@@ -382,7 +424,9 @@ Imports the given extension module. Returns an opaque object that can be used to
 
 ### include_directories()
 
+``` meson
     include_object include_directories(directory_names, ...)
+```
 
 Returns an opaque object which contains the directories (relative to the current directory) given in the positional arguments. The result can then be passed to the `include_directories:` keyword argument when building executables or libraries. You can use the returned object in any subdirectory you want, Meson will make the paths work automatically.
 
@@ -426,24 +470,28 @@ This function has one keyword argument `is_system` which, if set, flags the spec
 
 ### install_data()
 
+``` meson
     void install_data(list_of_files, ...)
+```
 
 Installs files from the source tree that are listed as positional arguments. The following keyword arguments are supported:
 
 - `install_dir` the absolute or relative path to the installation directory. If this is a relative path, it is assumed to be relative to the prefix.
-- `install_mode` specify the file mode in symbolic format and optionally the owner/uid and group/gid for the installed files. For example: 
+- `install_mode` specify the file mode in symbolic format and optionally the owner/uid and group/gid for the installed files. For example:
 
   `install_mode: 'rw-r--r--'` for just the file mode
- 
+
   `install_mode: ['rw-r--r--', 'nobody', 'nobody']` for the file mode and the user/group
- 
+
   `install_mode: ['rw-r-----', 0, 0]` for the file mode and uid/gid
 
  To leave any of these three as the default, specify `false`.
 
 ### install_headers()
 
+``` meson
     void install_headers(list_of_headers, ...)
+```
 
 Installs the specified header files from the source tree into the system header directory (usually `/{prefix}/include`) during the install step. This directory can be overridden by specifying it with the `install_dir` keyword argument. If you just want to install into a subdirectory of the system header directory, then use the `subdir` argument. As an example if this has the value `myproj` then the headers would be installed to `/{prefix}/include/myproj`.
 
@@ -467,31 +515,41 @@ install_headers('common.h', 'proj/kola.h', install_dir : 'cust', subdir : 'mypro
 
 ### install_man()
 
+``` meson
     void install_man(list_of_manpages, ...)
+```
 
 Installs the specified man files from the source tree into system's man directory during the install step. This directory can be overridden by specifying it with the `install_dir` keyword argument.
 
 ### install_subdir()
 
+``` meson
     void install_subdir(subdir_name)
+```
 
 Installs the entire given subdirectory and its contents from the source tree to the location specified by the keyword argument `install_dir`. Note that due to implementation issues this command deletes the entire target dir before copying the files, so you should never use `install_subdir` to install into two overlapping directories (such as `foo` and `foo/bar`) because if you do the behaviour is undefined.
 
 ### is_variable()
 
+``` meson
     bool is_variable(varname)
+```
 
 Returns true if a variable of the given name exists and false otherwise.
 
 ### jar()
 
+```meson
    jar_object jar(name, list_of_sources, ...)
+```
 
 Build a jar from the specified Java source files. Keyword arguments are the same as executable's, with the addition of `main_class` which specifies the main class to execute when running the jar with `java -jar file.jar`.
 
 ### join_paths()
 
+``` meson
    string join_paths(string1, string2, ...)
+```
 
 Joins the given strings into a file system path segment. For example `join_paths('foo', 'bar')` results in `foo/bar`. If any one of the individual segments is an absolute path, all segments before it are dropped. That means that `join_paths('foo', '/bar')` returns `/bar`.
 
@@ -499,7 +557,9 @@ Joins the given strings into a file system path segment. For example `join_paths
 
 ### library()
 
+``` meson
     buildtarget library(library_name, list_of_sources, ...)
+```
 
 Builds a library that is either static or shared depending on the value of `default_library` user option. You should use this instead of [`shared_library`](#shared_library) or [`static_library`](#static_library) most of the time. This allows you to toggle your entire project (including subprojects) from shared to static with only one option.
 
@@ -511,13 +571,17 @@ The keyword arguments for this are the same as for [`executable`](#executable) w
 
 ### message()
 
+``` meson
     void message(text)
+```
 
 This function prints its argument to stdout.
 
 ### project()
 
+``` meson
     void project(project_name, list_of_languages, ...)
+```
 
 The first argument to this function must be a string defining the name of this project. It must be followed by one or more programming languages that the project uses. Supported values for languages are `c`, `cpp` (for `C++`), `objc`, `objcpp`, `fortran`, `java`, `cs` (for `C#`) and `vala`.
 
@@ -527,7 +591,7 @@ Project supports the following keyword arguments.
 
  - `version`, which is a free form string describing the version of this project. You can access the value in your Meson build files with `meson.project_version()`.
 
- - `subproject_dir` specifies the top level directory name that holds Meson subprojects. This is only meant as a compatibility option for existing code bases that house their embedded source code in a custom directory. All new projects should not set this but instead use the default value. It should be noted that this keyword argument is ignored inside subprojects. There can be only one subproject dir and it is set in the top level Meson file. 
+ - `subproject_dir` specifies the top level directory name that holds Meson subprojects. This is only meant as a compatibility option for existing code bases that house their embedded source code in a custom directory. All new projects should not set this but instead use the default value. It should be noted that this keyword argument is ignored inside subprojects. There can be only one subproject dir and it is set in the top level Meson file.
 
   - `meson_version` takes a string describing which Meson version the project requires. Usually something like `>0.28.0`. Similarly you can specify the license(s) the code is under with the `license` keyword argument. Usually this would be something like `license : 'GPL2+'`, but if the code has multiple licenses you can specify them as an array like this: `license : ['proprietary', 'GPL3']`. Note that the text is informal and is only written to the dependency manifest. Meson does not do any license validation, you are responsible for verifying that you abide by all licensing terms.
 
@@ -535,13 +599,17 @@ Project supports the following keyword arguments.
 
 ### run_command()
 
+``` meson
     runresult run_command(command, list_of_args)
+```
 
 Runs the command specified in positional arguments. Returns [an opaque object](#run-result-object) containing the result of the invocation. The script is run from an *unspecified* directory, and Meson will set three environment variables `MESON_SOURCE_ROOT`, `MESON_BUILD_ROOT` and `MESON_SUBDIR` that specify the source directory, build directory and subdirectory the target was defined in, respectively.
 
 ### run_target
 
+``` meson
     buildtarget run_target(target_name, ...)
+```
 
 This function creates a new top-level target that runs a specified command with the specified arguments. Like all top-level targets, this integrates with the selected backend. For instance, with Ninja you can run it as `ninja target_name`.
 
@@ -552,13 +620,17 @@ The script is run from an *unspecified* directory, and Meson will set three envi
 
 ### set_variable()
 
+``` meson
     void set_variable(variable_name, value)
+```
 
 Assigns a value to the given variable name. Calling `set_variable('foo', bar)` is equivalent to `foo = bar`.
 
 ### shared_library()
 
+``` meson
     buildtarget shared_library(library_name, list_of_sources, ...)
+```
 
 Builds a shared library with the given sources. Positional and keyword arguments are the same as for [`library`](#library) with the following extra keyword arguments.
 
@@ -568,7 +640,9 @@ Builds a shared library with the given sources. Positional and keyword arguments
 
 ### shared_module()
 
+``` meson
     buildtarget shared_module(module_name, list_of_sources, ...)
+```
 
 Builds a shared module with the given sources. Positional and keyword arguments are the same as for [`library`](#library).
 
@@ -578,7 +652,9 @@ This is useful for building modules that will be `dlopen()`ed and hence may cont
 
 ### static_library()
 
+``` meson
     buildtarget static_library(library_name, list_of_sources, ...)
+```
 
 Builds a static library with the given sources. Positional and keyword arguments are otherwise the same as for [`library`](#library), but it has one argument the others don't have:
 
@@ -586,7 +662,9 @@ Builds a static library with the given sources. Positional and keyword arguments
 
 ### subdir()
 
+``` meson
     void subdir(dir_name)
+```
 
 Enters the specified subdirectory and executes the `meson.build` file in it. Once that is done, it returns and execution continues on the line following this `subdir()` command. Variables defined in that `meson.build` file are then available for use in later parts of the current build file and in all subsequent build files executed with `subdir()`.
 
@@ -594,7 +672,9 @@ Note that this means that each `meson.build` file in a source tree can and must 
 
 ### subproject()
 
+``` meson
     subproject_object subproject(subproject_name, ...)
+```
 
 Takes the project specified in the positional argument and brings that in the current build specification by returning a [subproject object](#subproject-object). Subprojects must always be placed inside the `subprojects` directory at the top source directory. So for example a subproject called `foo` must be located in `${MESON_SOURCE_ROOT}/subprojects/foo`. Supports the following keyword arguments:
 
@@ -603,7 +683,9 @@ Takes the project specified in the positional argument and brings that in the cu
 
 ### test()
 
+``` meson
     void test(name, executable, ...)
+```
 
 Defines an unit test. Takes two positional arguments, the first is the name of this test and the second is the executable to run. Keyword arguments are the following.
 
@@ -619,7 +701,9 @@ Defined tests can be run in a backend-agnostic way by calling `mesontest` inside
 
 ### vcs_tag()
 
+``` meson
     ctarget vcs_tag(...)
+```
 
 This command detects revision control commit information at build time and places it in the specified output file. This file is guaranteed to be up to date on every build. Keywords are similar to `custom_target` and all of them are mandatory.
 
@@ -740,7 +824,7 @@ The following keyword arguments can be used:
 
 - `include_directories` specifies extra directories for header searches. *(added 0.38.0)*
 
-- `args` can be used to pass a list of compiler arguments that are required to find the header or symbol. For example, you might need to pass the include path `-Isome/path/to/header` if a header is not in the default include path. In versions newer than 0.38.0 you should use the `include_directories` keyword described above. You may also want to pass a library name `-lfoo` for `has_function` to check for a function. Supported by all methods except `get_id`, `version`, and `find_library`. 
+- `args` can be used to pass a list of compiler arguments that are required to find the header or symbol. For example, you might need to pass the include path `-Isome/path/to/header` if a header is not in the default include path. In versions newer than 0.38.0 you should use the `include_directories` keyword described above. You may also want to pass a library name `-lfoo` for `has_function` to check for a function. Supported by all methods except `get_id`, `version`, and `find_library`.
 
 Note that if you have a single prefix with all your dependencies, you might find it easier to append to the environment variables `C_INCLUDE_PATH` with gcc/clang and `INCLUDE` with msvc to expand the default include path, and `LIBRARY_PATH` with gcc/clang and `LIB` with msvc to expand the default library search path.
 

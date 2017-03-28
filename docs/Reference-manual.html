@@ -165,18 +165,18 @@
 <li><a href="#subproject-object">subproject object</a></li>
 </ul>
 <h3 id="add_global_arguments">add_global_arguments()</h3>
-<pre><code>void add_global_arguments(arg1, arg2, ...)
+<pre><code class="language-meson">  void add_global_arguments(arg1, arg2, ...)
 </code></pre>
 <p>Adds the positional arguments to the compiler command line for the language specified in <code>language</code> keyword argument. Note that there is no way to remove an argument set in this way. If you have an argument that is only used in a subset of targets, you have to specify it in per-target flags.</p>
 <p>The arguments are used in all compiler invocations with the exception of compile tests, because you might need to run a compile test with and without the argument in question. For this reason only the arguments explicitly specified are used during compile tests.</p>
 <p><strong>Note:</strong> Usually you should use <code>add_project_arguments</code> instead, because that works even when you project is used as a subproject.</p>
 <p><strong>Note:</strong> You must pass always arguments individually <code>arg1, arg2, ...</code> rather than as a string <code>'arg1 arg2', ...</code></p>
 <h3 id="add_global_link_arguments">add_global_link_arguments()</h3>
-<pre><code>void add_global_link_arguments(*arg1*, *arg2*, ...)
+<pre><code class="language-meson">    void add_global_link_arguments(*arg1*, *arg2*, ...)
 </code></pre>
 <p>Like <code>add_global_arguments</code> but the arguments are passed to the linker.</p>
 <h3 id="add_languages">add_languages()</h3>
-<pre><code>add_languages(*langs*)
+<pre><code class="language-meson">  add_languages(*langs*)
 </code></pre>
 <p>Add support for new programming languages. Equivalent to having them in the <code>project</code> declaration. This function is usually used to add languages that are only used on some platforms like this:</p>
 <pre><code class="language-meson">project('foobar', 'c')
@@ -186,15 +186,15 @@ endif
 </code></pre>
 <p>Takes one keyword argument, <code>required</code>. It defaults to <code>true</code>, which means that if any of the languages specified is not found, Meson will halt. Returns true if all languages specified were found and false otherwise.</p>
 <h3 id="add_project_arguments">add_project_arguments()</h3>
-<pre><code>void add_project_arguments(arg1, arg2, ...)
+<pre><code class="language-meson">  void add_project_arguments(arg1, arg2, ...)
 </code></pre>
 <p>This function behaves in the same way as <code>add_global_arguments</code> except that the arguments are only used for the current project, they won't be used in any other subproject.</p>
 <h3 id="add_project_link_arguments">add_project_link_arguments()</h3>
-<pre><code>void add_project_link_arguments(*arg1*, *arg2*, ...)
+<pre><code class="language-meson">  void add_project_link_arguments(*arg1*, *arg2*, ...)
 </code></pre>
 <p>Like <code>add_project_arguments</code> but the arguments are passed to the linker.</p>
 <h3 id="add_test_setup">add_test_setup()</h3>
-<pre><code>void add_test_setup(*name*, ...)
+<pre><code class="language-meson">  void add_test_setup(*name*, ...)
 </code></pre>
 <p>Add a custom test setup that can be used to run the tests with a custom setup, for example under Valgrind. The keyword arguments are the following:</p>
 <ul>
@@ -206,7 +206,7 @@ endif
 <p>To use the test setup, run <code>mesontest --setup=*name*</code> inside the build dir.</p>
 <p>Note that all these options are also available while running the <code>mesontest</code> script for running tests instead of <code>ninja test</code> or <code>msbuild RUN_TESTS.vcxproj</code>, etc depending on the backend.</p>
 <h3 id="benchmark">benchmark()</h3>
-<pre><code>void benchmark(name, executable, ...)
+<pre><code class="language-meson">    void benchmark(name, executable, ...)
 </code></pre>
 <p>Creates a benchmark item that will be run when the benchmark target is run. The behaviour of this function is identical to <code>test</code> with the exception that there is no <code>is_parallel</code> keyword, because benchmarks are never run in parallel.</p>
 <h3 id="build_target">build_target()</h3>
@@ -218,11 +218,11 @@ endif
 </code></pre>
 <p>The object returned by <code>build_target</code> and all convenience wrappers for <code>build_target</code> such as <a href="#executable"><code>executable</code></a> and <a href="#library"><code>library</code></a> has methods that are documented in the <a href="#build-target-object">object methods section</a> below.</p>
 <h3 id="configuration_data">configuration_data()</h3>
-<pre><code>configuration_data_object = configuration_data()
+<pre><code class="language-meson">    configuration_data_object = configuration_data()
 </code></pre>
 <p>Creates an empty configuration object. You should add your configuration with <a href="#configuration-data-object">its method calls</a> and finally use it in a call to <code>configure_file</code>.</p>
 <h3 id="configure_file">configure_file()</h3>
-<pre><code>generated_file = configure_file(...)
+<pre><code class="language-meson">    generated_file = configure_file(...)
 </code></pre>
 <p>This function can run in two modes depending on the keyword arguments passed to it.</p>
 <p>When a <a href="#configuration_data"><code>configuration_data()</code></a> object is passed to the <code>configuration:</code> keyword argument, it takes a template file as the <code>input:</code> (optional) and produces the <code>output:</code> (required) by substituting values from the configuration data as detailed in <a href="Configuration.html">the configuration file documentation</a>.</p>
@@ -236,7 +236,7 @@ endif
 <li><code>install_dir</code> the subdirectory to install the generated file to (e.g. <code>share/myproject</code>), if omitted the file is not installed.</li>
 </ul>
 <h3 id="custom_target">custom_target()</h3>
-<pre><code>ctarget custom_target(*name*, ...)
+<pre><code class="language-meson">    ctarget custom_target(*name*, ...)
 </code></pre>
 <p>Create a custom top level build target. The only positional argument is the name of this target and the keyword arguments are the following.</p>
 <ul>
@@ -262,7 +262,7 @@ endif
 <li><code>@DEPFILE@</code> the full path to the dependency file passed to <code>depfile</code></li>
 </ul>
 <h3 id="declare_dependency">declare_dependency()</h3>
-<pre><code>dependency_object declare_dependency(...)
+<pre><code class="language-meson">    dependency_object declare_dependency(...)
 </code></pre>
 <p>This function returns a <a href="#dependency-object">dependency object</a> that behaves like the return value of <a href="#dependency"><code>dependency</code></a> but is internal to the current build. The main use case for this is in subprojects. This allows a subproject to easily specify how it should be used. This makes it interchangeable with the same dependency that is provided externally by the system. This function has three keyword arguments.</p>
 <ul>
@@ -275,7 +275,7 @@ endif
 <li><code>version</code>, the version of this depency, such as <code>1.2.3</code></li>
 </ul>
 <h3 id="dependency">dependency()</h3>
-<pre><code>dependency_object dependency(*dependency_name*, ...)
+<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
 </code></pre>
 <p>Finds an external dependency with the given name with <code>pkg-config</code> if possible and with fallback detection logic otherwise. Dependency supports the following keyword arguments.</p>
 <ul>
@@ -289,15 +289,18 @@ endif
 </ul>
 <p>The returned object also has methods that are documented in the <a href="#dependency-object">object methods section</a> below.</p>
 <h3 id="error">error()</h3>
-<pre><code>void error(message)
+<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
+    void error(message)
 </code></pre>
 <p>Print the argument string and halts the build process.</p>
 <h3 id="environment">environment()</h3>
-<pre><code>environment_object environment()
+<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
+    environment_object environment()
 </code></pre>
 <p>Returns an empty <a href="#environment-object">environment variable object</a>.</p>
 <h3 id="executable">executable()</h3>
-<pre><code>exe executable(*exe_name*, *sources*, ...)
+<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
+    exe executable(*exe_name*, *sources*, ...)
 </code></pre>
 <p>Creates a new executable. The first argument specifies its name and the remaining positional arguments define the source files to use. They can be of the following types:</p>
 <ul>
@@ -330,7 +333,7 @@ endif
 <h3 id="find_library">find_library()</h3>
 <p>This function is deprecated and in the 0.31.0 release it was moved to <a href="#compiler-object">the compiler object</a> as obtained from <code>meson.get_compiler(lang)</code>.</p>
 <h3 id="find_program">find_program()</h3>
-<pre><code>program find_program(program_name1, program_name2, ...)
+<pre><code class="language-meson">    program find_program(program_name1, program_name2, ...)
 </code></pre>
 <p><code>program_name1</code> here is a string that can be an executable or script to be searched for in <code>PATH</code>, or a script in the current source directory.</p>
 <p>Meson will also autodetect scripts with a shebang line and run them with the executable/interpreter specified in it both on Windows (because the command invocator will reject the command otherwise) and UNIXes (if the script file does not have the executable bit set). Hence, you <em>must not</em> manually add the interpreter while using this script as part of a list of commands.</p>
@@ -338,7 +341,7 @@ endif
 <p>If none of the programs are found, Meson will abort. You can tell it not to by setting the keyword argument <code>required</code> to false, and then use the <code>.found()</code> method on the returned object to check whether it was found or not.</p>
 <p>The returned object also has methods that are documented in the <a href="#external-program-object">object methods section</a> below.</p>
 <h3 id="files">files()</h3>
-<pre><code>file_array files(list_of_filenames)
+<pre><code class="language-meson">    file_array files(list_of_filenames)
 </code></pre>
 <p>This command takes the strings given to it in arguments and returns corresponding File objects that you can use as sources for build targets. The difference is that file objects remember the subdirectory they were defined in and can be used anywhere in the source tree. As an example suppose you have source file <code>foo.cpp</code> in subdirectory <code>bar1</code> and you would like to use it in a build target that is defined in <code>bar2</code>. To make this happen you first create the object in <code>bar1</code> like this:</p>
 <pre><code class="language-meson">    foofile = files('foo.cpp')
@@ -348,7 +351,8 @@ endif
 </code></pre>
 <p>Meson will then do the right thing.</p>
 <h3 id="generator">generator()</h3>
-<pre><code>generator_object gen(*executable*, ...)
+<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
+    generator_object gen(*executable*, ...)
 </code></pre>
 <p>See also: <a href="#custom_target"><code>custom_target</code></a></p>
 <p>This function creates a <a href="#generator-object">generator object</a> that can be used to run custom compilation commands. The only positional argument is the executable to use. It can either be a self-built executable or one returned by find_program. Keyword arguments are the following:</p>
@@ -374,26 +378,31 @@ endif
 <p>NOTE: Generators should only be used for outputs that will <strong><em>only</em></strong> be used as inputs for a <a href="#build_target">build target</a> or a <a href="#custom_target">custom target</a>. When you use the processed output of a generator in multiple targets, the generator will be run multiple times to create outputs for each target. Each output will be created in a target-private directory <code>@BUILD_DIR@</code>.</p>
 <p>If you want to generate files for general purposes such as for generating headers to be used by several sources, or data that will be installed, and so on, use a <a href="#custom_target"><code>custom_target</code></a> instead.</p>
 <h3 id="get_option">get_option()</h3>
-<pre><code>value get_option(option_name)
+<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
+    value get_option(option_name)
 </code></pre>
 <p>Obtains the value of the [project build option](Build options) specified in the positional argument.</p>
 <h3 id="get_variable">get_variable()</h3>
-<pre><code>value get_variable(variable_name, fallback)
+<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
+    value get_variable(variable_name, fallback)
 </code></pre>
 <p>This function can be used to dynamically obtain a variable. <code>res = get_variable(varname, fallback)</code> takes the value of <code>varname</code> (which must be a string) and stores the variable of that name into <code>res</code>. If the variable does not exist, the variable <code>fallback</code> is stored to <code>res</code>instead. If a fallback is not specified, then attempting to read a non-existing variable will cause a fatal error.</p>
 <h3 id="import">import()</h3>
-<pre><code>module_object import(module_name)
+<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
+    module_object import(module_name)
 </code></pre>
 <p>Imports the given extension module. Returns an opaque object that can be used to call the methods of the module. Here's an example for a hypothetical <code>testmod</code> module.</p>
 <pre><code class="language-meson">    tmod = import('testmod')
     tmod.do_something()
 </code></pre>
 <h3 id="include_directories">include_directories()</h3>
-<pre><code>include_object include_directories(directory_names, ...)
+<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
+    include_object include_directories(directory_names, ...)
 </code></pre>
 <p>Returns an opaque object which contains the directories given in positional arguments. The result can then be used as a keyword argument when building executables or libraries. Both the source directory and the corresponding build directory are added. Note that this function call itself does not add the directories into the search path, since there is no global search path. You can use the the returned object in any subdirectory you want, Meson will make the paths work automatically. This function has one keyword argument <code>is_system</code> which, if set, flags the specified directories as system directories. This means that they will be used with the <code>-isystem</code> compiler argument rather than <code>-I</code> on compilers that support this flag (in practice everything except Visual Studio).</p>
 <h3 id="install_data">install_data()</h3>
-<pre><code>void install_data(list_of_files, ...)
+<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
+    void install_data(list_of_files, ...)
 </code></pre>
 <p>Installs files from the source tree that are listed as positional arguments. The following keyword arguments are supported:</p>
 <ul>
@@ -409,7 +418,7 @@ endif
 </ul>
 <p>To leave any of these three as the default, specify <code>false</code>.</p>
 <h3 id="install_headers">install_headers()</h3>
-<pre><code>void install_headers(list_of_headers, ...)
+<pre><code class="language-meson">    void install_headers(list_of_headers, ...)
 </code></pre>
 <p>Installs the specified header files from the source tree into the system header directory (usually <code>/{prefix}/include</code>) during the install step. This directory can be overridden by specifying it with the <code>install_dir</code> keyword argument. If you just want to install into a subdirectory of the system header directory, then use the <code>subdir</code> argument. As an example if this has the value <code>myproj</code> then the headers would be installed to <code>/{prefix}/include/myproj</code>.</p>
 <p>For example, this will install <code>common.h</code> and <code>kola.h</code> into <code>/{prefix}/include</code>:</p>
@@ -422,26 +431,31 @@ endif
 <pre><code class="language-meson">install_headers('common.h', 'proj/kola.h', install_dir : 'cust', subdir : 'myproj')
 </code></pre>
 <h3 id="install_man">install_man()</h3>
-<pre><code>void install_man(list_of_manpages, ...)
+<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
+    void install_man(list_of_manpages, ...)
 </code></pre>
 <p>Installs the specified man files from the source tree into system's man directory during the install step. This directory can be overridden by specifying it with the <code>install_dir</code> keyword argument.</p>
 <h3 id="install_subdir">install_subdir()</h3>
-<pre><code>void install_subdir(subdir_name)
+<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
+    void install_subdir(subdir_name)
 </code></pre>
 <p>Installs the entire given subdirectory and its contents from the source tree to the location specified by the keyword argument <code>install_dir</code>. Note that due to implementation issues this command deletes the entire target dir before copying the files, so you should never use <code>install_subdir</code> to install into two overlapping directories (such as <code>foo</code> and <code>foo/bar</code>) because if you do the behaviour is undefined.</p>
 <h3 id="is_variable">is_variable()</h3>
-<pre><code>bool is_variable(varname)
+<pre><code class="language-meson">    dependency_object dependency(*dependency_name*, ...)
+    bool is_variable(varname)
 </code></pre>
 <p>Returns true if a variable of the given name exists and false otherwise.</p>
 <h3 id="jar">jar()</h3>
-<p>jar_object jar(name, list_of_sources, ...)</p>
+<pre><code class="language-meson">   jar_object jar(name, list_of_sources, ...)
+</code></pre>
 <p>Build a jar from the specified Java source files. Keyword arguments are the same as executable's, with the addition of <code>main_class</code> which specifies the main class to execute when running the jar with <code>java -jar file.jar</code>.</p>
 <h3 id="join_paths">join_paths()</h3>
-<p>string join_paths(string1, string2, ...)</p>
+<pre><code class="language-meson">   string join_paths(string1, string2, ...)
+</code></pre>
 <p>Joins the given strings into a file system path segment. For example <code>join_paths('foo', 'bar')</code> results in <code>foo/bar</code>. If any one of the individual segments is an absolute path, all segments before it are dropped. That means that <code>join_paths('foo', '/bar')</code> returns <code>/bar</code>.</p>
 <p><em>Added 0.36.0</em></p>
 <h3 id="library">library()</h3>
-<pre><code>buildtarget library(library_name, list_of_sources, ...)
+<pre><code class="language-meson">    buildtarget library(library_name, list_of_sources, ...)
 </code></pre>
 <p>Builds a library that is either static or shared depending on the value of <code>default_library</code> user option. You should use this instead of <a href="#shared_library"><code>shared_library</code></a> or <a href="#static_library"><code>static_library</code></a> most of the time. This allows you to toggle your entire project (including subprojects) from shared to static with only one option.</p>
 <p>The keyword arguments for this are the same as for <a href="#executable"><code>executable</code></a> with the following addition:</p>
@@ -450,11 +464,11 @@ endif
 </ul>
 <p><code>static_library</code> and <code>shared_library</code> also accept this keyword argument.</p>
 <h3 id="message">message()</h3>
-<pre><code>void message(text)
+<pre><code class="language-meson">    void message(text)
 </code></pre>
 <p>This function prints its argument to stdout.</p>
 <h3 id="project">project()</h3>
-<pre><code>void project(project_name, list_of_languages, ...)
+<pre><code class="language-meson">    void project(project_name, list_of_languages, ...)
 </code></pre>
 <p>The first argument to this function must be a string defining the name of this project. It must be followed by one or more programming languages that the project uses. Supported values for languages are <code>c</code>, <code>cpp</code> (for <code>C++</code>), <code>objc</code>, <code>objcpp</code>, <code>fortran</code>, <code>java</code>, <code>cs</code> (for <code>C#</code>) and <code>vala</code>.</p>
 <p>The project name can be any string you want, it's not used for anything except descriptive purposes. However since it is written to e.g. the dependency manifest is usually makes sense to have it be the same as the project tarball or pkg-config name. So for example you would probably want to use the name <em>libfoobar</em> instead of <em>The Foobar Library</em>.</p>
@@ -474,11 +488,11 @@ endif
 </li>
 </ul>
 <h3 id="run_command">run_command()</h3>
-<pre><code>runresult run_command(command, list_of_args)
+<pre><code class="language-meson">    runresult run_command(command, list_of_args)
 </code></pre>
 <p>Runs the command specified in positional arguments. Returns <a href="#run-result-object">an opaque object</a> containing the result of the invocation. The script is run from an <em>unspecified</em> directory, and Meson will set three environment variables <code>MESON_SOURCE_ROOT</code>, <code>MESON_BUILD_ROOT</code> and <code>MESON_SUBDIR</code> that specify the source directory, build directory and subdirectory the target was defined in, respectively.</p>
 <h3 id="run_target">run_target</h3>
-<pre><code>buildtarget run_target(target_name, ...)
+<pre><code class="language-meson">    buildtarget run_target(target_name, ...)
 </code></pre>
 <p>This function creates a new top-level target that runs a specified command with the specified arguments. Like all top-level targets, this integrates with the selected backend. For instance, with Ninja you can run it as <code>ninja target_name</code>.</p>
 <p>The script is run from an <em>unspecified</em> directory, and Meson will set three environment variables <code>MESON_SOURCE_ROOT</code>, <code>MESON_BUILD_ROOT</code> and <code>MESON_SUBDIR</code> that specify the source directory, build directory and subdirectory the target was defined in, respectively.</p>
@@ -487,11 +501,11 @@ endif
 <li><code>depends</code> is a list of targets that this target depends on but which are not listed in the command array (because, for example, the script does file globbing internally)</li>
 </ul>
 <h3 id="set_variable">set_variable()</h3>
-<pre><code>void set_variable(variable_name, value)
+<pre><code class="language-meson">    void set_variable(variable_name, value)
 </code></pre>
 <p>Assigns a value to the given variable name. Calling <code>set_variable('foo', bar)</code> is equivalent to <code>foo = bar</code>.</p>
 <h3 id="shared_library">shared_library()</h3>
-<pre><code>buildtarget shared_library(library_name, list_of_sources, ...)
+<pre><code class="language-meson">    buildtarget shared_library(library_name, list_of_sources, ...)
 </code></pre>
 <p>Builds a shared library with the given sources. Positional and keyword arguments are the same as for <a href="#library"><code>library</code></a> with the following extra keyword arguments.</p>
 <ul>
@@ -500,25 +514,25 @@ endif
 <li><code>vs_module_defs</code> a string pointing to a file that contains Visual Studio symbol export definitions.</li>
 </ul>
 <h3 id="shared_module">shared_module()</h3>
-<pre><code>buildtarget shared_module(module_name, list_of_sources, ...)
+<pre><code class="language-meson">    buildtarget shared_module(module_name, list_of_sources, ...)
 </code></pre>
 <p>Builds a shared module with the given sources. Positional and keyword arguments are the same as for <a href="#library"><code>library</code></a>.</p>
 <p>This is useful for building modules that will be <code>dlopen()</code>ed and hence may contain undefined symbols that will be provided by the library that is loading it.</p>
 <p><em>Added 0.37.0</em></p>
 <h3 id="static_library">static_library()</h3>
-<pre><code>buildtarget static_library(library_name, list_of_sources, ...)
+<pre><code class="language-meson">    buildtarget static_library(library_name, list_of_sources, ...)
 </code></pre>
 <p>Builds a static library with the given sources. Positional and keyword arguments are otherwise the same as for <a href="#library"><code>library</code></a>, but it has one argument the others don't have:</p>
 <ul>
 <li><code>pic</code>, (<em>Added 0.36.0</em>) builds the library as positional independent code (so it can be linked into a shared library). This option has no effect on Windows and OS X since it doesn't make sense on Windows and PIC cannot be disabled on OS X.</li>
 </ul>
 <h3 id="subdir">subdir()</h3>
-<pre><code>void subdir(dir_name)
+<pre><code class="language-meson">    void subdir(dir_name)
 </code></pre>
 <p>Enters the specified subdirectory and executes the <code>meson.build</code> file in it. Once that is done, it returns and execution continues on the line following this <code>subdir()</code> command. Variables defined in that <code>meson.build</code> file are then available for use in later parts of the current build file and in all subsequent build files executed with <code>subdir()</code>.</p>
 <p>Note that this means that each <code>meson.build</code> file in a source tree can and must only be executed once.</p>
 <h3 id="subproject">subproject()</h3>
-<pre><code>subproject_object subproject(subproject_name, ...)
+<pre><code class="language-meson">    subproject_object subproject(subproject_name, ...)
 </code></pre>
 <p>Takes the project specified in the positional argument and brings that in the current build specification by returning a <a href="#subproject-object">subproject object</a>. Subprojects must always be placed inside the <code>subprojects</code> directory at the top source directory. So for example a subproject called <code>foo</code> must be located in <code>${MESON_SOURCE_ROOT}/subprojects/foo</code>. Supports the following keyword arguments:</p>
 <ul>
@@ -526,7 +540,7 @@ endif
 <li><code>default_options</code>, <em>(added 0.37.0)</em> an array of default option values that override those set in the project's <code>default_options</code> invocation (like <code>default_options</code> in <code>project</code>, they only have effect when Meson is run for the first time, and command line arguments override any default options in build files)</li>
 </ul>
 <h3 id="test">test()</h3>
-<pre><code>void test(name, executable, ...)
+<pre><code class="language-meson">    void test(name, executable, ...)
 </code></pre>
 <p>Defines an unit test. Takes two positional arguments, the first is the name of this test and the second is the executable to run. Keyword arguments are the following.</p>
 <ul>
@@ -540,7 +554,7 @@ endif
 </ul>
 <p>Defined tests can be run in a backend-agnostic way by calling <code>mesontest</code> inside the build dir, or by using backend-specific commands, such as <code>ninja test</code> or <code>msbuild RUN_TESTS.vcxproj</code>.</p>
 <h3 id="vcs_tag">vcs_tag()</h3>
-<pre><code>ctarget vcs_tag(...)
+<pre><code class="language-meson">    ctarget vcs_tag(...)
 </code></pre>
 <p>This command detects revision control commit information at build time and places it in the specified output file. This file is guaranteed to be up to date on every build. Keywords are similar to <code>custom_target</code> and all of them are mandatory.</p>
 <ul>
